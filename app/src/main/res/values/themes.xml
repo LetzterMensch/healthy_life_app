@@ -1,0 +1,49 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.GR" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/colorPrimaryDark</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/bottomTabActive</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <declare-styleable name="AspectRatioView">
+        <attr name="aspectRatioEnabled" format="boolean" />
+        <attr name="dominantMeasurement" format="enum">
+            <enum name="Width" value="0" />
+            <enum name="Height" value="1" />
+        </attr>
+        <attr name="aspectRatio" format="float" />
+
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="roundedCorners">
+            <flag name="topLeft" value="1" />
+            <flag name="topRight" value="2" />
+            <flag name="bottomRight" value="4" />
+            <flag name="bottomLeft" value="8" />
+            <flag name="all" value="15" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ScrollControllableViewpager">
+        <attr name="scrollable" format="boolean" />
+    </declare-styleable>
+
+    <attr name="itemActiveColor" format="color" />
+    <attr name="itemInactiveColor" format="color" />
+    <attr name="titleColorActive" format="color" />
+    <attr name="titleColorInactive" format="color" />
+
+    <declare-styleable name="PropertyBottomNavigation">
+        <attr name="itemActiveColor"/>
+        <attr name="itemInactiveColor"/>
+        <attr name="titleColorActive"/>
+        <attr name="titleColorInactive"/>
+    </declare-styleable>
+</resources>

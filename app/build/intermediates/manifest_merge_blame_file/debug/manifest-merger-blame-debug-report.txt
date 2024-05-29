@@ -1,0 +1,395 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.gr"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="22"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-feature
+11-->E:\20232\GR\app\src\main\AndroidManifest.xml:6:5-8:36
+12        android:name="android.hardware.telephony"
+12-->E:\20232\GR\app\src\main\AndroidManifest.xml:7:9-50
+13        android:required="false" />
+13-->E:\20232\GR\app\src\main\AndroidManifest.xml:8:9-33
+14    <uses-feature
+14-->E:\20232\GR\app\src\main\AndroidManifest.xml:9:5-11:35
+15        android:name="android.hardware.location.gps"
+15-->E:\20232\GR\app\src\main\AndroidManifest.xml:10:9-53
+16        android:required="true" />
+16-->E:\20232\GR\app\src\main\AndroidManifest.xml:11:9-32
+17
+18    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+18-->E:\20232\GR\app\src\main\AndroidManifest.xml:13:5-79
+18-->E:\20232\GR\app\src\main\AndroidManifest.xml:13:22-76
+19    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+19-->E:\20232\GR\app\src\main\AndroidManifest.xml:14:5-81
+19-->E:\20232\GR\app\src\main\AndroidManifest.xml:14:22-78
+20    <uses-permission
+20-->E:\20232\GR\app\src\main\AndroidManifest.xml:15:5-17:38
+21        android:name="android.permission.BLUETOOTH"
+21-->E:\20232\GR\app\src\main\AndroidManifest.xml:16:9-52
+22        android:maxSdkVersion="30" />
+22-->E:\20232\GR\app\src\main\AndroidManifest.xml:17:9-35
+23    <uses-permission
+23-->E:\20232\GR\app\src\main\AndroidManifest.xml:18:5-20:38
+24        android:name="android.permission.BLUETOOTH_ADMIN"
+24-->E:\20232\GR\app\src\main\AndroidManifest.xml:19:9-58
+25        android:maxSdkVersion="30" />
+25-->E:\20232\GR\app\src\main\AndroidManifest.xml:20:9-35
+26    <uses-permission
+26-->E:\20232\GR\app\src\main\AndroidManifest.xml:21:5-23:58
+27        android:name="android.permission.BLUETOOTH_SCAN"
+27-->E:\20232\GR\app\src\main\AndroidManifest.xml:22:9-57
+28        android:usesPermissionFlags="neverForLocation" />
+28-->E:\20232\GR\app\src\main\AndroidManifest.xml:23:9-55
+29    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+29-->E:\20232\GR\app\src\main\AndroidManifest.xml:24:5-76
+29-->E:\20232\GR\app\src\main\AndroidManifest.xml:24:22-73
+30    <uses-permission android:name="android.permission.INTERNET" />
+30-->E:\20232\GR\app\src\main\AndroidManifest.xml:26:5-67
+30-->E:\20232\GR\app\src\main\AndroidManifest.xml:26:22-64
+31    <uses-permission android:name="android.permission.CALL_PHONE" />
+31-->E:\20232\GR\app\src\main\AndroidManifest.xml:27:5-68
+31-->E:\20232\GR\app\src\main\AndroidManifest.xml:27:22-66
+32    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+32-->E:\20232\GR\app\src\main\AndroidManifest.xml:28:5-77
+32-->E:\20232\GR\app\src\main\AndroidManifest.xml:28:22-74
+33    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+33-->E:\20232\GR\app\src\main\AndroidManifest.xml:29:5-30:47
+33-->E:\20232\GR\app\src\main\AndroidManifest.xml:29:22-83
+34
+35    <uses-feature
+35-->E:\20232\GR\app\src\main\AndroidManifest.xml:31:5-33:35
+36        android:name="android.hardware.bluetooth"
+36-->E:\20232\GR\app\src\main\AndroidManifest.xml:32:9-50
+37        android:required="true" />
+37-->E:\20232\GR\app\src\main\AndroidManifest.xml:33:9-32
+38    <uses-feature
+38-->E:\20232\GR\app\src\main\AndroidManifest.xml:34:5-36:36
+39        android:name="android.hardware.bluetooth_le"
+39-->E:\20232\GR\app\src\main\AndroidManifest.xml:35:9-53
+40        android:required="false" />
+40-->E:\20232\GR\app\src\main\AndroidManifest.xml:36:9-33
+41    <uses-feature
+41-->E:\20232\GR\app\src\main\AndroidManifest.xml:6:5-8:36
+42        android:name="android.hardware.telephony"
+42-->E:\20232\GR\app\src\main\AndroidManifest.xml:7:9-50
+43        android:required="false" />
+43-->E:\20232\GR\app\src\main\AndroidManifest.xml:8:9-33
+44    <uses-feature
+44-->E:\20232\GR\app\src\main\AndroidManifest.xml:40:5-42:36
+45        android:name="android.software.companion_device_setup"
+45-->E:\20232\GR\app\src\main\AndroidManifest.xml:41:9-63
+46        android:required="false" />
+46-->E:\20232\GR\app\src\main\AndroidManifest.xml:42:9-33
+47
+48    <queries>
+48-->E:\20232\GR\app\src\main\AndroidManifest.xml:43:5-49:15
+49        <intent>
+49-->E:\20232\GR\app\src\main\AndroidManifest.xml:44:9-48:18
+50            <action android:name="android.intent.action.VIEW" />
+50-->E:\20232\GR\app\src\main\AndroidManifest.xml:45:13-64
+50-->E:\20232\GR\app\src\main\AndroidManifest.xml:45:21-62
+51
+52            <category android:name="android.intent.category.DEFAULT" />
+52-->E:\20232\GR\app\src\main\AndroidManifest.xml:46:13-71
+52-->E:\20232\GR\app\src\main\AndroidManifest.xml:46:23-69
+53
+54            <data android:scheme="https" />
+54-->E:\20232\GR\app\src\main\AndroidManifest.xml:47:13-44
+54-->E:\20232\GR\app\src\main\AndroidManifest.xml:47:19-41
+55        </intent>
+56    </queries>
+57
+58    <permission
+58-->[androidx.core:core:1.13.0] C:\Users\4800\.gradle\caches\transforms-3\19e7c0b98f8b685f3cf799bdf4313285\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+59        android:name="com.example.gr.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+59-->[androidx.core:core:1.13.0] C:\Users\4800\.gradle\caches\transforms-3\19e7c0b98f8b685f3cf799bdf4313285\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+60        android:protectionLevel="signature" />
+60-->[androidx.core:core:1.13.0] C:\Users\4800\.gradle\caches\transforms-3\19e7c0b98f8b685f3cf799bdf4313285\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+61
+62    <uses-permission android:name="com.example.gr.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+62-->[androidx.core:core:1.13.0] C:\Users\4800\.gradle\caches\transforms-3\19e7c0b98f8b685f3cf799bdf4313285\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+62-->[androidx.core:core:1.13.0] C:\Users\4800\.gradle\caches\transforms-3\19e7c0b98f8b685f3cf799bdf4313285\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+63
+64    <application
+64-->E:\20232\GR\app\src\main\AndroidManifest.xml:50:5-141:19
+65        android:name="com.example.gr.ControllerApplication"
+65-->E:\20232\GR\app\src\main\AndroidManifest.xml:51:9-46
+66        android:allowBackup="false"
+66-->E:\20232\GR\app\src\main\AndroidManifest.xml:52:9-36
+67        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+67-->[androidx.core:core:1.13.0] C:\Users\4800\.gradle\caches\transforms-3\19e7c0b98f8b685f3cf799bdf4313285\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+68        android:dataExtractionRules="@xml/data_extraction_rules"
+68-->E:\20232\GR\app\src\main\AndroidManifest.xml:53:9-65
+69        android:debuggable="true"
+70        android:extractNativeLibs="true"
+71        android:fullBackupContent="@xml/backup_rules"
+71-->E:\20232\GR\app\src\main\AndroidManifest.xml:54:9-54
+72        android:icon="@drawable/skbk_logo"
+72-->E:\20232\GR\app\src\main\AndroidManifest.xml:55:9-43
+73        android:label="@string/app_name"
+73-->E:\20232\GR\app\src\main\AndroidManifest.xml:56:9-41
+74        android:roundIcon="@drawable/skbk_logo"
+74-->E:\20232\GR\app\src\main\AndroidManifest.xml:57:9-48
+75        android:supportsRtl="false"
+75-->E:\20232\GR\app\src\main\AndroidManifest.xml:58:9-36
+76        android:testOnly="true"
+77        android:theme="@style/Theme.GR" >
+77-->E:\20232\GR\app\src\main\AndroidManifest.xml:59:9-40
+78        <receiver
+78-->E:\20232\GR\app\src\main\AndroidManifest.xml:61:9-70:20
+79            android:name="com.example.gr.externalevents.AutoStartReceiver"
+79-->E:\20232\GR\app\src\main\AndroidManifest.xml:62:13-61
+80            android:exported="false"
+80-->E:\20232\GR\app\src\main\AndroidManifest.xml:64:13-37
+81            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+81-->E:\20232\GR\app\src\main\AndroidManifest.xml:63:13-75
+82            <intent-filter>
+82-->E:\20232\GR\app\src\main\AndroidManifest.xml:65:13-69:29
+83                <action android:name="android.intent.action.BOOT_COMPLETED" />
+83-->E:\20232\GR\app\src\main\AndroidManifest.xml:66:17-79
+83-->E:\20232\GR\app\src\main\AndroidManifest.xml:66:25-76
+84
+85                <category android:name="android.intent.category.DEFAULT" />
+85-->E:\20232\GR\app\src\main\AndroidManifest.xml:46:13-71
+85-->E:\20232\GR\app\src\main\AndroidManifest.xml:46:23-69
+86
+87                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+87-->E:\20232\GR\app\src\main\AndroidManifest.xml:68:17-83
+87-->E:\20232\GR\app\src\main\AndroidManifest.xml:68:25-81
+88            </intent-filter>
+89        </receiver>
+90        <receiver
+90-->E:\20232\GR\app\src\main\AndroidManifest.xml:71:9-83:20
+91            android:name="com.example.gr.externalevents.BluetoothStateChangeReceiver"
+91-->E:\20232\GR\app\src\main\AndroidManifest.xml:72:13-72
+92            android:exported="true"
+92-->E:\20232\GR\app\src\main\AndroidManifest.xml:73:13-36
+93            android:permission="android.permission.BLUETOOTH,android.permission.BLUETOOTH_ADMIN" >
+93-->E:\20232\GR\app\src\main\AndroidManifest.xml:74:13-97
+94            <intent-filter>
+94-->E:\20232\GR\app\src\main\AndroidManifest.xml:75:13-82:29
+95                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+95-->E:\20232\GR\app\src\main\AndroidManifest.xml:76:17-89
+95-->E:\20232\GR\app\src\main\AndroidManifest.xml:76:25-86
+96                <action android:name="android.bluetooth.adapter.action.CONNECTION_STATE_CHANGED" />
+96-->E:\20232\GR\app\src\main\AndroidManifest.xml:77:17-100
+96-->E:\20232\GR\app\src\main\AndroidManifest.xml:77:25-97
+97                <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
+97-->E:\20232\GR\app\src\main\AndroidManifest.xml:79:17-88
+97-->E:\20232\GR\app\src\main\AndroidManifest.xml:79:25-85
+98                <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED" />
+98-->E:\20232\GR\app\src\main\AndroidManifest.xml:80:17-91
+98-->E:\20232\GR\app\src\main\AndroidManifest.xml:80:25-88
+99                <action android:name="android.bluetooth.device.action.ACL_DISCONNECT_REQUESTED" />
+99-->E:\20232\GR\app\src\main\AndroidManifest.xml:81:17-99
+99-->E:\20232\GR\app\src\main\AndroidManifest.xml:81:25-96
+100            </intent-filter>
+101        </receiver>
+102
+103        <activity
+103-->E:\20232\GR\app\src\main\AndroidManifest.xml:84:9-92:20
+104            android:name="com.example.gr.activity.SplashActivity"
+104-->E:\20232\GR\app\src\main\AndroidManifest.xml:85:13-52
+105            android:exported="true" >
+105-->E:\20232\GR\app\src\main\AndroidManifest.xml:86:13-36
+106            <intent-filter>
+106-->E:\20232\GR\app\src\main\AndroidManifest.xml:87:13-91:29
+107                <action android:name="android.intent.action.MAIN" />
+107-->E:\20232\GR\app\src\main\AndroidManifest.xml:88:17-69
+107-->E:\20232\GR\app\src\main\AndroidManifest.xml:88:25-66
+108
+109                <category android:name="android.intent.category.LAUNCHER" />
+109-->E:\20232\GR\app\src\main\AndroidManifest.xml:90:17-77
+109-->E:\20232\GR\app\src\main\AndroidManifest.xml:90:27-74
+110            </intent-filter>
+111        </activity>
+112        <activity
+112-->E:\20232\GR\app\src\main\AndroidManifest.xml:93:9-96:20
+113            android:name="com.example.gr.device.settings.DeviceSettingsActivity"
+113-->E:\20232\GR\app\src\main\AndroidManifest.xml:94:13-67
+114            android:exported="false" >
+114-->E:\20232\GR\app\src\main\AndroidManifest.xml:95:13-37
+115        </activity>
+116        <activity
+116-->E:\20232\GR\app\src\main\AndroidManifest.xml:97:9-100:20
+117            android:name="com.example.gr.activity.DiscoveryActivityV2"
+117-->E:\20232\GR\app\src\main\AndroidManifest.xml:98:13-57
+118            android:exported="false" >
+118-->E:\20232\GR\app\src\main\AndroidManifest.xml:99:13-37
+119        </activity>
+120        <activity
+120-->E:\20232\GR\app\src\main\AndroidManifest.xml:101:9-104:20
+121            android:name="com.example.gr.activity.MainActivity"
+121-->E:\20232\GR\app\src\main\AndroidManifest.xml:102:13-50
+122            android:exported="false" >
+122-->E:\20232\GR\app\src\main\AndroidManifest.xml:103:13-37
+123        </activity>
+124        <activity
+124-->E:\20232\GR\app\src\main\AndroidManifest.xml:105:9-107:39
+125            android:name="com.example.gr.activity.SearchForFoodActivity"
+125-->E:\20232\GR\app\src\main\AndroidManifest.xml:106:13-59
+126            android:exported="false" />
+126-->E:\20232\GR\app\src\main\AndroidManifest.xml:107:13-37
+127        <activity
+127-->E:\20232\GR\app\src\main\AndroidManifest.xml:108:9-110:39
+128            android:name="com.example.gr.activity.FoodDetailActivity"
+128-->E:\20232\GR\app\src\main\AndroidManifest.xml:109:13-56
+129            android:exported="false" />
+129-->E:\20232\GR\app\src\main\AndroidManifest.xml:110:13-37
+130        <activity
+130-->E:\20232\GR\app\src\main\AndroidManifest.xml:111:9-114:39
+131            android:name="com.example.gr.device.huami.miband.MiBandPairingActivity"
+131-->E:\20232\GR\app\src\main\AndroidManifest.xml:112:13-70
+132            android:exported="false"
+132-->E:\20232\GR\app\src\main\AndroidManifest.xml:114:13-37
+133            android:label="@string/title_activity_mi_band_pairing" />
+133-->E:\20232\GR\app\src\main\AndroidManifest.xml:113:13-67
+134        <activity
+134-->E:\20232\GR\app\src\main\AndroidManifest.xml:115:9-117:40
+135            android:name="com.example.gr.device.huami.miband.MiBandPreferencesActivity"
+135-->E:\20232\GR\app\src\main\AndroidManifest.xml:116:13-74
+136            android:exported="false" />
+136-->E:\20232\GR\app\src\main\AndroidManifest.xml:117:13-37
+137        <activity
+137-->E:\20232\GR\app\src\main\AndroidManifest.xml:118:9-120:40
+138            android:name="com.example.gr.device.settings.SettingsActivity"
+138-->E:\20232\GR\app\src\main\AndroidManifest.xml:119:13-61
+139            android:exported="false" />
+139-->E:\20232\GR\app\src\main\AndroidManifest.xml:120:13-37
+140        <activity
+140-->E:\20232\GR\app\src\main\AndroidManifest.xml:121:9-123:40
+141            android:name="com.example.gr.device.settings.AboutUserPreferencesActivity"
+141-->E:\20232\GR\app\src\main\AndroidManifest.xml:122:13-73
+142            android:exported="false" />
+142-->E:\20232\GR\app\src\main\AndroidManifest.xml:123:13-37
+143        <activity
+143-->E:\20232\GR\app\src\main\AndroidManifest.xml:124:9-126:39
+144            android:name="com.example.gr.activity.RecipeDetailActivity"
+144-->E:\20232\GR\app\src\main\AndroidManifest.xml:125:13-58
+145            android:exported="false" />
+145-->E:\20232\GR\app\src\main\AndroidManifest.xml:126:13-37
+146        <activity
+146-->E:\20232\GR\app\src\main\AndroidManifest.xml:127:9-129:39
+147            android:name="com.example.gr.activity.HistoryDetailActivity"
+147-->E:\20232\GR\app\src\main\AndroidManifest.xml:128:13-59
+148            android:exported="false" />
+148-->E:\20232\GR\app\src\main\AndroidManifest.xml:129:13-37
+149        <activity
+149-->E:\20232\GR\app\src\main\AndroidManifest.xml:130:9-132:39
+150            android:name="com.example.gr.activity.HistoryListActivity"
+150-->E:\20232\GR\app\src\main\AndroidManifest.xml:131:13-57
+151            android:exported="false" />
+151-->E:\20232\GR\app\src\main\AndroidManifest.xml:132:13-37
+152        <activity
+152-->E:\20232\GR\app\src\main\AndroidManifest.xml:133:9-137:47
+153            android:name="com.example.gr.activity.RecordGpsWorkoutActivity"
+153-->E:\20232\GR\app\src\main\AndroidManifest.xml:134:13-62
+154            android:launchMode="singleTop"
+154-->E:\20232\GR\app\src\main\AndroidManifest.xml:135:13-43
+155            android:screenOrientation="portrait"
+155-->E:\20232\GR\app\src\main\AndroidManifest.xml:136:13-49
+156            android:showOnLockScreen="true" />
+156-->E:\20232\GR\app\src\main\AndroidManifest.xml:137:13-44
+157
+158        <meta-data
+158-->E:\20232\GR\app\src\main\AndroidManifest.xml:138:9-140:57
+159            android:name="preloaded_fonts"
+159-->E:\20232\GR\app\src\main\AndroidManifest.xml:139:13-43
+160            android:resource="@array/preloaded_fonts" />
+160-->E:\20232\GR\app\src\main\AndroidManifest.xml:140:13-54
+161
+162        <provider
+162-->[androidx.emoji2:emoji2:1.2.0] C:\Users\4800\.gradle\caches\transforms-3\22471b7f7dfe28d311c0d565698a5013\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+163            android:name="androidx.startup.InitializationProvider"
+163-->[androidx.emoji2:emoji2:1.2.0] C:\Users\4800\.gradle\caches\transforms-3\22471b7f7dfe28d311c0d565698a5013\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+164            android:authorities="com.example.gr.androidx-startup"
+164-->[androidx.emoji2:emoji2:1.2.0] C:\Users\4800\.gradle\caches\transforms-3\22471b7f7dfe28d311c0d565698a5013\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+165            android:exported="false" >
+165-->[androidx.emoji2:emoji2:1.2.0] C:\Users\4800\.gradle\caches\transforms-3\22471b7f7dfe28d311c0d565698a5013\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+166            <meta-data
+166-->[androidx.emoji2:emoji2:1.2.0] C:\Users\4800\.gradle\caches\transforms-3\22471b7f7dfe28d311c0d565698a5013\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+167                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+167-->[androidx.emoji2:emoji2:1.2.0] C:\Users\4800\.gradle\caches\transforms-3\22471b7f7dfe28d311c0d565698a5013\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+168                android:value="androidx.startup" />
+168-->[androidx.emoji2:emoji2:1.2.0] C:\Users\4800\.gradle\caches\transforms-3\22471b7f7dfe28d311c0d565698a5013\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+169            <meta-data
+169-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\4800\.gradle\caches\transforms-3\18c4f95e185f89d37f5284fbd861a56d\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+170                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+170-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\4800\.gradle\caches\transforms-3\18c4f95e185f89d37f5284fbd861a56d\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+171                android:value="androidx.startup" />
+171-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\4800\.gradle\caches\transforms-3\18c4f95e185f89d37f5284fbd861a56d\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+172            <meta-data
+172-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+173                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+173-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+174                android:value="androidx.startup" />
+174-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+175        </provider>
+176
+177        <uses-library
+177-->[androidx.window:window:1.0.0] C:\Users\4800\.gradle\caches\transforms-3\9f3d5659cb239d96abaca25a55e11ec6\transformed\jetified-window-1.0.0\AndroidManifest.xml:25:9-27:40
+178            android:name="androidx.window.extensions"
+178-->[androidx.window:window:1.0.0] C:\Users\4800\.gradle\caches\transforms-3\9f3d5659cb239d96abaca25a55e11ec6\transformed\jetified-window-1.0.0\AndroidManifest.xml:26:13-54
+179            android:required="false" />
+179-->[androidx.window:window:1.0.0] C:\Users\4800\.gradle\caches\transforms-3\9f3d5659cb239d96abaca25a55e11ec6\transformed\jetified-window-1.0.0\AndroidManifest.xml:27:13-37
+180        <uses-library
+180-->[androidx.window:window:1.0.0] C:\Users\4800\.gradle\caches\transforms-3\9f3d5659cb239d96abaca25a55e11ec6\transformed\jetified-window-1.0.0\AndroidManifest.xml:28:9-30:40
+181            android:name="androidx.window.sidecar"
+181-->[androidx.window:window:1.0.0] C:\Users\4800\.gradle\caches\transforms-3\9f3d5659cb239d96abaca25a55e11ec6\transformed\jetified-window-1.0.0\AndroidManifest.xml:29:13-51
+182            android:required="false" />
+182-->[androidx.window:window:1.0.0] C:\Users\4800\.gradle\caches\transforms-3\9f3d5659cb239d96abaca25a55e11ec6\transformed\jetified-window-1.0.0\AndroidManifest.xml:30:13-37
+183
+184        <service
+184-->[androidx.room:room-runtime:2.6.1] C:\Users\4800\.gradle\caches\transforms-3\d6cc9cc8f0e884d2f28b25fe6238f01d\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+185            android:name="androidx.room.MultiInstanceInvalidationService"
+185-->[androidx.room:room-runtime:2.6.1] C:\Users\4800\.gradle\caches\transforms-3\d6cc9cc8f0e884d2f28b25fe6238f01d\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+186            android:directBootAware="true"
+186-->[androidx.room:room-runtime:2.6.1] C:\Users\4800\.gradle\caches\transforms-3\d6cc9cc8f0e884d2f28b25fe6238f01d\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+187            android:exported="false" />
+187-->[androidx.room:room-runtime:2.6.1] C:\Users\4800\.gradle\caches\transforms-3\d6cc9cc8f0e884d2f28b25fe6238f01d\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+188
+189        <receiver
+189-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+190            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+190-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+191            android:directBootAware="false"
+191-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+192            android:enabled="true"
+192-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+193            android:exported="true"
+193-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+194            android:permission="android.permission.DUMP" >
+194-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+195            <intent-filter>
+195-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+196                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+196-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+196-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+197            </intent-filter>
+198            <intent-filter>
+198-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+199                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+199-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+199-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+200            </intent-filter>
+201            <intent-filter>
+201-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+202                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+202-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+202-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+203            </intent-filter>
+204            <intent-filter>
+204-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+205                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+205-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+205-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\4800\.gradle\caches\transforms-3\def5da3f11daed38c7ed8dad086bc0e6\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+206            </intent-filter>
+207        </receiver>
+208    </application>
+209
+210</manifest>
