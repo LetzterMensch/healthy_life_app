@@ -18,6 +18,7 @@
 package com.example.gr.utils;
 
 import static androidx.core.app.ActivityCompat.startIntentSenderForResult;
+import static com.example.gr.ControllerApplication.getContext;
 import static com.example.gr.utils.GB.toast;
 
 import android.annotation.SuppressLint;
@@ -136,6 +137,7 @@ public class BondingUtil {
      * @param candidate the device to connect to
      */
     public static void attemptToFirstConnect(final BluetoothDevice candidate) {
+        toast(getContext(), "[first connect] device service : "+ControllerApplication.deviceService().toString(), Toast.LENGTH_SHORT, GB.INFO);
         Looper mainLooper = Looper.getMainLooper();
         new Handler(mainLooper).postDelayed(new Runnable() {
             @Override
@@ -153,6 +155,7 @@ public class BondingUtil {
     private static void connectToGBDevice(GBDevice device) {
         if (device != null) {
             ControllerApplication.deviceService(device).connect(true);
+            toast("Connected successfully ", Toast.LENGTH_SHORT, GB.INFO);
         } else {
             toast("Unable to connect, can't recognize the device type", Toast.LENGTH_LONG, GB.ERROR);
         }
@@ -251,6 +254,7 @@ public class BondingUtil {
             // because this function shouldn't've been called
             // with an already bonded device
             if (device.getBondState() == BluetoothDevice.BOND_BONDED) {
+                toast(context.getContext(), "[blt bond] about to do attemptToFirstConnect", Toast.LENGTH_SHORT, GB.INFO);
                 LOG.warn("For some reason the device is already bonded, but let's try first connect");
                 attemptToFirstConnect(context.getCurrentTarget().getDevice());
             } else if (device.getBondState() == BluetoothDevice.BOND_BONDING) {
@@ -323,7 +327,6 @@ public class BondingUtil {
                 .addDeviceFilter(deviceFilter)
                 .setSingleDevice(true)
                 .build();
-
         CompanionDeviceManager manager = (CompanionDeviceManager) bondingInterface.getContext().getSystemService(Context.COMPANION_DEVICE_SERVICE);
         LOG.debug(String.format("Searching for %s associations", macAddress));
         for (String association : manager.getAssociations()) {
@@ -332,6 +335,7 @@ public class BondingUtil {
                 LOG.info("The device has already been bonded through CompanionDeviceManager, using regular");
                 // If it's already "associated", we should immediately pair
                 // because the callback is never called (AFAIK?)
+                toast(bondingInterface.getContext(), "[companion bond] about to do the bluetooth bond", Toast.LENGTH_SHORT, GB.INFO);
                 BondingUtil.bluetoothBond(bondingInterface, device);
                 return;
             }
@@ -385,6 +389,7 @@ public class BondingUtil {
                 // TODO: It would theoretically be nice to check if it's already been granted,
                 //  but re-bond works
             } else {
+                toast(bondingInterface.getContext(), "[BOND_BONDED] first connect", Toast.LENGTH_SHORT, GB.INFO);
                 attemptToFirstConnect(bondingInterface.getCurrentTarget().getDevice());
                 return;
             }
@@ -400,11 +405,13 @@ public class BondingUtil {
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
 
         if (companionPairingEnabled && !isPebble2(device)) {
+            toast(bondingInterface.getContext(), "about to do the companionDeviceManagerBond", Toast.LENGTH_SHORT, GB.INFO);
             companionDeviceManagerBond(bondingInterface, device, macAddress);
         } else if (isPebble2(device)) {
             // TODO: start companionDevicePairing after connecting to Pebble 2 but before writing to pairing trigger
             attemptToFirstConnect(device);
         } else {
+            toast(bondingInterface.getContext(), "about to do the bluetooth bond", Toast.LENGTH_SHORT, GB.INFO);
             bluetoothBond(bondingInterface, device);
         }
     }
@@ -427,6 +434,7 @@ public class BondingUtil {
             @Override
             public void onDeviceFound(IntentSender chooserLauncher) {
                 try {
+                    toast(bondingInterface.getContext(),"with context : "+ bondingInterface.getContext().toString(),Toast.LENGTH_SHORT,GB.INFO);
                     startIntentSenderForResult((Activity) bondingInterface.getContext(),
                             chooserLauncher,
                             REQUEST_CODE,

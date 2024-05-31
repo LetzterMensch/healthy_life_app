@@ -55,6 +55,7 @@ import com.example.gr.database.entities.Device;
 import com.example.gr.database.entities.DeviceAttributesDao;
 import com.example.gr.device.capability.HeartRateCapability;
 import com.example.gr.device.model.AbstractNotificationPattern;
+import com.example.gr.device.model.BatteryConfig;
 import com.example.gr.device.model.DeviceType;
 import com.example.gr.device.settings.DeviceSpecificSettings;
 import com.example.gr.utils.GBPrefs;

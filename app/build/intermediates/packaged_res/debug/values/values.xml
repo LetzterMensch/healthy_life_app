@@ -6494,7 +6494,7 @@
     <string name="zetime_title_heartrate">Heart rate settings</string>
     <string name="zetime_title_screentime">Screen on duration in seconds</string>
     <string name="zetime_title_settings">ZeTime settings</string>
-    <style name="Theme.GR" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Theme.GR" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

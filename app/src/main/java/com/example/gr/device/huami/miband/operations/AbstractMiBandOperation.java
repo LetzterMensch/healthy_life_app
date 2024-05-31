@@ -34,6 +34,7 @@ public abstract class AbstractMiBandOperation<T extends AbstractBTLEDeviceSuppor
     @Override
     protected void prePerform() throws IOException {
         super.prePerform();
+        System.out.println("inside miband operation");
         getDevice().setBusyTask("Operation starting..."); // mark as busy quickly to avoid interruptions from the outside
         TransactionBuilder builder = performInitialized("disabling some notifications");
         enableOtherNotifications(builder, false);

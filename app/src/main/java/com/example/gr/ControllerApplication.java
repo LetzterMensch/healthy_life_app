@@ -69,6 +69,11 @@ public class ControllerApplication extends Application {
     private static LockHandler lockHandler;
     private static final String PREFS_VERSION = "shared_preferences_version";
     private static final int CURRENT_PREFS_VERSION = 28;
+    public static final String ACTION_NAV_EXERCISE_FRAGMENT = "om.example.gr.ControllerApplication.action.exercisefragment";
+    public static final String ACTION_NAV_DIARY_FRAGMENT = "om.example.gr.ControllerApplication.action.diaryfragment";
+    public static final String ACTION_NAV_DASHBOARD_FRAGMENT = "om.example.gr.ControllerApplication.action.dashboardfragment";
+    public static final String ACTION_NAV_SLEEP_FRAGMENT = "om.example.gr.ControllerApplication.action.sleepfragment";
+    public static final String ACTION_NAV_PROFILE_FRAGMENT = "om.example.gr.ControllerApplication.action.profilefragment";
 
     public static final String ACTION_NEW_DATA = "com.example.gr.ControllerApplication.action.new_data";
 
@@ -141,6 +146,9 @@ public class ControllerApplication extends Application {
 //                                .build(), context);
 //            }
         }
+    }
+    public static boolean isRunningTwelveOrLater() {
+        return Build.VERSION.SDK_INT >= 31;  // Build.VERSION_CODES.S, but our target SDK is lower
     }
     private void migratePrefs(int oldVersion) {
         SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -1002,7 +1010,7 @@ public class ControllerApplication extends Application {
 
     public void setupDatabase() {
         DaoMaster.OpenHelper helper;
-        deleteActivityDatabase(context);
+//        deleteActivityDatabase(context);
         helper = new DBOpenHelper(this, DATABASE_NAME, null);
 
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -1054,9 +1062,10 @@ public class ControllerApplication extends Application {
     public void setOpenTracksObserver(OpenTracksContentObserver openTracksObserver) {
         this.openTracksObserver = openTracksObserver;
     }
-
+    public static boolean minimizeNotification() {
+        return prefs.getBoolean("minimize_priority", false);
+    }
     public OpenTracksContentObserver getOpenTracksObserver() {
         return openTracksObserver;
     }
-
 }

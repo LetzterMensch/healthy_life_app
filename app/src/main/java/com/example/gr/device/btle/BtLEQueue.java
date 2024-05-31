@@ -19,6 +19,7 @@ import android.os.Looper;
 import androidx.annotation.Nullable;
 
 import com.example.gr.ControllerApplication;
+import com.example.gr.Logging;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.GBDevice.State;
 import com.example.gr.device.btle.actions.WriteAction;
@@ -229,7 +230,6 @@ public final class BtLEQueue {
      *
      * @return <code>true</code> whether the connection attempt was successfully triggered and <code>false</code> if that failed or if there is already a connection
      */
-    @SuppressLint("MissingPermission")
     public boolean connect() {
         mPauseTransaction = false;
         if (isConnected()) {
@@ -286,7 +286,6 @@ public final class BtLEQueue {
         });
     }
 
-    @SuppressLint("MissingPermission")
     public void disconnect() {
         synchronized (mGattMonitor) {
             LOG.debug("disconnect()");
@@ -351,7 +350,7 @@ public final class BtLEQueue {
             }
 
             LOG.info("Enabling automatic ble reconnect...");
-            @SuppressLint("MissingPermission") boolean result = mBluetoothGatt.connect();
+            boolean result = mBluetoothGatt.connect();
             mPauseTransaction = false;
             if (result) {
                 setDeviceConnectionState(State.WAITING_FOR_RECONNECT);
@@ -523,7 +522,6 @@ public final class BtLEQueue {
                         LOG.info("Attempting to start service discovery");
                         // discover services in the main thread (appears to fix Samsung connection problems)
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @SuppressLint("MissingPermission")
                             @Override
                             public void run() {
                                 if (mBluetoothGatt != null) {
@@ -645,10 +643,10 @@ public final class BtLEQueue {
         @Override
         public void onCharacteristicChanged(BluetoothGatt gatt,
                                             BluetoothGattCharacteristic characteristic) {
-//            if (LOG.isDebugEnabled()) {
-//                String content = Logging.formatBytes(characteristic.getValue());
-//                LOG.debug("characteristic changed: " + characteristic.getUuid() + " value: " + content);
-//            }
+            if (LOG.isDebugEnabled()) {
+                String content = Logging.formatBytes(characteristic.getValue());
+                LOG.debug("characteristic changed: " + characteristic.getUuid() + " value: " + content);
+            }
             if (!checkCorrectGattInstance(gatt, "characteristic changed")) {
                 return;
             }
@@ -759,7 +757,6 @@ public final class BtLEQueue {
             }
         }
 
-        @SuppressLint("MissingPermission")
         @Override
         public void onCharacteristicWriteRequest(BluetoothDevice device, int requestId, BluetoothGattCharacteristic characteristic, boolean preparedWrite, boolean responseNeeded, int offset, byte[] value) {
             if(!checkCorrectBluetoothDevice(device)) {
@@ -786,7 +783,6 @@ public final class BtLEQueue {
             }
         }
 
-        @SuppressLint("MissingPermission")
         @Override
         public void onDescriptorWriteRequest(BluetoothDevice device, int requestId, BluetoothGattDescriptor descriptor, boolean preparedWrite, boolean responseNeeded, int offset, byte[] value) {
             if(!checkCorrectBluetoothDevice(device)) {

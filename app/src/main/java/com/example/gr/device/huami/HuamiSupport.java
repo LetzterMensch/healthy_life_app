@@ -176,6 +176,7 @@ import java.util.concurrent.TimeUnit;
 
 import cyanogenmod.weather.util.WeatherUtils;
 import com.example.gr.ControllerApplication;
+import com.example.gr.Logging;
 import com.example.gr.R;
 import com.example.gr.data.sample.ActivitySample;
 import com.example.gr.database.entities.DaoSession;
@@ -1703,10 +1704,15 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
         }
 
         final AbstractFetchOperation nextOperation = this.fetchOperationQueue.poll();
+        System.out.println("Done add into queue\n");
+        System.out.println(getDevice().getName()+"\n");
         if (nextOperation != null) {
             try {
+                System.out.println("Try to perform");
                 nextOperation.perform();
+                System.out.println("done preforming");
             } catch (final IOException e) {
+                System.out.println("Perform the queue failed");
                 LOG.error("Unable to fetch recorded data", e);
             }
         }
@@ -2284,7 +2290,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
             return true;
         } else if (HuamiService.UUID_CHARACTERISTIC_AUTH.equals(characteristicUUID)) {
             LOG.info("AUTHENTICATION?? " + characteristicUUID);
-//            logMessageContent(characteristic.getValue());
+            logMessageContent(characteristic.getValue());
             return true;
         } else if (HuamiService.UUID_CHARACTERISTIC_DEVICEEVENT.equals(characteristicUUID)) {
             handleDeviceEvent(characteristic.getValue());
@@ -2306,7 +2312,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
             return true;
         } else {
             LOG.info("Unhandled characteristic changed: " + characteristicUUID);
-//            logMessageContent(characteristic.getValue());
+            logMessageContent(characteristic.getValue());
         }
 
         return false;
@@ -2341,7 +2347,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
             return true;
         } else {
             LOG.info("Unhandled characteristic read: " + characteristicUUID);
-//            logMessageContent(characteristic.getValue());
+            logMessageContent(characteristic.getValue());
         }
 
         return false;
@@ -2353,7 +2359,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
         UUID characteristicUUID = characteristic.getUuid();
         if (HuamiService.UUID_CHARACTERISTIC_AUTH.equals(characteristicUUID)) {
             LOG.info("KEY AES SEND");
-//            logMessageContent(characteristic.getValue());
+            logMessageContent(characteristic.getValue());
             return true;
         }
         return false;
@@ -2368,7 +2374,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
             }
             return;
         }
-//        logMessageContent(value);
+        logMessageContent(value);
     }
 
     protected void handleHeartrate(byte[] value) {
@@ -2400,7 +2406,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
             }
             getRealtimeSamplesSupport().setSteps(steps);
         } else {
-//            LOG.warn("Unrecognized realtime steps value: " + Logging.formatBytes(value));
+            LOG.warn("Unrecognized realtime steps value: " + Logging.formatBytes(value));
         }
     }
 
@@ -2449,7 +2455,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
                         break;
                     case COMMAND_WORKOUT_ACTIVITY_TYPES:
                         LOG.warn("got workout activity types, not handled");
-//                        logMessageContent(reassemblyBuffer);
+                        logMessageContent(reassemblyBuffer);
                         break;
                     default:
                         LOG.warn("got unknown chunked configuration response for {}, not handled", String.format("0x%02x", reassemblyType));
@@ -3100,6 +3106,10 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
         }
         boolean supportsConditionString = true;
 
+//        Version version = new Version(gbDevice.getFirmwareVersion());
+//        if (gbDevice.getType() == DeviceType.AMAZFITBIP && version.compareTo(new Version("0.0.8.74")) < 0) {
+//            supportsConditionString = false;
+//        }
 
         MiBandConst.DistanceUnit unit = HuamiCoordinator.getDistanceUnit();
         int tz_offset_hours = SimpleTimeZone.getDefault().getOffset(weatherSpec.timestamp * 1000L) / (1000 * 60 * 60);

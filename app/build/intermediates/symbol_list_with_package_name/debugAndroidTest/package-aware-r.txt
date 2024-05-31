@@ -1,3 +1,0 @@
-com.example.gr.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme

@@ -38,7 +38,7 @@ import com.example.gr.database.DBHandler;
 import com.example.gr.database.DBHelper;
 import com.example.gr.database.entities.Device;
 import com.example.gr.database.entities.DeviceAttributes;
-import com.example.gr.device.BatteryConfig;
+import com.example.gr.device.model.BatteryConfig;
 import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.model.DeviceType;
 import com.example.gr.device.GBDevice;

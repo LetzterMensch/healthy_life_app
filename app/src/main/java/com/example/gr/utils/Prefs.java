@@ -141,6 +141,7 @@ public class Prefs {
      * @param defaultValue the default value to return if the preference value is unset
      * @return the saved preference value or the given defaultValue
      */
+    // Nếu không tồn tại thì sẽ trả về giá trị defaultValue
     public boolean getBoolean(String key, boolean defaultValue) {
         try {
             return preferences.getBoolean(key, defaultValue);

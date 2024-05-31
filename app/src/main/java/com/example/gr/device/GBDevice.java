@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.R;
 import com.example.gr.device.model.BatteryState;
 import com.example.gr.device.model.DeviceType;
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class GBDevice implements Parcelable {
     public static final String ACTION_DEVICE_CHANGED
-            = "nodomain.freeyourgadget.gadgetbridge.gbdevice.action.device_changed";
+            = "com.example.gr.device.gbdevice.action.device_changed";
     public static final Creator<GBDevice> CREATOR = new Creator<GBDevice>() {
         @Override
         public GBDevice createFromParcel(Parcel source) {
@@ -402,27 +403,27 @@ public class GBDevice implements Parcelable {
         }
     }
 
-//    public String getStateString() {
-//        return getStateString(true);
-//    }
+    public String getStateString() {
+        return getStateString(true);
+    }
 
     /**
      * for simplicity the user won't see all internal states, just connecting -> connected
      * instead of connecting->connected->initializing->initialized
      * Set simple to true to get this behavior.
      */
-//    private String getStateString(boolean simple) {
-//        try {
-//            // TODO: not sure if this is really neccessary...
-//            if (simple) {
-//                return getActivity().getApplicationContext().getString(mState.getSimpleStringId());
-//            }
-//            return GBApplication.getContext().getString(mState.getStringId());
-//        } catch (Exception e) {
-//        }
-//
-//        return GBApplication.getContext().getString(R.string.unknown_state);
-//    }
+    private String getStateString(boolean simple) {
+        try {
+            // TODO: not sure if this is really neccessary...
+            if (simple) {
+                return ControllerApplication.getContext().getString(mState.getSimpleStringId());
+            }
+            return ControllerApplication.getContext().getString(mState.getStringId());
+        } catch (Exception e) {
+        }
+
+        return ControllerApplication.getContext().getString(R.string.unknown_state);
+    }
 
     /**
      * Returns the general type of this device. For more detailed information,

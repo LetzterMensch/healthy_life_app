@@ -41,6 +41,7 @@ import com.example.gr.activity.DiscoveryActivityV2;
 import com.example.gr.activity.MainActivity;
 import com.example.gr.constant.MiBandConst;
 import com.example.gr.device.DeviceCoordinator;
+import com.example.gr.device.settings.AboutUserPreferencesActivity;
 import com.example.gr.utils.GB;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.GBDeviceCandidate;
@@ -101,11 +102,11 @@ public class MiBandPairingActivity extends AbstractGBActivity implements Bonding
             }
         }
 
-//        if (!MiBandCoordinator.hasValidUserInfo()) {
-//            Intent userSettingsIntent = new Intent(this, AboutUserPreferencesActivity.class);
-//            startActivityForResult(userSettingsIntent, REQ_CODE_USER_SETTINGS, null);
-//            return;
-//        }
+        if (!MiBandCoordinator.hasValidUserInfo()) {
+            Intent userSettingsIntent = new Intent(this, AboutUserPreferencesActivity.class);
+            startActivityForResult(userSettingsIntent, REQ_CODE_USER_SETTINGS, null);
+            return;
+        }
 
         // already valid user info available, use that and pair
         startPairing();
@@ -143,6 +144,7 @@ public class MiBandPairingActivity extends AbstractGBActivity implements Bonding
         message.setText(getString(R.string.pairing, deviceCandidate));
 
         if (!BondingUtil.shouldUseBonding()) {
+            Toast.makeText(this.getContext(),"[startPairing] first connect", Toast.LENGTH_SHORT);
             BondingUtil.attemptToFirstConnect(getCurrentTarget().getDevice());
             return;
         }
@@ -176,9 +178,12 @@ public class MiBandPairingActivity extends AbstractGBActivity implements Bonding
             if (device != null && device.getBondState() == BluetoothDevice.BOND_NONE) {
                 Prefs prefs = ControllerApplication.getPrefs();
                 prefs.getPreferences().edit().putString(MiBandConst.PREF_MIBAND_ADDRESS, macAddress).apply();
+                prefs.getPreferences().edit().putBoolean("display_add_wearable_btn", false).apply();
             }
-//            Intent intent = new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            startActivity(intent);
+            Intent intent = new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setAction(ControllerApplication.ACTION_NAV_EXERCISE_FRAGMENT);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+            startActivity(intent);
         }
         ControllerApplication.getPrefs().getBoolean("display_add_device_fab", false);
         finish();

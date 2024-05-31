@@ -21,6 +21,7 @@ import com.example.gr.data.sample.TimeSampleProvider;
 import com.example.gr.database.entities.DaoSession;
 import com.example.gr.device.capability.HeartRateCapability;
 import com.example.gr.device.model.AbstractNotificationPattern;
+import com.example.gr.device.model.BatteryConfig;
 import com.example.gr.device.model.DeviceType;
 import com.example.gr.device.settings.DeviceSpecificSettings;
 
@@ -40,7 +41,7 @@ import java.util.List;
  * the given device.
  */
 public interface DeviceCoordinator {
-    String EXTRA_DEVICE_CANDIDATE = "com.example.gr.device.GBDeviceCandidate";
+    String EXTRA_DEVICE_CANDIDATE = "com.example.gr.device.GBDeviceCandidate.EXTRA_DEVICE_CANDIDATE";
     /**
      * Do not attempt to bond after discovery.
      */

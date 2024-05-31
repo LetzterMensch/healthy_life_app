@@ -1,14 +1,11 @@
 package com.example.gr.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.gr.constant.Constant;
-import com.example.gr.databinding.ActivityFoodDetailBinding;
 import com.example.gr.databinding.ActivityRecipeDetailBinding;
-import com.example.gr.model.Food;
 import com.example.gr.model.Recipe;
 import com.example.gr.utils.GlideUtils;
 

@@ -14,6 +14,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.example.gr.database.entities.BatteryLevel;
 import com.example.gr.database.entities.DaoSession;
 import com.example.gr.database.entities.Device;
+import com.example.gr.device.events.GBDeviceEventAppInfo;
+import com.example.gr.device.events.GBDeviceEventUpdateDeviceInfo;
+import com.example.gr.device.events.GBDeviceEventUpdateDeviceState;
+import com.example.gr.device.events.GBDeviceEventUpdatePreferences;
 import com.example.gr.device.events.GBDeviceEventVersionInfo;
 import com.example.gr.device.model.*;
 import com.example.gr.ControllerApplication;
@@ -36,6 +40,7 @@ import com.example.gr.utils.Prefs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
@@ -58,7 +63,6 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     private BluetoothAdapter btAdapter;
     private Context context;
     private boolean autoReconnect, scanReconnect;
-
 
 
     @Override
@@ -107,7 +111,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     }
 
     @Override
-    public boolean getScanReconnect(){
+    public boolean getScanReconnect() {
         return this.scanReconnect;
     }
 
@@ -134,110 +138,121 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     public void evaluateGBDeviceEvent(GBDeviceEvent deviceEvent) {
         if (deviceEvent instanceof GBDeviceEventWearState) {
             handleGBDeviceEvent((GBDeviceEventWearState) deviceEvent);
+        } else if (deviceEvent instanceof GBDeviceEventVersionInfo) {
+            handleGBDeviceEvent((GBDeviceEventVersionInfo) deviceEvent);
+        } else if (deviceEvent instanceof GBDeviceEventBatteryInfo) {
+            handleGBDeviceEvent((GBDeviceEventBatteryInfo) deviceEvent);
+        } else if (deviceEvent instanceof GBDeviceEventUpdateDeviceInfo) {
+            handleGBDeviceEvent((GBDeviceEventUpdateDeviceInfo) deviceEvent);
+        } else if (deviceEvent instanceof GBDeviceEventUpdatePreferences) {
+            handleGBDeviceEvent((GBDeviceEventUpdatePreferences) deviceEvent);
+        } else if (deviceEvent instanceof GBDeviceEventUpdateDeviceState) {
+            handleGBDeviceEvent((GBDeviceEventUpdateDeviceState) deviceEvent);
         } else if (deviceEvent instanceof GBDeviceEventSleepStateDetection) {
             handleGBDeviceEvent((GBDeviceEventSleepStateDetection) deviceEvent);
         }
     }
-/*
-    private void handleGBDeviceEvent(GBDeviceEventSilentMode deviceEvent) {
-        LOG.info("Got GBDeviceEventSilentMode: enabled = {}", deviceEvent.isEnabled());
-
-        SilentMode.setPhoneSilentMode(getDevice().getAddress(), deviceEvent.isEnabled());
-    }
-
-    private void handleGBDeviceEvent(final GBDeviceEventFindPhone deviceEvent) {
-        final Context context = getContext();
-        LOG.info("Got GBDeviceEventFindPhone: {}", deviceEvent.event);
-        switch (deviceEvent.event) {
-            case START:
-                handleGBDeviceEventFindPhoneStart(true);
-                break;
-            case START_VIBRATE:
-                handleGBDeviceEventFindPhoneStart(false);
-                break;
-            case VIBRATE:
-                final Intent intentVibrate = new Intent(FindPhoneActivity.ACTION_VIBRATE);
-                LocalBroadcastManager.getInstance(context).sendBroadcast(intentVibrate);
-                break;
-            case RING:
-                final Intent intentRing = new Intent(FindPhoneActivity.ACTION_RING);
-                LocalBroadcastManager.getInstance(context).sendBroadcast(intentRing);
-                break;
-            case STOP:
-                final Intent intentStop = new Intent(FindPhoneActivity.ACTION_FOUND);
-                LocalBroadcastManager.getInstance(context).sendBroadcast(intentStop);
-                break;
-            default:
-                LOG.warn("unknown GBDeviceEventFindPhone");
-        }
-    }
-
-    private void handleGBDeviceEventFindPhoneStart(final boolean ring) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) { // this could be used if app in foreground // TODO: Below Q?
-            Intent startIntent = new Intent(getContext(), FindPhoneActivity.class);
-            startIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startIntent.putExtra(FindPhoneActivity.EXTRA_RING, ring);
-            context.startActivity(startIntent);
-        } else {
-            handleGBDeviceEventFindPhoneStartNotification(ring);
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.Q)
-    private void handleGBDeviceEventFindPhoneStartNotification(final boolean ring) {
-        LOG.info("Got handleGBDeviceEventFindPhoneStartNotification");
-        Intent intent = new Intent(context, FindPhoneActivity.class);
-        intent.putExtra(FindPhoneActivity.EXTRA_RING, ring);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        PendingIntent pi = PendingIntentUtils.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT, false);
-
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_HIGH_PRIORITY_ID )
-                .setSmallIcon(R.drawable.ic_notification)
-                .setOngoing(false)
-                .setFullScreenIntent(pi, true)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true)
-                .setContentTitle(  context.getString( R.string.find_my_phone_notification ) );
-
-        notification.setGroup("BackgroundService");
-
-        CompanionDeviceManager manager = (CompanionDeviceManager) context.getSystemService(Context.COMPANION_DEVICE_SERVICE);
-        if (manager.getAssociations().size() > 0) {
-            GB.notify(GB.NOTIFICATION_ID_PHONE_FIND, notification.build(), context);
-            context.startActivity(intent);
-            LOG.debug("CompanionDeviceManager associations were found, starting intent");
-        } else {
-            GB.notify(GB.NOTIFICATION_ID_PHONE_FIND, notification.build(), context);
-            LOG.warn("CompanionDeviceManager associations were not found, can't start intent");
-        }
-    }
 
 
-    private void handleGBDeviceEvent(GBDeviceEventMusicControl musicEvent) {
-        Context context = getContext();
-        LOG.info("Got event for MUSIC_CONTROL");
-        Intent musicIntent = new Intent(GBMusicControlReceiver.ACTION_MUSICCONTROL);
-        musicIntent.putExtra("event", musicEvent.event.ordinal());
-        musicIntent.setPackage(context.getPackageName());
-        context.sendBroadcast(musicIntent);
-    }
+//        private void handleGBDeviceEvent(GBDeviceEventSilentMode deviceEvent) {
+//            LOG.info("Got GBDeviceEventSilentMode: enabled = {}", deviceEvent.isEnabled());
+//
+//            SilentMode.setPhoneSilentMode(getDevice().getAddress(), deviceEvent.isEnabled());
+//        }
 
-    private void handleGBDeviceEvent(GBDeviceEventCallControl callEvent) {
-        Context context = getContext();
-        LOG.info("Got event for CALL_CONTROL");
-        if(callEvent.event == GBDeviceEventCallControl.Event.IGNORE) {
-            LOG.info("Sending intent for mute");
-            Intent broadcastIntent = new Intent(context.getPackageName() + ".MUTE_CALL");
-            broadcastIntent.setPackage(context.getPackageName());
-            context.sendBroadcast(broadcastIntent);
-            return;
-        }
-        Intent callIntent = new Intent(GBCallControlReceiver.ACTION_CALLCONTROL);
-        callIntent.putExtra("event", callEvent.event.ordinal());
-        callIntent.setPackage(context.getPackageName());
-        context.sendBroadcast(callIntent);
-    }
+//        private void handleGBDeviceEvent(final GBDeviceEventFindPhone deviceEvent) {
+//            final Context context = getContext();
+//            LOG.info("Got GBDeviceEventFindPhone: {}", deviceEvent.event);
+//            switch (deviceEvent.event) {
+//                case START:
+//                    handleGBDeviceEventFindPhoneStart(true);
+//                    break;
+//                case START_VIBRATE:
+//                    handleGBDeviceEventFindPhoneStart(false);
+//                    break;
+//                case VIBRATE:
+//                    final Intent intentVibrate = new Intent(FindPhoneActivity.ACTION_VIBRATE);
+//                    LocalBroadcastManager.getInstance(context).sendBroadcast(intentVibrate);
+//                    break;
+//                case RING:
+//                    final Intent intentRing = new Intent(FindPhoneActivity.ACTION_RING);
+//                    LocalBroadcastManager.getInstance(context).sendBroadcast(intentRing);
+//                    break;
+//                case STOP:
+//                    final Intent intentStop = new Intent(FindPhoneActivity.ACTION_FOUND);
+//                    LocalBroadcastManager.getInstance(context).sendBroadcast(intentStop);
+//                    break;
+//                default:
+//                    LOG.warn("unknown GBDeviceEventFindPhone");
+//            }
+//        }
+
+//    private void handleGBDeviceEventFindPhoneStart(final boolean ring) {
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) { // this could be used if app in foreground // TODO: Below Q?
+//            Intent startIntent = new Intent(getContext(), FindPhoneActivity.class);
+//            startIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startIntent.putExtra(FindPhoneActivity.EXTRA_RING, ring);
+//            context.startActivity(startIntent);
+//        } else {
+//            handleGBDeviceEventFindPhoneStartNotification(ring);
+//        }
+//    }
+
+//    @RequiresApi(Build.VERSION_CODES.Q)
+//    private void handleGBDeviceEventFindPhoneStartNotification(final boolean ring) {
+//        LOG.info("Got handleGBDeviceEventFindPhoneStartNotification");
+//        Intent intent = new Intent(context, FindPhoneActivity.class);
+//        intent.putExtra(FindPhoneActivity.EXTRA_RING, ring);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//        PendingIntent pi = PendingIntentUtils.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT, false);
+//
+//        NotificationCompat.Builder notification = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_HIGH_PRIORITY_ID)
+//                .setSmallIcon(R.drawable.ic_notification)
+//                .setOngoing(false)
+//                .setFullScreenIntent(pi, true)
+//                .setPriority(NotificationCompat.PRIORITY_HIGH)
+//                .setAutoCancel(true)
+//                .setContentTitle(context.getString(R.string.find_my_phone_notification));
+//
+//        notification.setGroup("BackgroundService");
+//
+//        CompanionDeviceManager manager = (CompanionDeviceManager) context.getSystemService(Context.COMPANION_DEVICE_SERVICE);
+//        if (manager.getAssociations().size() > 0) {
+//            GB.notify(GB.NOTIFICATION_ID_PHONE_FIND, notification.build(), context);
+//            context.startActivity(intent);
+//            LOG.debug("CompanionDeviceManager associations were found, starting intent");
+//        } else {
+//            GB.notify(GB.NOTIFICATION_ID_PHONE_FIND, notification.build(), context);
+//            LOG.warn("CompanionDeviceManager associations were not found, can't start intent");
+//        }
+//    }
+
+
+//    private void handleGBDeviceEvent(GBDeviceEventMusicControl musicEvent) {
+//        Context context = getContext();
+//        LOG.info("Got event for MUSIC_CONTROL");
+//        Intent musicIntent = new Intent(GBMusicControlReceiver.ACTION_MUSICCONTROL);
+//        musicIntent.putExtra("event", musicEvent.event.ordinal());
+//        musicIntent.setPackage(context.getPackageName());
+//        context.sendBroadcast(musicIntent);
+//    }
+
+//    private void handleGBDeviceEvent(GBDeviceEventCallControl callEvent) {
+//        Context context = getContext();
+//        LOG.info("Got event for CALL_CONTROL");
+//        if (callEvent.event == GBDeviceEventCallControl.Event.IGNORE) {
+//            LOG.info("Sending intent for mute");
+//            Intent broadcastIntent = new Intent(context.getPackageName() + ".MUTE_CALL");
+//            broadcastIntent.setPackage(context.getPackageName());
+//            context.sendBroadcast(broadcastIntent);
+//            return;
+//        }
+//        Intent callIntent = new Intent(GBCallControlReceiver.ACTION_CALLCONTROL);
+//        callIntent.putExtra("event", callEvent.event.ordinal());
+//        callIntent.setPackage(context.getPackageName());
+//        context.sendBroadcast(callIntent);
+//    }
 
     protected void handleGBDeviceEvent(GBDeviceEventVersionInfo infoEvent) {
         Context context = getContext();
@@ -255,15 +270,15 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
         gbDevice.sendDeviceUpdateIntent(context);
     }
 
-    protected void handleGBDeviceEvent(GBDeviceEventLEDColor colorEvent) {
-        Context context = getContext();
-        LOG.info("Got event for LED Color: #" + Integer.toHexString(colorEvent.color).toUpperCase(Locale.ROOT));
-        if (gbDevice == null) {
-            return;
-        }
-        gbDevice.setExtraInfo("led_color", colorEvent.color);
-        gbDevice.sendDeviceUpdateIntent(context);
-    }
+//    protected void handleGBDeviceEvent(GBDeviceEventLEDColor colorEvent) {
+//        Context context = getContext();
+//        LOG.info("Got event for LED Color: #" + Integer.toHexString(colorEvent.color).toUpperCase(Locale.ROOT));
+//        if (gbDevice == null) {
+//            return;
+//        }
+//        gbDevice.setExtraInfo("led_color", colorEvent.color);
+//        gbDevice.sendDeviceUpdateIntent(context);
+//    }
 
     protected void handleGBDeviceEvent(GBDeviceEventUpdateDeviceInfo itemEvent) {
         if (gbDevice == null) {
@@ -292,126 +307,125 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
         gbDevice.sendDeviceUpdateIntent(getContext());
     }
 
-    protected void handleGBDeviceEvent(GBDeviceEventFmFrequency frequencyEvent) {
-        Context context = getContext();
-        LOG.info("Got event for FM Frequency");
-        if (gbDevice == null) {
-            return;
-        }
-        gbDevice.setExtraInfo("fm_frequency", frequencyEvent.frequency);
-        gbDevice.sendDeviceUpdateIntent(context);
-    }
+//    protected void handleGBDeviceEvent(GBDeviceEventFmFrequency frequencyEvent) {
+//        Context context = getContext();
+//        LOG.info("Got event for FM Frequency");
+//        if (gbDevice == null) {
+//            return;
+//        }
+//        gbDevice.setExtraInfo("fm_frequency", frequencyEvent.frequency);
+//        gbDevice.sendDeviceUpdateIntent(context);
+//    }
 
-    private void handleGBDeviceEvent(GBDeviceEventAppInfo appInfoEvent) {
-        Context context = getContext();
-        LOG.info("Got event for APP_INFO");
+//    private void handleGBDeviceEvent(GBDeviceEventAppInfo appInfoEvent) {
+//        Context context = getContext();
+//        LOG.info("Got event for APP_INFO");
+//
+//        Intent appInfoIntent = new Intent(AbstractAppManagerFragment.ACTION_REFRESH_APPLIST);
+//        int appCount = appInfoEvent.apps.length;
+//        appInfoIntent.putExtra("app_count", appCount);
+//        for (int i = 0; i < appCount; i++) {
+//            appInfoIntent.putExtra("app_name" + i, appInfoEvent.apps[i].getName());
+//            appInfoIntent.putExtra("app_creator" + i, appInfoEvent.apps[i].getCreator());
+//            appInfoIntent.putExtra("app_version" + i, appInfoEvent.apps[i].getVersion());
+//            appInfoIntent.putExtra("app_uuid" + i, appInfoEvent.apps[i].getUUID().toString());
+//            appInfoIntent.putExtra("app_type" + i, appInfoEvent.apps[i].getType().ordinal());
+//        }
+//        LocalBroadcastManager.getInstance(context).sendBroadcast(appInfoIntent);
+//    }
 
-        Intent appInfoIntent = new Intent(AbstractAppManagerFragment.ACTION_REFRESH_APPLIST);
-        int appCount = appInfoEvent.apps.length;
-        appInfoIntent.putExtra("app_count", appCount);
-        for (int i = 0; i < appCount; i++) {
-            appInfoIntent.putExtra("app_name" + i, appInfoEvent.apps[i].getName());
-            appInfoIntent.putExtra("app_creator" + i, appInfoEvent.apps[i].getCreator());
-            appInfoIntent.putExtra("app_version" + i, appInfoEvent.apps[i].getVersion());
-            appInfoIntent.putExtra("app_uuid" + i, appInfoEvent.apps[i].getUUID().toString());
-            appInfoIntent.putExtra("app_type" + i, appInfoEvent.apps[i].getType().ordinal());
-        }
-        LocalBroadcastManager.getInstance(context).sendBroadcast(appInfoIntent);
-    }
+//    private void handleGBDeviceEvent(GBDeviceEventScreenshot screenshot) {
+//        if (screenshot.getData() == null) {
+//            LOG.warn("Screnshot data is null");
+//            return;
+//        }
+//
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-hhmmss", Locale.US);
+//        String filename = "screenshot_" + dateFormat.format(new Date()) + ".bmp";
+//
+//        try {
+//            String fullpath = GB.writeScreenshot(screenshot, filename);
+//            Bitmap bmp = BitmapFactory.decodeFile(fullpath);
+//            Intent intent = new Intent();
+//            intent.setAction(Intent.ACTION_VIEW);
+//            Uri screenshotURI = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".screenshot_provider", new File(fullpath));
+//            intent.setDataAndType(screenshotURI, "image/*");
+//            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//
+//            PendingIntent pIntent = PendingIntentUtils.getActivity(context, 0, intent, 0, false);
+//
+//            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//            shareIntent.setType("image/*");
+//            shareIntent.putExtra(Intent.EXTRA_STREAM, screenshotURI);
+//
+//            PendingIntent pendingShareIntent = PendingIntentUtils.getActivity(context, 0, Intent.createChooser(shareIntent, context.getString(R.string.share_screenshot)),
+//                    PendingIntent.FLAG_UPDATE_CURRENT, false);
+//
+//            NotificationCompat.Action action = new NotificationCompat.Action.Builder(android.R.drawable.ic_menu_share, context.getString(R.string.share), pendingShareIntent).build();
+//
+//            Notification notif = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_HIGH_PRIORITY_ID)
+//                    .setContentTitle(context.getString(R.string.screenshot_taken))
+//                    .setTicker(context.getString(R.string.screenshot_taken))
+//                    .setContentText(filename)
+//                    .setSmallIcon(R.drawable.ic_notification)
+//                    .setStyle(new NotificationCompat.BigPictureStyle()
+//                            .bigPicture(bmp))
+//                    .setContentIntent(pIntent)
+//                    .addAction(action)
+//                    .setAutoCancel(true)
+//                    .build();
+//
+//            GB.notify(NOTIFICATION_ID_SCREENSHOT, notif, context);
+//        } catch (IOException ex) {
+//            LOG.error("Error writing screenshot", ex);
+//        }
+//    }
 
-    private void handleGBDeviceEvent(GBDeviceEventScreenshot screenshot) {
-        if (screenshot.getData() == null) {
-            LOG.warn("Screnshot data is null");
-            return;
-        }
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-hhmmss", Locale.US);
-        String filename = "screenshot_" + dateFormat.format(new Date()) + ".bmp";
-
-        try {
-            String fullpath = GB.writeScreenshot(screenshot, filename);
-            Bitmap bmp = BitmapFactory.decodeFile(fullpath);
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            Uri screenshotURI = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".screenshot_provider", new File(fullpath));
-            intent.setDataAndType(screenshotURI, "image/*");
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            PendingIntent pIntent = PendingIntentUtils.getActivity(context, 0, intent, 0, false);
-
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("image/*");
-            shareIntent.putExtra(Intent.EXTRA_STREAM, screenshotURI);
-
-            PendingIntent pendingShareIntent = PendingIntentUtils.getActivity(context, 0, Intent.createChooser(shareIntent, context.getString(R.string.share_screenshot)),
-                    PendingIntent.FLAG_UPDATE_CURRENT, false);
-
-            NotificationCompat.Action action = new NotificationCompat.Action.Builder(android.R.drawable.ic_menu_share, context.getString(R.string.share), pendingShareIntent).build();
-
-            Notification notif = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_HIGH_PRIORITY_ID)
-                    .setContentTitle(context.getString(R.string.screenshot_taken))
-                    .setTicker(context.getString(R.string.screenshot_taken))
-                    .setContentText(filename)
-                    .setSmallIcon(R.drawable.ic_notification)
-                    .setStyle(new NotificationCompat.BigPictureStyle()
-                            .bigPicture(bmp))
-                    .setContentIntent(pIntent)
-                    .addAction(action)
-                    .setAutoCancel(true)
-                    .build();
-
-            GB.notify(NOTIFICATION_ID_SCREENSHOT, notif, context);
-        } catch (IOException ex) {
-            LOG.error("Error writing screenshot", ex);
-        }
-    }
-
-    private void handleGBDeviceEvent(GBDeviceEventNotificationControl deviceEvent) {
-        Context context = getContext();
-        LOG.info("Got NOTIFICATION CONTROL device event");
-        String action = null;
-        switch (deviceEvent.event) {
-            case DISMISS:
-                action = NotificationListener.ACTION_DISMISS;
-                break;
-            case DISMISS_ALL:
-                action = NotificationListener.ACTION_DISMISS_ALL;
-                break;
-            case OPEN:
-                action = NotificationListener.ACTION_OPEN;
-                break;
-            case MUTE:
-                action = NotificationListener.ACTION_MUTE;
-                break;
-            case REPLY:
-                if (deviceEvent.phoneNumber == null) {
-                    deviceEvent.phoneNumber = ControllerApplication.getIDSenderLookup().lookup((int) (deviceEvent.handle >> 4));
-                }
-                if (deviceEvent.phoneNumber != null) {
-                    LOG.info("Got notification reply for SMS from " + deviceEvent.phoneNumber + " : " + deviceEvent.reply);
-                    SmsManager.getDefault().sendTextMessage(deviceEvent.phoneNumber, null, deviceEvent.reply, null, null);
-                } else {
-                    LOG.info("Got notification reply for notification id " + deviceEvent.handle + " : " + deviceEvent.reply);
-                    action = NotificationListener.ACTION_REPLY;
-                }
-                break;
-        }
-        if (action != null) {
-            Intent notificationListenerIntent = new Intent(action);
-            notificationListenerIntent.putExtra("handle", deviceEvent.handle);
-            notificationListenerIntent.putExtra("title", deviceEvent.title);
-            if (deviceEvent.reply != null) {
-                SharedPreferences prefs = ControllerApplication.getDeviceSpecificSharedPrefs(gbDevice.getAddress());
-                String suffix = prefs.getString("canned_reply_suffix", null);
-                if (suffix != null && !Objects.equals(suffix, "")) {
-                    deviceEvent.reply += suffix;
-                }
-                notificationListenerIntent.putExtra("reply", deviceEvent.reply);
-            }
-            LocalBroadcastManager.getInstance(context).sendBroadcast(notificationListenerIntent);
-        }
-    }
-
+//    private void handleGBDeviceEvent(GBDeviceEventNotificationControl deviceEvent) {
+//        Context context = getContext();
+//        LOG.info("Got NOTIFICATION CONTROL device event");
+//        String action = null;
+//        switch (deviceEvent.event) {
+//            case DISMISS:
+//                action = NotificationListener.ACTION_DISMISS;
+//                break;
+//            case DISMISS_ALL:
+//                action = NotificationListener.ACTION_DISMISS_ALL;
+//                break;
+//            case OPEN:
+//                action = NotificationListener.ACTION_OPEN;
+//                break;
+//            case MUTE:
+//                action = NotificationListener.ACTION_MUTE;
+//                break;
+//            case REPLY:
+//                if (deviceEvent.phoneNumber == null) {
+//                    deviceEvent.phoneNumber = ControllerApplication.getIDSenderLookup().lookup((int) (deviceEvent.handle >> 4));
+//                }
+//                if (deviceEvent.phoneNumber != null) {
+//                    LOG.info("Got notification reply for SMS from " + deviceEvent.phoneNumber + " : " + deviceEvent.reply);
+//                    SmsManager.getDefault().sendTextMessage(deviceEvent.phoneNumber, null, deviceEvent.reply, null, null);
+//                } else {
+//                    LOG.info("Got notification reply for notification id " + deviceEvent.handle + " : " + deviceEvent.reply);
+//                    action = NotificationListener.ACTION_REPLY;
+//                }
+//                break;
+//        }
+//        if (action != null) {
+//            Intent notificationListenerIntent = new Intent(action);
+//            notificationListenerIntent.putExtra("handle", deviceEvent.handle);
+//            notificationListenerIntent.putExtra("title", deviceEvent.title);
+//            if (deviceEvent.reply != null) {
+//                SharedPreferences prefs = ControllerApplication.getDeviceSpecificSharedPrefs(gbDevice.getAddress());
+//                String suffix = prefs.getString("canned_reply_suffix", null);
+//                if (suffix != null && !Objects.equals(suffix, "")) {
+//                    deviceEvent.reply += suffix;
+//                }
+//                notificationListenerIntent.putExtra("reply", deviceEvent.reply);
+//            }
+//            LocalBroadcastManager.getInstance(context).sendBroadcast(notificationListenerIntent);
+//        }
+//    }
 
     protected void handleGBDeviceEvent(GBDeviceEventBatteryInfo deviceEvent) {
         Context context = getContext();
@@ -426,8 +440,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
                 GB.updateBatteryNotification(context.getString(R.string.notif_battery_low, gbDevice.getAliasOrName()),
                         deviceEvent.extendedInfoAvailable() ?
                                 context.getString(R.string.notif_battery_low_extended, gbDevice.getAliasOrName(),
-                                        context.getString(R.string.notif_battery_low_bigtext_last_charge_time, DateFormat.getDateTimeInstance().format(deviceEvent.lastChargeTime.getTime())) +
-                                        context.getString(R.string.notif_battery_low_bigtext_number_of_charges, String.valueOf(deviceEvent.numCharges)))
+                                        context.getString(R.string.notif_battery_low_bigtext_last_charge_time, DateFormat.getDateTimeInstance().format(deviceEvent.lastChargeTime.getTime())) + context.getString(R.string.notif_battery_low_bigtext_number_of_charges, String.valueOf(deviceEvent.numCharges)))
                                 : ""
                         , context);
             } else {
@@ -440,7 +453,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
             if (deviceEvent.level <= gbDevice.getBatteryThresholdPercent() &&
                     (BatteryState.BATTERY_LOW.equals(deviceEvent.state) ||
                             BatteryState.BATTERY_NORMAL.equals(deviceEvent.state))
-                    ) {
+            ) {
                 GB.updateBatteryNotification(context.getString(R.string.notif_battery_low_percent, gbDevice.getAliasOrName(), String.valueOf(deviceEvent.level)),
                         deviceEvent.extendedInfoAvailable() ?
                                 context.getString(R.string.notif_battery_low_percent, gbDevice.getAliasOrName(), String.valueOf(deviceEvent.level)) + "\n" +
@@ -455,7 +468,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
 
         gbDevice.sendDeviceUpdateIntent(context);
     }
- */
+
     /**
      * Helper method to run specific actions configured in the device preferences, upon wear state
      * or awake/asleep events.
@@ -542,48 +555,6 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
                 notificationManager.setInterruptionFilter(interruptionFilter);
             }
         }
-    }
-    protected void handleGBDeviceEvent(GBDeviceEventBatteryInfo deviceEvent) {
-        Context context = getContext();
-        LOG.info("Got BATTERY_INFO device event");
-        gbDevice.setBatteryLevel(deviceEvent.level, deviceEvent.batteryIndex);
-        gbDevice.setBatteryState(deviceEvent.state);
-        gbDevice.setBatteryVoltage(deviceEvent.voltage, deviceEvent.batteryIndex);
-
-        if (deviceEvent.level == GBDevice.BATTERY_UNKNOWN) {
-            // no level available, just "high" or "low"
-            if (BatteryState.BATTERY_LOW.equals(deviceEvent.state)) {
-//                GB.updateBatteryNotification(context.getString(R.string.notif_battery_low, gbDevice.getAliasOrName()),
-//                        deviceEvent.extendedInfoAvailable() ?
-//                                context.getString(R.string.notif_battery_low_extended, gbDevice.getAliasOrName(),
-//                                        context.getString(R.string.notif_battery_low_bigtext_last_charge_time, DateFormat.getDateTimeInstance().format(deviceEvent.lastChargeTime.getTime())) +
-//                                                context.getString(R.string.notif_battery_low_bigtext_number_of_charges, String.valueOf(deviceEvent.numCharges)))
-//                                : ""
-//                        , context);
-            } else {
-//                GB.removeBatteryNotification(context);
-            }
-        } else {
-            createStoreTask("Storing battery data", context, deviceEvent).execute();
-
-            //show the notification if the battery level is below threshold and only if not connected to charger
-            if (deviceEvent.level <= gbDevice.getBatteryThresholdPercent() &&
-                    (BatteryState.BATTERY_LOW.equals(deviceEvent.state) ||
-                            BatteryState.BATTERY_NORMAL.equals(deviceEvent.state))
-            ) {
-//                GB.updateBatteryNotification(context.getString(R.string.notif_battery_low_percent, gbDevice.getAliasOrName(), String.valueOf(deviceEvent.level)),
-//                        deviceEvent.extendedInfoAvailable() ?
-//                                context.getString(R.string.notif_battery_low_percent, gbDevice.getAliasOrName(), String.valueOf(deviceEvent.level)) + "\n" +
-//                                        context.getString(R.string.notif_battery_low_bigtext_last_charge_time, DateFormat.getDateTimeInstance().format(deviceEvent.lastChargeTime.getTime())) +
-//                                        context.getString(R.string.notif_battery_low_bigtext_number_of_charges, String.valueOf(deviceEvent.numCharges))
-//                                : ""
-//                        , context);
-            } else {
-//                GB.removeBatteryNotification(context);
-            }
-        }
-
-        gbDevice.sendDeviceUpdateIntent(context);
     }
 
     private void handleGBDeviceEvent(GBDeviceEventSleepStateDetection event) {
@@ -677,21 +648,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
             handler.getDaoSession().getBatteryLevelDao().insert(batteryLevel);
         }
     }
-    protected void handleGBDeviceEvent(GBDeviceEventVersionInfo infoEvent) {
-        Context context = getContext();
-        LOG.info("Got event for VERSION_INFO: " + infoEvent);
-        if (gbDevice == null) {
-            return;
-        }
-        if (infoEvent.fwVersion != null) {
-            gbDevice.setFirmwareVersion(infoEvent.fwVersion);
-        }
-        if (infoEvent.fwVersion2 != null) {
-            gbDevice.setFirmwareVersion2(infoEvent.fwVersion2);
-        }
-        gbDevice.setModel(infoEvent.hwVersion);
-        gbDevice.sendDeviceUpdateIntent(context);
-    }
+
     public void handleGBDeviceEvent(GBDeviceEventDisplayMessage message) {
         GB.log(message.message, message.severity, null);
 
@@ -718,6 +675,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device supports a "find phone" functionality, this method can
      * be overridden and implemented by the device support class.
+     *
      * @param start true if starting the search, false if stopping
      */
     @Override
@@ -728,6 +686,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device supports a "find device" functionality, this method can
      * be overridden and implemented by the device support class.
+     *
      * @param start true if starting the search, false if stopping
      */
     @Override
@@ -738,6 +697,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device supports a "set FM frequency" functionality, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param frequency the FM frequency to set
      */
     @Override
@@ -748,6 +708,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device supports a "set LED color" functionality, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param color the new color, in ARGB, with alpha = 255
      */
     @Override
@@ -767,6 +728,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device has a functionality to set the phone volume, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param volume the volume percentage (0 to 100).
      */
     @Override
@@ -776,6 +738,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
 
     /**
      * Called when the phone's interruption filter or ringer mode is changed.
+     *
      * @param ringerMode as per {@link android.media.AudioManager#getRingerMode()}
      */
     @Override
@@ -786,6 +749,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device can receive the GPS location from the phone, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param location {@link Location} object containing the current GPS coordinates
      */
     @Override
@@ -796,6 +760,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If reminders can be set on the device, this method can be
      * overridden and implemented by the device support class.
+     *
      * @param reminders {@link ArrayList} containing {@link com.example.gr.database.entities.Reminder} instances
      */
     @Override
@@ -834,6 +799,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device can receive and display notifications, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param notificationSpec notification details
      */
     @Override
@@ -844,6 +810,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If notifications can be deleted from the device, this method can be
      * overridden and implemented by the device support class.
+     *
      * @param id the unique notification identifier
      */
     @Override
@@ -872,6 +839,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device can receive and show or handle phone call details, this
      * method can be overridden and implemented by the device support class.
+     *
      * @param callSpec the call state details
      */
     @Override
@@ -882,6 +850,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device has a "canned messages" functionality, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param cannedMessagesSpec the canned messages to send to the device
      */
     @Override
@@ -892,6 +861,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the music play state can be set on the device, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param stateSpec the current state of music playback
      */
     @Override
@@ -902,6 +872,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the music information can be shown on the device, this method can be
      * overridden and implemented by the device support class.
+     *
      * @param musicSpec the current music information, like track name and artist
      */
     @Override
@@ -931,7 +902,8 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device supports starting an app with a command, this method
      * can be overridden and implemented by the device support class.
-     * @param uuid the Gadgetbridge internal UUID of the app
+     *
+     * @param uuid  the Gadgetbridge internal UUID of the app
      * @param start true to start, false to stop the app (if supported)
      */
     @Override
@@ -942,6 +914,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If apps can be downloaded from the device, this method can be
      * overridden and implemented by the device support class.
+     *
      * @param uuid the Gadgetbridge internal UUID of the app
      */
     @Override
@@ -952,6 +925,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If apps on the device can be deleted with a command, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param uuid the Gadgetbridge internal UUID of the app
      */
     @Override
@@ -962,8 +936,9 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If apps on the device can be configured, this method can be
      * overridden and implemented by the device support class.
+     *
      * @param appUuid the Gadgetbridge internal UUID of the app
-     * @param config the configuration of the app
+     * @param config  the configuration of the app
      * @param id
      */
     @Override
@@ -974,6 +949,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If apps on the device can be reordered, this method can be
      * overridden and implemented by the device support class.
+     *
      * @param uuids array of Gadgetbridge internal UUIDs of the apps
      */
     @Override
@@ -984,6 +960,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If recorded data can be fetched from the device, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param dataTypes which data types to fetch
      */
     @Override
@@ -994,6 +971,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If a device can be reset with a command, this method can be
      * overridden and implemented by the device support class.
+     *
      * @param flags can be used to pass flags with the reset command
      */
     @Override
@@ -1013,6 +991,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device has the functionality to enable/disable realtime heart rate measurement,
      * this method can be overridden and implemented by the device support class.
+     *
      * @param enable true to enable, false to disable realtime heart rate measurement
      */
     @Override
@@ -1023,6 +1002,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device has the functionality to enable/disable realtime steps information,
      * this method can be overridden and implemented by the device support class.
+     *
      * @param enable true to enable, false to disable realtime steps
      */
     @Override
@@ -1033,6 +1013,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device has a functionality to enable constant vibration, this
      * method can be overridden and implemented by the device support class.
+     *
      * @param integer the vibration intensity
      */
     @Override
@@ -1052,6 +1033,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device has a toggle to enable the use of heart rate for sleep detection,
      * this method can be overridden and implemented by the device support class.
+     *
      * @param enable true to enable, false to disable using heart rate for sleep detection
      */
     @Override
@@ -1062,6 +1044,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the heart rate measurement interval can be changed on the device,
      * this method can be overridden and implemented by the device support class.
+     *
      * @param seconds the interval to configure on the device
      */
     @Override
@@ -1072,6 +1055,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If calendar events can be sent to the device, this method can be
      * overridden and implemented by the device support class.
+     *
      * @param calendarEventSpec calendar event details
      */
     @Override
@@ -1082,8 +1066,9 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If calendar events can be deleted from the device, this method can
      * be overridden and implemented by the device support class.
+     *
      * @param type type of calendar event
-     * @param id id of calendar event
+     * @param id   id of calendar event
      */
     @Override
     public void onDeleteCalendarEvent(byte type, long id) {
@@ -1093,6 +1078,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If configuration options can be set on the device, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param config the device specific option to set on the device
      */
     @Override
@@ -1103,6 +1089,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the configuration can be retrieved from the device, this method
      * can be overridden and implemented by the device support class.
+     *
      * @param config the device specific option to get from the device
      */
     @Override
@@ -1113,6 +1100,7 @@ public abstract class AbstractDeviceSupport implements DeviceSupport {
     /**
      * If the device can receive weather information, this method can be
      * overridden and implemented by the device support class.
+     *
      * @param weatherSpec weather information
      */
     @Override

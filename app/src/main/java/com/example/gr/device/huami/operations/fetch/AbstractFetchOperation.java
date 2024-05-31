@@ -29,13 +29,15 @@ import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
 import com.example.gr.ControllerApplication;
-//import com.example.gr.Logging;
+import com.example.gr.Logging;
+import com.example.gr.R;
 import com.example.gr.device.huami.HuamiCoordinator;
 import com.example.gr.device.huami.HuamiService;
 import com.example.gr.device.btle.BLETypeConversions;
@@ -151,7 +153,7 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
 
         LOG.debug("All operations finished");
 
-//        GB.updateTransferNotification(null, "", false, 100, getContext());
+        GB.updateTransferNotification(null, "", false, 100, getContext());
         GB.signalActivityDataFinish();
         operationFinished();
         unsetBusy();
@@ -171,11 +173,11 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
     protected abstract boolean processBufferedData();
 
     protected void handleActivityData(final byte[] value) {
-//        LOG.debug("{} data: {}", getName(), Logging.formatBytes(value));
+        LOG.debug("{} data: {}", getName(), Logging.formatBytes(value));
 
         if (!isOperationRunning()) {
             LOG.error("ignoring {} notification because operation is not running. Data length: {}", getName(), value.length);
-//            getSupport().logMessageContent(value);
+            getSupport().logMessageContent(value);
             return;
         }
 
@@ -204,13 +206,13 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
 
     private void handleActivityMetadata(byte[] value) {
         if (value.length < 3) {
-//            LOG.warn("Activity metadata too short: {}", Logging.formatBytes(value));
+            LOG.warn("Activity metadata too short: {}", Logging.formatBytes(value));
             onOperationFinished();
             return;
         }
 
         if (value[0] != HuamiService.RESPONSE) {
-//            LOG.warn("Activity metadata not a response: {}", Logging.formatBytes(value));
+            LOG.warn("Activity metadata not a response: {}", Logging.formatBytes(value));
             onOperationFinished();
             return;
         }
@@ -227,21 +229,21 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
                 onOperationFinished();
                 return;
             default:
-//                LOG.warn("Unexpected activity metadata: {}", Logging.formatBytes(value));
+                LOG.warn("Unexpected activity metadata: {}", Logging.formatBytes(value));
                 onOperationFinished();
         }
     }
 
     private void handleStartDateResponse(final byte[] value) {
         if (value[2] != HuamiService.SUCCESS) {
-//            LOG.warn("Start date unsuccessful response: {}", Logging.formatBytes(value));
+            LOG.warn("Start date unsuccessful response: {}", Logging.formatBytes(value));
             onOperationFinished();
             return;
         }
 
         // it's 16 on the MB7, with a 0 at the end
         if (value.length != 15 && (value.length != 16 && value[15] != 0x00)) {
-//            LOG.warn("Start date response length: {}", Logging.formatBytes(value));
+            LOG.warn("Start date response length: {}", Logging.formatBytes(value));
             onOperationFinished();
             return;
         }
@@ -263,9 +265,9 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
         setStartTimestamp(startTimestamp);
         LOG.info("Will transfer {} packets since {}", expectedDataLength, startTimestamp.getTime());
 
-//        GB.updateTransferNotification(taskDescription(),
-//                getContext().getString(R.string.FetchActivityOperation_about_to_transfer_since,
-//                        DateFormat.getDateTimeInstance().format(startTimestamp.getTime())), true, 0, getContext());
+        GB.updateTransferNotification(taskDescription(),
+                getContext().getString(R.string.FetchActivityOperation_about_to_transfer_since,
+                        DateFormat.getDateTimeInstance().format(startTimestamp.getTime())), true, 0, getContext());
 
         // Trigger the actual data fetch
         final TransactionBuilder step2builder = createTransactionBuilder(getName() + " Step 2");
@@ -281,13 +283,13 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
 
     private void handleFetchDataResponse(final byte[] value) {
         if (value[2] != HuamiService.SUCCESS) {
-//            LOG.warn("Fetch data unsuccessful response: {}", Logging.formatBytes(value));
+            LOG.warn("Fetch data unsuccessful response: {}", Logging.formatBytes(value));
             onOperationFinished();
             return;
         }
 
         if (value.length != 3 && value.length != 7) {
-//            LOG.warn("Fetch data unexpected metadata length: {}", Logging.formatBytes(value));
+            LOG.warn("Fetch data unexpected metadata length: {}", Logging.formatBytes(value));
             onOperationFinished();
             return;
         }

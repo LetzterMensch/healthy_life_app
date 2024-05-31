@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
 
+import com.example.gr.Logging;
 import com.example.gr.device.btle.BtLEAction;
 
 import org.slf4j.Logger;
@@ -39,9 +40,9 @@ public class WriteAction extends BtLEAction {
     }
 
     protected boolean writeValue(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, byte[] value) {
-//        if (LOG.isDebugEnabled()) {
-//            LOG.debug("writing to characteristic: " + characteristic.getUuid() + ": " + Logging.formatBytes(value));
-//        }
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("writing to characteristic: " + characteristic.getUuid() + ": " + Logging.formatBytes(value));
+        }
         if (characteristic.setValue(value)) {
             return gatt.writeCharacteristic(characteristic);
         }

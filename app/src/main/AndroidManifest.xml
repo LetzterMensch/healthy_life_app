@@ -4,14 +4,13 @@
     package="com.example.gr">
 
     <uses-feature
-        android:name="android.hardware.telephony"
-        android:required="false" />
-    <uses-feature
         android:name="android.hardware.location.gps"
         android:required="true" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
     <uses-permission
         android:name="android.permission.BLUETOOTH"
         android:maxSdkVersion="30" />
@@ -19,8 +18,7 @@
         android:name="android.permission.BLUETOOTH_ADMIN"
         android:maxSdkVersion="30" />
     <uses-permission
-        android:name="android.permission.BLUETOOTH_SCAN"
-        android:usesPermissionFlags="neverForLocation" />
+        android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,6 +26,24 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
         tools:ignore="ProtectedPermissions" />
+
+    <!-- Used for background service -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND" />
+
+    <!-- Used for starting activities from the background with intents -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!--
+SDK 30 & Android 11 - Used for getting app name from notifications, and for starting
+services from other packages via intents, when targeting Android API level 30 or later
+on devices running Android 11 or later.
+https://developer.android.com/training/package-visibility
+https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zippy=%2Cpermitted-uses-of-the-query-all-packages-permission%2Cexceptions
+-->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
     <uses-feature
         android:name="android.hardware.bluetooth"
         android:required="true" />
@@ -92,11 +108,13 @@
         </activity>
         <activity
             android:name=".device.settings.DeviceSettingsActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".activity.MainActivity">
         </activity>
         <activity
             android:name=".activity.DiscoveryActivityV2"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".activity.MainActivity">
         </activity>
         <activity
             android:name=".activity.MainActivity"
@@ -111,15 +129,19 @@
         <activity
             android:name=".device.huami.miband.MiBandPairingActivity"
             android:label="@string/title_activity_mi_band_pairing"
+            android:parentActivityName=".activity.MainActivity"
             android:exported="false"/>
         <activity
             android:name=".device.huami.miband.MiBandPreferencesActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".device.settings.SettingsActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".device.settings.AboutUserPreferencesActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".activity.RecipeDetailActivity"
@@ -134,7 +156,15 @@
             android:name=".activity.RecordGpsWorkoutActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
+            android:parentActivityName=".activity.MainActivity"
             android:showOnLockScreen="true" />
+        <service
+            android:name=".device.btle.BLEScanService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+        <service android:name=".service.DeviceCommunicationService" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

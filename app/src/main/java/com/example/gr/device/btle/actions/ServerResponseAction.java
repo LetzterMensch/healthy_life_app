@@ -21,6 +21,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattServer;
 
+import com.example.gr.Logging;
 import com.example.gr.device.btle.BtLEServerAction;
 
 import org.slf4j.Logger;
@@ -55,9 +56,9 @@ public class ServerResponseAction extends BtLEServerAction {
 
     @SuppressLint("MissingPermission")
     protected boolean writeValue(BluetoothGattServer gattServer, BluetoothDevice device, int requestId, int status, int offset, byte[] value) {
-//        if (LOG.isDebugEnabled()) {
-//            LOG.debug("writing to server: " + device.getAddress() + ": " + Logging.formatBytes(value));
-//        }
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("writing to server: " + device.getAddress() + ": " + Logging.formatBytes(value));
+        }
 
         return gattServer.sendResponse(device, requestId, 0, offset, value);
     }

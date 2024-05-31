@@ -1,20 +1,43 @@
 package com.example.gr.utils;
 
+import static com.example.gr.ControllerApplication.isRunningOreoOrLater;
+import static com.example.gr.device.model.DeviceService.EXTRA_RECORDED_DATA_TYPES;
+
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Html;
+import android.text.SpannableString;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.gr.ControllerApplication;
+import com.example.gr.R;
+import com.example.gr.activity.MainActivity;
+import com.example.gr.constant.ActivityKind;
+import com.example.gr.device.GBDevice;
+import com.example.gr.device.model.DeviceService;
+import com.example.gr.device.settings.SettingsActivity;
+import com.example.gr.service.DeviceCommunicationService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Collections;
+import java.util.List;
 
 public class GB {
 
@@ -56,7 +79,7 @@ public class GB {
     private static boolean notificationChannelsCreated;
 
     private static final String TAG = "GB";
-/*
+
     public static void createNotificationChannels(Context context) {
         if (notificationChannelsCreated) return;
 
@@ -110,7 +133,7 @@ public class GB {
     }
 
     private static PendingIntent getContentIntent(Context context) {
-        Intent notificationIntent = new Intent(context, ControlCenterv2.class);
+        Intent notificationIntent = new Intent(context, MainActivity.class);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntentUtils.getActivity(context, 0,
@@ -129,7 +152,7 @@ public class GB {
                     .setOngoing(true);
 
             if (!ControllerApplication.isRunningTwelveOrLater()) {
-                builder.setColor(context.getResources().getColor(R.color.accent));
+                builder.setColor(context.getResources().getColor(R.color.blue));
             }
         }else if(devices.size() == 1) {
             GBDevice device = devices.get(0);
@@ -149,7 +172,7 @@ public class GB {
                     .setOngoing(true);
 
             if (!ControllerApplication.isRunningTwelveOrLater()) {
-                builder.setColor(context.getResources().getColor(R.color.accent));
+                builder.setColor(context.getResources().getColor(R.color.blue));
             }
 
             Intent deviceCommunicationServiceIntent = new Intent(context, DeviceCommunicationService.class);
@@ -203,7 +226,7 @@ public class GB {
                     .setOngoing(true);
 
             if (!ControllerApplication.isRunningTwelveOrLater()) {
-                builder.setColor(context.getResources().getColor(R.color.accent));
+                builder.setColor(context.getResources().getColor(R.color.blue));
             }
 
             if (anyDeviceSupportesActivityDataFetching) {
@@ -233,7 +256,7 @@ public class GB {
                 .setOngoing(true);
 
         if (!ControllerApplication.isRunningTwelveOrLater()) {
-            builder.setColor(context.getResources().getColor(R.color.accent));
+            builder.setColor(context.getResources().getColor(R.color.blue));
         }
 
         // A small bug: When "Reconnect only to connected devices" is disabled, the intent will be added even when there are no devices in GB
@@ -271,7 +294,7 @@ public class GB {
     public static void removeNotification(int id, Context context) {
         NotificationManagerCompat.from(context).cancel(id);
     }
-*/
+
     public static boolean isBluetoothEnabled() {
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         return adapter != null && adapter.isEnabled();
@@ -415,10 +438,10 @@ public class GB {
                 break;
         }
     }
-/*
+
     private static Notification createTransferNotification(String title, String text, boolean ongoing,
                                                            int percentage, Context context) {
-        Intent notificationIntent = new Intent(context, ControlCenterv2.class);
+        Intent notificationIntent = new Intent(context, MainActivity.class);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntentUtils.getActivity(context, 0,
@@ -454,7 +477,7 @@ public class GB {
     }
 
     public static void createGpsNotification(Context context, int numDevices) {
-        Intent notificationIntent = new Intent(context, ControlCenterv2.class);
+        Intent notificationIntent = new Intent(context, MainActivity.class);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntentUtils.getActivity(context, 0, notificationIntent, 0, false);
 
@@ -476,7 +499,7 @@ public class GB {
 
     private static Notification createInstallNotification(String text, boolean ongoing,
                                                           int percentage, Context context) {
-        Intent notificationIntent = new Intent(context, ControlCenterv2.class);
+        Intent notificationIntent = new Intent(context, MainActivity.class);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntentUtils.getActivity(context, 0,
@@ -506,7 +529,7 @@ public class GB {
     }
 
     private static Notification createBatteryNotification(String text, String bigText, Context context) {
-        Intent notificationIntent = new Intent(context, ControlCenterv2.class);
+        Intent notificationIntent = new Intent(context, MainActivity.class);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntentUtils.getActivity(context, 0,
@@ -528,9 +551,6 @@ public class GB {
     }
 
     public static void updateBatteryNotification(String text, String bigText, Context context) {
-        if (GBEnvironment.env().isLocalTest()) {
-            return;
-        }
         Notification notification = createBatteryNotification(text, bigText, context);
         notify(NOTIFICATION_ID_LOW_BATTERY, notification, context);
     }
@@ -558,13 +578,9 @@ public class GB {
     }
 
     public static void updateExportFailedNotification(String text, Context context) {
-        if (GBEnvironment.env().isLocalTest()) {
-            return;
-        }
         Notification notification = createExportFailedNotification(text, context);
         notify(NOTIFICATION_ID_EXPORT_FAILED, notification, context);
     }
-*/
     public static void assertThat(boolean condition, String errorMessage) {
         if (!condition) {
             throw new AssertionError(errorMessage);

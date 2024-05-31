@@ -493,6 +493,7 @@ drawable ic_exercise_24dp
 drawable ic_fire
 drawable ic_forward_white_36
 drawable ic_gps_fixed
+drawable ic_gps_location
 drawable ic_gps_no_fix
 drawable ic_home_black_24dp
 drawable ic_indoor_workout_green_50
@@ -504,16 +505,20 @@ drawable ic_notification_low_battery
 drawable ic_notifications_black_24dp
 drawable ic_open_in_browser
 drawable ic_profile_black_24dp
+drawable ic_refresh
 drawable ic_run_blue_50
 drawable ic_search_red
 drawable ic_steps
 drawable ic_vpn_key
 drawable skbk_logo
+drawable svbok_logo
 font akaya_telivigala
 font alata
 font amiko
 id Height
 id Width
+id action_bar_back_img
+id action_bar_title
 id add_btn
 id add_wearable_btn
 id autoStartCountdownAbort
@@ -521,6 +526,7 @@ id autoStartCountdownMsg
 id autoStartCountdownVal
 id breakfast_card
 id btn_breakfast_add
+id btn_container
 id btn_dinner_add
 id btn_gps_start
 id btn_lunch_add
@@ -554,6 +560,7 @@ id dashboard_protein
 id dashboard_steps
 id date
 id dinner_card
+id disconnect_button
 id discovery_ble_progressbar
 id discovery_device_candidates_list
 id discovery_hint
@@ -648,6 +655,7 @@ id recordTime
 id recorderAutoStartOverlay
 id recorderWaitingOverlay
 id recorderWaitingSatellites
+id remove_button
 id search_tabLayout
 id serving_size
 id settings_container
@@ -656,6 +664,8 @@ id spinner_item_icon
 id spinner_item_text
 id steps_bar_indicator
 id switchWidget
+id sync_btn
+id textView
 id text_home
 id title_calories
 id title_calories_remain
@@ -669,6 +679,7 @@ id tv_title
 id viewPager2
 id viewpager_2
 id wearable_name
+id wearable_status
 layout activity_device_settings
 layout activity_discovery
 layout activity_food_detail
@@ -683,12 +694,14 @@ layout fragment_diary
 layout fragment_exercise
 layout fragment_food
 layout fragment_food_search
+layout fragment_profile
 layout fragment_recipe_search
 layout item_exercise_history
 layout item_food
 layout item_search_food_tab
 layout item_search_recipe_tab
 layout item_with_details
+layout layout_actionbar
 layout layout_calendar_toolbar
 layout layout_toolbar
 layout meal_spinner_dropdown_item

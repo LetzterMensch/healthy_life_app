@@ -1,26 +1,40 @@
 package com.example.gr.activity;
 
+import static com.example.gr.utils.GB.toast;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
 import com.example.gr.adapter.MainViewPagerAdapter;
+import com.example.gr.data.sample.ActivitySample;
+import com.example.gr.database.DBAccess;
+import com.example.gr.database.DBHandler;
+import com.example.gr.databinding.ActivityMainBinding;
+import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.DeviceManager;
 import com.example.gr.device.GBDevice;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.gr.device.model.DailyTotals;
+import com.example.gr.device.model.DeviceService;
+import com.example.gr.utils.GB;
+import com.example.gr.utils.HeartRateUtils;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.viewpager2.widget.ViewPager2;
-
-import com.example.gr.databinding.ActivityMainBinding;
-
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 // Hỗ trợ chuyển tiếp giữa các fragments
 public class MainActivity extends BaseActivity {
@@ -28,13 +42,74 @@ public class MainActivity extends BaseActivity {
     private ActivityMainBinding mActivityMainBinding;
     private DeviceManager deviceManager;
     private List<GBDevice> deviceList;
+    private ActivitySample currentHRSample;
 
+//    private GBDeviceAdapterv2 mGBDeviceAdapter;
+
+    private HashMap<String,long[]> deviceActivityHashMap = new HashMap();
+
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (Objects.requireNonNull(action)) {
+                case ControllerApplication.ACTION_NAV_DASHBOARD_FRAGMENT:
+                    mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_dashboard).setChecked(true);
+                    mActivityMainBinding.viewpager2.setCurrentItem(0);
+                    break;
+                case ControllerApplication.ACTION_NAV_DIARY_FRAGMENT:
+                    mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_diary).setChecked(true);
+                    mActivityMainBinding.viewpager2.setCurrentItem(1);
+                    break;
+                case ControllerApplication.ACTION_NAV_EXERCISE_FRAGMENT:
+                    mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_exercise).setChecked(true);
+                    mActivityMainBinding.viewpager2.setCurrentItem(2);
+                    break;
+                case ControllerApplication.ACTION_NAV_SLEEP_FRAGMENT:
+                    mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_sleep).setChecked(true);
+                    mActivityMainBinding.viewpager2.setCurrentItem(3);
+                    break;
+                case ControllerApplication.ACTION_NAV_PROFILE_FRAGMENT:
+                    mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_profile).setChecked(true);
+                    mActivityMainBinding.viewpager2.setCurrentItem(4);
+                    break;
+                case ControllerApplication.ACTION_QUIT:
+                    finish();
+                    break;
+                case DeviceManager.ACTION_DEVICES_CHANGED:
+                case ControllerApplication.ACTION_NEW_DATA:
+                    createRefreshTask("get activity data", getApplication()).execute();
+//                    mGBDeviceAdapter.rebuildFolders();
+//                    refreshPairedDevices();
+                    break;
+                case DeviceService.ACTION_REALTIME_SAMPLES:
+                    handleRealtimeSample(intent.getSerializableExtra(DeviceService.EXTRA_REALTIME_SAMPLE));
+                    break;
+//                case ACTION_REQUEST_PERMISSIONS:
+//                    checkAndRequestPermissions();
+//                    break;
+//                case ACTION_REQUEST_LOCATION_PERMISSIONS:
+//                    checkAndRequestLocationPermissions();
+//                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mActivityMainBinding.getRoot());
 
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ControllerApplication.ACTION_NAV_DASHBOARD_FRAGMENT);
+        intentFilter.addAction(ControllerApplication.ACTION_NAV_DIARY_FRAGMENT);
+        intentFilter.addAction(ControllerApplication.ACTION_NAV_EXERCISE_FRAGMENT);
+        intentFilter.addAction(ControllerApplication.ACTION_NAV_SLEEP_FRAGMENT);
+        intentFilter.addAction(ControllerApplication.ACTION_NAV_PROFILE_FRAGMENT);
+        intentFilter.addAction(ControllerApplication.ACTION_QUIT);
+        intentFilter.addAction(ControllerApplication.ACTION_NEW_DATA);
+        intentFilter.addAction(DeviceManager.ACTION_DEVICES_CHANGED);
+        intentFilter.addAction(DeviceService.ACTION_REALTIME_SAMPLES);
         deviceManager = ((ControllerApplication) getApplication()).getDeviceManager();
         deviceList = deviceManager.getDevices();
 
@@ -84,6 +159,8 @@ public class MainActivity extends BaseActivity {
             }
             return true;
         });
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, intentFilter);
+
 //        BottomNavigationView navView = findViewById(R.id.nav_view);
 //        // Passing each menu ID as a set of Ids because each
 //        // menu should be considered as top level destinations.
@@ -95,7 +172,61 @@ public class MainActivity extends BaseActivity {
 //        NavigationUI.setupWithNavController(binding.navView, navController);
 
     }
+    @Override
+    protected void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
+        super.onDestroy();
+    }
+    public class RefreshTask extends DBAccess {
+        public RefreshTask(String task, Context context) {
+            super(task, context);
+        }
 
+        @Override
+        protected void doInBackground(DBHandler db) {
+            for (GBDevice gbDevice : deviceList) {
+                final DeviceCoordinator coordinator = gbDevice.getDeviceCoordinator();
+                if (coordinator.supportsActivityTracking()) {
+                    long[] stepsAndSleepData = getSteps(gbDevice, db);
+                    deviceActivityHashMap.put(gbDevice.getAddress(), stepsAndSleepData);
+                }
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            updateData();
+        }
+
+    }
+
+    private void updateData(){
+
+    }
+    public ActivitySample getCurrentHRSample() {
+        return currentHRSample;
+    }
+    private void handleRealtimeSample(Serializable extra) {
+        if (extra instanceof ActivitySample) {
+            ActivitySample sample = (ActivitySample) extra;
+            setCurrentHRSample(sample);
+        }
+    }
+    private void setCurrentHRSample(ActivitySample sample) {
+        if (HeartRateUtils.getInstance().isValidHeartRateValue(sample.getHeartRate())) {
+            currentHRSample = sample;
+//            refreshPairedDevices();
+        }
+    }
+    protected RefreshTask createRefreshTask(String task, Context context) {
+        return new RefreshTask(task, context);
+    }
+    private long[] getSteps(GBDevice device, DBHandler db) {
+        Calendar day = GregorianCalendar.getInstance();
+
+        DailyTotals ds = new DailyTotals();
+        return ds.getDailyTotalsForDevice(device, day, db);
+    }
 //    @Override
 //    public void onBackPressed() {
 //        super.getOnBackPressedDispatcher().onBackPressed();

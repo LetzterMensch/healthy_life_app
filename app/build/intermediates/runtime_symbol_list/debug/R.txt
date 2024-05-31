@@ -3707,6 +3707,7 @@ int drawable ic_exercise_24dp 0x7f0800d5
 int drawable ic_fire 0x7f0800d6
 int drawable ic_forward_white_36 0x7f0800d7
 int drawable ic_gps_fixed 0x7f0800d8
+int drawable ic_gps_location 0x7f08014e
 int drawable ic_gps_no_fix 0x7f0800d9
 int drawable ic_home_black_24dp 0x7f0800da
 int drawable ic_indoor_workout_green_50 0x7f0800db
@@ -3726,6 +3727,7 @@ int drawable ic_notification_low_battery 0x7f0800e8
 int drawable ic_notifications_black_24dp 0x7f0800e9
 int drawable ic_open_in_browser 0x7f0800ea
 int drawable ic_profile_black_24dp 0x7f0800eb
+int drawable ic_refresh 0x7f08014d
 int drawable ic_run_blue_50 0x7f0800ec
 int drawable ic_search_black_24 0x7f0800ed
 int drawable ic_search_red 0x7f0800ee
@@ -3819,9 +3821,10 @@ int drawable notification_tile_bg 0x7f080145
 int drawable notify_panel_notification_icon_bg 0x7f080146
 int drawable preference_list_divider_material 0x7f080147
 int drawable skbk_logo 0x7f080148
-int drawable test_level_drawable 0x7f080149
-int drawable tooltip_frame_dark 0x7f08014a
-int drawable tooltip_frame_light 0x7f08014b
+int drawable svbok_logo 0x7f080149
+int drawable test_level_drawable 0x7f08014a
+int drawable tooltip_frame_dark 0x7f08014b
+int drawable tooltip_frame_light 0x7f08014c
 int font akaya_telivigala 0x7f090000
 int font alata 0x7f090001
 int font amiko 0x7f090002
@@ -3881,6 +3884,7 @@ int id actionDownUp 0x7f0a0034
 int id actionUp 0x7f0a0035
 int id action_bar 0x7f0a0036
 int id action_bar_activity_content 0x7f0a0037
+int id action_bar_back_img 0x7f0a02bf
 int id action_bar_container 0x7f0a0038
 int id action_bar_root 0x7f0a0039
 int id action_bar_spinner 0x7f0a003a
@@ -3936,6 +3940,7 @@ int id bounceEnd 0x7f0a006b
 int id bounceStart 0x7f0a006c
 int id breakfast_card 0x7f0a006d
 int id btn_breakfast_add 0x7f0a006e
+int id btn_container 0x7f0a02c2
 int id btn_dinner_add 0x7f0a006f
 int id btn_gps_start 0x7f0a0070
 int id btn_lunch_add 0x7f0a0071
@@ -4028,6 +4033,7 @@ int id disableHome 0x7f0a00c7
 int id disableIntraAutoTransition 0x7f0a00c8
 int id disablePostScroll 0x7f0a00c9
 int id disableScroll 0x7f0a00ca
+int id disconnect_button 0x7f0a02c0
 int id discovery_ble_progressbar 0x7f0a00cb
 int id discovery_device_candidates_list 0x7f0a00cc
 int id discovery_hint 0x7f0a00cd
@@ -4354,6 +4360,7 @@ int id recorderWaitingOverlay 0x7f0a020d
 int id recorderWaitingSatellites 0x7f0a020e
 int id rectangles 0x7f0a020f
 int id recycler_view 0x7f0a0210
+int id remove_button 0x7f0a02c1
 int id report_drawn 0x7f0a0211
 int id reverseSawtooth 0x7f0a0212
 int id right 0x7f0a0213
@@ -4438,6 +4445,7 @@ int id submenuarrow 0x7f0a0261
 int id submit_area 0x7f0a0262
 int id supportScrollUp 0x7f0a0263
 int id switchWidget 0x7f0a0264
+int id sync_btn 0x7f0a02bc
 int id tabMode 0x7f0a0265
 int id tag_accessibility_actions 0x7f0a0266
 int id tag_accessibility_clickable_spans 0x7f0a0267
@@ -4459,6 +4467,7 @@ int id textSpacerNoButtons 0x7f0a0276
 int id textSpacerNoTitle 0x7f0a0277
 int id textStart 0x7f0a0278
 int id textTop 0x7f0a0279
+int id textView 0x7f0a02bd
 int id text_home 0x7f0a027a
 int id text_input_end_icon 0x7f0a027b
 int id text_input_error_icon 0x7f0a027c
@@ -4516,6 +4525,7 @@ int id viewpager_2 0x7f0a02af
 int id visible 0x7f0a02b0
 int id visible_removing_fragment_view_tag 0x7f0a02b1
 int id wearable_name 0x7f0a02b2
+int id wearable_status 0x7f0a02be
 int id west 0x7f0a02b3
 int id withText 0x7f0a02b4
 int id with_icon 0x7f0a02b5
@@ -4671,6 +4681,7 @@ int layout fragment_diary 0x7f0d0037
 int layout fragment_exercise 0x7f0d0038
 int layout fragment_food 0x7f0d0039
 int layout fragment_food_search 0x7f0d003a
+int layout fragment_profile 0x7f0d00b5
 int layout fragment_recipe_search 0x7f0d003b
 int layout image_frame 0x7f0d003c
 int layout ime_base_split_test_activity 0x7f0d003d
@@ -4680,6 +4691,7 @@ int layout item_food 0x7f0d0040
 int layout item_search_food_tab 0x7f0d0041
 int layout item_search_recipe_tab 0x7f0d0042
 int layout item_with_details 0x7f0d0043
+int layout layout_actionbar 0x7f0d00b4
 int layout layout_calendar_toolbar 0x7f0d0044
 int layout layout_toolbar 0x7f0d0045
 int layout m3_alert_dialog 0x7f0d0046

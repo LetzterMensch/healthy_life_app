@@ -61,7 +61,6 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.8.9")
     //XML
     implementation ("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.7")
-
     // Maps
     val mapsforge_version = "0.17.0"
     implementation ("org.mapsforge:mapsforge-core:$mapsforge_version")
@@ -75,7 +74,8 @@ dependencies {
 
     implementation ("org.apache.commons:commons-lang3:3.7")
     //logger
-    implementation ("org.slf4j:slf4j-api:1.7.36")
+    implementation ("org.slf4j:slf4j-api:2.0.7")
+    implementation ("com.github.tony19:logback-android:3.0.0")
     //greenrobot
     implementation ("org.greenrobot:greendao:2.2.1")
     //Charts

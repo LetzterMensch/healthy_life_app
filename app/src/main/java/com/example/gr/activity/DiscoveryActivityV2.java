@@ -36,10 +36,12 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -50,14 +52,15 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 import androidx.core.app.ActivityCompat;
 
+import com.example.gr.ControllerApplication;
+import com.example.gr.R;
 import com.example.gr.adapter.DeviceCandidateAdapter;
 import com.example.gr.adapter.SpinnerWithIconAdapter;
 import com.example.gr.adapter.SpinnerWithIconItem;
 import com.example.gr.device.DeviceCoordinator;
-import com.example.gr.device.model.DeviceType;
-import com.example.gr.utils.GB;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.GBDeviceCandidate;
+import com.example.gr.device.model.DeviceType;
 import com.example.gr.device.scan.GBScanEvent;
 import com.example.gr.device.scan.GBScanEventProcessor;
 import com.example.gr.device.settings.DeviceSettingsActivity;
@@ -65,6 +68,7 @@ import com.example.gr.utils.AndroidUtils;
 import com.example.gr.utils.BondingInterface;
 import com.example.gr.utils.BondingUtil;
 import com.example.gr.utils.DeviceHelper;
+import com.example.gr.utils.GB;
 import com.example.gr.utils.Prefs;
 
 import org.slf4j.Logger;
@@ -76,9 +80,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
-
-import com.example.gr.ControllerApplication;
-import com.example.gr.R;
 
 
 
@@ -102,7 +103,8 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
     private DeviceCandidateAdapter deviceCandidateAdapter;
     private GBDeviceCandidate deviceTarget;
     private BluetoothAdapter adapter;
-
+    private ImageView backButton;
+    private TextView tvActionBarTitle;
     private Button startButton;
     private boolean scanning;
     public static final long SELECT_DEVICE = -1;
@@ -144,8 +146,8 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         //settings of how we're gonna scan for devices
         loadSettings();
-
         setContentView(R.layout.activity_discovery);
+        initActionBar();
 
         startButton = findViewById(R.id.discovery_start);
         //handling logic and actions of scanning for devices
@@ -185,7 +187,6 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
             finish();
         }
     }
-
     @Override
     protected void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -232,7 +233,14 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
         registerBroadcastReceivers();
         super.onResume();
     }
-
+    private void initActionBar(){
+        backButton = findViewById(R.id.action_bar_back_img);
+        tvActionBarTitle = findViewById(R.id.action_bar_title);
+        backButton.setOnClickListener(v->{
+            getOnBackPressedDispatcher().onBackPressed();
+        });
+        tvActionBarTitle.setText("Quét thiết bị");
+    }
     private void refreshDeviceList(final boolean throttle) {
         handler.post(() -> {
             if (throttle && System.currentTimeMillis() - lastListRefresh < LIST_REFRESH_THRESHOLD_MS) {

@@ -23,6 +23,7 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 
+import com.example.gr.Logging;
 import com.example.gr.device.AbstractDeviceSupport;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.btle.actions.CheckInitializedAction;
@@ -294,10 +295,10 @@ public abstract class AbstractBTLEDeviceSupport extends AbstractDeviceSupport im
      * Utility method that may be used to log incoming messages when we don't know how to deal with them yet.
      *
      */
-//    public void logMessageContent(byte[] value) {
-//        logger.info("RECEIVED DATA WITH LENGTH: " + ((value != null) ? value.length : "(null)"));
-//        Logging.logBytes(logger, value);
-//    }
+    public void logMessageContent(byte[] value) {
+        logger.info("RECEIVED DATA WITH LENGTH: " + ((value != null) ? value.length : "(null)"));
+        Logging.logBytes(logger, value);
+    }
 
     // default implementations of event handler methods (gatt callbacks)
     @Override

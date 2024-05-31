@@ -28,7 +28,7 @@ import com.example.gr.handler.EventHandler;
  *
  */
 public interface DeviceService extends EventHandler {
-    String PREFIX = "nodomain.freeyourgadget.gadgetbridge.devices";
+    String PREFIX = "com.example.gr.device";
 
     String ACTION_CONNECT = PREFIX + ".action.connect";
     String ACTION_NOTIFICATION = PREFIX + ".action.notification";
