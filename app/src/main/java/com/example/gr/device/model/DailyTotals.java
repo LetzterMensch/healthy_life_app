@@ -26,7 +26,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.example.gr.ControllerApplication;
-import com.example.gr.charts.ActivityAnalysis;
+import com.example.gr.activity.charts.ActivityAnalysis;
 import com.example.gr.constant.ActivityKind;
 import com.example.gr.data.sample.ActivitySample;
 import com.example.gr.database.DBHandler;

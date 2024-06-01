@@ -3,6 +3,8 @@ package com.example.gr.device.settings;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -18,6 +20,7 @@ public abstract class AbstractSettingsActivityV2 extends BaseActivity implements
         PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
 
     protected abstract String fragmentTag();
+
     protected abstract PreferenceFragmentCompat newFragment();
 
     @Override
@@ -72,6 +75,10 @@ public abstract class AbstractSettingsActivityV2 extends BaseActivity implements
 
     public void setActionBarTitle(final CharSequence title) {
         final ActionBar actionBar = getSupportActionBar();
+        findViewById(R.id.action_bar_back_img).
+                setOnClickListener(v -> {
+                    getOnBackPressedDispatcher().onBackPressed();
+                });
         if (actionBar != null) {
             actionBar.setTitle(title);
         }

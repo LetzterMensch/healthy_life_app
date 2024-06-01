@@ -239,7 +239,7 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
         backButton.setOnClickListener(v->{
             getOnBackPressedDispatcher().onBackPressed();
         });
-        tvActionBarTitle.setText("Quét thiết bị");
+        tvActionBarTitle.setText("Khám phá thiết bị");
     }
     private void refreshDeviceList(final boolean throttle) {
         handler.post(() -> {

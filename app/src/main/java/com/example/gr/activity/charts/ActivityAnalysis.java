@@ -15,7 +15,7 @@
 
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
-package com.example.gr.charts;
+package com.example.gr.activity.charts;
 
 import com.example.gr.constant.ActivityKind;
 import com.example.gr.data.sample.ActivitySample;
