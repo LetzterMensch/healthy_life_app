@@ -10,12 +10,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
+import com.example.gr.activity.charts.AbstractChartsActivity;
+import com.example.gr.adapter.AbstractFragmentPagerAdapter;
 import com.example.gr.adapter.MainViewPagerAdapter;
 import com.example.gr.data.sample.ActivitySample;
 import com.example.gr.database.DBAccess;
@@ -24,10 +27,15 @@ import com.example.gr.databinding.ActivityMainBinding;
 import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.DeviceManager;
 import com.example.gr.device.GBDevice;
+import com.example.gr.device.model.ActivityAmounts;
 import com.example.gr.device.model.DailyTotals;
 import com.example.gr.device.model.DeviceService;
+import com.example.gr.device.model.RecordedDataTypes;
+import com.example.gr.fragment.BaseFragment;
+import com.example.gr.fragment.SleepFragment;
 import com.example.gr.utils.GB;
 import com.example.gr.utils.HeartRateUtils;
+import com.example.gr.utils.LimitedQueue;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -43,7 +51,9 @@ public class MainActivity extends BaseActivity {
     private DeviceManager deviceManager;
     private List<GBDevice> deviceList;
     private ActivitySample currentHRSample;
+    private MainViewPagerAdapter mainViewPagerAdapter;
 
+    private BaseFragment currentFragment;
 //    private GBDeviceAdapterv2 mGBDeviceAdapter;
 
     private HashMap<String,long[]> deviceActivityHashMap = new HashMap();
@@ -114,7 +124,7 @@ public class MainActivity extends BaseActivity {
         deviceList = deviceManager.getDevices();
 
         mActivityMainBinding.viewpager2.setUserInputEnabled(false);
-        MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(this);
+        mainViewPagerAdapter = new MainViewPagerAdapter(this);
         mActivityMainBinding.viewpager2.setAdapter(mainViewPagerAdapter);
         mActivityMainBinding.viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

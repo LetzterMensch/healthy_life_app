@@ -111,6 +111,11 @@ public class ProfileFragment extends BaseFragment {
     }
 
     @Override
+    protected void updateUIAfterShowSnackBar() {
+
+    }
+
+    @Override
     protected void initToolbar() {
         if (getActivity() != null) {
             ((MainActivity) getActivity()).setToolBar(false, "Cá nhân");

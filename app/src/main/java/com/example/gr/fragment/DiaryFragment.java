@@ -31,8 +31,7 @@ public class DiaryFragment extends BaseFragment {
     private FragmentDiaryBinding mfragmentDiaryBinding;
     private Calendar calendar;
     private int today;
-    private FoodAdapter mFoodAdapter;
-    private List<Food> foodList;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,12 +52,12 @@ public class DiaryFragment extends BaseFragment {
     }
 
     private void initUi() {
-        foodList = new ArrayList<>();
+        List<Food> foodList = new ArrayList<>();
         foodList.add(new Food("French fires", 1.0f, 118));
         foodList.add(new Food("Hamburger", 1.0f, 118));
         foodList.add(new Food("Brisket", 1.0f, 118));
         foodList.add(new Food("Buffalo chicken", 1.0f, 118));
-        mFoodAdapter = new FoodAdapter(foodList,this::goToFoodDetail);
+        FoodAdapter mFoodAdapter = new FoodAdapter(foodList, this::goToFoodDetail);
         mfragmentDiaryBinding.layoutSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +99,11 @@ public class DiaryFragment extends BaseFragment {
                 goToSearchActivity(3);
             }
         });
+    }
+
+    @Override
+    protected void updateUIAfterShowSnackBar() {
+
     }
 
     @Override

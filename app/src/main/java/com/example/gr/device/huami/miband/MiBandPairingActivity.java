@@ -45,7 +45,7 @@ import com.example.gr.device.settings.AboutUserPreferencesActivity;
 import com.example.gr.utils.GB;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.GBDeviceCandidate;
-import com.example.gr.device.settings.AbstractGBActivity;
+import com.example.gr.activity.AbstractGBActivity;
 import com.example.gr.utils.AndroidUtils;
 import com.example.gr.utils.BondingInterface;
 import com.example.gr.utils.BondingUtil;

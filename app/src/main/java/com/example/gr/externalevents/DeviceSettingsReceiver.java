@@ -34,7 +34,7 @@ import java.util.Set;
 public class DeviceSettingsReceiver extends BroadcastReceiver {
     private static final Logger LOG = LoggerFactory.getLogger(DeviceSettingsReceiver.class);
 
-    public static final String COMMAND = "nodomain.freeyourgadget.gadgetbridge.action.SET_DEVICE_SETTING";
+    public static final String COMMAND = "com.example.gr.action.SET_DEVICE_SETTING";
 
     private static final String MAC_ADDR_PATTERN = "^([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$";
 

@@ -42,6 +42,12 @@ public class RecipeListSearchFragment extends BaseFragment{
         mRecipeSearchTabAdapter = new RecipeSearchTabAdapter(mRecipeList,this::goToRecipeDetail);
         mFragmentRecipeSearchBinding.rcvRecipeSearchTab.setAdapter(mRecipeSearchTabAdapter);
     }
+
+    @Override
+    protected void updateUIAfterShowSnackBar() {
+
+    }
+
     @Override
     protected void initToolbar() {
 

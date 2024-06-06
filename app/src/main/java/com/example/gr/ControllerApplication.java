@@ -8,10 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.TypedValue;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -1057,6 +1059,15 @@ public class ControllerApplication extends Application {
 
     public static Context getContext() {
         return context;
+    }
+    public static int getBackgroundColor(Context context) {
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = context.getTheme();
+        theme.resolveAttribute(android.R.attr.background, typedValue, true);
+        return typedValue.data;
+    }
+    public static int getSecondaryTextColor(Context context) {
+        return context.getResources().getColor(R.color.secondarytext);
     }
 
     public void setOpenTracksObserver(OpenTracksContentObserver openTracksObserver) {

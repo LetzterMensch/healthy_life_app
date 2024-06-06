@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/yellow" />
+    <!-- You can adjust the color, size, or other properties here -->
+</shape>

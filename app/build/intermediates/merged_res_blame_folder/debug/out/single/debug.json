@@ -12,6 +12,10 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_green_shape_corner_6.xml"
     },
     {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_sleep.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_sleep.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_selector_red.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_selector_red.xml"
     },
@@ -36,20 +40,20 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_dashboard_black_24dp.xml"
     },
     {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_blue.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_blue.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_food_search.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_food_search.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button.xml.flat",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_threadmill.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_threadmill.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_preference_checkbox.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\preference_checkbox.xml"
-    },
-    {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_threadmill.xml.flat",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_threadmill.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_climbing.xml.flat",
@@ -60,16 +64,16 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_basketball.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_gps_no_fix.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_gps_no_fix.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_miband6_disabled.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_miband6_disabled.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_gps_no_fix.xml.flat",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_gps_no_fix.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_yoga.xml.flat",
@@ -84,12 +88,12 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_baseline_arrow_drop_down_36.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_rowing.xml.flat",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_rowing.xml"
-    },
-    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_zetime_disabled.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_zetime_disabled.xml"
+    },
+    {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_rowing.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_rowing.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_preference_material_switch.xml.flat",
@@ -276,6 +280,10 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\layout_calendar_toolbar.xml"
     },
     {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\menu_menu_charts.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\menu\\menu_charts.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_top_border_red_corner_30.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_top_border_red_corner_30.xml"
     },
@@ -286,6 +294,10 @@
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_red_shape_corner_6.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_red_shape_corner_6.xml"
+    },
+    {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_purple.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_purple.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_bedtime_24dp.xml.flat",
@@ -314,6 +326,10 @@
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_search_for_food.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_search_for_food.xml"
+    },
+    {
+        "merged": "com.example.gr.app-merged_res-54:/layout_fragment_sleep.xml.flat",
+        "source": "com.example.gr.app-main-56:/layout/fragment_sleep.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_data_extraction_rules.xml.flat",
@@ -428,6 +444,10 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_add_30_red.xml"
     },
     {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_dark_blue.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_dark_blue.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_steps.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_steps.xml"
     },
@@ -520,6 +540,10 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_mi_band_pairing.xml"
     },
     {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_green.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_green.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_indicatior_selected.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_indicatior_selected.xml"
     },
@@ -566,6 +590,10 @@
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_gray_shape_corner_6.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_gray_shape_corner_6.xml"
+    },
+    {
+        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_circle_button_light_green.xml.flat",
+        "source": "com.example.gr.app-main-56:/drawable/bg_circle_button_light_green.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_vpn_key.xml.flat",

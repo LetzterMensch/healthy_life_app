@@ -3605,8 +3605,22 @@
         <item>13</item>
         <item>14</item>
     </string-array>
+    <attr format="color" name="actionmenu_icon_color"/>
+    <attr format="color" name="alternate_row_background"/>
+    <attr format="color" name="cardview_background_color"/>
+    <attr format="color" name="chart_activity"/>
+    <attr format="color" name="chart_deep_sleep"/>
+    <attr format="color" name="chart_light_sleep"/>
+    <attr format="color" name="chart_not_worn"/>
+    <attr format="color" name="chart_rem_sleep"/>
+    <attr format="color" name="drawer_header_color"/>
+    <attr format="color" name="drawer_title_color"/>
     <attr format="color" name="itemActiveColor"/>
     <attr format="color" name="itemInactiveColor"/>
+    <attr format="color" name="sports_activity_summary_background"/>
+    <attr format="color" name="textColorPrimary"/>
+    <attr format="color" name="textColorSecondary"/>
+    <attr format="color" name="textColorTertiary"/>
     <attr format="color" name="titleColorActive"/>
     <attr format="color" name="titleColorInactive"/>
     <color name="black">#FF000000</color>
@@ -3616,6 +3630,7 @@
     <color name="colorAccent">#FC5353</color>
     <color name="colorPrimary">#EF1D1D</color>
     <color name="colorPrimaryDark">#AA1313</color>
+    <color name="dark_orange">#EA971A</color>
     <color name="dividerColor">#BDBDBD</color>
     <color name="green">#4CAF50</color>
     <color name="green_100">#26D52D</color>
@@ -3625,6 +3640,8 @@
     <color name="orange">#FF5722</color>
     <color name="pink">#F06292</color>
     <color name="purple">#9C27B0</color>
+    <color name="purple_100">#8FBB86FC</color>
+    <color name="purple_150">#8F9B58EE</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

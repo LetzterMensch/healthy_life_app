@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.gr.R;
+import com.github.mikephil.charting.charts.LineChart;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
@@ -71,16 +72,13 @@ public final class FragmentDashboardBinding implements ViewBinding {
   public final LinearProgressIndicator fatIndicator;
 
   @NonNull
-  public final CardView heartRateGraph;
+  public final LineChart lineChart;
 
   @NonNull
   public final LinearProgressIndicator proteinIndicator;
 
   @NonNull
   public final LinearProgressIndicator stepsBarIndicator;
-
-  @NonNull
-  public final TextView textHome;
 
   @NonNull
   public final AppCompatTextView titleCalories;
@@ -91,6 +89,9 @@ public final class FragmentDashboardBinding implements ViewBinding {
   @NonNull
   public final AppCompatTextView titleToday;
 
+  @NonNull
+  public final CardView weightLineChart;
+
   private FragmentDashboardBinding(@NonNull ConstraintLayout rootView,
       @NonNull LinearLayout calProcessContainer, @NonNull TextView caloriesBurnt,
       @NonNull CircularProgressIndicator caloriesCircle, @NonNull TextView caloriesInput,
@@ -99,11 +100,11 @@ public final class FragmentDashboardBinding implements ViewBinding {
       @NonNull TextView dashboardCalBurnt, @NonNull TextView dashboardCalBurntHr,
       @NonNull TextView dashboardCarb, @NonNull TextView dashboardFat,
       @NonNull TextView dashboardProtein, @NonNull TextView dashboardSteps,
-      @NonNull LinearProgressIndicator fatIndicator, @NonNull CardView heartRateGraph,
+      @NonNull LinearProgressIndicator fatIndicator, @NonNull LineChart lineChart,
       @NonNull LinearProgressIndicator proteinIndicator,
-      @NonNull LinearProgressIndicator stepsBarIndicator, @NonNull TextView textHome,
-      @NonNull AppCompatTextView titleCalories, @NonNull TextView titleGoalSteps,
-      @NonNull AppCompatTextView titleToday) {
+      @NonNull LinearProgressIndicator stepsBarIndicator, @NonNull AppCompatTextView titleCalories,
+      @NonNull TextView titleGoalSteps, @NonNull AppCompatTextView titleToday,
+      @NonNull CardView weightLineChart) {
     this.rootView = rootView;
     this.calProcessContainer = calProcessContainer;
     this.caloriesBurnt = caloriesBurnt;
@@ -120,13 +121,13 @@ public final class FragmentDashboardBinding implements ViewBinding {
     this.dashboardProtein = dashboardProtein;
     this.dashboardSteps = dashboardSteps;
     this.fatIndicator = fatIndicator;
-    this.heartRateGraph = heartRateGraph;
+    this.lineChart = lineChart;
     this.proteinIndicator = proteinIndicator;
     this.stepsBarIndicator = stepsBarIndicator;
-    this.textHome = textHome;
     this.titleCalories = titleCalories;
     this.titleGoalSteps = titleGoalSteps;
     this.titleToday = titleToday;
+    this.weightLineChart = weightLineChart;
   }
 
   @Override
@@ -246,9 +247,9 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.heart_rate_graph;
-      CardView heartRateGraph = ViewBindings.findChildViewById(rootView, id);
-      if (heartRateGraph == null) {
+      id = R.id.lineChart;
+      LineChart lineChart = ViewBindings.findChildViewById(rootView, id);
+      if (lineChart == null) {
         break missingId;
       }
 
@@ -261,12 +262,6 @@ public final class FragmentDashboardBinding implements ViewBinding {
       id = R.id.steps_bar_indicator;
       LinearProgressIndicator stepsBarIndicator = ViewBindings.findChildViewById(rootView, id);
       if (stepsBarIndicator == null) {
-        break missingId;
-      }
-
-      id = R.id.text_home;
-      TextView textHome = ViewBindings.findChildViewById(rootView, id);
-      if (textHome == null) {
         break missingId;
       }
 
@@ -288,11 +283,17 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.weight_line_chart;
+      CardView weightLineChart = ViewBindings.findChildViewById(rootView, id);
+      if (weightLineChart == null) {
+        break missingId;
+      }
+
       return new FragmentDashboardBinding((ConstraintLayout) rootView, calProcessContainer,
           caloriesBurnt, caloriesCircle, caloriesInput, caloriesRemain, carbIndicator,
           cardBurntContainer, cardContainer, dashboardCalBurnt, dashboardCalBurntHr, dashboardCarb,
-          dashboardFat, dashboardProtein, dashboardSteps, fatIndicator, heartRateGraph,
-          proteinIndicator, stepsBarIndicator, textHome, titleCalories, titleGoalSteps, titleToday);
+          dashboardFat, dashboardProtein, dashboardSteps, fatIndicator, lineChart, proteinIndicator,
+          stepsBarIndicator, titleCalories, titleGoalSteps, titleToday, weightLineChart);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

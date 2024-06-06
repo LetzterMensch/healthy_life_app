@@ -78,6 +78,10 @@ public class ExerciseFragment extends BaseFragment {
         tvWearableName = mFragmentExerciseBinding.wearableName;
         tvWearableStatus = mFragmentExerciseBinding.wearableStatus;
         deviceManager = ((ControllerApplication) getActivity().getApplication()).getDeviceManager();
+        if (deviceManager.getDevices().size() > 0) {
+                device = deviceManager.getDevices().get(0);
+        }
+
         showAddWearableInfo();
         addWearableBtn.setOnClickListener(v -> launchDiscoveryActivity());
         syncBtn.setOnClickListener(v -> fetchData());
@@ -86,6 +90,7 @@ public class ExerciseFragment extends BaseFragment {
     private void launchDiscoveryActivity() {
         startActivity(new Intent(this.getActivity(), DiscoveryActivityV2.class));
     }
+
     @RequiresApi(api = Build.VERSION_CODES.R)
     void createDynamicShortcut(GBDevice device) {
         Context context = this.getContext();
@@ -106,6 +111,7 @@ public class ExerciseFragment extends BaseFragment {
                 .build()
         );
     }
+
     private void fetchData() {
         if (device.isInitialized() && device.isConnected()) {
             showTransientSnackbar(R.string.controlcenter_snackbar_need_longpress);
@@ -115,7 +121,6 @@ public class ExerciseFragment extends BaseFragment {
 //                createDynamicShortcut(device);
 //            }
             ControllerApplication.deviceService(device).connect();
-            showAddWearableInfo();
             return;
         }
         showTransientSnackbar(R.string.busy_task_fetch_activity_data);
@@ -128,20 +133,21 @@ public class ExerciseFragment extends BaseFragment {
             syncBtn.setVisibility(View.INVISIBLE);
             tvWearableName.setText(R.string.no_device_found);
             tvWearableStatus.setVisibility(View.GONE);
-        }else{
+        } else {
             if (deviceManager.getDevices().size() < 1) {
                 addWearableBtn.setVisibility(View.VISIBLE);
                 syncBtn.setVisibility(View.GONE);
                 tvWearableName.setText(R.string.no_device_found);
                 tvWearableStatus.setVisibility(View.GONE);
             } else {
-                device = deviceManager.getDevices().get(0);
                 addWearableBtn.setVisibility(View.GONE);
                 tvWearableName.setText(device.getName());
                 syncBtn.setVisibility(View.VISIBLE);
                 tvWearableStatus.setVisibility(View.VISIBLE);
-                if (device.isConnected()) {
+                if (device.isConnected() && device.isInitialized()) {
                     tvWearableStatus.setText(R.string.connected);
+                } else if (device.isConnecting()) {
+                    tvWearableStatus.setText(R.string.connecting);
                 } else {
                     tvWearableStatus.setText(R.string.not_connected);
                 }
@@ -156,9 +162,14 @@ public class ExerciseFragment extends BaseFragment {
             ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 0);
         }
     }
+
     @Override
     public void onResume() {
         super.onResume();
+        showAddWearableInfo();
+    }
+    @Override
+    protected void updateUIAfterShowSnackBar() {
         showAddWearableInfo();
     }
 

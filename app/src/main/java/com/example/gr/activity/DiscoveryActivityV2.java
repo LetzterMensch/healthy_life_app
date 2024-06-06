@@ -103,8 +103,6 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
     private DeviceCandidateAdapter deviceCandidateAdapter;
     private GBDeviceCandidate deviceTarget;
     private BluetoothAdapter adapter;
-    private ImageView backButton;
-    private TextView tvActionBarTitle;
     private Button startButton;
     private boolean scanning;
     public static final long SELECT_DEVICE = -1;
@@ -234,8 +232,8 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
         super.onResume();
     }
     private void initActionBar(){
-        backButton = findViewById(R.id.action_bar_back_img);
-        tvActionBarTitle = findViewById(R.id.action_bar_title);
+        ImageView backButton = findViewById(R.id.action_bar_back_img);
+        TextView tvActionBarTitle = findViewById(R.id.action_bar_title);
         backButton.setOnClickListener(v->{
             getOnBackPressedDispatcher().onBackPressed();
         });

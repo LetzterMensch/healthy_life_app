@@ -49,7 +49,13 @@ public class FoodListSearchFragment extends BaseFragment{
         bundle.putSerializable(Constant.KEY_INTENT_FOOD_OBJECT, food);
         GlobalFunction.startActivity(getActivity(), FoodDetailActivity.class, bundle);
     }
-        @Override
+
+    @Override
+    protected void updateUIAfterShowSnackBar() {
+
+    }
+
+    @Override
     protected void initToolbar() {
 
     }
