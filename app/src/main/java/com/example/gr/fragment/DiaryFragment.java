@@ -2,6 +2,7 @@ package com.example.gr.fragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.service.controls.Control;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.activity.FoodDetailActivity;
 import com.example.gr.activity.MainActivity;
 import com.example.gr.activity.SearchForFoodActivity;
 import com.example.gr.adapter.FoodAdapter;
 import com.example.gr.constant.Constant;
 import com.example.gr.constant.GlobalFunction;
+import com.example.gr.database.DataImporter;
+import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.FragmentDiaryBinding;
 import com.example.gr.model.Food;
 
@@ -57,6 +61,8 @@ public class DiaryFragment extends BaseFragment {
         foodList.add(new Food("Hamburger", 1.0f, 118));
         foodList.add(new Food("Brisket", 1.0f, 118));
         foodList.add(new Food("Buffalo chicken", 1.0f, 118));
+        LocalDatabase.getInstance(this.getActivity()).foodDAO().insertAll(foodList);
+//        DataImporter.importFoodFromJson(ControllerApplication.getContext(),LocalDatabase.getInstance(this.getActivity()));
         FoodAdapter mFoodAdapter = new FoodAdapter(foodList, this::goToFoodDetail);
         mfragmentDiaryBinding.layoutSearch.setOnClickListener(new View.OnClickListener() {
             @Override

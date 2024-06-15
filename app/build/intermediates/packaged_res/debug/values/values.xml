@@ -3645,7 +3645,7 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
-    <color name="red">#EF9A9A</color>
+    <color name="red">#FFC4C4</color>
     <color name="redAccent">#ffebee</color>
     <color name="secondarytext" type="color">#ff808080</color>
     <color name="teal_100">#E0F3FF</color>
@@ -3736,6 +3736,7 @@
     <string name="Strokes">Strokes</string>
     <string name="Swimming">Swimming</string>
     <string name="TrainingEffect">Training Effect</string>
+    <string name="_duration"> - %d phút</string>
     <string name="_pebble_watch_mute">Mute</string>
     <string name="_pebble_watch_open_on_phone">Open on Android device</string>
     <string name="_pebble_watch_reply">Reply</string>
@@ -4006,6 +4007,7 @@
     <string name="activity_type_zumba">Zumba</string>
     <string name="activity_web_view">Web View Activity</string>
     <string name="add">Thêm</string>
+    <string name="add_exercise">Thêm bài tập</string>
     <string name="add_test_device">Add test device</string>
     <string name="add_widget">Add widget</string>
     <string name="address">Address</string>
@@ -4665,6 +4667,7 @@
     <string name="heartrate_bpm_50">50 bpm</string>
     <string name="hebrew">Hebrew</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_search_ex_name">Tên bài tập …</string>
     <string name="hint_search_name">Tên món ăn …</string>
     <string name="homepage_url" translatable="false">Homepage: <a href="https://gadgetbridge.org/">https://gadgetbridge.org/</a></string>
     <string name="horizontal">Horizontal</string>
@@ -4755,10 +4758,13 @@
     <string name="km">km</string>
     <string name="km_h">km/h</string>
     <string name="korean">Korean</string>
+    <string name="label_add">+</string>
     <string name="label_burnt">tiêu hao</string>
     <string name="label_goal">mục tiêu</string>
     <string name="label_intake">đã nạp</string>
+    <string name="label_quantity_1">1</string>
     <string name="label_remaining">cần nạp</string>
+    <string name="label_sub">-</string>
     <string name="lack_of_sleep">Lack of sleep: %1$s</string>
     <string name="lack_of_step">Lack of steps: %1$d</string>
     <string name="laneLength">Lane Length</string>
@@ -6279,6 +6285,7 @@
     <string name="ukrainian">Ukrainian</string>
     <string name="ukranian">Ukranian</string>
     <string name="uncheck_all_applications">Uncheck all applications</string>
+    <string name="unit_calories_burnt">%s KCal</string>
     <string name="unit_imperial">Imperial</string>
     <string name="unit_metric">Metric</string>
     <string name="unknown">Unknown</string>

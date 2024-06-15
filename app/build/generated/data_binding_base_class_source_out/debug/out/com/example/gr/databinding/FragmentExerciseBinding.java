@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -31,7 +32,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
   public final RelativeLayout btnContainer;
 
   @NonNull
-  public final Button btnGpsStart;
+  public final AppCompatButton btnGpsStart;
 
   @NonNull
   public final TextView btnViewMore;
@@ -47,6 +48,9 @@ public final class FragmentExerciseBinding implements ViewBinding {
 
   @NonNull
   public final TextView exSteps;
+
+  @NonNull
+  public final AppCompatButton indoorBtn;
 
   @NonNull
   public final RecyclerView rcvExHistory;
@@ -71,9 +75,10 @@ public final class FragmentExerciseBinding implements ViewBinding {
 
   private FragmentExerciseBinding(@NonNull ConstraintLayout rootView,
       @NonNull Button addWearableBtn, @NonNull RelativeLayout btnContainer,
-      @NonNull Button btnGpsStart, @NonNull TextView btnViewMore, @NonNull TextView exCalBurnt,
-      @NonNull TextView exCalBurntHr, @NonNull LinearLayout exStatsLayout,
-      @NonNull TextView exSteps, @NonNull RecyclerView rcvExHistory,
+      @NonNull AppCompatButton btnGpsStart, @NonNull TextView btnViewMore,
+      @NonNull TextView exCalBurnt, @NonNull TextView exCalBurntHr,
+      @NonNull LinearLayout exStatsLayout, @NonNull TextView exSteps,
+      @NonNull AppCompatButton indoorBtn, @NonNull RecyclerView rcvExHistory,
       @NonNull LinearProgressIndicator stepsBarIndicator, @NonNull Button syncBtn,
       @NonNull TextView textView, @NonNull TextView titleGoalSteps, @NonNull TextView wearableName,
       @NonNull TextView wearableStatus) {
@@ -86,6 +91,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
     this.exCalBurntHr = exCalBurntHr;
     this.exStatsLayout = exStatsLayout;
     this.exSteps = exSteps;
+    this.indoorBtn = indoorBtn;
     this.rcvExHistory = rcvExHistory;
     this.stepsBarIndicator = stepsBarIndicator;
     this.syncBtn = syncBtn;
@@ -135,7 +141,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
       }
 
       id = R.id.btn_gps_start;
-      Button btnGpsStart = ViewBindings.findChildViewById(rootView, id);
+      AppCompatButton btnGpsStart = ViewBindings.findChildViewById(rootView, id);
       if (btnGpsStart == null) {
         break missingId;
       }
@@ -167,6 +173,12 @@ public final class FragmentExerciseBinding implements ViewBinding {
       id = R.id.ex_steps;
       TextView exSteps = ViewBindings.findChildViewById(rootView, id);
       if (exSteps == null) {
+        break missingId;
+      }
+
+      id = R.id.indoorBtn;
+      AppCompatButton indoorBtn = ViewBindings.findChildViewById(rootView, id);
+      if (indoorBtn == null) {
         break missingId;
       }
 
@@ -213,8 +225,9 @@ public final class FragmentExerciseBinding implements ViewBinding {
       }
 
       return new FragmentExerciseBinding((ConstraintLayout) rootView, addWearableBtn, btnContainer,
-          btnGpsStart, btnViewMore, exCalBurnt, exCalBurntHr, exStatsLayout, exSteps, rcvExHistory,
-          stepsBarIndicator, syncBtn, textView, titleGoalSteps, wearableName, wearableStatus);
+          btnGpsStart, btnViewMore, exCalBurnt, exCalBurntHr, exStatsLayout, exSteps, indoorBtn,
+          rcvExHistory, stepsBarIndicator, syncBtn, textView, titleGoalSteps, wearableName,
+          wearableStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

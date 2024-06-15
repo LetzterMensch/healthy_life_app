@@ -1,6 +1,7 @@
 package com.example.gr.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -39,7 +40,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         holder.mItemFoodBinding.foodItemName.setText(food.getName());
         holder.mItemFoodBinding.foodItemServings.setText(String.valueOf(food.getServingSize()));
         holder.mItemFoodBinding.foodItemCalo.setText(String.valueOf(food.getCalories()));
-
+        holder.mItemFoodBinding.addBtn.setVisibility(View.GONE);
         holder.mItemFoodBinding.layoutItem.setOnClickListener(v->iOnClickFoodItemListener.onClickItemFood(food));
     }
 

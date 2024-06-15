@@ -7,13 +7,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gr.activity.FoodDetailActivity;
 import com.example.gr.databinding.ItemFoodBinding;
-import com.example.gr.databinding.ItemSearchFoodTabBinding;
 import com.example.gr.listener.IOnClickFoodItemListener;
 import com.example.gr.model.Food;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FoodSearchTabAdapter extends RecyclerView.Adapter<FoodSearchTabAdapter.FoodViewHolder> {
@@ -29,8 +26,8 @@ public class FoodSearchTabAdapter extends RecyclerView.Adapter<FoodSearchTabAdap
     @NonNull
     @Override
     public FoodSearchTabAdapter.FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemSearchFoodTabBinding itemSearchFoodTabBinding = ItemSearchFoodTabBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new FoodSearchTabAdapter.FoodViewHolder(itemSearchFoodTabBinding);
+        ItemFoodBinding itemFoodBinding = ItemFoodBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new FoodSearchTabAdapter.FoodViewHolder(itemFoodBinding);
     }
 
     @Override
@@ -39,12 +36,12 @@ public class FoodSearchTabAdapter extends RecyclerView.Adapter<FoodSearchTabAdap
         if (food == null) {
             return;
         }
-        holder.mItemSearchFoodBinding.foodItemName.setText(food.getName());
-        holder.mItemSearchFoodBinding.foodItemServings.setText(String.valueOf(food.getServingSize()));
-        holder.mItemSearchFoodBinding.foodItemCalo.setText(String.valueOf(food.getCalories()));
-
-        holder.mItemSearchFoodBinding.itemInfo.setOnClickListener(v->iOnClickFoodItemListener.onClickItemFood(food));
-        holder.mItemSearchFoodBinding.addBtn.setOnClickListener(v-> Toast.makeText(v.getContext(), "added to diary",Toast.LENGTH_SHORT).show());
+        holder.mItemFoodBinding.foodItemName.setText(food.getName());
+        holder.mItemFoodBinding.foodItemServings.setText(String.valueOf(food.getServingSize())+"serving");
+        holder.mItemFoodBinding.foodItemCalo.setText(String.valueOf(food.getCalories()));
+        holder.mItemFoodBinding.foodItemServingSize.setText(String.valueOf(food.getServingSize()) + "g");
+        holder.mItemFoodBinding.itemInfo.setOnClickListener(v->iOnClickFoodItemListener.onClickItemFood(food));
+        holder.mItemFoodBinding.addBtn.setOnClickListener(v-> Toast.makeText(v.getContext(), "added to diary",Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -53,11 +50,11 @@ public class FoodSearchTabAdapter extends RecyclerView.Adapter<FoodSearchTabAdap
     }
     public static class FoodViewHolder extends RecyclerView.ViewHolder {
 
-        private final ItemSearchFoodTabBinding mItemSearchFoodBinding;
+        private final ItemFoodBinding mItemFoodBinding;
 
-        public FoodViewHolder(ItemSearchFoodTabBinding itemSearchFoodTabBinding) {
-            super(itemSearchFoodTabBinding.getRoot());
-            this.mItemSearchFoodBinding = itemSearchFoodTabBinding;
+        public FoodViewHolder(ItemFoodBinding itemFoodBinding) {
+            super(itemFoodBinding.getRoot());
+            this.mItemFoodBinding = itemFoodBinding;
         }
     }
 }

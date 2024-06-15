@@ -316,7 +316,7 @@
                                         android:layout_height="10dp"
                                         android:layout_gravity="center"
                                         android:layout_weight="0"
-                                        android:background="@drawable/bg_circle_button_light_green" />
+                                        android:background="@drawable/bg_circle_button_light_yellow" />
 
                                     <TextView
                                         android:layout_width="wrap_content"

@@ -335,15 +335,14 @@
                                 android:background="@drawable/bg_white_shape_border_blue_3"
                                 android:src="@drawable/ic_run_blue_50" />
 
-                            <Button
+                            <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btn_gps_start"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                style="@android:style/Animation"
                                 android:background="@drawable/bg_blue_shape_corner_6"
                                 android:paddingHorizontal="10dp"
-                                android:text="@string/action_start"
+                                android:text="@string/add"
                                 android:textColor="@color/white"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
@@ -387,13 +386,14 @@
                                 android:background="@drawable/bg_white_shape_border_green_3"
                                 android:src="@drawable/ic_indoor_workout_green_50" />
 
-                            <Button
+                            <androidx.appcompat.widget.AppCompatButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/indoorBtn"
                                 android:layout_gravity="center"
                                 android:background="@drawable/bg_green_shape_corner_6"
                                 android:paddingHorizontal="10dp"
-                                android:text="@string/action_start"
+                                android:text="@string/add"
                                 android:textColor="@color/white"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />

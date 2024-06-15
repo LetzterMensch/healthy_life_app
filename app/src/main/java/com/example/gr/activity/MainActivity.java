@@ -23,6 +23,8 @@ import com.example.gr.adapter.MainViewPagerAdapter;
 import com.example.gr.data.sample.ActivitySample;
 import com.example.gr.database.DBAccess;
 import com.example.gr.database.DBHandler;
+import com.example.gr.database.DataImporter;
+import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.ActivityMainBinding;
 import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.DeviceManager;

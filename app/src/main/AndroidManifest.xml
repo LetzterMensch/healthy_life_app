@@ -124,6 +124,9 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             android:name=".activity.SearchForFoodActivity"
             android:exported="false"/>
         <activity
+            android:name=".activity.SearchForExerciseActivity"
+            android:exported="false"/>
+        <activity
             android:name=".activity.FoodDetailActivity"
             android:exported="false"/>
         <activity

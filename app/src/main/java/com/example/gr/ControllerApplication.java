@@ -20,6 +20,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.example.gr.database.DBHandler;
 import com.example.gr.database.DBHelper;
 import com.example.gr.database.DBOpenHelper;
+import com.example.gr.database.DataImporter;
+import com.example.gr.database.LocalDatabase;
 import com.example.gr.database.entities.DaoMaster;
 import com.example.gr.database.entities.DaoSession;
 import com.example.gr.database.entities.Device;
@@ -71,21 +73,24 @@ public class ControllerApplication extends Application {
     private static LockHandler lockHandler;
     private static final String PREFS_VERSION = "shared_preferences_version";
     private static final int CURRENT_PREFS_VERSION = 28;
-    public static final String ACTION_NAV_EXERCISE_FRAGMENT = "om.example.gr.ControllerApplication.action.exercisefragment";
-    public static final String ACTION_NAV_DIARY_FRAGMENT = "om.example.gr.ControllerApplication.action.diaryfragment";
-    public static final String ACTION_NAV_DASHBOARD_FRAGMENT = "om.example.gr.ControllerApplication.action.dashboardfragment";
-    public static final String ACTION_NAV_SLEEP_FRAGMENT = "om.example.gr.ControllerApplication.action.sleepfragment";
-    public static final String ACTION_NAV_PROFILE_FRAGMENT = "om.example.gr.ControllerApplication.action.profilefragment";
+    public static final String ACTION_NAV_EXERCISE_FRAGMENT = "com.example.gr.ControllerApplication.action.exercisefragment";
+    public static final String ACTION_NAV_DIARY_FRAGMENT = "com.example.gr.ControllerApplication.action.diaryfragment";
+    public static final String ACTION_NAV_DASHBOARD_FRAGMENT = "com.example.gr.ControllerApplication.action.dashboardfragment";
+    public static final String ACTION_NAV_SLEEP_FRAGMENT = "com.example.gr.ControllerApplication.action.sleepfragment";
+    public static final String ACTION_NAV_PROFILE_FRAGMENT = "com.example.gr.ControllerApplication.action.profilefragment";
 
     public static final String ACTION_NEW_DATA = "com.example.gr.ControllerApplication.action.new_data";
 
     public static final String ACTION_QUIT = "com.example.gr.ControllerApplication.action.quit";
     private BluetoothStateChangeReceiver bluetoothStateChangeReceiver;
+
     @Override
     public void onCreate() {
         app = this;
         super.onCreate();
-
+        LocalDatabase localDatabase = LocalDatabase.getInstance(this);
+        // Import dữ liệu
+//            DataImporter.importFoodFromJson(getApplicationContext(), localDatabase);
         if (lockHandler != null) {
             // guard against multiple invocations (robolectric)
             return;
@@ -149,14 +154,16 @@ public class ControllerApplication extends Application {
 //            }
         }
     }
+
     public static boolean isRunningTwelveOrLater() {
         return Build.VERSION.SDK_INT >= 31;  // Build.VERSION_CODES.S, but our target SDK is lower
     }
+
     private void migratePrefs(int oldVersion) {
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
         // this comes before all other migrations since the new column DeviceTypeName was added as non-null
-        if (oldVersion < 25){
+        if (oldVersion < 25) {
             migrateDeviceTypes();
         }
 
@@ -299,8 +306,8 @@ public class ControllerApplication extends Application {
                     DeviceType deviceType = DeviceType.fromName(dbDevice.getTypeName());
 
                     if (deviceType == MIBAND) {
-                        int deviceTimeOffsetHours = deviceSharedPrefs.getInt("device_time_offset_hours",0);
-                        deviceSharedPrefsEdit.putString("device_time_offset_hours", Integer.toString(deviceTimeOffsetHours) );
+                        int deviceTimeOffsetHours = deviceSharedPrefs.getInt("device_time_offset_hours", 0);
+                        deviceSharedPrefsEdit.putString("device_time_offset_hours", Integer.toString(deviceTimeOffsetHours));
                     }
 
                     deviceSharedPrefsEdit.apply();
@@ -403,7 +410,7 @@ public class ControllerApplication extends Application {
             try (DBHandler db = acquireDB()) {
                 DaoSession daoSession = db.getDaoSession();
                 List<Device> activeDevices = DBHelper.getActiveDevices(daoSession);
-                migrateBooleanPrefToPerDevicePref("transliteration", false, "pref_transliteration_enabled", (ArrayList)activeDevices);
+                migrateBooleanPrefToPerDevicePref("transliteration", false, "pref_transliteration_enabled", (ArrayList) activeDevices);
                 Log.w(TAG, "migrating transliteration settings");
             } catch (Exception e) {
                 Log.w(TAG, "error acquiring DB lock and migrating prefs");
@@ -868,6 +875,7 @@ public class ControllerApplication extends Application {
         editor.putString(PREFS_VERSION, Integer.toString(CURRENT_PREFS_VERSION));
         editor.apply();
     }
+
     private void migrateStringPrefToPerDevicePref(String globalPref, String globalPrefDefault, String perDevicePref, ArrayList<DeviceType> deviceTypes) {
         SharedPreferences.Editor editor = sharedPrefs.edit();
         String globalPrefValue = prefs.getString(globalPref, globalPrefDefault);
@@ -881,7 +889,7 @@ public class ControllerApplication extends Application {
                     DeviceType deviceType = DeviceType.fromName(dbDevice.getTypeName());
 
                     if (deviceTypes.contains(deviceType)) {
-                        Log.i(TAG, "migrating global string preference " + globalPref + " for " + deviceType.name() + " " + dbDevice.getIdentifier() );
+                        Log.i(TAG, "migrating global string preference " + globalPref + " for " + deviceType.name() + " " + dbDevice.getIdentifier());
                         deviceSharedPrefsEdit.putString(perDevicePref, globalPrefValue);
                     }
                     deviceSharedPrefsEdit.apply();
@@ -907,7 +915,7 @@ public class ControllerApplication extends Application {
                     DeviceType deviceType = DeviceType.fromName(dbDevice.getTypeName());
 
                     if (deviceTypes.contains(deviceType)) {
-                        Log.i(TAG, "migrating global boolean preference " + globalPref + " for " + deviceType.name() + " " + dbDevice.getIdentifier() );
+                        Log.i(TAG, "migrating global boolean preference " + globalPref + " for " + deviceType.name() + " " + dbDevice.getIdentifier());
                         deviceSharedPrefsEdit.putBoolean(perDevicePref, globalPrefValue);
                     }
                     deviceSharedPrefsEdit.apply();
@@ -919,6 +927,7 @@ public class ControllerApplication extends Application {
             Log.w(TAG, "error acquiring DB lock");
         }
     }
+
     public static LimitedQueue<Integer, String> getIDSenderLookup() {
         return mIDSenderLookup;
     }
@@ -937,7 +946,7 @@ public class ControllerApplication extends Application {
 
             for (Device dbDevice : activeDevices) {
                 String deviceTypeName = dbDevice.getTypeName();
-                if(deviceTypeName.isEmpty() || deviceTypeName.equals("UNKNOWN")){
+                if (deviceTypeName.isEmpty() || deviceTypeName.equals("UNKNOWN")) {
                     deviceTypeName = deviceIdNameMapping.optString(
                             String.valueOf(dbDevice.getType()),
                             "UNKNOWN"
@@ -950,9 +959,11 @@ public class ControllerApplication extends Application {
             Log.w(TAG, "error acquiring DB lock");
         }
     }
+
     protected DeviceService createDeviceService() {
         return new GBDeviceService(this);
     }
+
     private int getPrefsFileVersion() {
         try {
             return Integer.parseInt(sharedPrefs.getString(PREFS_VERSION, "0")); //0 is legacy
@@ -961,6 +972,7 @@ public class ControllerApplication extends Application {
             return 1;
         }
     }
+
     public static void quit() {
         GB.log("Quitting Gadgetbridge...", GB.INFO, null);
         Intent quitIntent = new Intent(ControllerApplication.ACTION_QUIT);
@@ -968,18 +980,23 @@ public class ControllerApplication extends Application {
         ControllerApplication.deviceService().quit();
         System.exit(0);
     }
+
     public static GBPrefs getGBPrefs() {
         return gbPrefs;
     }
+
     public static boolean isRunningOreoOrLater() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     }
+
     public static boolean isRunningNougatOrLater() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
     }
+
     public static boolean isRunningMarshmallowOrLater() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
+
     public static void releaseDB() {
         dbLock.unlock();
     }
@@ -987,18 +1004,22 @@ public class ControllerApplication extends Application {
     public ControllerApplication() {
         context = this;
     }
+
     public static DeviceService deviceService() {
         return deviceService;
     }
+
     public static DeviceService deviceService(GBDevice device) {
         return deviceService.forDevice(device);
     }
+
     public static void deleteDeviceSpecificSharedPrefs(String deviceIdentifier) {
         if (deviceIdentifier == null || deviceIdentifier.isEmpty()) {
             return;
         }
         context.getSharedPreferences("devicesettings_" + deviceIdentifier, Context.MODE_PRIVATE).edit().clear().apply();
     }
+
     public static DBHandler acquireDB() throws GBException {
         try {
             if (dbLock.tryLock(30, TimeUnit.SECONDS)) {
@@ -1011,6 +1032,8 @@ public class ControllerApplication extends Application {
     }
 
     public void setupDatabase() {
+        // Import dữ liệu
+        DataImporter.importFoodFromJson(getApplicationContext(), LocalDatabase.getInstance(this.getApplicationContext()));
         DaoMaster.OpenHelper helper;
 //        deleteActivityDatabase(context);
         helper = new DBOpenHelper(this, DATABASE_NAME, null);
@@ -1022,6 +1045,7 @@ public class ControllerApplication extends Application {
         }
         lockHandler.init(daoMaster, helper);
     }
+
     public static synchronized boolean deleteActivityDatabase(Context context) {
         // TODO: flush, close, reopen db
         if (lockHandler != null) {
@@ -1031,6 +1055,7 @@ public class ControllerApplication extends Application {
         result &= getContext().deleteDatabase(DATABASE_NAME);
         return result;
     }
+
     public static synchronized boolean deleteOldActivityDatabase(Context context) {
         DBHelper dbHelper = new DBHelper(context);
         boolean result = true;
@@ -1039,6 +1064,7 @@ public class ControllerApplication extends Application {
         }
         return result;
     }
+
     public static ControllerApplication getApp() {
         return app;
     }
@@ -1053,6 +1079,7 @@ public class ControllerApplication extends Application {
     public DeviceManager getDeviceManager() {
         return deviceManager;
     }
+
     public static Prefs getPrefs() {
         return prefs;
     }
@@ -1060,12 +1087,14 @@ public class ControllerApplication extends Application {
     public static Context getContext() {
         return context;
     }
+
     public static int getBackgroundColor(Context context) {
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = context.getTheme();
         theme.resolveAttribute(android.R.attr.background, typedValue, true);
         return typedValue.data;
     }
+
     public static int getSecondaryTextColor(Context context) {
         return context.getResources().getColor(R.color.secondarytext);
     }
@@ -1073,9 +1102,11 @@ public class ControllerApplication extends Application {
     public void setOpenTracksObserver(OpenTracksContentObserver openTracksObserver) {
         this.openTracksObserver = openTracksObserver;
     }
+
     public static boolean minimizeNotification() {
         return prefs.getBoolean("minimize_priority", false);
     }
+
     public OpenTracksContentObserver getOpenTracksObserver() {
         return openTracksObserver;
     }

@@ -29,7 +29,9 @@ import com.example.gr.ControllerApplication;
 import com.example.gr.R;
 import com.example.gr.activity.DiscoveryActivityV2;
 import com.example.gr.activity.MainActivity;
+import com.example.gr.activity.SearchForExerciseActivity;
 import com.example.gr.adapter.HistoryAdapter;
+import com.example.gr.constant.GlobalFunction;
 import com.example.gr.databinding.FragmentExerciseBinding;
 import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.DeviceManager;
@@ -75,6 +77,12 @@ public class ExerciseFragment extends BaseFragment {
         mFragmentExerciseBinding.rcvExHistory.setAdapter(mHistoryAdapter);
         addWearableBtn = mFragmentExerciseBinding.addWearableBtn;
         syncBtn = mFragmentExerciseBinding.syncBtn;
+        mFragmentExerciseBinding.btnGpsStart.setOnClickListener(v->{
+            goToSearchForExerciseActivity();
+        });
+        mFragmentExerciseBinding.indoorBtn.setOnClickListener(v->{
+            goToSearchForExerciseActivity();
+        });
         tvWearableName = mFragmentExerciseBinding.wearableName;
         tvWearableStatus = mFragmentExerciseBinding.wearableStatus;
         deviceManager = ((ControllerApplication) getActivity().getApplication()).getDeviceManager();
@@ -89,6 +97,10 @@ public class ExerciseFragment extends BaseFragment {
 
     private void launchDiscoveryActivity() {
         startActivity(new Intent(this.getActivity(), DiscoveryActivityV2.class));
+    }
+    private void goToSearchForExerciseActivity(){
+        Bundle bundle = new Bundle();
+        GlobalFunction.startActivity(getActivity(),SearchForExerciseActivity.class,bundle);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.R)

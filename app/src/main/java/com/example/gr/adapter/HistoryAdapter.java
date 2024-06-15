@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gr.R;
 import com.example.gr.databinding.ItemExerciseHistoryBinding;
-import com.example.gr.databinding.ItemSearchFoodTabBinding;
 import com.example.gr.listener.IOnClickHistoryItemListener;
 import com.example.gr.model.BaseWorkout;
 

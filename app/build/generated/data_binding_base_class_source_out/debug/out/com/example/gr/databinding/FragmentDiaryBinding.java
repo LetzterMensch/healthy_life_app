@@ -131,7 +131,7 @@ public final class FragmentDiaryBinding implements ViewBinding {
   public final AppCompatTextView titleCaloriesRemain;
 
   @NonNull
-  public final TextView tvAddToCart;
+  public final TextView tvAddToDiary;
 
   private FragmentDiaryBinding(@NonNull ConstraintLayout rootView, @NonNull CardView breakfastCard,
       @NonNull TextView btnBreakfastAdd, @NonNull TextView btnDinnerAdd,
@@ -148,7 +148,7 @@ public final class FragmentDiaryBinding implements ViewBinding {
       @NonNull LinearProgressIndicator proteinIndicator, @NonNull RecyclerView rcvBreakfastFood,
       @NonNull RecyclerView rcvDinnerFood, @NonNull RecyclerView rcvLunchFood,
       @NonNull RecyclerView rcvSnackFood, @NonNull CardView snackCard,
-      @NonNull AppCompatTextView titleCaloriesRemain, @NonNull TextView tvAddToCart) {
+      @NonNull AppCompatTextView titleCaloriesRemain, @NonNull TextView tvAddToDiary) {
     this.rootView = rootView;
     this.breakfastCard = breakfastCard;
     this.btnBreakfastAdd = btnBreakfastAdd;
@@ -185,7 +185,7 @@ public final class FragmentDiaryBinding implements ViewBinding {
     this.rcvSnackFood = rcvSnackFood;
     this.snackCard = snackCard;
     this.titleCaloriesRemain = titleCaloriesRemain;
-    this.tvAddToCart = tvAddToCart;
+    this.tvAddToDiary = tvAddToDiary;
   }
 
   @Override
@@ -425,9 +425,9 @@ public final class FragmentDiaryBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tv_add_to_cart;
-      TextView tvAddToCart = ViewBindings.findChildViewById(rootView, id);
-      if (tvAddToCart == null) {
+      id = R.id.tv_add_to_diary;
+      TextView tvAddToDiary = ViewBindings.findChildViewById(rootView, id);
+      if (tvAddToDiary == null) {
         break missingId;
       }
 
@@ -437,7 +437,7 @@ public final class FragmentDiaryBinding implements ViewBinding {
           carbIndicator, dashboardCarb, dashboardFat, dashboardProtein, date, dinnerCard,
           editSearchName, fatIndicator, imgBack, imgNext, imgSearch, layoutSearch, lunchCard,
           proteinIndicator, rcvBreakfastFood, rcvDinnerFood, rcvLunchFood, rcvSnackFood, snackCard,
-          titleCaloriesRemain, tvAddToCart);
+          titleCaloriesRemain, tvAddToDiary);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

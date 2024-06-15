@@ -4,7 +4,8 @@ package com.example.gr.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +18,10 @@ import java.lang.String;
 
 public final class ItemFoodBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final LinearLayout rootView;
+
+  @NonNull
+  public final ImageButton addBtn;
 
   @NonNull
   public final TextView foodItemCalo;
@@ -26,24 +30,34 @@ public final class ItemFoodBinding implements ViewBinding {
   public final TextView foodItemName;
 
   @NonNull
+  public final TextView foodItemServingSize;
+
+  @NonNull
   public final TextView foodItemServings;
 
   @NonNull
-  public final RelativeLayout layoutItem;
+  public final LinearLayout itemInfo;
 
-  private ItemFoodBinding(@NonNull RelativeLayout rootView, @NonNull TextView foodItemCalo,
-      @NonNull TextView foodItemName, @NonNull TextView foodItemServings,
-      @NonNull RelativeLayout layoutItem) {
+  @NonNull
+  public final LinearLayout layoutItem;
+
+  private ItemFoodBinding(@NonNull LinearLayout rootView, @NonNull ImageButton addBtn,
+      @NonNull TextView foodItemCalo, @NonNull TextView foodItemName,
+      @NonNull TextView foodItemServingSize, @NonNull TextView foodItemServings,
+      @NonNull LinearLayout itemInfo, @NonNull LinearLayout layoutItem) {
     this.rootView = rootView;
+    this.addBtn = addBtn;
     this.foodItemCalo = foodItemCalo;
     this.foodItemName = foodItemName;
+    this.foodItemServingSize = foodItemServingSize;
     this.foodItemServings = foodItemServings;
+    this.itemInfo = itemInfo;
     this.layoutItem = layoutItem;
   }
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -68,6 +82,12 @@ public final class ItemFoodBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.add_btn;
+      ImageButton addBtn = ViewBindings.findChildViewById(rootView, id);
+      if (addBtn == null) {
+        break missingId;
+      }
+
       id = R.id.food_item_calo;
       TextView foodItemCalo = ViewBindings.findChildViewById(rootView, id);
       if (foodItemCalo == null) {
@@ -80,16 +100,28 @@ public final class ItemFoodBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.food_item_serving_size;
+      TextView foodItemServingSize = ViewBindings.findChildViewById(rootView, id);
+      if (foodItemServingSize == null) {
+        break missingId;
+      }
+
       id = R.id.food_item_servings;
       TextView foodItemServings = ViewBindings.findChildViewById(rootView, id);
       if (foodItemServings == null) {
         break missingId;
       }
 
-      RelativeLayout layoutItem = (RelativeLayout) rootView;
+      id = R.id.item_info;
+      LinearLayout itemInfo = ViewBindings.findChildViewById(rootView, id);
+      if (itemInfo == null) {
+        break missingId;
+      }
 
-      return new ItemFoodBinding((RelativeLayout) rootView, foodItemCalo, foodItemName,
-          foodItemServings, layoutItem);
+      LinearLayout layoutItem = (LinearLayout) rootView;
+
+      return new ItemFoodBinding((LinearLayout) rootView, addBtn, foodItemCalo, foodItemName,
+          foodItemServingSize, foodItemServings, itemInfo, layoutItem);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

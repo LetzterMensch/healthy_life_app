@@ -178,14 +178,14 @@ public class MiBandPairingActivity extends AbstractGBActivity implements Bonding
             if (device != null && device.getBondState() == BluetoothDevice.BOND_NONE) {
                 Prefs prefs = ControllerApplication.getPrefs();
                 prefs.getPreferences().edit().putString(MiBandConst.PREF_MIBAND_ADDRESS, macAddress).apply();
-                prefs.getPreferences().edit().putBoolean("display_add_wearable_btn", false).apply();
             }
+            ControllerApplication.getPrefs().getPreferences().edit().putBoolean("display_add_wearable_btn", false).apply();
             Intent intent = new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.setAction(ControllerApplication.ACTION_NAV_EXERCISE_FRAGMENT);
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
             startActivity(intent);
         }
-        ControllerApplication.getPrefs().getBoolean("display_add_device_fab", false);
+        ControllerApplication.getPrefs().getBoolean("display_add_wearable_btn", false);
         finish();
     }
 

@@ -140,6 +140,9 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             android:name="com.example.gr.activity.SearchForFoodActivity"
             android:exported="false" />
         <activity
+            android:name="com.example.gr.activity.SearchForExerciseActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.gr.activity.FoodDetailActivity"
             android:exported="false" />
         <activity

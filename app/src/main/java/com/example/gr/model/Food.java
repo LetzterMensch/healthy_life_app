@@ -1,31 +1,59 @@
 package com.example.gr.model;
 
+import androidx.annotation.Nullable;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
+@Entity(tableName = "food")
 public class Food implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
+    @Nullable
     private int numberOfServings;
+    @Nullable
     private float servingSize;
-    private float calories;
-    private float carbs;
+    private int calories;
+    private float carb;
     private float protein;
     private float fat;
-    public Food(String name, float servingSize, float calories){
+    public Food(String name,int calories ,float protein, float fat, float carb){
+        this.name = name;
+        this.calories = calories;
+        this.protein = protein;
+        this.fat = fat;
+        this.carb = carb;
+        this.numberOfServings = 1;
+        this.servingSize = 100f;
+    }
+    @Ignore
+    public Food(String name, float servingSize, int calories){
         this.name = name;
         this.servingSize = servingSize;
         this.calories = calories;
     }
-    public Food(int id, String name, int numberOfServings, float servingSize, float calories, float carbs, float protein, float fat) {
+    @Ignore
+    public Food(int id, String name, int numberOfServings, float servingSize, int calories, float carb, float protein, float fat) {
         this.id = id;
         this.name = name;
         this.numberOfServings = numberOfServings;
         this.servingSize = servingSize;
         this.calories = calories;
-        this.carbs = carbs;
+        this.carb = carb;
         this.protein = protein;
         this.fat = fat;
+    }
+
+    public float getCarb() {
+        return carb;
+    }
+
+    public void setCarb(float carb) {
+        this.carb = carb;
     }
 
     public int getId() {
@@ -60,20 +88,20 @@ public class Food implements Serializable {
         this.servingSize = servingSize;
     }
 
-    public float getCalories() {
+    public int getCalories() {
         return calories;
     }
 
-    public void setCalories(float calories) {
+    public void setCalories(int calories) {
         this.calories = calories;
     }
 
     public float getCarbs() {
-        return carbs;
+        return carb;
     }
 
-    public void setCarbs(float carbs) {
-        this.carbs = carbs;
+    public void setCarbs(float carb) {
+        this.carb = carb;
     }
 
     public float getProtein() {
