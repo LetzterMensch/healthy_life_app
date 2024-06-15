@@ -1033,9 +1033,10 @@ public class ControllerApplication extends Application {
 
     public void setupDatabase() {
         // Import dữ liệu
+        //        deleteActivityDatabase(context);
+        LocalDatabase.getInstance(context).clearAllTables();
         DataImporter.importFoodFromJson(getApplicationContext(), LocalDatabase.getInstance(this.getApplicationContext()));
         DaoMaster.OpenHelper helper;
-//        deleteActivityDatabase(context);
         helper = new DBOpenHelper(this, DATABASE_NAME, null);
 
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -1051,6 +1052,7 @@ public class ControllerApplication extends Application {
         if (lockHandler != null) {
             lockHandler.closeDb();
         }
+        LocalDatabase.getInstance(context).clearAllTables();
         boolean result = deleteOldActivityDatabase(context);
         result &= getContext().deleteDatabase(DATABASE_NAME);
         return result;

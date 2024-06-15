@@ -13,9 +13,7 @@ public class Food implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    @Nullable
     private int numberOfServings;
-    @Nullable
     private float servingSize;
     private int calories;
     private float carb;
@@ -30,6 +28,12 @@ public class Food implements Serializable {
         this.numberOfServings = 1;
         this.servingSize = 100f;
     }
+    @Ignore
+    public Food(){
+        this.numberOfServings = 1;
+        this.servingSize = 100f;
+    }
+
     @Ignore
     public Food(String name, float servingSize, int calories){
         this.name = name;

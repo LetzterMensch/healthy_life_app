@@ -96,10 +96,6 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_baseline_arrow_drop_down_36.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_layout_bottom_sheet_add_exercise.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/layout_bottom_sheet_add_exercise.xml"
-    },
-    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_zetime_disabled.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_zetime_disabled.xml"
     },
@@ -306,6 +302,10 @@
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_top_border_red_corner_30.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_top_border_red_corner_30.xml"
+    },
+    {
+        "merged": "com.example.gr.app-merged_res-54:/layout_item_food.xml.flat",
+        "source": "com.example.gr.app-main-56:/layout/item_food.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_dashboard.xml.flat",

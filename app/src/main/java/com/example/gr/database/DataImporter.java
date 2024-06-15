@@ -24,8 +24,7 @@ public class DataImporter {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             Type foodListType = new TypeToken<List<Food>>(){}.getType();
             ArrayList<Food> foodList = new Gson().fromJson(reader, foodListType);
-//            List<Food> foodList = gson.fromJson(reader, userListType);
-            System.out.println(foodList);
+            System.out.println(foodList.get(0).getNumberOfServings());
             // Insert data into Room database
             db.clearAllTables();
             db.foodDAO().insertAll(foodList);

@@ -8,6 +8,10 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\item_with_details.xml"
     },
     {
+        "merged": "com.example.gr.app-mergeDebugResources-53:/layout/item_food.xml",
+        "source": "com.example.gr.app-main-56:/layout/item_food.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-53:\\layout\\layout_calendar_toolbar.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\layout_calendar_toolbar.xml"
     },
@@ -94,10 +98,6 @@
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-53:\\layout\\activity_search_for_exercise.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_search_for_exercise.xml"
-    },
-    {
-        "merged": "com.example.gr.app-mergeDebugResources-53:/layout/item_exercise.xml",
-        "source": "com.example.gr.app-main-56:/layout/item_exercise.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-53:\\layout\\item_exercise_history.xml",

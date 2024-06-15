@@ -20,7 +20,7 @@ public class SearchFragmentViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        if (position == 0) return FoodListSearchFragment.newInstance(strKey);
+        if (position == 0) return new FoodListSearchFragment();
         else return new RecipeListSearchFragment();
     }
 

@@ -37,9 +37,9 @@ public class FoodSearchTabAdapter extends RecyclerView.Adapter<FoodSearchTabAdap
             return;
         }
         holder.mItemFoodBinding.foodItemName.setText(food.getName());
-        holder.mItemFoodBinding.foodItemServings.setText(String.valueOf(food.getServingSize())+"serving");
+        holder.mItemFoodBinding.foodItemServings.setText(String.valueOf(food.getNumberOfServings())+" serving");
         holder.mItemFoodBinding.foodItemCalo.setText(String.valueOf(food.getCalories()));
-        holder.mItemFoodBinding.foodItemServingSize.setText(String.valueOf(food.getServingSize()) + "g");
+        holder.mItemFoodBinding.foodItemServingSize.setText(String.valueOf(food.getServingSize()) + " g");
         holder.mItemFoodBinding.itemInfo.setOnClickListener(v->iOnClickFoodItemListener.onClickItemFood(food));
         holder.mItemFoodBinding.addBtn.setOnClickListener(v-> Toast.makeText(v.getContext(), "added to diary",Toast.LENGTH_SHORT).show());
     }
