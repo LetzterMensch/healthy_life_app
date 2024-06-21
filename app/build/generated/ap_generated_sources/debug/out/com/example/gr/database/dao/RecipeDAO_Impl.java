@@ -37,7 +37,7 @@ public final class RecipeDAO_Impl implements RecipeDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `recipe` (`id`,`foodID`,`name`,`image`,`banner`,`description`,`carbs`,`protein`,`fat`,`calories`,`ingredients`,`url`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `recipe` (`id`,`foodID`,`name`,`image`,`description`,`carbs`,`protein`,`fat`,`calories`,`ingredients`,`url`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -54,29 +54,24 @@ public final class RecipeDAO_Impl implements RecipeDAO {
         } else {
           statement.bindString(4, entity.getImage());
         }
-        if (entity.getBanner() == null) {
+        if (entity.getDescription() == null) {
           statement.bindNull(5);
         } else {
-          statement.bindString(5, entity.getBanner());
+          statement.bindString(5, entity.getDescription());
         }
-        if (entity.getDescription() == null) {
-          statement.bindNull(6);
-        } else {
-          statement.bindString(6, entity.getDescription());
-        }
-        statement.bindDouble(7, entity.getCarbs());
-        statement.bindDouble(8, entity.getProtein());
-        statement.bindDouble(9, entity.getFat());
-        statement.bindLong(10, entity.getCalories());
+        statement.bindDouble(6, entity.getCarbs());
+        statement.bindDouble(7, entity.getProtein());
+        statement.bindDouble(8, entity.getFat());
+        statement.bindLong(9, entity.getCalories());
         if (entity.getIngredients() == null) {
-          statement.bindNull(11);
+          statement.bindNull(10);
         } else {
-          statement.bindString(11, entity.getIngredients());
+          statement.bindString(10, entity.getIngredients());
         }
         if (entity.getUrl() == null) {
-          statement.bindNull(12);
+          statement.bindNull(11);
         } else {
-          statement.bindString(12, entity.getUrl());
+          statement.bindString(11, entity.getUrl());
         }
       }
     };
@@ -96,7 +91,7 @@ public final class RecipeDAO_Impl implements RecipeDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `recipe` SET `id` = ?,`foodID` = ?,`name` = ?,`image` = ?,`banner` = ?,`description` = ?,`carbs` = ?,`protein` = ?,`fat` = ?,`calories` = ?,`ingredients` = ?,`url` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `recipe` SET `id` = ?,`foodID` = ?,`name` = ?,`image` = ?,`description` = ?,`carbs` = ?,`protein` = ?,`fat` = ?,`calories` = ?,`ingredients` = ?,`url` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -113,31 +108,26 @@ public final class RecipeDAO_Impl implements RecipeDAO {
         } else {
           statement.bindString(4, entity.getImage());
         }
-        if (entity.getBanner() == null) {
+        if (entity.getDescription() == null) {
           statement.bindNull(5);
         } else {
-          statement.bindString(5, entity.getBanner());
+          statement.bindString(5, entity.getDescription());
         }
-        if (entity.getDescription() == null) {
-          statement.bindNull(6);
-        } else {
-          statement.bindString(6, entity.getDescription());
-        }
-        statement.bindDouble(7, entity.getCarbs());
-        statement.bindDouble(8, entity.getProtein());
-        statement.bindDouble(9, entity.getFat());
-        statement.bindLong(10, entity.getCalories());
+        statement.bindDouble(6, entity.getCarbs());
+        statement.bindDouble(7, entity.getProtein());
+        statement.bindDouble(8, entity.getFat());
+        statement.bindLong(9, entity.getCalories());
         if (entity.getIngredients() == null) {
-          statement.bindNull(11);
+          statement.bindNull(10);
         } else {
-          statement.bindString(11, entity.getIngredients());
+          statement.bindString(10, entity.getIngredients());
         }
         if (entity.getUrl() == null) {
-          statement.bindNull(12);
+          statement.bindNull(11);
         } else {
-          statement.bindString(12, entity.getUrl());
+          statement.bindString(11, entity.getUrl());
         }
-        statement.bindLong(13, entity.getId());
+        statement.bindLong(12, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteAllRecipe = new SharedSQLiteStatement(__db) {
@@ -214,7 +204,6 @@ public final class RecipeDAO_Impl implements RecipeDAO {
       final int _cursorIndexOfFoodID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodID");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfImage = CursorUtil.getColumnIndexOrThrow(_cursor, "image");
-      final int _cursorIndexOfBanner = CursorUtil.getColumnIndexOrThrow(_cursor, "banner");
       final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
       final int _cursorIndexOfCarbs = CursorUtil.getColumnIndexOrThrow(_cursor, "carbs");
       final int _cursorIndexOfProtein = CursorUtil.getColumnIndexOrThrow(_cursor, "protein");
@@ -231,59 +220,45 @@ public final class RecipeDAO_Impl implements RecipeDAO {
         } else {
           _tmpName = _cursor.getString(_cursorIndexOfName);
         }
-        final String _tmpDescription;
-        if (_cursor.isNull(_cursorIndexOfDescription)) {
-          _tmpDescription = null;
-        } else {
-          _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
-        }
-        _item = new Recipe(_tmpName,_tmpDescription);
-        final int _tmpId;
-        _tmpId = _cursor.getInt(_cursorIndexOfId);
-        _item.setId(_tmpId);
-        final int _tmpFoodID;
-        _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
-        _item.setFoodID(_tmpFoodID);
         final String _tmpImage;
         if (_cursor.isNull(_cursorIndexOfImage)) {
           _tmpImage = null;
         } else {
           _tmpImage = _cursor.getString(_cursorIndexOfImage);
         }
-        _item.setImage(_tmpImage);
-        final String _tmpBanner;
-        if (_cursor.isNull(_cursorIndexOfBanner)) {
-          _tmpBanner = null;
+        final String _tmpDescription;
+        if (_cursor.isNull(_cursorIndexOfDescription)) {
+          _tmpDescription = null;
         } else {
-          _tmpBanner = _cursor.getString(_cursorIndexOfBanner);
+          _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
         }
-        _item.setBanner(_tmpBanner);
         final float _tmpCarbs;
         _tmpCarbs = _cursor.getFloat(_cursorIndexOfCarbs);
-        _item.setCarbs(_tmpCarbs);
         final float _tmpProtein;
         _tmpProtein = _cursor.getFloat(_cursorIndexOfProtein);
-        _item.setProtein(_tmpProtein);
         final float _tmpFat;
         _tmpFat = _cursor.getFloat(_cursorIndexOfFat);
-        _item.setFat(_tmpFat);
         final int _tmpCalories;
         _tmpCalories = _cursor.getInt(_cursorIndexOfCalories);
-        _item.setCalories(_tmpCalories);
         final String _tmpIngredients;
         if (_cursor.isNull(_cursorIndexOfIngredients)) {
           _tmpIngredients = null;
         } else {
           _tmpIngredients = _cursor.getString(_cursorIndexOfIngredients);
         }
-        _item.setIngredients(_tmpIngredients);
         final String _tmpUrl;
         if (_cursor.isNull(_cursorIndexOfUrl)) {
           _tmpUrl = null;
         } else {
           _tmpUrl = _cursor.getString(_cursorIndexOfUrl);
         }
-        _item.setUrl(_tmpUrl);
+        _item = new Recipe(_tmpName,_tmpImage,_tmpDescription,_tmpCarbs,_tmpProtein,_tmpFat,_tmpCalories,_tmpIngredients,_tmpUrl);
+        final int _tmpId;
+        _tmpId = _cursor.getInt(_cursorIndexOfId);
+        _item.setId(_tmpId);
+        final int _tmpFoodID;
+        _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
+        _item.setFoodID(_tmpFoodID);
         _result.add(_item);
       }
       return _result;
@@ -310,7 +285,6 @@ public final class RecipeDAO_Impl implements RecipeDAO {
       final int _cursorIndexOfFoodID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodID");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfImage = CursorUtil.getColumnIndexOrThrow(_cursor, "image");
-      final int _cursorIndexOfBanner = CursorUtil.getColumnIndexOrThrow(_cursor, "banner");
       final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
       final int _cursorIndexOfCarbs = CursorUtil.getColumnIndexOrThrow(_cursor, "carbs");
       final int _cursorIndexOfProtein = CursorUtil.getColumnIndexOrThrow(_cursor, "protein");
@@ -327,59 +301,45 @@ public final class RecipeDAO_Impl implements RecipeDAO {
         } else {
           _tmpName = _cursor.getString(_cursorIndexOfName);
         }
-        final String _tmpDescription;
-        if (_cursor.isNull(_cursorIndexOfDescription)) {
-          _tmpDescription = null;
-        } else {
-          _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
-        }
-        _item = new Recipe(_tmpName,_tmpDescription);
-        final int _tmpId;
-        _tmpId = _cursor.getInt(_cursorIndexOfId);
-        _item.setId(_tmpId);
-        final int _tmpFoodID;
-        _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
-        _item.setFoodID(_tmpFoodID);
         final String _tmpImage;
         if (_cursor.isNull(_cursorIndexOfImage)) {
           _tmpImage = null;
         } else {
           _tmpImage = _cursor.getString(_cursorIndexOfImage);
         }
-        _item.setImage(_tmpImage);
-        final String _tmpBanner;
-        if (_cursor.isNull(_cursorIndexOfBanner)) {
-          _tmpBanner = null;
+        final String _tmpDescription;
+        if (_cursor.isNull(_cursorIndexOfDescription)) {
+          _tmpDescription = null;
         } else {
-          _tmpBanner = _cursor.getString(_cursorIndexOfBanner);
+          _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
         }
-        _item.setBanner(_tmpBanner);
         final float _tmpCarbs;
         _tmpCarbs = _cursor.getFloat(_cursorIndexOfCarbs);
-        _item.setCarbs(_tmpCarbs);
         final float _tmpProtein;
         _tmpProtein = _cursor.getFloat(_cursorIndexOfProtein);
-        _item.setProtein(_tmpProtein);
         final float _tmpFat;
         _tmpFat = _cursor.getFloat(_cursorIndexOfFat);
-        _item.setFat(_tmpFat);
         final int _tmpCalories;
         _tmpCalories = _cursor.getInt(_cursorIndexOfCalories);
-        _item.setCalories(_tmpCalories);
         final String _tmpIngredients;
         if (_cursor.isNull(_cursorIndexOfIngredients)) {
           _tmpIngredients = null;
         } else {
           _tmpIngredients = _cursor.getString(_cursorIndexOfIngredients);
         }
-        _item.setIngredients(_tmpIngredients);
         final String _tmpUrl;
         if (_cursor.isNull(_cursorIndexOfUrl)) {
           _tmpUrl = null;
         } else {
           _tmpUrl = _cursor.getString(_cursorIndexOfUrl);
         }
-        _item.setUrl(_tmpUrl);
+        _item = new Recipe(_tmpName,_tmpImage,_tmpDescription,_tmpCarbs,_tmpProtein,_tmpFat,_tmpCalories,_tmpIngredients,_tmpUrl);
+        final int _tmpId;
+        _tmpId = _cursor.getInt(_cursorIndexOfId);
+        _item.setId(_tmpId);
+        final int _tmpFoodID;
+        _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
+        _item.setFoodID(_tmpFoodID);
         _result.add(_item);
       }
       return _result;
@@ -402,7 +362,6 @@ public final class RecipeDAO_Impl implements RecipeDAO {
       final int _cursorIndexOfFoodID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodID");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfImage = CursorUtil.getColumnIndexOrThrow(_cursor, "image");
-      final int _cursorIndexOfBanner = CursorUtil.getColumnIndexOrThrow(_cursor, "banner");
       final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
       final int _cursorIndexOfCarbs = CursorUtil.getColumnIndexOrThrow(_cursor, "carbs");
       final int _cursorIndexOfProtein = CursorUtil.getColumnIndexOrThrow(_cursor, "protein");
@@ -418,59 +377,45 @@ public final class RecipeDAO_Impl implements RecipeDAO {
         } else {
           _tmpName = _cursor.getString(_cursorIndexOfName);
         }
-        final String _tmpDescription;
-        if (_cursor.isNull(_cursorIndexOfDescription)) {
-          _tmpDescription = null;
-        } else {
-          _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
-        }
-        _result = new Recipe(_tmpName,_tmpDescription);
-        final int _tmpId;
-        _tmpId = _cursor.getInt(_cursorIndexOfId);
-        _result.setId(_tmpId);
-        final int _tmpFoodID;
-        _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
-        _result.setFoodID(_tmpFoodID);
         final String _tmpImage;
         if (_cursor.isNull(_cursorIndexOfImage)) {
           _tmpImage = null;
         } else {
           _tmpImage = _cursor.getString(_cursorIndexOfImage);
         }
-        _result.setImage(_tmpImage);
-        final String _tmpBanner;
-        if (_cursor.isNull(_cursorIndexOfBanner)) {
-          _tmpBanner = null;
+        final String _tmpDescription;
+        if (_cursor.isNull(_cursorIndexOfDescription)) {
+          _tmpDescription = null;
         } else {
-          _tmpBanner = _cursor.getString(_cursorIndexOfBanner);
+          _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
         }
-        _result.setBanner(_tmpBanner);
         final float _tmpCarbs;
         _tmpCarbs = _cursor.getFloat(_cursorIndexOfCarbs);
-        _result.setCarbs(_tmpCarbs);
         final float _tmpProtein;
         _tmpProtein = _cursor.getFloat(_cursorIndexOfProtein);
-        _result.setProtein(_tmpProtein);
         final float _tmpFat;
         _tmpFat = _cursor.getFloat(_cursorIndexOfFat);
-        _result.setFat(_tmpFat);
         final int _tmpCalories;
         _tmpCalories = _cursor.getInt(_cursorIndexOfCalories);
-        _result.setCalories(_tmpCalories);
         final String _tmpIngredients;
         if (_cursor.isNull(_cursorIndexOfIngredients)) {
           _tmpIngredients = null;
         } else {
           _tmpIngredients = _cursor.getString(_cursorIndexOfIngredients);
         }
-        _result.setIngredients(_tmpIngredients);
         final String _tmpUrl;
         if (_cursor.isNull(_cursorIndexOfUrl)) {
           _tmpUrl = null;
         } else {
           _tmpUrl = _cursor.getString(_cursorIndexOfUrl);
         }
-        _result.setUrl(_tmpUrl);
+        _result = new Recipe(_tmpName,_tmpImage,_tmpDescription,_tmpCarbs,_tmpProtein,_tmpFat,_tmpCalories,_tmpIngredients,_tmpUrl);
+        final int _tmpId;
+        _tmpId = _cursor.getInt(_cursorIndexOfId);
+        _result.setId(_tmpId);
+        final int _tmpFoodID;
+        _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
+        _result.setFoodID(_tmpFoodID);
       } else {
         _result = null;
       }

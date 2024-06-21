@@ -7,21 +7,31 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.gr.fragment.FoodListSearchFragment;
 import com.example.gr.fragment.RecipeListSearchFragment;
+import com.example.gr.model.Diary;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class SearchFragmentViewPagerAdapter extends FragmentStateAdapter {
-    String strKey;
-    public SearchFragmentViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    private int meal;
+    private Diary diary;
+    public SearchFragmentViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, int meal, Diary diary) {
         super(fragmentActivity);
+        this.meal = meal;
+        this.diary = diary;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        if (position == 0) return new FoodListSearchFragment();
-        else return new RecipeListSearchFragment();
+        switch (position){
+            case 0:
+                return FoodListSearchFragment.newInstance(meal,diary);
+            case 1:
+                return new RecipeListSearchFragment();
+            default:
+                return FoodListSearchFragment.newInstance(meal,diary);
+        }
     }
 
     @Override

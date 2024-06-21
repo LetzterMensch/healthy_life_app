@@ -18,20 +18,18 @@ public class Workout implements Serializable {
     @Ignore
     private Exercise exercise;
     private int exerciseId;
-    private int duration;
+    private int duration;//minute
     private int caloriesBurnt;
     private String createdAt;
     public Workout(){}
     @Ignore
-
-    public Workout(Exercise exercise, int duration){
+    public Workout(Exercise exercise, int duration, int weight){
         this.exercise = exercise;
         this.duration = duration;
-        this.caloriesBurnt = exercise.getCaloriesBurntPerMin() * duration;
+        this.caloriesBurnt = (int)exercise.getMet() * (duration/60) * weight;
         this.createdAt = new Date().toString();
     }
     @Ignore
-
     public Workout(int id, Exercise exercise, int duration, int calories_burnt) {
         this.id = id;
         this.exercise = exercise;
@@ -73,6 +71,7 @@ public class Workout implements Serializable {
 
     public void setExercise(Exercise exercise) {
         this.exercise = exercise;
+        this.exerciseId = exercise.getId();
     }
 
     public int getDuration() {

@@ -4,31 +4,52 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.gr.ControllerApplication;
+import com.example.gr.database.LocalDatabase;
+
 import java.io.Serializable;
 
 @Entity(tableName = "foodlog")
 public class FoodLog implements Serializable {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private float totalCarb;
     private float totalProtein;
     private float totalFat;
     private int totalCalories;
     private int meal;
-    private int numberOfServings;
+    private float numberOfServings;
     private int foodId;
+    private int diaryId;
     @Ignore
     private Food food;
     public FoodLog(){}
     @Ignore
-    public FoodLog(Food food, int meal, int numberOfServings){
+    public FoodLog(Food food, int meal, float numberOfServings, int diaryId){
         this.food = food;
+        this.foodId = food.getId();
+        this.diaryId = diaryId;
         this.meal = meal;
         this.numberOfServings = numberOfServings;
-        this.totalCalories = food.getCalories()*numberOfServings;
+        this.totalCalories =  Math.round(food.getCalories()*numberOfServings);
         this.totalFat = food.getFat()*numberOfServings;
-        this.totalCarb = food.getCarbs()*numberOfServings;
+        this.totalCarb = food.getCarb()*numberOfServings;
         this.totalProtein = food.getProtein()*numberOfServings;
+    }
+    public void updateFoodLog(float numberOfServings){
+        this.numberOfServings = numberOfServings;
+        this.totalCalories =  Math.round(food.getCalories()*numberOfServings);
+        this.totalFat = food.getFat()*numberOfServings;
+        this.totalCarb = food.getCarb()*numberOfServings;
+        this.totalProtein = food.getProtein()*numberOfServings;
+    }
+
+    public int getDiaryId() {
+        return diaryId;
+    }
+
+    public void setDiaryId(int diaryId) {
+        this.diaryId = diaryId;
     }
 
     public int getFoodId() {
@@ -87,11 +108,11 @@ public class FoodLog implements Serializable {
         this.meal = meal;
     }
 
-    public int getNumberOfServings() {
+    public float getNumberOfServings() {
         return numberOfServings;
     }
 
-    public void setNumberOfServings(int numberOfServings) {
+    public void setNumberOfServings(float numberOfServings) {
         this.numberOfServings = numberOfServings;
     }
 

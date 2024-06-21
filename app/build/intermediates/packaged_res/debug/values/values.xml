@@ -4109,6 +4109,7 @@
     <string name="bpm">bpm</string>
     <string name="breakfast">Bữa sáng</string>
     <string name="breaststroke">Breaststroke</string>
+    <string name="browse_web">Nhập từ trang web</string>
     <string name="busy_task_fetch_activity_data">Fetching activity data</string>
     <string name="busy_task_fetch_debug_logs">Fetching debug logs</string>
     <string name="busy_task_fetch_hr_data">Fetching heart rate data</string>
@@ -4710,6 +4711,7 @@
     <string name="icon_placeholder" translatable="false">Icon</string>
     <string name="ignore_bonded_devices">Ignore bonded devices</string>
     <string name="ignore_bonded_devices_description">Enabling this option will ignore devices that have been bonded/paired already when scanning</string>
+    <string name="import_recipe">Nạp công thức</string>
     <string name="in_door_workout">Trong nhà</string>
     <string name="in_door_workout_title">Thể dục trong nhà</string>
     <string name="indonesian">Indonesian</string>
@@ -4762,7 +4764,9 @@
     <string name="label_burnt">tiêu hao</string>
     <string name="label_goal">mục tiêu</string>
     <string name="label_intake">đã nạp</string>
+    <string name="label_nutrition">Thông tin dinh dưỡng</string>
     <string name="label_quantity_1">1</string>
+    <string name="label_recipe_ingredients">Nguyên liệu</string>
     <string name="label_remaining">cần nạp</string>
     <string name="label_sub">-</string>
     <string name="lack_of_sleep">Lack of sleep: %1$s</string>
@@ -6014,6 +6018,7 @@
     <string name="romanian">Romanian</string>
     <string name="russian">Russian</string>
     <string name="save_configuration">Save Configuration</string>
+    <string name="save_recipe">Lưu công thức</string>
     <string name="scan_not_scanning">Not scanning</string>
     <string name="scan_scanning_all_devices">Scanning all devices</string>
     <string name="scan_scanning_multiple_devices">Scanning %d devices</string>
@@ -6518,7 +6523,7 @@
     <string name="zetime_title_heartrate">Heart rate settings</string>
     <string name="zetime_title_screentime">Screen on duration in seconds</string>
     <string name="zetime_title_settings">ZeTime settings</string>
-    <style name="Theme.GR" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.GR" parent="Theme.MaterialComponents.Light.NoActionBar">
         
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

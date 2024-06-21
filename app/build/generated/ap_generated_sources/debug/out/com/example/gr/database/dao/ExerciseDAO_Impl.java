@@ -25,6 +25,8 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
 
   private final EntityInsertionAdapter<Exercise> __insertionAdapterOfExercise;
 
+  private final EntityInsertionAdapter<Exercise> __insertionAdapterOfExercise_1;
+
   private final EntityDeletionOrUpdateAdapter<Exercise> __deletionAdapterOfExercise;
 
   private final EntityDeletionOrUpdateAdapter<Exercise> __updateAdapterOfExercise;
@@ -37,7 +39,7 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `exercise` (`id`,`name`,`caloriesBurntPerMin`,`defaultDuration`,`duration`,`caloriesBurntCount`) VALUES (nullif(?, 0),?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `exercise` (`id`,`name`,`met`,`category`,`defaultDuration`) VALUES (nullif(?, 0),?,?,?,?)";
       }
 
       @Override
@@ -48,10 +50,37 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
         } else {
           statement.bindString(2, entity.getName());
         }
-        statement.bindLong(3, entity.getCaloriesBurntPerMin());
-        statement.bindLong(4, entity.getDefaultDuration());
-        statement.bindLong(5, entity.getDuration());
-        statement.bindLong(6, entity.getCaloriesBurntCount());
+        statement.bindDouble(3, entity.getMet());
+        if (entity.getCategory() == null) {
+          statement.bindNull(4);
+        } else {
+          statement.bindString(4, entity.getCategory());
+        }
+        statement.bindLong(5, entity.getDefaultDuration());
+      }
+    };
+    this.__insertionAdapterOfExercise_1 = new EntityInsertionAdapter<Exercise>(__db) {
+      @Override
+      @NonNull
+      protected String createQuery() {
+        return "INSERT OR ABORT INTO `exercise` (`id`,`name`,`met`,`category`,`defaultDuration`) VALUES (nullif(?, 0),?,?,?,?)";
+      }
+
+      @Override
+      protected void bind(@NonNull final SupportSQLiteStatement statement, final Exercise entity) {
+        statement.bindLong(1, entity.getId());
+        if (entity.getName() == null) {
+          statement.bindNull(2);
+        } else {
+          statement.bindString(2, entity.getName());
+        }
+        statement.bindDouble(3, entity.getMet());
+        if (entity.getCategory() == null) {
+          statement.bindNull(4);
+        } else {
+          statement.bindString(4, entity.getCategory());
+        }
+        statement.bindLong(5, entity.getDefaultDuration());
       }
     };
     this.__deletionAdapterOfExercise = new EntityDeletionOrUpdateAdapter<Exercise>(__db) {
@@ -70,7 +99,7 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `exercise` SET `id` = ?,`name` = ?,`caloriesBurntPerMin` = ?,`defaultDuration` = ?,`duration` = ?,`caloriesBurntCount` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `exercise` SET `id` = ?,`name` = ?,`met` = ?,`category` = ?,`defaultDuration` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -81,11 +110,14 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
         } else {
           statement.bindString(2, entity.getName());
         }
-        statement.bindLong(3, entity.getCaloriesBurntPerMin());
-        statement.bindLong(4, entity.getDefaultDuration());
-        statement.bindLong(5, entity.getDuration());
-        statement.bindLong(6, entity.getCaloriesBurntCount());
-        statement.bindLong(7, entity.getId());
+        statement.bindDouble(3, entity.getMet());
+        if (entity.getCategory() == null) {
+          statement.bindNull(4);
+        } else {
+          statement.bindString(4, entity.getCategory());
+        }
+        statement.bindLong(5, entity.getDefaultDuration());
+        statement.bindLong(6, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteAllExercise = new SharedSQLiteStatement(__db) {
@@ -99,11 +131,23 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
   }
 
   @Override
+  public void insertAll(final List<Exercise> exerciseList) {
+    __db.assertNotSuspendingTransaction();
+    __db.beginTransaction();
+    try {
+      __insertionAdapterOfExercise.insert(exerciseList);
+      __db.setTransactionSuccessful();
+    } finally {
+      __db.endTransaction();
+    }
+  }
+
+  @Override
   public void insertExercise(final Exercise exercise) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
     try {
-      __insertionAdapterOfExercise.insert(exercise);
+      __insertionAdapterOfExercise_1.insert(exercise);
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();
@@ -160,10 +204,9 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
-      final int _cursorIndexOfCaloriesBurntPerMin = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurntPerMin");
+      final int _cursorIndexOfMet = CursorUtil.getColumnIndexOrThrow(_cursor, "met");
+      final int _cursorIndexOfCategory = CursorUtil.getColumnIndexOrThrow(_cursor, "category");
       final int _cursorIndexOfDefaultDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "defaultDuration");
-      final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
-      final int _cursorIndexOfCaloriesBurntCount = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurntCount");
       final List<Exercise> _result = new ArrayList<Exercise>(_cursor.getCount());
       while (_cursor.moveToNext()) {
         final Exercise _item;
@@ -178,18 +221,19 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
           _tmpName = _cursor.getString(_cursorIndexOfName);
         }
         _item.setName(_tmpName);
-        final int _tmpCaloriesBurntPerMin;
-        _tmpCaloriesBurntPerMin = _cursor.getInt(_cursorIndexOfCaloriesBurntPerMin);
-        _item.setCaloriesBurntPerMin(_tmpCaloriesBurntPerMin);
+        final float _tmpMet;
+        _tmpMet = _cursor.getFloat(_cursorIndexOfMet);
+        _item.setMet(_tmpMet);
+        final String _tmpCategory;
+        if (_cursor.isNull(_cursorIndexOfCategory)) {
+          _tmpCategory = null;
+        } else {
+          _tmpCategory = _cursor.getString(_cursorIndexOfCategory);
+        }
+        _item.setCategory(_tmpCategory);
         final int _tmpDefaultDuration;
         _tmpDefaultDuration = _cursor.getInt(_cursorIndexOfDefaultDuration);
         _item.setDefaultDuration(_tmpDefaultDuration);
-        final int _tmpDuration;
-        _tmpDuration = _cursor.getInt(_cursorIndexOfDuration);
-        _item.setDuration(_tmpDuration);
-        final int _tmpCaloriesBurntCount;
-        _tmpCaloriesBurntCount = _cursor.getInt(_cursorIndexOfCaloriesBurntCount);
-        _item.setCaloriesBurntCount(_tmpCaloriesBurntCount);
         _result.add(_item);
       }
       return _result;
@@ -214,10 +258,9 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
-      final int _cursorIndexOfCaloriesBurntPerMin = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurntPerMin");
+      final int _cursorIndexOfMet = CursorUtil.getColumnIndexOrThrow(_cursor, "met");
+      final int _cursorIndexOfCategory = CursorUtil.getColumnIndexOrThrow(_cursor, "category");
       final int _cursorIndexOfDefaultDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "defaultDuration");
-      final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
-      final int _cursorIndexOfCaloriesBurntCount = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurntCount");
       final List<Exercise> _result = new ArrayList<Exercise>(_cursor.getCount());
       while (_cursor.moveToNext()) {
         final Exercise _item;
@@ -232,18 +275,19 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
           _tmpName = _cursor.getString(_cursorIndexOfName);
         }
         _item.setName(_tmpName);
-        final int _tmpCaloriesBurntPerMin;
-        _tmpCaloriesBurntPerMin = _cursor.getInt(_cursorIndexOfCaloriesBurntPerMin);
-        _item.setCaloriesBurntPerMin(_tmpCaloriesBurntPerMin);
+        final float _tmpMet;
+        _tmpMet = _cursor.getFloat(_cursorIndexOfMet);
+        _item.setMet(_tmpMet);
+        final String _tmpCategory;
+        if (_cursor.isNull(_cursorIndexOfCategory)) {
+          _tmpCategory = null;
+        } else {
+          _tmpCategory = _cursor.getString(_cursorIndexOfCategory);
+        }
+        _item.setCategory(_tmpCategory);
         final int _tmpDefaultDuration;
         _tmpDefaultDuration = _cursor.getInt(_cursorIndexOfDefaultDuration);
         _item.setDefaultDuration(_tmpDefaultDuration);
-        final int _tmpDuration;
-        _tmpDuration = _cursor.getInt(_cursorIndexOfDuration);
-        _item.setDuration(_tmpDuration);
-        final int _tmpCaloriesBurntCount;
-        _tmpCaloriesBurntCount = _cursor.getInt(_cursorIndexOfCaloriesBurntCount);
-        _item.setCaloriesBurntCount(_tmpCaloriesBurntCount);
         _result.add(_item);
       }
       return _result;
@@ -264,10 +308,9 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
-      final int _cursorIndexOfCaloriesBurntPerMin = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurntPerMin");
+      final int _cursorIndexOfMet = CursorUtil.getColumnIndexOrThrow(_cursor, "met");
+      final int _cursorIndexOfCategory = CursorUtil.getColumnIndexOrThrow(_cursor, "category");
       final int _cursorIndexOfDefaultDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "defaultDuration");
-      final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
-      final int _cursorIndexOfCaloriesBurntCount = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurntCount");
       final Exercise _result;
       if (_cursor.moveToFirst()) {
         _result = new Exercise();
@@ -281,18 +324,19 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
           _tmpName = _cursor.getString(_cursorIndexOfName);
         }
         _result.setName(_tmpName);
-        final int _tmpCaloriesBurntPerMin;
-        _tmpCaloriesBurntPerMin = _cursor.getInt(_cursorIndexOfCaloriesBurntPerMin);
-        _result.setCaloriesBurntPerMin(_tmpCaloriesBurntPerMin);
+        final float _tmpMet;
+        _tmpMet = _cursor.getFloat(_cursorIndexOfMet);
+        _result.setMet(_tmpMet);
+        final String _tmpCategory;
+        if (_cursor.isNull(_cursorIndexOfCategory)) {
+          _tmpCategory = null;
+        } else {
+          _tmpCategory = _cursor.getString(_cursorIndexOfCategory);
+        }
+        _result.setCategory(_tmpCategory);
         final int _tmpDefaultDuration;
         _tmpDefaultDuration = _cursor.getInt(_cursorIndexOfDefaultDuration);
         _result.setDefaultDuration(_tmpDefaultDuration);
-        final int _tmpDuration;
-        _tmpDuration = _cursor.getInt(_cursorIndexOfDuration);
-        _result.setDuration(_tmpDuration);
-        final int _tmpCaloriesBurntCount;
-        _tmpCaloriesBurntCount = _cursor.getInt(_cursorIndexOfCaloriesBurntCount);
-        _result.setCaloriesBurntCount(_tmpCaloriesBurntCount);
       } else {
         _result = null;
       }

@@ -65,7 +65,10 @@ public class DateTimeUtils {
     public static String formatDateTime(Date date) {
         return DateUtils.formatDateTime(ControllerApplication.getContext(), date.getTime(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_NO_YEAR);
     }
-
+    public static String simpleDateFormat(Date date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date.getTime());
+    }
     public static String formatIso8601(Date date) {
         if(ControllerApplication.isRunningNougatOrLater()){
             return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.US).format(date);

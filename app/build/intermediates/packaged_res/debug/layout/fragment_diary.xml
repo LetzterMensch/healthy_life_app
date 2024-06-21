@@ -128,7 +128,7 @@
                     android:textAlignment="center">
 
                     <TextView
-                        android:id="@+id/cal_input"
+                        android:id="@+id/cal_intake"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -260,7 +260,7 @@
                         app:trackThickness="8dp" />
 
                     <TextView
-                        android:id="@+id/dashboard_carb"
+                        android:id="@+id/diary_carb"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/alata"
@@ -299,7 +299,7 @@
                         app:trackThickness="8dp" />
 
                     <TextView
-                        android:id="@+id/dashboard_protein"
+                        android:id="@+id/diary_protein"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/alata"
@@ -338,7 +338,7 @@
                         app:trackThickness="8dp" />
 
                     <TextView
-                        android:id="@+id/dashboard_fat"
+                        android:id="@+id/diary_fat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/alata"
@@ -381,13 +381,14 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp">
+                        android:layout_margin="10dp"
+                        android:paddingVertical="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -427,21 +428,15 @@
                             android:textStyle="bold" />
                     </RelativeLayout>
 
-                    <RelativeLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_breakfast_food"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="10dp">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rcv_breakfast_food"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/define_dimen_10"
-                            android:layout_marginBottom="@dimen/define_dimen_10"
-                            android:clickable="false"
-                            android:focusable="false"
-                            android:nestedScrollingEnabled="false" />
-                    </RelativeLayout>
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/define_dimen_10"
+                        android:layout_marginBottom="@dimen/define_dimen_10"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:nestedScrollingEnabled="false" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -462,7 +457,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp">
+                        android:layout_margin="10dp"
+                        android:paddingVertical="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -530,7 +526,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp">
+                        android:layout_margin="10dp"
+                        android:paddingVertical="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -598,7 +595,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp">
+                        android:layout_margin="10dp"
+                        android:paddingVertical="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -650,6 +648,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/finish_diary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

@@ -16,20 +16,20 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 package com.example.gr.device.settings;
 
-import static com.example.gr.device.model.ActivityUser.PREF_USER_ACTIVETIME_MINUTES;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_CALORIES_BURNT;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_DISTANCE_METERS;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_GENDER;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_GOAL_FAT_BURN_TIME_MINUTES;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_GOAL_STANDING_TIME_HOURS;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_GOAL_WEIGHT_KG;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_HEIGHT_CM;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_NAME;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_SLEEP_DURATION;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_STEPS_GOAL;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_STEP_LENGTH_CM;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_WEIGHT_KG;
-import static com.example.gr.device.model.ActivityUser.PREF_USER_YEAR_OF_BIRTH;
+import static com.example.gr.model.ActivityUser.PREF_USER_ACTIVETIME_MINUTES;
+import static com.example.gr.model.ActivityUser.PREF_USER_CALORIES_BURNT;
+import static com.example.gr.model.ActivityUser.PREF_USER_DISTANCE_METERS;
+import static com.example.gr.model.ActivityUser.PREF_USER_GENDER;
+import static com.example.gr.model.ActivityUser.PREF_USER_GOAL_FAT_BURN_TIME_MINUTES;
+import static com.example.gr.model.ActivityUser.PREF_USER_GOAL_STANDING_TIME_HOURS;
+import static com.example.gr.model.ActivityUser.PREF_USER_GOAL_WEIGHT_KG;
+import static com.example.gr.model.ActivityUser.PREF_USER_HEIGHT_CM;
+import static com.example.gr.model.ActivityUser.PREF_USER_NAME;
+import static com.example.gr.model.ActivityUser.PREF_USER_SLEEP_DURATION;
+import static com.example.gr.model.ActivityUser.PREF_USER_STEPS_GOAL;
+import static com.example.gr.model.ActivityUser.PREF_USER_STEP_LENGTH_CM;
+import static com.example.gr.model.ActivityUser.PREF_USER_WEIGHT_KG;
+import static com.example.gr.model.ActivityUser.PREF_USER_YEAR_OF_BIRTH;
 
 import android.content.Intent;
 import android.os.Bundle;

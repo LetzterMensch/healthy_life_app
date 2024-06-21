@@ -2,49 +2,53 @@ package com.example.gr.fragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.service.controls.Control;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.gr.ControllerApplication;
 import com.example.gr.activity.FoodDetailActivity;
 import com.example.gr.activity.MainActivity;
 import com.example.gr.activity.SearchForFoodActivity;
-import com.example.gr.adapter.FoodAdapter;
+import com.example.gr.adapter.FoodLogAdapter;
 import com.example.gr.constant.Constant;
 import com.example.gr.constant.GlobalFunction;
-import com.example.gr.database.DataImporter;
 import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.FragmentDiaryBinding;
+import com.example.gr.model.Diary;
 import com.example.gr.model.Food;
+import com.example.gr.model.FoodLog;
+import com.example.gr.utils.DateTimeUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.SimpleTimeZone;
-import java.util.concurrent.CancellationException;
 
 public class DiaryFragment extends BaseFragment {
     private FragmentDiaryBinding mfragmentDiaryBinding;
     private Calendar calendar;
+    private String mDate;
     private int today;
+    private FoodLogAdapter mFoodLogAdapter;
+    private List<FoodLog> breakfastLogsList;
+    private List<FoodLog> lunchLogsList;
+    private List<FoodLog> dinnerLogsList;
+    private List<FoodLog> snackLogsList;
+    private Diary mDiary;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mfragmentDiaryBinding = FragmentDiaryBinding.inflate(inflater, container, false);
-        this.calendar = Calendar.getInstance();
-        this.today = this.calendar.get(Calendar.DAY_OF_MONTH);
+        calendar = Calendar.getInstance();
+        today = calendar.get(Calendar.DAY_OF_MONTH);
         initUi();
         initListener();
-
         return mfragmentDiaryBinding.getRoot();
     }
 
@@ -56,55 +60,16 @@ public class DiaryFragment extends BaseFragment {
     }
 
     private void initUi() {
-        List<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("French fires", 1.0f, 118));
-        foodList.add(new Food("Hamburger", 1.0f, 118));
-        foodList.add(new Food("Brisket", 1.0f, 118));
-        foodList.add(new Food("Buffalo chicken", 1.0f, 118));
-        LocalDatabase.getInstance(this.getActivity()).foodDAO().insertAll(foodList);
+//        List<Food> foodList = new ArrayList<>();
+//        foodList.add(new Food("French fires", 1, 118));
+//        foodList.add(new Food("Hamburger", 1, 118));
+//        foodList.add(new Food("Brisket", 1, 118));
+//        foodList.add(new Food("Buffalo chicken", 1, 118));
+//        LocalDatabase.getInstance(this.getActivity()).foodDAO().insertAll(foodList);
 //        DataImporter.importFoodFromJson(ControllerApplication.getContext(),LocalDatabase.getInstance(this.getActivity()));
-        FoodAdapter mFoodAdapter = new FoodAdapter(foodList, this::goToFoodDetail);
-        mfragmentDiaryBinding.layoutSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToSearchActivity(4);
-            }
-        });
-        mfragmentDiaryBinding.rcvBreakfastFood.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mfragmentDiaryBinding.rcvBreakfastFood.setAdapter(mFoodAdapter);
-        mfragmentDiaryBinding.btnBreakfastAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToSearchActivity(0);
-            }
-        });
-
-        mfragmentDiaryBinding.rcvLunchFood.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mfragmentDiaryBinding.rcvLunchFood.setAdapter(mFoodAdapter);
-        mfragmentDiaryBinding.btnLunchAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToSearchActivity(1);
-            }
-        });
-
-        mfragmentDiaryBinding.rcvDinnerFood.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mfragmentDiaryBinding.rcvDinnerFood.setAdapter(mFoodAdapter);
-        mfragmentDiaryBinding.btnDinnerAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToSearchActivity(2);
-            }
-        });
-
-        mfragmentDiaryBinding.rcvSnackFood.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mfragmentDiaryBinding.rcvSnackFood.setAdapter(mFoodAdapter);
-        mfragmentDiaryBinding.btnSnackAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToSearchActivity(3);
-            }
-        });
+        mfragmentDiaryBinding.date.setText("Hôm nay");
+        mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
+        displayFoodLogs(mDate);
     }
 
     @Override
@@ -119,9 +84,10 @@ public class DiaryFragment extends BaseFragment {
         }
     }
 
-    private void goToSearchActivity(int meal) {
+    private void goToSearchActivity(int meal, Diary diary) {
         Bundle bundle = new Bundle();
-        bundle.putInt("meal",meal);
+        bundle.putInt("key_meal", meal);
+        bundle.putSerializable(Constant.KEY_INTENT_DIARY_OBJECT, diary);
         GlobalFunction.startActivity(getActivity(), SearchForFoodActivity.class, bundle);
     }
 
@@ -129,28 +95,32 @@ public class DiaryFragment extends BaseFragment {
         calendar.add(Calendar.DAY_OF_YEAR, -1);
         if (calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
             mfragmentDiaryBinding.date.setText("Hôm qua");
-        } else if(calendar.get(Calendar.DAY_OF_MONTH) == today){
+        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today) {
             mfragmentDiaryBinding.date.setText("Hôm nay");
-        }else if (calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
+        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
             mfragmentDiaryBinding.date.setText("Ngày mai");
         } else {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             mfragmentDiaryBinding.date.setText(dateFormat.format(calendar.getTime()));
         }
+        mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
+        displayFoodLogs(mDate);
     }
 
     private void getNextDay() {
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         if (calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
             mfragmentDiaryBinding.date.setText("Hôm qua");
-        } else if(calendar.get(Calendar.DAY_OF_MONTH) == today){
+        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today) {
             mfragmentDiaryBinding.date.setText("Hôm nay");
-        }else if (calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
+        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
             mfragmentDiaryBinding.date.setText("Ngày mai");
         } else {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             mfragmentDiaryBinding.date.setText(dateFormat.format(calendar.getTime()));
         }
+        mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
+        displayFoodLogs(mDate);
     }
 
     private void openDatePicker() {
@@ -169,24 +139,111 @@ public class DiaryFragment extends BaseFragment {
             } else {
                 mfragmentDiaryBinding.date.setText(selectedDate);
             }
-            this.calendar.set(i, i1, i2);
+            calendar.set(i, i1, i2);
         }, year, month, day);
         datePickerDialog.show();
+        mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
+        displayFoodLogs(mDate);
     }
+
     private void goToFoodDetail(@NonNull Food food) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.KEY_INTENT_FOOD_OBJECT, food);
         GlobalFunction.startActivity(getActivity(), FoodDetailActivity.class, bundle);
     }
-    private void reloadDiaryFragment() {
-        this.calendar = Calendar.getInstance();
-        mfragmentDiaryBinding.date.setText("Hôm nay");
-        //TODO
-        // reload data of the current date.
+
+    private void getDiary(String date) {
+        mDiary = LocalDatabase.getInstance(this.requireActivity()).diaryDAO().getDiaryByDate(date);
+        if (mDiary == null) {
+            mDiary = new Diary(date);
+            LocalDatabase.getInstance(this.requireActivity()).diaryDAO().insertDiary(mDiary);
+        }
+        breakfastLogsList = mDiary.getBreakfastLogs();
+        lunchLogsList = mDiary.getLunchLogs();
+        dinnerLogsList = mDiary.getDinnerLogs();
+        snackLogsList = mDiary.getSnackLogs();
+
     }
 
-    private void reloadDate() {
+    private void displayFoodLogs(String date) {
+        //TODO
+        // reload data of the current date and display it.
+        getDiary(date);
+        mfragmentDiaryBinding.calGoal.setText(String.valueOf(mDiary.getCaloriesGoal()));
+        mfragmentDiaryBinding.calIntake.setText(String.valueOf(mDiary.getIntakeCalories()));
+        mfragmentDiaryBinding.calBurnt.setText(String.valueOf(mDiary.getBurntCalories()));
+        mfragmentDiaryBinding.calRemain.setText(String.valueOf(mDiary.getRemainingCalories()));
+        mfragmentDiaryBinding.diaryCarb.setText(String.valueOf(mDiary.getIntakeCarb()) + "/" + String.valueOf(mDiary.getCarbGoal()));
+        mfragmentDiaryBinding.diaryProtein.setText(String.valueOf(mDiary.getIntakeProtein()) + "/" + String.valueOf(mDiary.getProteinGoal()));
+        mfragmentDiaryBinding.diaryFat.setText(String.valueOf(mDiary.getIntakeFat()) + "/" + String.valueOf(mDiary.getFatGoal()));
+        if (mDiary.getCarbGoal() != 0) {
+            mfragmentDiaryBinding.carbIndicator.setProgress((int) (mDiary.getIntakeCarb() * 100 / mDiary.getCarbGoal()));
+            mfragmentDiaryBinding.proteinIndicator.setProgress((int) (mDiary.getIntakeProtein() * 100 / mDiary.getProteinGoal()));
+            mfragmentDiaryBinding.fatIndicator.setProgress((int) (mDiary.getIntakeFat() * 100 / mDiary.getFatGoal()));
+        } else {
+            mfragmentDiaryBinding.carbIndicator.setProgress(0);
+            mfragmentDiaryBinding.proteinIndicator.setProgress(0);
+            mfragmentDiaryBinding.fatIndicator.setProgress(0);
+        }
+        mFoodLogAdapter = new FoodLogAdapter(breakfastLogsList, this::goToFoodDetail);
+        mfragmentDiaryBinding.layoutSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToSearchActivity(4,mDiary);
+            }
+        });
+        mfragmentDiaryBinding.calBreakfast.setText(String.valueOf(calculateMealTotalCalories(breakfastLogsList)));
+        mfragmentDiaryBinding.rcvBreakfastFood.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mfragmentDiaryBinding.rcvBreakfastFood.setAdapter(mFoodLogAdapter);
+        mfragmentDiaryBinding.btnBreakfastAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToSearchActivity(0,mDiary);
+            }
+        });
 
+        mFoodLogAdapter.setFoodLogsList(lunchLogsList);
+        mfragmentDiaryBinding.calLunch.setText(String.valueOf(calculateMealTotalCalories(lunchLogsList)));
+        mfragmentDiaryBinding.rcvLunchFood.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mfragmentDiaryBinding.rcvLunchFood.setAdapter(mFoodLogAdapter);
+        mfragmentDiaryBinding.btnLunchAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToSearchActivity(1,mDiary);
+            }
+        });
+
+        mFoodLogAdapter.setFoodLogsList(dinnerLogsList);
+        mfragmentDiaryBinding.calDinner.setText(String.valueOf(calculateMealTotalCalories(dinnerLogsList)));
+        mfragmentDiaryBinding.rcvDinnerFood.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mfragmentDiaryBinding.rcvDinnerFood.setAdapter(mFoodLogAdapter);
+        mfragmentDiaryBinding.btnDinnerAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToSearchActivity(2,mDiary);
+            }
+        });
+
+        mFoodLogAdapter.setFoodLogsList(snackLogsList);
+        mfragmentDiaryBinding.calSnack.setText(String.valueOf(calculateMealTotalCalories(snackLogsList)));
+        mfragmentDiaryBinding.rcvSnackFood.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mfragmentDiaryBinding.rcvSnackFood.setAdapter(mFoodLogAdapter);
+        mfragmentDiaryBinding.btnSnackAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToSearchActivity(3,mDiary);
+            }
+        });
+    }
+
+    private int calculateMealTotalCalories(List<FoodLog> foodLogs) {
+        int sum = 0;
+        if (foodLogs != null) {
+            for (FoodLog foodLog : foodLogs) {
+                sum += foodLog.getTotalCalories();
+            }
+        }
+        return sum;
     }
 
     //TODO
@@ -194,6 +251,13 @@ public class DiaryFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
-        reloadDiaryFragment();
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        mfragmentDiaryBinding.date.setText("Hôm nay");
+        calendar = Calendar.getInstance();
+        mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
+        displayFoodLogs(mDate);
     }
 }

@@ -1,20 +1,26 @@
 package com.example.gr.model;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.database.Converters;
+import com.example.gr.database.LocalDatabase;
+import com.example.gr.utils.DateTimeUtils;
 
 import androidx.room.TypeConverters;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 @Entity(tableName = "diary")
 @TypeConverters({Converters.class})
-
 public class Diary implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -22,11 +28,6 @@ public class Diary implements Serializable {
     private int burntCalories;
     private int userId;
     private int remainingCalories;
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     private String date;
     private int intakeProtein;
     private int intakeCarb;
@@ -47,8 +48,24 @@ public class Diary implements Serializable {
     @Ignore
     private List<Workout> exerciseList;
 
+    public Diary() {
+        this.breakfastLogs = new ArrayList<>();
+        this.lunchLogs = new ArrayList<>();
+        this.dinnerLogs = new ArrayList<>();
+        this.snackLogs = new ArrayList<>();
+        this.date = DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime());
+    }
+    public Diary(String date){
+        this.breakfastLogs = new ArrayList<>();
+        this.lunchLogs = new ArrayList<>();
+        this.dinnerLogs = new ArrayList<>();
+        this.snackLogs = new ArrayList<>();
+        this.date = date;
+    }
+
     public void updateDiary() {
         reCalculateRemainingCalories(this.intakeCalories, this.burntCalories);
+        LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
 
     public void logWorkout(Workout workout) {
@@ -58,6 +75,7 @@ public class Diary implements Serializable {
     }
 
     public void logFood(FoodLog foodLog) {
+        LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().insertFoodLog(foodLog);
         switch (foodLog.getMeal()) {
             case 0:
                 breakfastLogs.add(foodLog);
@@ -76,7 +94,7 @@ public class Diary implements Serializable {
         this.intakeCarb += foodLog.getTotalCarb();
         this.intakeFat += foodLog.getTotalFat();
         this.intakeProtein += foodLog.getTotalProtein();
-        reCalculateRemainingCalories(this.intakeCalories, this.burntCalories);
+        updateDiary();
     }
 
     protected void reCalculateRemainingCalories(int intakeCalories, int burntCalories) {
@@ -127,10 +145,6 @@ public class Diary implements Serializable {
         return id;
     }
 
-    public Diary() {
-        this.date = new Date().toString();
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -171,8 +185,8 @@ public class Diary implements Serializable {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date.toString();
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getIntakeProtein() {
@@ -239,21 +253,4 @@ public class Diary implements Serializable {
         this.fatGoal = fatGoal;
     }
 
-    @Ignore
-    public Diary(int id, int caloriesGoal, int burntCalories, int userId, int remainingCalories, String date, int intakeProtein, int intakeCarb, int intakeFat, int intakeCalories, int totalSteps, int carbGoal, int proteinGoal, int fatGoal) {
-        this.id = id;
-        this.caloriesGoal = caloriesGoal;
-        this.burntCalories = burntCalories;
-        this.userId = userId;
-        this.remainingCalories = remainingCalories;
-        this.date = date;
-        this.intakeProtein = intakeProtein;
-        this.intakeCarb = intakeCarb;
-        this.intakeFat = intakeFat;
-        this.intakeCalories = intakeCalories;
-        this.totalSteps = totalSteps;
-        this.carbGoal = carbGoal;
-        this.proteinGoal = proteinGoal;
-        this.fatGoal = fatGoal;
-    }
 }

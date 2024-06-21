@@ -4,9 +4,12 @@ package com.example.gr.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -17,20 +20,33 @@ import java.lang.String;
 
 public final class FragmentRecipeSearchBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final ConstraintLayout rootView;
+
+  @NonNull
+  public final CardView btnImportRecipe;
+
+  @NonNull
+  public final NestedScrollView nestedScrollView2;
 
   @NonNull
   public final RecyclerView rcvRecipeSearchTab;
 
-  private FragmentRecipeSearchBinding(@NonNull RelativeLayout rootView,
-      @NonNull RecyclerView rcvRecipeSearchTab) {
+  @NonNull
+  public final TextView tvAddToDiary;
+
+  private FragmentRecipeSearchBinding(@NonNull ConstraintLayout rootView,
+      @NonNull CardView btnImportRecipe, @NonNull NestedScrollView nestedScrollView2,
+      @NonNull RecyclerView rcvRecipeSearchTab, @NonNull TextView tvAddToDiary) {
     this.rootView = rootView;
+    this.btnImportRecipe = btnImportRecipe;
+    this.nestedScrollView2 = nestedScrollView2;
     this.rcvRecipeSearchTab = rcvRecipeSearchTab;
+    this.tvAddToDiary = tvAddToDiary;
   }
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -55,13 +71,32 @@ public final class FragmentRecipeSearchBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_import_recipe;
+      CardView btnImportRecipe = ViewBindings.findChildViewById(rootView, id);
+      if (btnImportRecipe == null) {
+        break missingId;
+      }
+
+      id = R.id.nestedScrollView2;
+      NestedScrollView nestedScrollView2 = ViewBindings.findChildViewById(rootView, id);
+      if (nestedScrollView2 == null) {
+        break missingId;
+      }
+
       id = R.id.rcv_recipe_search_tab;
       RecyclerView rcvRecipeSearchTab = ViewBindings.findChildViewById(rootView, id);
       if (rcvRecipeSearchTab == null) {
         break missingId;
       }
 
-      return new FragmentRecipeSearchBinding((RelativeLayout) rootView, rcvRecipeSearchTab);
+      id = R.id.tv_add_to_diary;
+      TextView tvAddToDiary = ViewBindings.findChildViewById(rootView, id);
+      if (tvAddToDiary == null) {
+        break missingId;
+      }
+
+      return new FragmentRecipeSearchBinding((ConstraintLayout) rootView, btnImportRecipe,
+          nestedScrollView2, rcvRecipeSearchTab, tvAddToDiary);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

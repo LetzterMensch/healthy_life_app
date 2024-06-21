@@ -9,23 +9,56 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity(tableName = "recipe")
-
 public class Recipe implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
+    @Ignore
+    private Food food;
     private int foodID;
     private String name;
     private String image;
-    private String banner;
     private String description;
-    @Ignore
-    private List<Image> imageList;
     private float carbs;
     private float protein;
     private float fat;
     private int calories;
     private String ingredients;
     private String url;
+    public Recipe(String name, String image, String description, float carbs, float protein, float fat, int calories, String ingredients, String url) {
+        food = new Food(name,calories,protein,fat,carbs);
+        this.name = name;
+        this.carbs = carbs;
+        this.protein = protein;
+        this.fat = fat;
+        this.calories = calories;
+        this.foodID = food.getId();
+        this.image = image;
+        this.description = description;
+        this.ingredients = ingredients;
+        this.url = url;
+    }
+
+    @Ignore
+    public Recipe(String name, String description){
+        this.name = name;
+        this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Food getFood() {
+        return food;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
+    }
 
     public int getFoodID() {
         return foodID;
@@ -33,6 +66,30 @@ public class Recipe implements Serializable {
 
     public void setFoodID(int foodID) {
         this.foodID = foodID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public float getCarbs() {
@@ -81,73 +138,5 @@ public class Recipe implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public Recipe(int id, int foodID, String name, String image, String banner, String description, List<Image> imageList, float carbs, float protein, float fat, int calories, String ingredients, String url) {
-        this.id = id;
-        this.foodID = foodID;
-        this.name = name;
-        this.image = image;
-        this.banner = banner;
-        this.description = description;
-        this.imageList = imageList;
-        this.carbs = carbs;
-        this.protein = protein;
-        this.fat = fat;
-        this.calories = calories;
-        this.ingredients = ingredients;
-        this.url = url;
-    }
-
-    public Recipe(String name, String description){
-        this.name = name;
-        this.description = description;
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getBanner() {
-        return banner;
-    }
-
-    public void setBanner(String banner) {
-        this.banner = banner;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Image> getImageList() {
-        return imageList;
-    }
-
-    public void setImageList(List<Image> imageList) {
-        this.imageList = imageList;
     }
 }

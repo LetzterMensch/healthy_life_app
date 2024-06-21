@@ -186,7 +186,7 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
             lastPacketCounter++;
             bufferActivityData(value);
         } else {
-            GB.toast("Error " + getName() + ", invalid package counter: " + value[0] + ", last was: " + lastPacketCounter, Toast.LENGTH_LONG, GB.ERROR);
+//            GB.toast("Error " + getName() + ", invalid package counter: " + value[0] + ", last was: " + lastPacketCounter, Toast.LENGTH_LONG, GB.ERROR);
             operationValid = false;
         }
     }

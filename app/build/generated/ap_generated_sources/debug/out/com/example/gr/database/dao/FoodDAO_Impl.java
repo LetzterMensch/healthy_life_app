@@ -50,7 +50,7 @@ public final class FoodDAO_Impl implements FoodDAO {
         } else {
           statement.bindString(2, entity.getName());
         }
-        statement.bindLong(3, entity.getNumberOfServings());
+        statement.bindDouble(3, entity.getNumberOfServings());
         statement.bindDouble(4, entity.getServingSize());
         statement.bindLong(5, entity.getCalories());
         statement.bindDouble(6, entity.getCarb());
@@ -73,7 +73,7 @@ public final class FoodDAO_Impl implements FoodDAO {
         } else {
           statement.bindString(2, entity.getName());
         }
-        statement.bindLong(3, entity.getNumberOfServings());
+        statement.bindDouble(3, entity.getNumberOfServings());
         statement.bindDouble(4, entity.getServingSize());
         statement.bindLong(5, entity.getCalories());
         statement.bindDouble(6, entity.getCarb());
@@ -108,7 +108,7 @@ public final class FoodDAO_Impl implements FoodDAO {
         } else {
           statement.bindString(2, entity.getName());
         }
-        statement.bindLong(3, entity.getNumberOfServings());
+        statement.bindDouble(3, entity.getNumberOfServings());
         statement.bindDouble(4, entity.getServingSize());
         statement.bindLong(5, entity.getCalories());
         statement.bindDouble(6, entity.getCarb());
@@ -228,8 +228,8 @@ public final class FoodDAO_Impl implements FoodDAO {
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);
-        final int _tmpNumberOfServings;
-        _tmpNumberOfServings = _cursor.getInt(_cursorIndexOfNumberOfServings);
+        final float _tmpNumberOfServings;
+        _tmpNumberOfServings = _cursor.getFloat(_cursorIndexOfNumberOfServings);
         _item.setNumberOfServings(_tmpNumberOfServings);
         final float _tmpServingSize;
         _tmpServingSize = _cursor.getFloat(_cursorIndexOfServingSize);
@@ -285,8 +285,8 @@ public final class FoodDAO_Impl implements FoodDAO {
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);
-        final int _tmpNumberOfServings;
-        _tmpNumberOfServings = _cursor.getInt(_cursorIndexOfNumberOfServings);
+        final float _tmpNumberOfServings;
+        _tmpNumberOfServings = _cursor.getFloat(_cursorIndexOfNumberOfServings);
         _item.setNumberOfServings(_tmpNumberOfServings);
         final float _tmpServingSize;
         _tmpServingSize = _cursor.getFloat(_cursorIndexOfServingSize);
@@ -337,8 +337,8 @@ public final class FoodDAO_Impl implements FoodDAO {
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _result.setId(_tmpId);
-        final int _tmpNumberOfServings;
-        _tmpNumberOfServings = _cursor.getInt(_cursorIndexOfNumberOfServings);
+        final float _tmpNumberOfServings;
+        _tmpNumberOfServings = _cursor.getFloat(_cursorIndexOfNumberOfServings);
         _result.setNumberOfServings(_tmpNumberOfServings);
         final float _tmpServingSize;
         _tmpServingSize = _cursor.getFloat(_cursorIndexOfServingSize);

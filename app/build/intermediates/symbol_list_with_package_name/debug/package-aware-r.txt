@@ -3735,6 +3735,7 @@ drawable ic_gps_fixed
 drawable ic_gps_location
 drawable ic_gps_no_fix
 drawable ic_home_black_24dp
+drawable ic_import_24
 drawable ic_indoor_workout_green_50
 drawable ic_keyboard_black_24dp
 drawable ic_m3_chip_check
@@ -3970,7 +3971,10 @@ id btn_breakfast_add
 id btn_container
 id btn_dinner_add
 id btn_gps_start
+id btn_import
+id btn_import_recipe
 id btn_lunch_add
+id btn_save_recipe
 id btn_snack_add
 id btn_view_more
 id buttonPanel
@@ -3980,7 +3984,7 @@ id cal_burnt
 id cal_card_container
 id cal_dinner
 id cal_goal
-id cal_input
+id cal_intake
 id cal_lunch
 id cal_process_container
 id cal_remain
@@ -4066,6 +4070,9 @@ id dialog_tv_add
 id dialog_tv_add_diary
 id dialog_tv_count
 id dialog_tv_subtract
+id diary_carb
+id diary_fat
+id diary_protein
 id dimensions
 id dinner_card
 id direct
@@ -4096,6 +4103,7 @@ id easeInOut
 id easeOut
 id east
 id edge
+id edit_number_of_servings
 id edit_query
 id edit_search_name
 id edit_text_id
@@ -4126,6 +4134,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id finish_diary
 id fitCenter
 id fitEnd
 id fitStart
@@ -4134,12 +4143,15 @@ id fitXY
 id fixed
 id flip
 id floating
+id food_carb
 id food_detail_toolbar
+id food_fat
 id food_item_calo
 id food_item_name
 id food_item_serving_size
 id food_item_servings
 id food_name
+id food_protein
 id forever
 id fragment_container_view_tag
 id frost
@@ -4322,6 +4334,7 @@ id navigation_header_container
 id navigation_profile
 id navigation_sleep
 id nestedScrollView
+id nestedScrollView2
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
@@ -4561,8 +4574,10 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id tv_add_to_diary
+id tv_calories
 id tv_food_description
 id tv_food_name
+id tv_recipe_ingredients
 id tv_title
 id unchecked
 id uniform
@@ -4582,6 +4597,7 @@ id visible
 id visible_removing_fragment_view_tag
 id wearable_name
 id wearable_status
+id webview
 id weight_line_chart
 id west
 id withText
@@ -4710,6 +4726,7 @@ layout abc_tooltip
 layout activity_device_settings
 layout activity_discovery
 layout activity_food_detail
+layout activity_import_recipe
 layout activity_main
 layout activity_mi_band_pairing
 layout activity_recipe_detail
@@ -5293,6 +5310,7 @@ string bottomsheet_drag_handle_content_description
 string bpm
 string breakfast
 string breaststroke
+string browse_web
 string busy_task_fetch_activity_data
 string busy_task_fetch_debug_logs
 string busy_task_fetch_hr_data
@@ -5903,6 +5921,7 @@ string icon_content_description
 string icon_placeholder
 string ignore_bonded_devices
 string ignore_bonded_devices_description
+string import_recipe
 string in_door_workout
 string in_door_workout_title
 string indonesian
@@ -5956,7 +5975,9 @@ string label_add
 string label_burnt
 string label_goal
 string label_intake
+string label_nutrition
 string label_quantity_1
+string label_recipe_ingredients
 string label_remaining
 string label_sub
 string lack_of_sleep
@@ -7316,6 +7337,7 @@ string right_earbud
 string romanian
 string russian
 string save_configuration
+string save_recipe
 string scan_not_scanning
 string scan_scanning_all_devices
 string scan_scanning_multiple_devices

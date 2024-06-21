@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gr.database.DBHelper;
 import com.example.gr.databinding.ItemExerciseBinding;
 import com.example.gr.listener.IOnClickExerciseItemListener;
+import com.example.gr.model.ActivityUser;
 import com.example.gr.model.Exercise;
 
 import java.util.List;
@@ -17,10 +19,12 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
     private final List<Exercise> mExerciseList;
     public final IOnClickExerciseItemListener iOnClickExerciseItemListener;
+    private final ActivityUser activityUser;
 
     public ExerciseAdapter(List<Exercise> mExerciseList, IOnClickExerciseItemListener iOnClickExerciseItemListener) {
         this.mExerciseList = mExerciseList;
         this.iOnClickExerciseItemListener = iOnClickExerciseItemListener;
+        this.activityUser = new ActivityUser();
     }
 
     @NonNull
@@ -36,7 +40,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         if(exercise == null) {
             return;
         }
-        holder.mItemExerciseBinding.exerciseItemCalo.setText(String.valueOf((int)exercise.getCaloriesBurntPerMin()*exercise.getDefaultDuration())+"KCal  -  ");
+        holder.mItemExerciseBinding.exerciseItemCalo.setText(String.valueOf((int)exercise.getMet()*exercise.getDefaultDuration()* activityUser.getWeightKg()/60)+"KCal  -  ");
         holder.mItemExerciseBinding.exerciseItemName.setText(exercise.getName());
         holder.mItemExerciseBinding.exerciseItemMin.setText(String.valueOf(exercise.getDefaultDuration())+" phút");
         holder.mItemExerciseBinding.itemExerciseLayout.setOnClickListener(v->iOnClickExerciseItemListener.onClickItemExercise(exercise));

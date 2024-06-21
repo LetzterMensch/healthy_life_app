@@ -11,16 +11,32 @@ public class Exercise implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    private int caloriesBurntPerMin;
+    private float met;
+    private String category;
     private int defaultDuration;
-    private int duration;
-    private int caloriesBurntCount;
-    public Exercise(){}
+    public Exercise(){
+        defaultDuration = 60;
+    }
     @Ignore
-    public Exercise(String name, int caloriesBurntPerMin, int defaultDuration) {
+    public Exercise(String name, int defaultDuration) {
         this.name = name;
-        this.caloriesBurntPerMin = caloriesBurntPerMin;
         this.defaultDuration = defaultDuration;
+    }
+
+    public float getMet() {
+        return met;
+    }
+
+    public void setMet(float met) {
+        this.met = met;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getId() {
@@ -31,36 +47,12 @@ public class Exercise implements Serializable {
         this.id = id;
     }
 
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public int getCaloriesBurntCount() {
-        return caloriesBurntCount;
-    }
-
-    public void setCaloriesBurntCount(int caloriesBurntCount) {
-        this.caloriesBurntCount = caloriesBurntCount;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getCaloriesBurntPerMin() {
-        return caloriesBurntPerMin;
-    }
-
-    public void setCaloriesBurntPerMin(int caloriesBurntPerMin) {
-        this.caloriesBurntPerMin = caloriesBurntPerMin;
     }
 
     public int getDefaultDuration() {

@@ -11,6 +11,9 @@
     // action
     <string name="add">Thêm</string>
     <string name="action_ok">Đồng ý</string>
+    <string name="browse_web">Nhập từ trang web</string>
+    <string name="save_recipe">Lưu công thức</string>
+    <string name="import_recipe">Nạp công thức</string>
     <string name="action_cancel">Hủy bỏ</string>
     <string name="complete_diary">Hoàn thành nhật ký</string>
     <string name="action_start">Bắt đầu</string>
@@ -60,6 +63,8 @@
     // msg
     <string name="no_device_found">Không có thiết bị</string>
     <string name="description_label">Mô tả</string>
+    <string name="label_nutrition">Thông tin dinh dưỡng</string>
+    <string name="label_recipe_ingredients">Nguyên liệu</string>
     <string name="food_suggest">Gợi ý món ăn</string>
     <string name="recipe_suggest">Gợi ý công thức nấu ăn</string>
     <string name="error_not_connect_to_internet">Vui lòng kiểm tra kết nối mạng của bạn</string>

@@ -37,7 +37,7 @@ public final class FoodLogDAO_Impl implements FoodLogDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `foodlog` (`id`,`totalCarb`,`totalProtein`,`totalFat`,`totalCalories`,`meal`,`numberOfServings`,`foodId`) VALUES (?,?,?,?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `foodlog` (`id`,`totalCarb`,`totalProtein`,`totalFat`,`totalCalories`,`meal`,`numberOfServings`,`foodId`,`diaryId`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -48,8 +48,9 @@ public final class FoodLogDAO_Impl implements FoodLogDAO {
         statement.bindDouble(4, entity.getTotalFat());
         statement.bindLong(5, entity.getTotalCalories());
         statement.bindLong(6, entity.getMeal());
-        statement.bindLong(7, entity.getNumberOfServings());
+        statement.bindDouble(7, entity.getNumberOfServings());
         statement.bindLong(8, entity.getFoodId());
+        statement.bindLong(9, entity.getDiaryId());
       }
     };
     this.__deletionAdapterOfFoodLog = new EntityDeletionOrUpdateAdapter<FoodLog>(__db) {
@@ -68,7 +69,7 @@ public final class FoodLogDAO_Impl implements FoodLogDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `foodlog` SET `id` = ?,`totalCarb` = ?,`totalProtein` = ?,`totalFat` = ?,`totalCalories` = ?,`meal` = ?,`numberOfServings` = ?,`foodId` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `foodlog` SET `id` = ?,`totalCarb` = ?,`totalProtein` = ?,`totalFat` = ?,`totalCalories` = ?,`meal` = ?,`numberOfServings` = ?,`foodId` = ?,`diaryId` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -79,9 +80,10 @@ public final class FoodLogDAO_Impl implements FoodLogDAO {
         statement.bindDouble(4, entity.getTotalFat());
         statement.bindLong(5, entity.getTotalCalories());
         statement.bindLong(6, entity.getMeal());
-        statement.bindLong(7, entity.getNumberOfServings());
+        statement.bindDouble(7, entity.getNumberOfServings());
         statement.bindLong(8, entity.getFoodId());
-        statement.bindLong(9, entity.getId());
+        statement.bindLong(9, entity.getDiaryId());
+        statement.bindLong(10, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteAllFoodLog = new SharedSQLiteStatement(__db) {
@@ -162,6 +164,7 @@ public final class FoodLogDAO_Impl implements FoodLogDAO {
       final int _cursorIndexOfMeal = CursorUtil.getColumnIndexOrThrow(_cursor, "meal");
       final int _cursorIndexOfNumberOfServings = CursorUtil.getColumnIndexOrThrow(_cursor, "numberOfServings");
       final int _cursorIndexOfFoodId = CursorUtil.getColumnIndexOrThrow(_cursor, "foodId");
+      final int _cursorIndexOfDiaryId = CursorUtil.getColumnIndexOrThrow(_cursor, "diaryId");
       final List<FoodLog> _result = new ArrayList<FoodLog>(_cursor.getCount());
       while (_cursor.moveToNext()) {
         final FoodLog _item;
@@ -184,12 +187,15 @@ public final class FoodLogDAO_Impl implements FoodLogDAO {
         final int _tmpMeal;
         _tmpMeal = _cursor.getInt(_cursorIndexOfMeal);
         _item.setMeal(_tmpMeal);
-        final int _tmpNumberOfServings;
-        _tmpNumberOfServings = _cursor.getInt(_cursorIndexOfNumberOfServings);
+        final float _tmpNumberOfServings;
+        _tmpNumberOfServings = _cursor.getFloat(_cursorIndexOfNumberOfServings);
         _item.setNumberOfServings(_tmpNumberOfServings);
         final int _tmpFoodId;
         _tmpFoodId = _cursor.getInt(_cursorIndexOfFoodId);
         _item.setFoodId(_tmpFoodId);
+        final int _tmpDiaryId;
+        _tmpDiaryId = _cursor.getInt(_cursorIndexOfDiaryId);
+        _item.setDiaryId(_tmpDiaryId);
         _result.add(_item);
       }
       return _result;
@@ -216,6 +222,7 @@ public final class FoodLogDAO_Impl implements FoodLogDAO {
       final int _cursorIndexOfMeal = CursorUtil.getColumnIndexOrThrow(_cursor, "meal");
       final int _cursorIndexOfNumberOfServings = CursorUtil.getColumnIndexOrThrow(_cursor, "numberOfServings");
       final int _cursorIndexOfFoodId = CursorUtil.getColumnIndexOrThrow(_cursor, "foodId");
+      final int _cursorIndexOfDiaryId = CursorUtil.getColumnIndexOrThrow(_cursor, "diaryId");
       final FoodLog _result;
       if (_cursor.moveToFirst()) {
         _result = new FoodLog();
@@ -237,12 +244,15 @@ public final class FoodLogDAO_Impl implements FoodLogDAO {
         final int _tmpMeal;
         _tmpMeal = _cursor.getInt(_cursorIndexOfMeal);
         _result.setMeal(_tmpMeal);
-        final int _tmpNumberOfServings;
-        _tmpNumberOfServings = _cursor.getInt(_cursorIndexOfNumberOfServings);
+        final float _tmpNumberOfServings;
+        _tmpNumberOfServings = _cursor.getFloat(_cursorIndexOfNumberOfServings);
         _result.setNumberOfServings(_tmpNumberOfServings);
         final int _tmpFoodId;
         _tmpFoodId = _cursor.getInt(_cursorIndexOfFoodId);
         _result.setFoodId(_tmpFoodId);
+        final int _tmpDiaryId;
+        _tmpDiaryId = _cursor.getInt(_cursorIndexOfDiaryId);
+        _result.setDiaryId(_tmpDiaryId);
       } else {
         _result = null;
       }

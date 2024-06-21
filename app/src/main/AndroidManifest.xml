@@ -130,6 +130,9 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             android:name=".activity.FoodDetailActivity"
             android:exported="false"/>
         <activity
+            android:name=".activity.ImportRecipeFromWebActivity"
+            android:exported="false"/>
+        <activity
             android:name=".device.huami.miband.MiBandPairingActivity"
             android:label="@string/title_activity_mi_band_pairing"
             android:parentActivityName=".activity.MainActivity"

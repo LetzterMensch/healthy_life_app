@@ -4,6 +4,7 @@ package com.example.gr.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.gr.R;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -25,10 +27,28 @@ public final class ActivityFoodDetailBinding implements ViewBinding {
   public final TextView calories;
 
   @NonNull
+  public final LinearProgressIndicator carbIndicator;
+
+  @NonNull
+  public final EditText editNumberOfServings;
+
+  @NonNull
+  public final LinearProgressIndicator fatIndicator;
+
+  @NonNull
+  public final TextView foodCarb;
+
+  @NonNull
   public final RelativeLayout foodDetailToolbar;
 
   @NonNull
+  public final TextView foodFat;
+
+  @NonNull
   public final TextView foodName;
+
+  @NonNull
+  public final TextView foodProtein;
 
   @NonNull
   public final ImageView imgAdd;
@@ -40,19 +60,32 @@ public final class ActivityFoodDetailBinding implements ViewBinding {
   public final TextView numberOfServings;
 
   @NonNull
+  public final LinearProgressIndicator proteinIndicator;
+
+  @NonNull
   public final TextView servingSize;
 
   private ActivityFoodDetailBinding(@NonNull ConstraintLayout rootView, @NonNull TextView calories,
-      @NonNull RelativeLayout foodDetailToolbar, @NonNull TextView foodName,
-      @NonNull ImageView imgAdd, @NonNull ImageView imgBack, @NonNull TextView numberOfServings,
-      @NonNull TextView servingSize) {
+      @NonNull LinearProgressIndicator carbIndicator, @NonNull EditText editNumberOfServings,
+      @NonNull LinearProgressIndicator fatIndicator, @NonNull TextView foodCarb,
+      @NonNull RelativeLayout foodDetailToolbar, @NonNull TextView foodFat,
+      @NonNull TextView foodName, @NonNull TextView foodProtein, @NonNull ImageView imgAdd,
+      @NonNull ImageView imgBack, @NonNull TextView numberOfServings,
+      @NonNull LinearProgressIndicator proteinIndicator, @NonNull TextView servingSize) {
     this.rootView = rootView;
     this.calories = calories;
+    this.carbIndicator = carbIndicator;
+    this.editNumberOfServings = editNumberOfServings;
+    this.fatIndicator = fatIndicator;
+    this.foodCarb = foodCarb;
     this.foodDetailToolbar = foodDetailToolbar;
+    this.foodFat = foodFat;
     this.foodName = foodName;
+    this.foodProtein = foodProtein;
     this.imgAdd = imgAdd;
     this.imgBack = imgBack;
     this.numberOfServings = numberOfServings;
+    this.proteinIndicator = proteinIndicator;
     this.servingSize = servingSize;
   }
 
@@ -89,15 +122,51 @@ public final class ActivityFoodDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.carb_indicator;
+      LinearProgressIndicator carbIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (carbIndicator == null) {
+        break missingId;
+      }
+
+      id = R.id.edit_number_of_servings;
+      EditText editNumberOfServings = ViewBindings.findChildViewById(rootView, id);
+      if (editNumberOfServings == null) {
+        break missingId;
+      }
+
+      id = R.id.fat_indicator;
+      LinearProgressIndicator fatIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (fatIndicator == null) {
+        break missingId;
+      }
+
+      id = R.id.food_carb;
+      TextView foodCarb = ViewBindings.findChildViewById(rootView, id);
+      if (foodCarb == null) {
+        break missingId;
+      }
+
       id = R.id.food_detail_toolbar;
       RelativeLayout foodDetailToolbar = ViewBindings.findChildViewById(rootView, id);
       if (foodDetailToolbar == null) {
         break missingId;
       }
 
+      id = R.id.food_fat;
+      TextView foodFat = ViewBindings.findChildViewById(rootView, id);
+      if (foodFat == null) {
+        break missingId;
+      }
+
       id = R.id.food_name;
       TextView foodName = ViewBindings.findChildViewById(rootView, id);
       if (foodName == null) {
+        break missingId;
+      }
+
+      id = R.id.food_protein;
+      TextView foodProtein = ViewBindings.findChildViewById(rootView, id);
+      if (foodProtein == null) {
         break missingId;
       }
 
@@ -119,14 +188,21 @@ public final class ActivityFoodDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.protein_indicator;
+      LinearProgressIndicator proteinIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (proteinIndicator == null) {
+        break missingId;
+      }
+
       id = R.id.serving_size;
       TextView servingSize = ViewBindings.findChildViewById(rootView, id);
       if (servingSize == null) {
         break missingId;
       }
 
-      return new ActivityFoodDetailBinding((ConstraintLayout) rootView, calories, foodDetailToolbar,
-          foodName, imgAdd, imgBack, numberOfServings, servingSize);
+      return new ActivityFoodDetailBinding((ConstraintLayout) rootView, calories, carbIndicator,
+          editNumberOfServings, fatIndicator, foodCarb, foodDetailToolbar, foodFat, foodName,
+          foodProtein, imgAdd, imgBack, numberOfServings, proteinIndicator, servingSize);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

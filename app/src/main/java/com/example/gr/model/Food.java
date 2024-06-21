@@ -13,7 +13,7 @@ public class Food implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    private int numberOfServings;
+    private float numberOfServings;
     private float servingSize;
     private int calories;
     private float carb;
@@ -25,23 +25,24 @@ public class Food implements Serializable {
         this.protein = protein;
         this.fat = fat;
         this.carb = carb;
-        this.numberOfServings = 1;
+        this.numberOfServings = 1.0f;
         this.servingSize = 100f;
     }
     @Ignore
     public Food(){
-        this.numberOfServings = 1;
+        this.numberOfServings = 1.0f;
         this.servingSize = 100f;
     }
-
     @Ignore
-    public Food(String name, float servingSize, int calories){
+    public Food(String name, float numberOfServings, int calories){
         this.name = name;
-        this.servingSize = servingSize;
+        this.servingSize = 100f;
         this.calories = calories;
+        this.numberOfServings = numberOfServings;
+        this.servingSize = 100f;
     }
     @Ignore
-    public Food(int id, String name, int numberOfServings, float servingSize, int calories, float carb, float protein, float fat) {
+    public Food(int id, String name, float numberOfServings, float servingSize, int calories, float carb, float protein, float fat) {
         this.id = id;
         this.name = name;
         this.numberOfServings = numberOfServings;
@@ -76,11 +77,11 @@ public class Food implements Serializable {
         this.name = name;
     }
 
-    public int getNumberOfServings() {
+    public float getNumberOfServings() {
         return numberOfServings;
     }
 
-    public void setNumberOfServings(int numberOfServings) {
+    public void setNumberOfServings(float numberOfServings) {
         this.numberOfServings = numberOfServings;
     }
 
@@ -98,14 +99,6 @@ public class Food implements Serializable {
 
     public void setCalories(int calories) {
         this.calories = calories;
-    }
-
-    public float getCarbs() {
-        return carb;
-    }
-
-    public void setCarbs(float carb) {
-        this.carb = carb;
     }
 
     public float getProtein() {

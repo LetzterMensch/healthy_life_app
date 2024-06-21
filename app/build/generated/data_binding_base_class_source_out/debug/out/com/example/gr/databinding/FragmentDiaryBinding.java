@@ -56,7 +56,7 @@ public final class FragmentDiaryBinding implements ViewBinding {
   public final TextView calGoal;
 
   @NonNull
-  public final TextView calInput;
+  public final TextView calIntake;
 
   @NonNull
   public final TextView calLunch;
@@ -74,16 +74,16 @@ public final class FragmentDiaryBinding implements ViewBinding {
   public final LinearProgressIndicator carbIndicator;
 
   @NonNull
-  public final TextView dashboardCarb;
-
-  @NonNull
-  public final TextView dashboardFat;
-
-  @NonNull
-  public final TextView dashboardProtein;
-
-  @NonNull
   public final TextView date;
+
+  @NonNull
+  public final TextView diaryCarb;
+
+  @NonNull
+  public final TextView diaryFat;
+
+  @NonNull
+  public final TextView diaryProtein;
 
   @NonNull
   public final CardView dinnerCard;
@@ -93,6 +93,9 @@ public final class FragmentDiaryBinding implements ViewBinding {
 
   @NonNull
   public final LinearProgressIndicator fatIndicator;
+
+  @NonNull
+  public final CardView finishDiary;
 
   @NonNull
   public final ImageView imgBack;
@@ -137,18 +140,19 @@ public final class FragmentDiaryBinding implements ViewBinding {
       @NonNull TextView btnBreakfastAdd, @NonNull TextView btnDinnerAdd,
       @NonNull TextView btnLunchAdd, @NonNull TextView btnSnackAdd, @NonNull TextView calBreakfast,
       @NonNull TextView calBurnt, @NonNull CardView calCardContainer, @NonNull TextView calDinner,
-      @NonNull TextView calGoal, @NonNull TextView calInput, @NonNull TextView calLunch,
+      @NonNull TextView calGoal, @NonNull TextView calIntake, @NonNull TextView calLunch,
       @NonNull TextView calRemain, @NonNull TextView calSnack,
       @NonNull RelativeLayout calendarToolbar, @NonNull LinearProgressIndicator carbIndicator,
-      @NonNull TextView dashboardCarb, @NonNull TextView dashboardFat,
-      @NonNull TextView dashboardProtein, @NonNull TextView date, @NonNull CardView dinnerCard,
+      @NonNull TextView date, @NonNull TextView diaryCarb, @NonNull TextView diaryFat,
+      @NonNull TextView diaryProtein, @NonNull CardView dinnerCard,
       @NonNull TextView editSearchName, @NonNull LinearProgressIndicator fatIndicator,
-      @NonNull ImageView imgBack, @NonNull ImageView imgNext, @NonNull ImageView imgSearch,
-      @NonNull RelativeLayout layoutSearch, @NonNull CardView lunchCard,
-      @NonNull LinearProgressIndicator proteinIndicator, @NonNull RecyclerView rcvBreakfastFood,
-      @NonNull RecyclerView rcvDinnerFood, @NonNull RecyclerView rcvLunchFood,
-      @NonNull RecyclerView rcvSnackFood, @NonNull CardView snackCard,
-      @NonNull AppCompatTextView titleCaloriesRemain, @NonNull TextView tvAddToDiary) {
+      @NonNull CardView finishDiary, @NonNull ImageView imgBack, @NonNull ImageView imgNext,
+      @NonNull ImageView imgSearch, @NonNull RelativeLayout layoutSearch,
+      @NonNull CardView lunchCard, @NonNull LinearProgressIndicator proteinIndicator,
+      @NonNull RecyclerView rcvBreakfastFood, @NonNull RecyclerView rcvDinnerFood,
+      @NonNull RecyclerView rcvLunchFood, @NonNull RecyclerView rcvSnackFood,
+      @NonNull CardView snackCard, @NonNull AppCompatTextView titleCaloriesRemain,
+      @NonNull TextView tvAddToDiary) {
     this.rootView = rootView;
     this.breakfastCard = breakfastCard;
     this.btnBreakfastAdd = btnBreakfastAdd;
@@ -160,19 +164,20 @@ public final class FragmentDiaryBinding implements ViewBinding {
     this.calCardContainer = calCardContainer;
     this.calDinner = calDinner;
     this.calGoal = calGoal;
-    this.calInput = calInput;
+    this.calIntake = calIntake;
     this.calLunch = calLunch;
     this.calRemain = calRemain;
     this.calSnack = calSnack;
     this.calendarToolbar = calendarToolbar;
     this.carbIndicator = carbIndicator;
-    this.dashboardCarb = dashboardCarb;
-    this.dashboardFat = dashboardFat;
-    this.dashboardProtein = dashboardProtein;
     this.date = date;
+    this.diaryCarb = diaryCarb;
+    this.diaryFat = diaryFat;
+    this.diaryProtein = diaryProtein;
     this.dinnerCard = dinnerCard;
     this.editSearchName = editSearchName;
     this.fatIndicator = fatIndicator;
+    this.finishDiary = finishDiary;
     this.imgBack = imgBack;
     this.imgNext = imgNext;
     this.imgSearch = imgSearch;
@@ -275,9 +280,9 @@ public final class FragmentDiaryBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.cal_input;
-      TextView calInput = ViewBindings.findChildViewById(rootView, id);
-      if (calInput == null) {
+      id = R.id.cal_intake;
+      TextView calIntake = ViewBindings.findChildViewById(rootView, id);
+      if (calIntake == null) {
         break missingId;
       }
 
@@ -311,27 +316,27 @@ public final class FragmentDiaryBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.dashboard_carb;
-      TextView dashboardCarb = ViewBindings.findChildViewById(rootView, id);
-      if (dashboardCarb == null) {
-        break missingId;
-      }
-
-      id = R.id.dashboard_fat;
-      TextView dashboardFat = ViewBindings.findChildViewById(rootView, id);
-      if (dashboardFat == null) {
-        break missingId;
-      }
-
-      id = R.id.dashboard_protein;
-      TextView dashboardProtein = ViewBindings.findChildViewById(rootView, id);
-      if (dashboardProtein == null) {
-        break missingId;
-      }
-
       id = R.id.date;
       TextView date = ViewBindings.findChildViewById(rootView, id);
       if (date == null) {
+        break missingId;
+      }
+
+      id = R.id.diary_carb;
+      TextView diaryCarb = ViewBindings.findChildViewById(rootView, id);
+      if (diaryCarb == null) {
+        break missingId;
+      }
+
+      id = R.id.diary_fat;
+      TextView diaryFat = ViewBindings.findChildViewById(rootView, id);
+      if (diaryFat == null) {
+        break missingId;
+      }
+
+      id = R.id.diary_protein;
+      TextView diaryProtein = ViewBindings.findChildViewById(rootView, id);
+      if (diaryProtein == null) {
         break missingId;
       }
 
@@ -350,6 +355,12 @@ public final class FragmentDiaryBinding implements ViewBinding {
       id = R.id.fat_indicator;
       LinearProgressIndicator fatIndicator = ViewBindings.findChildViewById(rootView, id);
       if (fatIndicator == null) {
+        break missingId;
+      }
+
+      id = R.id.finish_diary;
+      CardView finishDiary = ViewBindings.findChildViewById(rootView, id);
+      if (finishDiary == null) {
         break missingId;
       }
 
@@ -433,9 +444,9 @@ public final class FragmentDiaryBinding implements ViewBinding {
 
       return new FragmentDiaryBinding((ConstraintLayout) rootView, breakfastCard, btnBreakfastAdd,
           btnDinnerAdd, btnLunchAdd, btnSnackAdd, calBreakfast, calBurnt, calCardContainer,
-          calDinner, calGoal, calInput, calLunch, calRemain, calSnack, calendarToolbar,
-          carbIndicator, dashboardCarb, dashboardFat, dashboardProtein, date, dinnerCard,
-          editSearchName, fatIndicator, imgBack, imgNext, imgSearch, layoutSearch, lunchCard,
+          calDinner, calGoal, calIntake, calLunch, calRemain, calSnack, calendarToolbar,
+          carbIndicator, date, diaryCarb, diaryFat, diaryProtein, dinnerCard, editSearchName,
+          fatIndicator, finishDiary, imgBack, imgNext, imgSearch, layoutSearch, lunchCard,
           proteinIndicator, rcvBreakfastFood, rcvDinnerFood, rcvLunchFood, rcvSnackFood, snackCard,
           titleCaloriesRemain, tvAddToDiary);
     }

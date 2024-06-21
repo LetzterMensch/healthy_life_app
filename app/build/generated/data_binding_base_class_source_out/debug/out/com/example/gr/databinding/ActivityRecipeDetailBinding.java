@@ -4,6 +4,7 @@ package com.example.gr.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.gr.R;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -22,10 +24,31 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final Button btnSaveRecipe;
+
+  @NonNull
+  public final LinearProgressIndicator carbIndicator;
+
+  @NonNull
+  public final LinearProgressIndicator fatIndicator;
+
+  @NonNull
+  public final TextView foodCarb;
+
+  @NonNull
+  public final TextView foodFat;
+
+  @NonNull
+  public final TextView foodProtein;
+
+  @NonNull
   public final ImageView imgAdd;
 
   @NonNull
   public final ImageView imgBack;
+
+  @NonNull
+  public final LinearProgressIndicator proteinIndicator;
 
   @NonNull
   public final RelativeLayout recipeDetailToolbar;
@@ -34,22 +57,41 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
   public final ImageView recipeImg;
 
   @NonNull
+  public final TextView tvCalories;
+
+  @NonNull
   public final TextView tvFoodDescription;
 
   @NonNull
   public final TextView tvFoodName;
 
-  private ActivityRecipeDetailBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView imgAdd,
-      @NonNull ImageView imgBack, @NonNull RelativeLayout recipeDetailToolbar,
-      @NonNull ImageView recipeImg, @NonNull TextView tvFoodDescription,
-      @NonNull TextView tvFoodName) {
+  @NonNull
+  public final TextView tvRecipeIngredients;
+
+  private ActivityRecipeDetailBinding(@NonNull ConstraintLayout rootView,
+      @NonNull Button btnSaveRecipe, @NonNull LinearProgressIndicator carbIndicator,
+      @NonNull LinearProgressIndicator fatIndicator, @NonNull TextView foodCarb,
+      @NonNull TextView foodFat, @NonNull TextView foodProtein, @NonNull ImageView imgAdd,
+      @NonNull ImageView imgBack, @NonNull LinearProgressIndicator proteinIndicator,
+      @NonNull RelativeLayout recipeDetailToolbar, @NonNull ImageView recipeImg,
+      @NonNull TextView tvCalories, @NonNull TextView tvFoodDescription,
+      @NonNull TextView tvFoodName, @NonNull TextView tvRecipeIngredients) {
     this.rootView = rootView;
+    this.btnSaveRecipe = btnSaveRecipe;
+    this.carbIndicator = carbIndicator;
+    this.fatIndicator = fatIndicator;
+    this.foodCarb = foodCarb;
+    this.foodFat = foodFat;
+    this.foodProtein = foodProtein;
     this.imgAdd = imgAdd;
     this.imgBack = imgBack;
+    this.proteinIndicator = proteinIndicator;
     this.recipeDetailToolbar = recipeDetailToolbar;
     this.recipeImg = recipeImg;
+    this.tvCalories = tvCalories;
     this.tvFoodDescription = tvFoodDescription;
     this.tvFoodName = tvFoodName;
+    this.tvRecipeIngredients = tvRecipeIngredients;
   }
 
   @Override
@@ -79,6 +121,42 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_save_recipe;
+      Button btnSaveRecipe = ViewBindings.findChildViewById(rootView, id);
+      if (btnSaveRecipe == null) {
+        break missingId;
+      }
+
+      id = R.id.carb_indicator;
+      LinearProgressIndicator carbIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (carbIndicator == null) {
+        break missingId;
+      }
+
+      id = R.id.fat_indicator;
+      LinearProgressIndicator fatIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (fatIndicator == null) {
+        break missingId;
+      }
+
+      id = R.id.food_carb;
+      TextView foodCarb = ViewBindings.findChildViewById(rootView, id);
+      if (foodCarb == null) {
+        break missingId;
+      }
+
+      id = R.id.food_fat;
+      TextView foodFat = ViewBindings.findChildViewById(rootView, id);
+      if (foodFat == null) {
+        break missingId;
+      }
+
+      id = R.id.food_protein;
+      TextView foodProtein = ViewBindings.findChildViewById(rootView, id);
+      if (foodProtein == null) {
+        break missingId;
+      }
+
       id = R.id.img_add;
       ImageView imgAdd = ViewBindings.findChildViewById(rootView, id);
       if (imgAdd == null) {
@@ -88,6 +166,12 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
       id = R.id.img_back;
       ImageView imgBack = ViewBindings.findChildViewById(rootView, id);
       if (imgBack == null) {
+        break missingId;
+      }
+
+      id = R.id.protein_indicator;
+      LinearProgressIndicator proteinIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (proteinIndicator == null) {
         break missingId;
       }
 
@@ -103,6 +187,12 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_calories;
+      TextView tvCalories = ViewBindings.findChildViewById(rootView, id);
+      if (tvCalories == null) {
+        break missingId;
+      }
+
       id = R.id.tv_food_description;
       TextView tvFoodDescription = ViewBindings.findChildViewById(rootView, id);
       if (tvFoodDescription == null) {
@@ -115,8 +205,16 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityRecipeDetailBinding((ConstraintLayout) rootView, imgAdd, imgBack,
-          recipeDetailToolbar, recipeImg, tvFoodDescription, tvFoodName);
+      id = R.id.tv_recipe_ingredients;
+      TextView tvRecipeIngredients = ViewBindings.findChildViewById(rootView, id);
+      if (tvRecipeIngredients == null) {
+        break missingId;
+      }
+
+      return new ActivityRecipeDetailBinding((ConstraintLayout) rootView, btnSaveRecipe,
+          carbIndicator, fatIndicator, foodCarb, foodFat, foodProtein, imgAdd, imgBack,
+          proteinIndicator, recipeDetailToolbar, recipeImg, tvCalories, tvFoodDescription,
+          tvFoodName, tvRecipeIngredients);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

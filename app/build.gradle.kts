@@ -53,7 +53,8 @@ dependencies {
     implementation ("com.jakewharton.threetenabp:threetenabp:1.4.0")
     implementation ("net.e175.klaus:solarpositioning:0.0.9")
     implementation ("org.cyanogenmod:platform.sdk:6.0")
-
+    //Jsoup for scraping html
+    implementation("org.jsoup:jsoup:1.15.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
