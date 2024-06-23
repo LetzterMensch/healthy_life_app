@@ -25,6 +25,13 @@
     <string name="label_goal">mục tiêu</string>
     <string name="title_calories">Calories</string>
     <string name="formula_cal">cần nạp = mục tiêu - đã nạp + tiêu hao</string>
+    // profile
+    <string name="profile_device_settings">Cài đặt thiết bị</string>
+    <string name="profile_device_connect">Kết nối thiết bị</string>
+    <string name="profile_device_disconnect">Ngắt kết nối</string>
+    <string name="profile_device_sync">Đồng bộ</string>
+    <string name="profile_device_goal">Mục tiêu dinh dưỡng</string>
+    <string name="log_out">Đăng xuất</string>
     //exercise
     <string name="ex_title_steps">bước chân</string>
     <string name="ex_history">Lịch sử tập luyện</string>

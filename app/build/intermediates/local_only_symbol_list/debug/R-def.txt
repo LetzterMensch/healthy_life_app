@@ -363,6 +363,7 @@ color dividerColor
 color green
 color green_100
 color green_50
+color img_profile_default_background
 color lightPink
 color light_gray
 color orange
@@ -513,15 +514,18 @@ drawable ic_device_zetime
 drawable ic_device_zetime_disabled
 drawable ic_diary
 drawable ic_diary_black_24dp
+drawable ic_disconnect_30
 drawable ic_exercise_24dp
 drawable ic_fire
 drawable ic_forward_white_36
+drawable ic_goal_30
 drawable ic_gps_fixed
 drawable ic_gps_location
 drawable ic_gps_no_fix
 drawable ic_home_black_24dp
 drawable ic_import_24
 drawable ic_indoor_workout_green_50
+drawable ic_log_out_30
 drawable ic_map_zoomin
 drawable ic_map_zoomout
 drawable ic_notification
@@ -533,8 +537,12 @@ drawable ic_profile_black_24dp
 drawable ic_refresh
 drawable ic_run_blue_50
 drawable ic_search_red
+drawable ic_settings
 drawable ic_steps
+drawable ic_sync_30
 drawable ic_vpn_key
+drawable img_no_image
+drawable ripple_effect
 drawable skbk_logo
 drawable svbok_logo
 font akaya_telivigala
@@ -583,6 +591,7 @@ id card_burnt_container
 id card_container
 id chartCardView
 id charts_fetch_activity_data
+id connect_device
 id content
 id dashboard_cal_burnt
 id dashboard_cal_burnt_hr
@@ -594,6 +603,8 @@ id date
 id deepSleepIndicator
 id deep_sleep_hr
 id deep_sleep_percentage
+id device_settings
+id device_sync
 id dialog_ex_item_name
 id dialog_exercise_item_calo
 id dialog_exercise_item_min
@@ -683,6 +694,8 @@ id navigation_sleep
 id nestedScrollView
 id nestedScrollView2
 id number_of_servings
+id profile_goal
+id profile_log_out
 id progressBar
 id protein_indicator
 id rcv_breakfast_food
@@ -716,7 +729,6 @@ id recordTime
 id recorderAutoStartOverlay
 id recorderWaitingOverlay
 id recorderWaitingSatellites
-id remove_button
 id search_tabLayout
 id serving_size
 id settings_container
@@ -740,8 +752,10 @@ id title_goal_steps
 id title_today
 id toolbar
 id total_sleep_time
+id tv_about_us_content
 id tv_add_to_diary
 id tv_calories
+id tv_email
 id tv_food_description
 id tv_food_name
 id tv_recipe_ingredients
@@ -789,6 +803,9 @@ menu bottom_nav_menu
 menu menu_charts
 mipmap ic_launcher
 mipmap ic_launcher_round
+mipmap img_profile
+mipmap img_profile_default
+mipmap img_profile_default_round
 plurals satelliteCount
 plurals widget_alarm_target_hours
 string Activity
@@ -1850,6 +1867,7 @@ string live_activity_steps_history
 string live_activity_steps_per_minute_history
 string live_activity_total_steps
 string liveactivity_live_activity
+string log_out
 string long_press
 string lorem_ipsum
 string low_power_gps
@@ -3007,6 +3025,11 @@ string prefs_wena3_vibration_warning
 string prefs_workmode
 string pressure_relief_summary
 string preview_image
+string profile_device_connect
+string profile_device_disconnect
+string profile_device_goal
+string profile_device_settings
+string profile_device_sync
 string prompt_restart_gadgetbridge
 string protein
 string protocol_version

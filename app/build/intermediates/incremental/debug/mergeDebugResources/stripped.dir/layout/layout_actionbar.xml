@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@color/colorPrimary">
+    <RelativeLayout
+        android:id="@+id/food_detail_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        >
+
+        <ImageView
+            android:id="@+id/action_bar_back_img"
+            android:layout_width="@dimen/define_dimen_45"
+            android:layout_height="@dimen/define_dimen_45"
+            android:layout_marginEnd="@dimen/define_dimen_6"
+            android:padding="@dimen/define_dimen_10"
+            android:src="@drawable/ic_back_white_36"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/action_bar_title"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</RelativeLayout>

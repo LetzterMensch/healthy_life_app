@@ -1937,6 +1937,7 @@ color green_100
 color green_50
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color img_profile_default_background
 color lightPink
 color light_gray
 color m3_appbar_overlay_color
@@ -3728,9 +3729,11 @@ drawable ic_device_zetime
 drawable ic_device_zetime_disabled
 drawable ic_diary
 drawable ic_diary_black_24dp
+drawable ic_disconnect_30
 drawable ic_exercise_24dp
 drawable ic_fire
 drawable ic_forward_white_36
+drawable ic_goal_30
 drawable ic_gps_fixed
 drawable ic_gps_location
 drawable ic_gps_no_fix
@@ -3738,6 +3741,7 @@ drawable ic_home_black_24dp
 drawable ic_import_24
 drawable ic_indoor_workout_green_50
 drawable ic_keyboard_black_24dp
+drawable ic_log_out_30
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
@@ -3757,8 +3761,11 @@ drawable ic_refresh
 drawable ic_run_blue_50
 drawable ic_search_black_24
 drawable ic_search_red
+drawable ic_settings
 drawable ic_steps
+drawable ic_sync_30
 drawable ic_vpn_key
+drawable img_no_image
 drawable indeterminate_static
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -3846,6 +3853,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable preference_list_divider_material
+drawable ripple_effect
 drawable skbk_logo
 drawable svbok_logo
 drawable test_level_drawable
@@ -4025,6 +4033,7 @@ id closest
 id collapseActionView
 id compress
 id confirm_button
+id connect_device
 id constraint
 id container
 id content
@@ -4061,6 +4070,8 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
+id device_settings
+id device_sync
 id dialog_button
 id dialog_ex_item_name
 id dialog_exercise_item_calo
@@ -4383,6 +4394,8 @@ id pooling_container_listener_holder_tag
 id position
 id postLayout
 id pressed
+id profile_goal
+id profile_log_out
 id progressBar
 id progress_circular
 id progress_horizontal
@@ -4422,7 +4435,6 @@ id recorderWaitingOverlay
 id recorderWaitingSatellites
 id rectangles
 id recycler_view
-id remove_button
 id report_drawn
 id reverseSawtooth
 id right
@@ -4573,8 +4585,10 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tv_about_us_content
 id tv_add_to_diary
 id tv_calories
+id tv_email
 id tv_food_description
 id tv_food_name
 id tv_recipe_ingredients
@@ -4885,6 +4899,9 @@ menu bottom_nav_menu
 menu menu_charts
 mipmap ic_launcher
 mipmap ic_launcher_round
+mipmap img_profile
+mipmap img_profile_default
+mipmap img_profile_default_round
 plurals mtrl_badge_content_description
 plurals satelliteCount
 plurals widget_alarm_target_hours
@@ -6004,6 +6021,7 @@ string live_activity_steps_history
 string live_activity_steps_per_minute_history
 string live_activity_total_steps
 string liveactivity_live_activity
+string log_out
 string long_press
 string lorem_ipsum
 string low_power_gps
@@ -7269,6 +7287,11 @@ string prefs_wena3_vibration_warning
 string prefs_workmode
 string pressure_relief_summary
 string preview_image
+string profile_device_connect
+string profile_device_disconnect
+string profile_device_goal
+string profile_device_settings
+string profile_device_sync
 string prompt_restart_gadgetbridge
 string protein
 string protocol_version

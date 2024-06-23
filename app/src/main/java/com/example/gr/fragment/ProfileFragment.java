@@ -43,20 +43,33 @@ public class ProfileFragment extends BaseFragment {
         deviceManager = ((ControllerApplication) getActivity().getApplication()).getDeviceManager();
         context = getContext();
         initUi();
-
+        initListener();
         return mFragmentProfileBinding.getRoot();
+    }
+    private void initListener(){
+        mFragmentProfileBinding.connectDevice.setOnClickListener(v->{
+
+        });
+        mFragmentProfileBinding.deviceSettings.setOnClickListener(v->{
+
+        });
+        mFragmentProfileBinding.deviceSync.setOnClickListener(v->{
+
+        });
+        mFragmentProfileBinding.profileGoal.setOnClickListener(v->{
+
+        });
+        mFragmentProfileBinding.profileLogOut.setOnClickListener(v->{
+
+        });
     }
     private void initUi(){
         if(deviceManager.getDevices().size() < 1){
-            mFragmentProfileBinding.disconnectButton.setEnabled(false);
-            mFragmentProfileBinding.disconnectButton.setBackgroundResource(R.drawable.bg_gray_shape_corner_6);
-            mFragmentProfileBinding.removeButton.setEnabled(false);
-            mFragmentProfileBinding.removeButton.setBackgroundResource(R.drawable.bg_gray_shape_corner_6);
+            mFragmentProfileBinding.disconnectButton.setVisibility(View.INVISIBLE);
+            mFragmentProfileBinding.connectDevice.setVisibility(View.VISIBLE);
         }else{
-            mFragmentProfileBinding.disconnectButton.setEnabled(true);
-            mFragmentProfileBinding.disconnectButton.setBackgroundResource(R.drawable.bg_red_shape_corner_6);
-            mFragmentProfileBinding.removeButton.setEnabled(true);
-            mFragmentProfileBinding.removeButton.setBackgroundResource(R.drawable.bg_green_shape_corner_6);
+            mFragmentProfileBinding.disconnectButton.setVisibility(View.VISIBLE);
+            mFragmentProfileBinding.connectDevice.setVisibility(View.GONE);
             device = deviceManager.getDevices().get(0);
             mFragmentProfileBinding.disconnectButton.setOnClickListener(v->{
                 if (device.getState() != GBDevice.State.NOT_CONNECTED) {
@@ -64,9 +77,6 @@ public class ProfileFragment extends BaseFragment {
                     ControllerApplication.deviceService(device).disconnect();
                 }
                 removeFromLastDeviceAddressesPref(device);
-            });
-            mFragmentProfileBinding.removeButton.setOnClickListener(v->{
-                showRemoveDeviceDialog(device);
             });
         }
     }

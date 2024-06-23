@@ -4,7 +4,7 @@ package com.example.gr.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -20,16 +20,43 @@ public final class FragmentProfileBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final Button disconnectButton;
+  public final TextView connectDevice;
 
   @NonNull
-  public final Button removeButton;
+  public final TextView deviceSettings;
+
+  @NonNull
+  public final TextView deviceSync;
+
+  @NonNull
+  public final TextView disconnectButton;
+
+  @NonNull
+  public final TextView profileGoal;
+
+  @NonNull
+  public final TextView profileLogOut;
+
+  @NonNull
+  public final TextView tvAboutUsContent;
+
+  @NonNull
+  public final TextView tvEmail;
 
   private FragmentProfileBinding(@NonNull ConstraintLayout rootView,
-      @NonNull Button disconnectButton, @NonNull Button removeButton) {
+      @NonNull TextView connectDevice, @NonNull TextView deviceSettings,
+      @NonNull TextView deviceSync, @NonNull TextView disconnectButton,
+      @NonNull TextView profileGoal, @NonNull TextView profileLogOut,
+      @NonNull TextView tvAboutUsContent, @NonNull TextView tvEmail) {
     this.rootView = rootView;
+    this.connectDevice = connectDevice;
+    this.deviceSettings = deviceSettings;
+    this.deviceSync = deviceSync;
     this.disconnectButton = disconnectButton;
-    this.removeButton = removeButton;
+    this.profileGoal = profileGoal;
+    this.profileLogOut = profileLogOut;
+    this.tvAboutUsContent = tvAboutUsContent;
+    this.tvEmail = tvEmail;
   }
 
   @Override
@@ -59,20 +86,56 @@ public final class FragmentProfileBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.connect_device;
+      TextView connectDevice = ViewBindings.findChildViewById(rootView, id);
+      if (connectDevice == null) {
+        break missingId;
+      }
+
+      id = R.id.device_settings;
+      TextView deviceSettings = ViewBindings.findChildViewById(rootView, id);
+      if (deviceSettings == null) {
+        break missingId;
+      }
+
+      id = R.id.device_sync;
+      TextView deviceSync = ViewBindings.findChildViewById(rootView, id);
+      if (deviceSync == null) {
+        break missingId;
+      }
+
       id = R.id.disconnect_button;
-      Button disconnectButton = ViewBindings.findChildViewById(rootView, id);
+      TextView disconnectButton = ViewBindings.findChildViewById(rootView, id);
       if (disconnectButton == null) {
         break missingId;
       }
 
-      id = R.id.remove_button;
-      Button removeButton = ViewBindings.findChildViewById(rootView, id);
-      if (removeButton == null) {
+      id = R.id.profile_goal;
+      TextView profileGoal = ViewBindings.findChildViewById(rootView, id);
+      if (profileGoal == null) {
         break missingId;
       }
 
-      return new FragmentProfileBinding((ConstraintLayout) rootView, disconnectButton,
-          removeButton);
+      id = R.id.profile_log_out;
+      TextView profileLogOut = ViewBindings.findChildViewById(rootView, id);
+      if (profileLogOut == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_about_us_content;
+      TextView tvAboutUsContent = ViewBindings.findChildViewById(rootView, id);
+      if (tvAboutUsContent == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_email;
+      TextView tvEmail = ViewBindings.findChildViewById(rootView, id);
+      if (tvEmail == null) {
+        break missingId;
+      }
+
+      return new FragmentProfileBinding((ConstraintLayout) rootView, connectDevice, deviceSettings,
+          deviceSync, disconnectButton, profileGoal, profileLogOut, tvAboutUsContent, tvEmail);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
