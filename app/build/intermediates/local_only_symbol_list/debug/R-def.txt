@@ -6,6 +6,8 @@ array activate_display_on_lift_sensitivity_values
 array activate_display_on_lift_values
 array activate_display_on_lift_with_smart
 array activate_display_on_lift_with_smart_values
+array active_level
+array active_level_value
 array activity_filter_quick_filter_period_items
 array activity_filter_quick_filter_period_values
 array always_on_display
@@ -270,6 +272,8 @@ array prefs_wena3_vibration_times_values
 array prefs_zetime_heartrate_measurement_interval
 array prefs_zetime_heartrate_measurement_interval_values
 array preloaded_fonts
+array purpose
+array purpose_value
 array reminder_repeat
 array screen_timeout
 array screen_timeout_values
@@ -603,6 +607,7 @@ id date
 id deepSleepIndicator
 id deep_sleep_hr
 id deep_sleep_percentage
+id delete_button
 id device_settings
 id device_sync
 id dialog_ex_item_name
@@ -856,6 +861,11 @@ string action_settings
 string action_start
 string action_view_more
 string activeSeconds
+string active_level_active
+string active_level_light
+string active_level_low
+string active_level_moderate
+string active_level_very_active
 string active_time
 string activity_DB_ExportButton
 string activity_DB_ShowContentButton
@@ -912,6 +922,7 @@ string activity_prefs_alarm_max_heart_rate
 string activity_prefs_alarm_min_heart_rate
 string activity_prefs_allow_bluetooth_intent_api
 string activity_prefs_calories_burnt
+string activity_prefs_carb_goal
 string activity_prefs_chart_max_heart_rate
 string activity_prefs_chart_max_idle_phase_length
 string activity_prefs_chart_min_heart_rate
@@ -921,11 +932,13 @@ string activity_prefs_chart_min_steps_per_minute_for_run
 string activity_prefs_charts
 string activity_prefs_discovery_pairing
 string activity_prefs_distance_meters
+string activity_prefs_fat_goal
 string activity_prefs_gender
 string activity_prefs_goal_fat_burn_time_minutes
 string activity_prefs_goal_standing_time_minutes
 string activity_prefs_goals
 string activity_prefs_height_cm
+string activity_prefs_protein_goal
 string activity_prefs_sleep_duration
 string activity_prefs_step_length_cm
 string activity_prefs_summary_allow_bluetooth_intent_api
@@ -1091,6 +1104,8 @@ string activity_type_windsurfing
 string activity_type_wrestling
 string activity_type_yoga
 string activity_type_zumba
+string activity_user_activity_level
+string activity_user_purpose
 string activity_web_view
 string add
 string add_exercise
@@ -2054,6 +2069,8 @@ string miband_prefs_hr_sleep_detection
 string miband_prefs_reserve_alarm_calendar
 string miband_prefs_reserve_reminder_calendar
 string miband_prefs_vibration
+string mild_weight_gain
+string mild_weight_loss
 string minAltitude
 string minCadence
 string minHR
@@ -3493,6 +3510,8 @@ string weeksteps_today_steps_description
 string weekstepschart_steps_a_month
 string weekstepschart_steps_a_week
 string weekstepschart_steps_a_week_or_month
+string weight_gain
+string weight_loss
 string when_screen_off
 string white
 string whitelist_all_for_notifications
@@ -3603,6 +3622,7 @@ string zetime_title_heart_rate_alarm_summary
 string zetime_title_heartrate
 string zetime_title_screentime
 string zetime_title_settings
+style MyEditTextPreferenceStyle
 style Theme.GR
 styleable AspectRatioView aspectRatioEnabled dominantMeasurement aspectRatio cornerRadius roundedCorners
 styleable PropertyBottomNavigation itemActiveColor itemInactiveColor titleColorActive titleColorInactive

@@ -70,6 +70,7 @@ public class AboutUserPreferencesActivity extends AbstractSettingsActivityV2 {
             addPreferenceHandlerFor(PREF_USER_GOAL_WEIGHT_KG, true, true);
             addPreferenceHandlerFor(PREF_USER_GOAL_STANDING_TIME_HOURS, true, true);
             addPreferenceHandlerFor(PREF_USER_GOAL_FAT_BURN_TIME_MINUTES, true, true);
+
             addPreferenceHandlerFor(PREF_USER_SLEEP_DURATION, false, true);
             addPreferenceHandlerFor(PREF_USER_STEP_LENGTH_CM, false, true);
             addPreferenceHandlerFor(PREF_USER_DISTANCE_METERS, false, true);

@@ -93,6 +93,8 @@ int array activate_display_on_lift_sensitivity_values 0x7f030002
 int array activate_display_on_lift_values 0x7f030003
 int array activate_display_on_lift_with_smart 0x7f030004
 int array activate_display_on_lift_with_smart_values 0x7f030005
+int array active_level 0x7f030147
+int array active_level_value 0x7f030148
 int array activity_filter_quick_filter_period_items 0x7f030006
 int array activity_filter_quick_filter_period_values 0x7f030007
 int array always_on_display 0x7f030008
@@ -357,6 +359,8 @@ int array prefs_wena3_vibration_times_values 0x7f03010a
 int array prefs_zetime_heartrate_measurement_interval 0x7f03010b
 int array prefs_zetime_heartrate_measurement_interval_values 0x7f03010c
 int array preloaded_fonts 0x7f03010d
+int array purpose 0x7f030149
+int array purpose_value 0x7f03014a
 int array reminder_repeat 0x7f03010e
 int array screen_timeout 0x7f03010f
 int array screen_timeout_values 0x7f030110
@@ -4062,6 +4066,7 @@ int id deepSleepIndicator 0x7f0a00c5
 int id deep_sleep_hr 0x7f0a00c6
 int id deep_sleep_percentage 0x7f0a00c7
 int id default_activity_button 0x7f0a00c8
+int id delete_button 0x7f0a02f8
 int id deltaRelative 0x7f0a00c9
 int id dependency_ordering 0x7f0a00ca
 int id design_bottom_sheet 0x7f0a00cb
@@ -4979,6 +4984,11 @@ int string action_settings 0x7f120047
 int string action_start 0x7f120048
 int string action_view_more 0x7f120049
 int string activeSeconds 0x7f12004a
+int string active_level_active 0x7f120b9a
+int string active_level_light 0x7f120b9b
+int string active_level_low 0x7f120b9c
+int string active_level_moderate 0x7f120b9d
+int string active_level_very_active 0x7f120b9e
 int string active_time 0x7f12004b
 int string activity_DB_ExportButton 0x7f12004c
 int string activity_DB_ShowContentButton 0x7f12004d
@@ -5035,6 +5045,7 @@ int string activity_prefs_alarm_max_heart_rate 0x7f12007f
 int string activity_prefs_alarm_min_heart_rate 0x7f120080
 int string activity_prefs_allow_bluetooth_intent_api 0x7f120081
 int string activity_prefs_calories_burnt 0x7f120082
+int string activity_prefs_carb_goal 0x7f120b9f
 int string activity_prefs_chart_max_heart_rate 0x7f120083
 int string activity_prefs_chart_max_idle_phase_length 0x7f120084
 int string activity_prefs_chart_min_heart_rate 0x7f120085
@@ -5044,11 +5055,13 @@ int string activity_prefs_chart_min_steps_per_minute_for_run 0x7f120088
 int string activity_prefs_charts 0x7f120089
 int string activity_prefs_discovery_pairing 0x7f12008a
 int string activity_prefs_distance_meters 0x7f12008b
+int string activity_prefs_fat_goal 0x7f120ba0
 int string activity_prefs_gender 0x7f12008c
 int string activity_prefs_goal_fat_burn_time_minutes 0x7f12008d
 int string activity_prefs_goal_standing_time_minutes 0x7f12008e
 int string activity_prefs_goals 0x7f12008f
 int string activity_prefs_height_cm 0x7f120090
+int string activity_prefs_protein_goal 0x7f120ba1
 int string activity_prefs_sleep_duration 0x7f120091
 int string activity_prefs_step_length_cm 0x7f120092
 int string activity_prefs_summary_allow_bluetooth_intent_api 0x7f120093
@@ -5214,6 +5227,8 @@ int string activity_type_windsurfing 0x7f120132
 int string activity_type_wrestling 0x7f120133
 int string activity_type_yoga 0x7f120134
 int string activity_type_zumba 0x7f120135
+int string activity_user_activity_level 0x7f120ba2
+int string activity_user_purpose 0x7f120ba3
 int string activity_web_view 0x7f120136
 int string add 0x7f120137
 int string add_exercise 0x7f120138
@@ -6245,6 +6260,8 @@ int string miband_prefs_hr_sleep_detection 0x7f120539
 int string miband_prefs_reserve_alarm_calendar 0x7f12053a
 int string miband_prefs_reserve_reminder_calendar 0x7f12053b
 int string miband_prefs_vibration 0x7f12053c
+int string mild_weight_gain 0x7f120ba4
+int string mild_weight_loss 0x7f120ba5
 int string minAltitude 0x7f12053d
 int string minCadence 0x7f12053e
 int string minHR 0x7f12053f
@@ -7764,6 +7781,8 @@ int string weeksteps_today_steps_description 0x7f120b28
 int string weekstepschart_steps_a_month 0x7f120b29
 int string weekstepschart_steps_a_week 0x7f120b2a
 int string weekstepschart_steps_a_week_or_month 0x7f120b2b
+int string weight_gain 0x7f120ba6
+int string weight_loss 0x7f120ba7
 int string when_screen_off 0x7f120b2c
 int string white 0x7f120b2d
 int string whitelist_all_for_notifications 0x7f120b2e
@@ -8190,6 +8209,7 @@ int style MaterialAlertDialog_MaterialComponents_Title_Panel 0x7f130138
 int style MaterialAlertDialog_MaterialComponents_Title_Panel_CenterStacked 0x7f130139
 int style MaterialAlertDialog_MaterialComponents_Title_Text 0x7f13013a
 int style MaterialAlertDialog_MaterialComponents_Title_Text_CenterStacked 0x7f13013b
+int style MyEditTextPreferenceStyle 0x7f130499
 int style Platform_AppCompat 0x7f13013c
 int style Platform_AppCompat_Light 0x7f13013d
 int style Platform_MaterialComponents 0x7f13013e

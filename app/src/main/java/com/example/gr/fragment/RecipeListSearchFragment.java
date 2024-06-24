@@ -14,18 +14,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.example.gr.activity.FoodDetailActivity;
-import com.example.gr.activity.ImportRecipeFromWebActivity;
+import com.example.gr.activity.ScrapeRecipeActivity;
 import com.example.gr.activity.RecipeDetailActivity;
 import com.example.gr.adapter.RecipeSearchTabAdapter;
 import com.example.gr.constant.Constant;
 import com.example.gr.constant.GlobalFunction;
 import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.FragmentRecipeSearchBinding;
-import com.example.gr.model.Food;
 import com.example.gr.model.Recipe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeListSearchFragment extends BaseFragment{
@@ -98,7 +95,7 @@ public class RecipeListSearchFragment extends BaseFragment{
 
     private void goToImportRecipeActivity() {
         Bundle bundle = new Bundle();
-        GlobalFunction.startActivity(getActivity(), ImportRecipeFromWebActivity.class, bundle);
+        GlobalFunction.startActivity(getActivity(), ScrapeRecipeActivity.class, bundle);
     }
     @Override
     public void onDestroyView() {

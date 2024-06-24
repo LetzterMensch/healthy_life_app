@@ -146,20 +146,12 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             android:name="com.example.gr.activity.FoodDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.ImportRecipeFromWebActivity"
+            android:name="com.example.gr.activity.ScrapeRecipeActivity"
             android:exported="false" />
         <activity
             android:name="com.example.gr.device.huami.miband.MiBandPairingActivity"
             android:exported="false"
             android:label="@string/title_activity_mi_band_pairing"
-            android:parentActivityName="com.example.gr.activity.MainActivity" />
-        <activity
-            android:name="com.example.gr.device.huami.miband.MiBandPreferencesActivity"
-            android:exported="false"
-            android:parentActivityName="com.example.gr.activity.MainActivity" />
-        <activity
-            android:name="com.example.gr.device.settings.SettingsActivity"
-            android:exported="false"
             android:parentActivityName="com.example.gr.activity.MainActivity" />
         <activity
             android:name="com.example.gr.device.settings.AboutUserPreferencesActivity"
@@ -169,17 +161,11 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             android:name="com.example.gr.activity.RecipeDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.HistoryDetailActivity"
+            android:name="com.example.gr.activity.WorkoutDetailActivity"
             android:exported="false" />
         <activity
             android:name="com.example.gr.activity.HistoryListActivity"
             android:exported="false" />
-        <activity
-            android:name="com.example.gr.activity.RecordGpsWorkoutActivity"
-            android:launchMode="singleTop"
-            android:parentActivityName="com.example.gr.activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:showOnLockScreen="true" />
 
         <service
             android:name="com.example.gr.device.btle.BLEScanService"

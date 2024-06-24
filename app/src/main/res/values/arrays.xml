@@ -143,6 +143,32 @@
         <item>0</item>
         <item>2</item>
     </string-array>
+    <string-array name="active_level">
+        <item name="low">@string/active_level_low</item>
+        <item name="light">@string/active_level_light</item>
+        <item name="moderate">@string/active_level_moderate</item>
+        <item name="active">@string/active_level_active</item>
+        <item name="very_active">@string/active_level_very_active</item>
+    </string-array>
+    <string-array name="active_level_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="purpose">
+        <item name="mild_loss">@string/mild_weight_loss</item>
+        <item name="loss">@string/weight_loss</item>
+        <item name="mild_gain">@string/mild_weight_gain</item>
+        <item name="gain">@string/weight_gain</item>
+    </string-array>
+    <string-array name="purpose_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
     <string-array name="wearside">
         <item>@string/left</item>
         <item>@string/right</item>

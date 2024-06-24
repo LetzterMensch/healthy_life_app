@@ -130,21 +130,13 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             android:name=".activity.FoodDetailActivity"
             android:exported="false"/>
         <activity
-            android:name=".activity.ImportRecipeFromWebActivity"
+            android:name=".activity.ScrapeRecipeActivity"
             android:exported="false"/>
         <activity
             android:name=".device.huami.miband.MiBandPairingActivity"
             android:label="@string/title_activity_mi_band_pairing"
             android:parentActivityName=".activity.MainActivity"
             android:exported="false"/>
-        <activity
-            android:name=".device.huami.miband.MiBandPreferencesActivity"
-            android:parentActivityName=".activity.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".device.settings.SettingsActivity"
-            android:parentActivityName=".activity.MainActivity"
-            android:exported="false" />
         <activity
             android:name=".device.settings.AboutUserPreferencesActivity"
             android:parentActivityName=".activity.MainActivity"
@@ -153,17 +145,11 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             android:name=".activity.RecipeDetailActivity"
             android:exported="false"/>
         <activity
-            android:name=".activity.HistoryDetailActivity"
+            android:name=".activity.WorkoutDetailActivity"
             android:exported="false"/>
         <activity
             android:name=".activity.HistoryListActivity"
             android:exported="false"/>
-        <activity
-            android:name=".activity.RecordGpsWorkoutActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activity.MainActivity"
-            android:showOnLockScreen="true" />
         <service
             android:name=".device.btle.BLEScanService"
             android:enabled="true"

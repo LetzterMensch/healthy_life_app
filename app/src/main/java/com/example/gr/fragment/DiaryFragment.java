@@ -54,9 +54,9 @@ public class DiaryFragment extends BaseFragment {
 
     private void initListener() {
         Calendar.getInstance();
-        mfragmentDiaryBinding.date.setOnClickListener(v -> openDatePicker());
-        mfragmentDiaryBinding.imgNext.setOnClickListener(v -> getNextDay());
-        mfragmentDiaryBinding.imgBack.setOnClickListener(v -> getPreviousDay());
+        mfragmentDiaryBinding.date.setOnClickListener(v -> getDiaryOnDatePicker());
+        mfragmentDiaryBinding.imgNext.setOnClickListener(v -> getNextDayDiary());
+        mfragmentDiaryBinding.imgBack.setOnClickListener(v -> getPreviousDayDiary());
     }
 
     private void initUi() {
@@ -91,7 +91,7 @@ public class DiaryFragment extends BaseFragment {
         GlobalFunction.startActivity(getActivity(), SearchForFoodActivity.class, bundle);
     }
 
-    private void getPreviousDay() {
+    private void getPreviousDayDiary() {
         calendar.add(Calendar.DAY_OF_YEAR, -1);
         if (calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
             mfragmentDiaryBinding.date.setText("Hôm qua");
@@ -107,7 +107,7 @@ public class DiaryFragment extends BaseFragment {
         displayFoodLogs(mDate);
     }
 
-    private void getNextDay() {
+    private void getNextDayDiary() {
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         if (calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
             mfragmentDiaryBinding.date.setText("Hôm qua");
@@ -123,7 +123,7 @@ public class DiaryFragment extends BaseFragment {
         displayFoodLogs(mDate);
     }
 
-    private void openDatePicker() {
+    private void getDiaryOnDatePicker() {
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);

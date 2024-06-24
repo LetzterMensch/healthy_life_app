@@ -1,722 +1,726 @@
 [
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xhdpi_img_profile_default.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xhdpi/img_profile_default.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_corner_3.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_corner_3.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_selector_red.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_selector_red.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_red_shape_corner_30.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_red_shape_corner_30.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-anydpi-v26_img_profile_default.xml.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-anydpi-v26/img_profile_default.xml"
-    },
-    {
-        "merged": "com.example.gr.app-merged_res-54:/font_amiko.xml.flat",
-        "source": "com.example.gr.app-main-56:/font/amiko.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_sleep.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_sleep.xml"
     },
     {
         "merged": "com.example.gr.app-merged_res-54:/xml_about_user.xml.flat",
         "source": "com.example.gr.app-main-56:/xml/about_user.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_log_out_30.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_log_out_30.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_layout_bottom_sheet_add_exercise.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\layout_bottom_sheet_add_exercise.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_white_shape_border_red_corner_30.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_white_shape_border_red_corner_30.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_green_shape_corner_6.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_green_shape_corner_6.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_mi_band_pairing.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_mi_band_pairing.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-anydpi-v26_img_profile_default.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-anydpi-v26\\img_profile_default.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/xml_devicesettings_reconnect_ble.xml.flat",
-        "source": "com.example.gr.app-main-56:/xml/devicesettings_reconnect_ble.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_sleep.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_sleep.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-mdpi_img_profile_default.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-mdpi/img_profile_default.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_selector_red.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_selector_red.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_graphs.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_graphs.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activitytracker.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activitytracker.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/menu_bottom_nav_menu.xml.flat",
-        "source": "com.example.gr.app-main-56:/menu/bottom_nav_menu.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_gps_fixed.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_gps_fixed.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_not_measured.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_not_measured.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_disconnect_30.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_disconnect_30.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_basketball.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_basketball.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_open_in_browser.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_open_in_browser.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_layout_actionbar.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/layout_actionbar.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_stacked.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_stacked.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-mdpi_img_profile_default_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-mdpi\\img_profile_default_round.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_threadmill.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_threadmill.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_dashboard_black_24dp.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_dashboard_black_24dp.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/xml_devicesettings_root_authentication.xml.flat",
-        "source": "com.example.gr.app-main-56:/xml/devicesettings_root_authentication.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_blue.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_blue.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_notification.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_notification.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_food_search.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_food_search.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_back_white_36.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_back_white_36.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_threadmill.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_threadmill.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_gps_no_fix.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_gps_no_fix.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_preference_checkbox.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\preference_checkbox.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_spinner_with_image_layout.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/spinner_with_image_layout.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_climbing.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_climbing.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_device_settings.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_device_settings.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_log_out_30.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_log_out_30.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_layout_calendar_toolbar.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/layout_calendar_toolbar.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_basketball.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_basketball.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_climbing.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_climbing.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_gps_no_fix.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_gps_no_fix.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_svbok_logo.jpeg.flat",
-        "source": "com.example.gr.app-main-56:/drawable/svbok_logo.jpeg"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_miband6_disabled.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_miband6_disabled.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_default_img.jpg.flat",
-        "source": "com.example.gr.app-main-56:/drawable/default_img.jpg"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_goal_30.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_goal_30.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_item_exercise_history.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/item_exercise_history.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_dashboard_black_24dp.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_dashboard_black_24dp.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_yoga.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_yoga.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_layout_bottom_sheet_add_exercise.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/layout_bottom_sheet_add_exercise.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_run_blue_50.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_run_blue_50.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_diary_black_24dp.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_diary_black_24dp.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_baseline_arrow_drop_down_36.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_baseline_arrow_drop_down_36.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_bluetooth.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_bluetooth.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_zetime_disabled.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_zetime_disabled.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_settings.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_settings.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_rowing.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_rowing.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_device_unknown_disabled.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_device_unknown_disabled.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_preference_material_switch.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\preference_material_switch.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_home_black_24dp.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_home_black_24dp.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_refresh.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_refresh.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_red_shape_corner_30.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_red_shape_corner_30.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_profile.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_profile.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_import_recipe.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_import_recipe.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_layout_toolbar.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\layout_toolbar.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_refresh.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_refresh.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxhdpi_img_profile_default.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxhdpi\\img_profile_default.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.gr.app-main-56:/xml/data_extraction_rules.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_search_red.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_search_red.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_white_shape_bottom_border_red.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_white_shape_bottom_border_red.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_cricket.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_cricket.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/xml_devicesettings_reconnect_bl_classic.xml.flat",
-        "source": "com.example.gr.app-main-56:/xml/devicesettings_reconnect_bl_classic.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_notifications_black_24dp.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_notifications_black_24dp.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_recipe_detail.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_recipe_detail.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_notification_disconnected.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_notification_disconnected.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_unknown.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_unknown.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-hdpi_img_profile.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-hdpi\\img_profile.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-hdpi_img_profile.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-hdpi/img_profile.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_profile_black_24dp.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_profile_black_24dp.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_sync_30.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_sync_30.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\font_akaya_telivigala.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\font\\akaya_telivigala.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xhdpi_img_profile_default_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xhdpi/img_profile_default_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-mdpi_img_profile_default.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-mdpi\\img_profile_default.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xhdpi_img_profile.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xhdpi/img_profile.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_img_no_image.png.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\img_no_image.png"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_walking.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_walking.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_import_24.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_import_24.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_device_zetime.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_device_zetime.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_record_workout.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_record_workout.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_forward_white_36.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_forward_white_36.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\font_alata.ttf.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\font\\alata.ttf"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-hdpi_img_profile_default_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-hdpi/img_profile_default_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_pingpong.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_pingpong.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/font_alata.ttf.flat",
-        "source": "com.example.gr.app-main-56:/font/alata.ttf"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_soccer.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_soccer.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_selector_pink.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_selector_pink.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_map_zoomout.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_map_zoomout.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_food.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_food.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_clock.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_clock.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_about_user.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\xml\\about_user.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_clock.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_clock.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_img_no_image.png.flat",
-        "source": "com.example.gr.app-main-56:/drawable/img_no_image.png"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_border_blue_3.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_border_blue_3.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_pingpong.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_pingpong.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_border_red_corner_30.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_border_red_corner_30.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxhdpi_img_profile_default.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxhdpi/img_profile_default.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_item_exercise.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\item_exercise.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_circle_white_border_gray.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_circle_white_border_gray.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_exercise.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_exercise.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_soccer.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_soccer.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_exercise.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_exercise.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_device_zetime_disabled.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_device_zetime_disabled.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_add_36.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_add_36.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-anydpi-v26_img_profile_default_round.xml.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-anydpi-v26/img_profile_default_round.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_meal_spinner_item.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\meal_spinner_item.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_meal_spinner_item.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/meal_spinner_item.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_light_gray.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_light_gray.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_fragment_dashboard.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/fragment_dashboard.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_border_gray.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_border_gray.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_fragment_exercise.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/fragment_exercise.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxhdpi_img_profile_default_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxhdpi\\img_profile_default_round.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxhdpi_img_profile.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxhdpi/img_profile.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_meal_spinner_dropdown_item.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\meal_spinner_dropdown_item.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxxhdpi_img_profile_default.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxxhdpi/img_profile_default.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_search_red.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_search_red.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xhdpi_img_profile.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xhdpi\\img_profile.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_profile_black_24dp.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_profile_black_24dp.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_biking.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_biking.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_hiking.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_hiking.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_swimming.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_swimming.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_gray_shape_corner_6.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_gray_shape_corner_6.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_devicesettings_reconnect_bl_classic.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\xml\\devicesettings_reconnect_bl_classic.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_bluetooth_searching.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_bluetooth_searching.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_device_miband_disabled.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_device_miband_disabled.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_tracks.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_tracks.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_close_36.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_close_36.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_white_shape_border_red_corner_3.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_white_shape_border_red_corner_3.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_bluetooth.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_bluetooth.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_divider.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/divider.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_border_green_3.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_border_green_3.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/menu_menu_charts.xml.flat",
-        "source": "com.example.gr.app-main-56:/menu/menu_charts.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_notification.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_notification.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_gps_location.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_gps_location.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_gps_location.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_gps_location.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_map_zoomin.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_map_zoomin.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_run_blue_50.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_run_blue_50.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_eliptical.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_eliptical.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_running.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_running.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_devicesettings_pairingkey.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\xml\\devicesettings_pairingkey.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_complete_diary.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_complete_diary.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_home_black_24dp.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_home_black_24dp.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_rowing.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_rowing.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxhdpi_img_profile.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxhdpi\\img_profile.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_indicatior_selected.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_indicatior_selected.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_devicesettings_root_authentication.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\xml\\devicesettings_root_authentication.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_white_shape_corner_3.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_white_shape_corner_3.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_recipe_detail.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_recipe_detail.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_white_shape_top_border_red_corner_30.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_white_shape_top_border_red_corner_30.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_complete_diary.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_complete_diary.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_notification_low_battery.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_notification_low_battery.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_layout_calendar_toolbar.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\layout_calendar_toolbar.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_disconnect_30.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_disconnect_30.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\menu_menu_charts.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\menu\\menu_charts.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_unknown_small.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_unknown_small.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_top_border_red_corner_30.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_top_border_red_corner_30.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_food_detail.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_food_detail.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_dashboard.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_dashboard.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_device_default_disabled.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_device_default_disabled.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_red_shape_corner_6.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_red_shape_corner_6.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_item_food.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/item_food.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_purple.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_purple.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/font_akaya_telivigala.xml.flat",
-        "source": "com.example.gr.app-main-56:/font/akaya_telivigala.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_bedtime_24dp.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_bedtime_24dp.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_vpn_key.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_vpn_key.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\menu_bottom_nav_menu.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\menu\\bottom_nav_menu.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_device_miband6_disabled.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_device_miband6_disabled.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_layout_actionbar.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\layout_actionbar.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_notification_disconnected.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_notification_disconnected.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_item_food.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\item_food.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_gps_fixed.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_gps_fixed.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_bedtime_24dp.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_bedtime_24dp.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_badmington.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_badmington.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_fragment_sleep.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/fragment_sleep.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_search_for_food.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_search_for_food.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_bluetooth_searching.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_bluetooth_searching.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxxhdpi_img_profile_default_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxxhdpi\\img_profile_default_round.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_circle_button_green.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_circle_button_green.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-hdpi_img_profile_default.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-hdpi/img_profile_default.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ripple_effect.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ripple_effect.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_sleep.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_sleep.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\font_amiko.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\font\\amiko.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_fragment_food_search.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/fragment_food_search.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_indicatior_unselected.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_indicatior_unselected.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_item_search_recipe_tab.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/item_search_recipe_tab.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_item_search_recipe_tab.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\item_search_recipe_tab.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_open_in_browser.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_open_in_browser.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_border_red.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_border_red.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/xml_backup_rules.xml.flat",
-        "source": "com.example.gr.app-main-56:/xml/backup_rules.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_running.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_running.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_preference_checkbox.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/preference_checkbox.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_graphs.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_graphs.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_add_30_red.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_add_30_red.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_unknown_small.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_unknown_small.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_meal_spinner_dropdown_item.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/meal_spinner_dropdown_item.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_miband.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_miband.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_blue_shape_corner_6.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_blue_shape_corner_6.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_settings.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_settings.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_splash.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_devicesettings_pairingkey_explanation.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\xml\\devicesettings_pairingkey_explanation.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_goal_30.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_goal_30.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_zetime.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_zetime.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/xml_devicesettings_pairingkey.xml.flat",
-        "source": "com.example.gr.app-main-56:/xml/devicesettings_pairingkey.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_divider.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\divider.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxxhdpi_img_profile.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxxhdpi/img_profile.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ripple_effect.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ripple_effect.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_selector_pink.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_selector_pink.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_preference_material_switch.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/preference_material_switch.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_white_shape_border_red.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_white_shape_border_red.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_white_border_gray.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_white_border_gray.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_skbk_logo.jpeg.flat",
-        "source": "com.example.gr.app-main-56:/drawable/skbk_logo.jpeg"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_default_disabled.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_default_disabled.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_item_with_details.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/item_with_details.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_default_img.jpg.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\default_img.jpg"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_search_for_food.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_search_for_food.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-hdpi_img_profile_default.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-hdpi\\img_profile_default.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_fire.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_fire.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_svbok_logo.jpeg.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\svbok_logo.jpeg"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_badmington.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_badmington.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_tracks.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_tracks.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activitytracker.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activitytracker.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xhdpi_img_profile_default_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xhdpi\\img_profile_default_round.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_add_36.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_add_36.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_diary.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_diary.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_white_shape_border_green_3.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_white_shape_border_green_3.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_skbk_logo.jpeg.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\skbk_logo.jpeg"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/xml_devicesettings_pairingkey_explanation.xml.flat",
-        "source": "com.example.gr.app-main-56:/xml/devicesettings_pairingkey_explanation.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_fire.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_fire.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_discovery.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_discovery.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_main.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_main.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_indoor_workout_green_50.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_indoor_workout_green_50.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_import_24.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_import_24.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxxhdpi_img_profile_default.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxxhdpi\\img_profile_default.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_fragment_recipe_search.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/fragment_recipe_search.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_indicatior_unselected.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_indicatior_unselected.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_rope_jump.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_rope_jump.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_yoga.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_yoga.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_add_30_red.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_add_30_red.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_white_shape_border_blue_3.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_white_shape_border_blue_3.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_dark_blue.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_dark_blue.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_baseline_arrow_drop_down_36.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_baseline_arrow_drop_down_36.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_steps.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_steps.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_circle_button_light_yellow.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_circle_button_light_yellow.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_bottom_border_red.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_bottom_border_red.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_fragment_food.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/fragment_food.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_item_with_details.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\item_with_details.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_discovery.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_discovery.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_search_for_exercise.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_search_for_exercise.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_device_unknown.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_device_unknown.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_light_yellow.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_light_yellow.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxxhdpi_img_profile_default_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxxhdpi/img_profile_default_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_back_white_36.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_back_white_36.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_item_exercise.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/item_exercise.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_preferences.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\xml\\preferences.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_exercise.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_exercise.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_sync_30.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_sync_30.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_exercise_24dp.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_exercise_24dp.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_food_detail.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_food_detail.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_biking.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_biking.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_hiking.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_hiking.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_rope_jump.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_rope_jump.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_miband_disabled.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_miband_disabled.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_diary.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_diary.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_unknown.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_unknown.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_map_zoomout.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_map_zoomout.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_default.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_default.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_red_shape_corner_6.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_red_shape_corner_6.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_blue_shape_corner_6.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_blue_shape_corner_6.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_green_shape_corner_6.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_green_shape_corner_6.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xhdpi_img_profile_default.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xhdpi\\img_profile_default.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxhdpi_img_profile_default_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxhdpi/img_profile_default_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_notifications_black_24dp.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_notifications_black_24dp.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_not_measured.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_not_measured.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-mdpi_img_profile_default_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-mdpi/img_profile_default_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_swimming.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_swimming.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_stacked.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_stacked.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_notification_low_battery.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_notification_low_battery.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_white_shape_border_gray.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_white_shape_border_gray.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_diary.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_diary.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\xml_devicesettings_reconnect_ble.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\xml\\devicesettings_reconnect_ble.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_search_for_exercise.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_search_for_exercise.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_diary_black_24dp.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_diary_black_24dp.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_fragment_profile.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/fragment_profile.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_unknown.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_unknown.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_close_36.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_close_36.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_recipe_search.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\fragment_recipe_search.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_activity_record_workout.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/activity_record_workout.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_mi_band_pairing.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_mi_band_pairing.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_fragment_diary.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/fragment_diary.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_circle_button_green.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_circle_button_green.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_indoor_workout_green_50.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_indoor_workout_green_50.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_indicatior_selected.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_indicatior_selected.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_bike_trainer.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_bike_trainer.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-mdpi_img_profile.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-mdpi/img_profile.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_import_recipe.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_import_recipe.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_circle_button_dark_blue.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_circle_button_dark_blue.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxxhdpi_img_profile.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxxhdpi\\img_profile.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_device_miband.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_device_miband.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_device_unknown_disabled.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_device_unknown_disabled.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/xml_preferences.xml.flat",
-        "source": "com.example.gr.app-main-56:/xml/preferences.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_circle_button_light_gray.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_circle_button_light_gray.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_forward_white_36.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_forward_white_36.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_cricket.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_cricket.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-anydpi-v26_img_profile_default_round.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-anydpi-v26\\img_profile_default_round.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_device_default.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_device_default.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_activity_device_settings.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_device_settings.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_layout_toolbar.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/layout_toolbar.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_white_shape_border_red_corner_3.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_border_red_corner_3.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_circle_button_purple.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_circle_button_purple.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-mdpi_img_profile.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-mdpi\\img_profile.webp"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_steps.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_steps.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_spinner_with_image_layout.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\spinner_with_image_layout.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_map_zoomin.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_map_zoomin.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_item_exercise_history.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\item_exercise_history.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_bike_trainer.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_bike_trainer.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_bg_circle_button_blue.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/bg_circle_button_blue.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_exercise_24dp.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_exercise_24dp.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/drawable_ic_activity_eliptical.xml.flat",
-        "source": "com.example.gr.app-main-56:/drawable/ic_activity_eliptical.xml"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_bg_gray_shape_corner_6.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_gray_shape_corner_6.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.gr.app-main-56:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\mipmap-hdpi_img_profile_default_round.webp.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\mipmap-hdpi\\img_profile_default_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_vpn_key.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_vpn_key.xml"
+    },
+    {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_activity_walking.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_activity_walking.xml"
     }
 ]

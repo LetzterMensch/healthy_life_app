@@ -30,6 +30,20 @@
         <item>@string/p_scheduled</item>
         <item>@string/p_smart</item>
     </string-array>
+    <string-array name="active_level">
+        <item name="low">@string/active_level_low</item>
+        <item name="light">@string/active_level_light</item>
+        <item name="moderate">@string/active_level_moderate</item>
+        <item name="active">@string/active_level_active</item>
+        <item name="very_active">@string/active_level_very_active</item>
+    </string-array>
+    <string-array name="active_level_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
     <string-array name="activity_filter_quick_filter_period_items">
         <item>@string/sports_activity_quick_filter_select</item>
         <item>@string/sports_activity_quick_filter_this_week</item>
@@ -3244,6 +3258,18 @@
         <item>@font/akaya_telivigala</item>
         <item>@font/amiko</item>
     </array>
+    <string-array name="purpose">
+        <item name="mild_loss">@string/mild_weight_loss</item>
+        <item name="loss">@string/weight_loss</item>
+        <item name="mild_gain">@string/mild_weight_gain</item>
+        <item name="gain">@string/weight_gain</item>
+    </string-array>
+    <string-array name="purpose_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
     <string-array name="reminder_repeat">
         <item>@string/reminder_once</item>
         <item>@string/reminder_every_day</item>
@@ -3771,6 +3797,11 @@
     <string name="action_start">Bắt đầu</string>
     <string name="action_view_more">Xem thêm</string>
     <string name="activeSeconds">Active</string>
+    <string name="active_level_active">Vận động nhiều : Tập luyện 6–7 lần/tuần</string>
+    <string name="active_level_light">Vận động nhẹ : Tập luyện 1–3 lần/tuần</string>
+    <string name="active_level_low">Ít vận động : không tập luyện | nhân viên văn phòng</string>
+    <string name="active_level_moderate">Vận động vừa : Tập luyện 3–5 lần/tuần</string>
+    <string name="active_level_very_active">Vận động cực nhiều : Tập luyện 2 lần/ngày | là vận động viên</string>
     <string name="active_time">Active time</string>
     <string name="activity_DB_ExportButton">Export Data</string>
     <string name="activity_DB_ShowContentButton">Show Export/Import directory content</string>
@@ -3821,12 +3852,13 @@
     <string name="activity_list_summary_activities">Activities</string>
     <string name="activity_list_summary_distance">Distance</string>
     <string name="activity_list_summary_intensity">Movement\nIntensity</string>
-    <string name="activity_prefs_about_you">About you</string>
+    <string name="activity_prefs_about_you">Thông tin về bạn</string>
     <string name="activity_prefs_activetime_minutes">Daily target: active time in minutes</string>
     <string name="activity_prefs_alarm_max_heart_rate">Max heart rate</string>
     <string name="activity_prefs_alarm_min_heart_rate">Min heart rate</string>
     <string name="activity_prefs_allow_bluetooth_intent_api">Bluetooth Intent API</string>
-    <string name="activity_prefs_calories_burnt">Daily target: calories burnt</string>
+    <string name="activity_prefs_calories_burnt">Số calories cần tiêu thụ mỗi ngày</string>
+    <string name="activity_prefs_carb_goal">Số calories từ tinh bột cần tiêu thụ</string>
     <string name="activity_prefs_chart_max_heart_rate">Max heart rate</string>
     <string name="activity_prefs_chart_max_idle_phase_length">Pause length to separate activities (minutes)</string>
     <string name="activity_prefs_chart_min_heart_rate">Min heart rate</string>
@@ -3836,17 +3868,19 @@
     <string name="activity_prefs_charts">Chart settings</string>
     <string name="activity_prefs_discovery_pairing">Discovery and Pairing options</string>
     <string name="activity_prefs_distance_meters">Daily target: distance in meters</string>
-    <string name="activity_prefs_gender">Gender</string>
+    <string name="activity_prefs_fat_goal">Số calories từ chất béo cần tiêu thụ</string>
+    <string name="activity_prefs_gender">Giới tính</string>
     <string name="activity_prefs_goal_fat_burn_time_minutes">Daily target: fat burn time in minutes</string>
     <string name="activity_prefs_goal_standing_time_minutes">Daily target: standing time in minutes</string>
-    <string name="activity_prefs_goals">Goals</string>
-    <string name="activity_prefs_height_cm">Height in cm</string>
-    <string name="activity_prefs_sleep_duration">Preferred sleep duration in hours</string>
+    <string name="activity_prefs_goals">Mục tiêu</string>
+    <string name="activity_prefs_height_cm">Chiều cao (cm)</string>
+    <string name="activity_prefs_protein_goal">Số calories từ chất đạm cần tiêu thụ</string>
+    <string name="activity_prefs_sleep_duration">Mục tiêu tổng thời gian ngủ (giờ)</string>
     <string name="activity_prefs_step_length_cm">Step length in cm</string>
     <string name="activity_prefs_summary_allow_bluetooth_intent_api">Allow controlling Bluetooth connection via Intent API</string>
-    <string name="activity_prefs_target_weight_kg">Target weight in kg</string>
-    <string name="activity_prefs_weight_kg">Weight in kg</string>
-    <string name="activity_prefs_year_birth">Year of birth</string>
+    <string name="activity_prefs_target_weight_kg">Cân nặng mong muốn (kg)</string>
+    <string name="activity_prefs_weight_kg">Cân nặng (kg)</string>
+    <string name="activity_prefs_year_birth">Năm sinh</string>
     <string name="activity_sleepchart_activity_and_sleep">Activity</string>
     <string name="activity_summaries">Sport Activities</string>
     <string name="activity_summaries_all_activities">All Activities</string>
@@ -4006,6 +4040,8 @@
     <string name="activity_type_wrestling">Wrestling</string>
     <string name="activity_type_yoga">Yoga</string>
     <string name="activity_type_zumba">Zumba</string>
+    <string name="activity_user_activity_level">Mức độ vận động</string>
+    <string name="activity_user_purpose">Mục tiêu của bạn</string>
     <string name="activity_web_view">Web View Activity</string>
     <string name="add">Thêm</string>
     <string name="add_exercise">Thêm bài tập</string>
@@ -4974,13 +5010,15 @@
     <string name="miband_fwinstaller_untested_version">Untested version!</string>
     <string name="miband_pairing_tap_hint">When your Mi Band vibrates and blinks, tap it a few times in a row.</string>
     <string name="miband_pairing_using_dummy_userdata">No valid user data given, using dummy user data for now.</string>
-    <string name="miband_prefs_alias">Name/Alias</string>
+    <string name="miband_prefs_alias">Tên </string>
     <string name="miband_prefs_device_time_offset_hours">Device time offset in hours (for detecting sleep of shift workers)</string>
-    <string name="miband_prefs_fitness_goal">Daily step target</string>
+    <string name="miband_prefs_fitness_goal">Mục tiêu số bước chân mỗi ngày</string>
     <string name="miband_prefs_hr_sleep_detection">Use heart rate sensor to improve sleep detection</string>
     <string name="miband_prefs_reserve_alarm_calendar">Alarms to reserve for upcoming events</string>
     <string name="miband_prefs_reserve_reminder_calendar">Reminders to reserve for upcoming events</string>
     <string name="miband_prefs_vibration">Vibration</string>
+    <string name="mild_weight_gain">Tăng 0.25 kg/tuần</string>
+    <string name="mild_weight_loss">Giảm 0.25 kg/tuần</string>
     <string name="minAltitude">Minimum</string>
     <string name="minCadence">Min Cadence</string>
     <string name="minHR">Min Heartrate</string>
@@ -6420,6 +6458,8 @@
     <string name="weekstepschart_steps_a_month">Steps per month</string>
     <string name="weekstepschart_steps_a_week">Steps per week</string>
     <string name="weekstepschart_steps_a_week_or_month">Steps per week/month</string>
+    <string name="weight_gain">Tăng 0.5 kg/tuần</string>
+    <string name="weight_loss">Giảm 0.5 kg/tuần</string>
     <string name="when_screen_off">When screen is off</string>
     <string name="white">White</string>
     <string name="whitelist_all_for_notifications">Whitelist all for notifications</string>
@@ -6530,6 +6570,11 @@
     <string name="zetime_title_heartrate">Heart rate settings</string>
     <string name="zetime_title_screentime">Screen on duration in seconds</string>
     <string name="zetime_title_settings">ZeTime settings</string>
+    <style name="MyEditTextPreferenceStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
     <style name="Theme.GR" parent="Theme.MaterialComponents.Light.NoActionBar">
         
         <item name="colorPrimary">@color/colorPrimary</item>

@@ -46,7 +46,7 @@ public class Diary implements Serializable {
     @Ignore
     private List<FoodLog> snackLogs;
     @Ignore
-    private List<Workout> exerciseList;
+    private List<Workout> workoutList;
 
     public Diary() {
         this.breakfastLogs = new ArrayList<>();
@@ -64,14 +64,14 @@ public class Diary implements Serializable {
     }
 
     public void updateDiary() {
-        reCalculateRemainingCalories(this.intakeCalories, this.burntCalories);
+        recalculateRemainingCalories(this.intakeCalories, this.burntCalories);
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
 
     public void logWorkout(Workout workout) {
-        this.exerciseList.add(workout);
+        this.workoutList.add(workout);
         this.burntCalories += workout.getCaloriesBurnt();
-        reCalculateRemainingCalories(this.intakeCalories, this.burntCalories);
+        recalculateRemainingCalories(this.intakeCalories, this.burntCalories);
     }
 
     public void logFood(FoodLog foodLog) {
@@ -97,7 +97,7 @@ public class Diary implements Serializable {
         updateDiary();
     }
 
-    protected void reCalculateRemainingCalories(int intakeCalories, int burntCalories) {
+    protected void recalculateRemainingCalories(int intakeCalories, int burntCalories) {
         this.remainingCalories = this.caloriesGoal - intakeCalories + burntCalories;
     }
 
@@ -131,14 +131,6 @@ public class Diary implements Serializable {
 
     public void setSnackLogs(List<FoodLog> snackLogs) {
         this.snackLogs = snackLogs;
-    }
-
-    public List<Workout> getExerciseList() {
-        return exerciseList;
-    }
-
-    public void setExerciseList(List<Workout> exerciseList) {
-        this.exerciseList = exerciseList;
     }
 
     public int getId() {

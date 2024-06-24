@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
     <PreferenceCategory
         app:iconSpaceReserved="false"
         android:key="pref_category_activity_personal"
@@ -46,21 +48,22 @@
             android:maxLength="3"
             android:title="@string/activity_prefs_weight_kg"
             app:useSimpleSummaryProvider="true" />
-
-        <EditTextPreference
+        <ListPreference
             app:iconSpaceReserved="false"
-            android:inputType="number"
-            android:key="activity_user_step_length_cm"
-            android:maxLength="3"
-            android:title="@string/activity_prefs_step_length_cm"
-            app:useSimpleSummaryProvider="true" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:iconSpaceReserved="false"
-        android:key="pref_category_targets"
-        android:title="@string/activity_prefs_goals">
+            android:defaultValue="2"
+            android:entries="@array/active_level"
+            android:entryValues="@array/active_level_value"
+            android:key="activity_user_active_level"
+            android:summary="%s"
+            android:title="@string/activity_user_activity_level" />
+        <ListPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="2"
+            android:entries="@array/purpose"
+            android:entryValues="@array/purpose_value"
+            android:key="activity_user_purpose"
+            android:summary="%s"
+            android:title="@string/activity_user_purpose" />
 
         <EditTextPreference
             app:iconSpaceReserved="false"
@@ -86,50 +89,49 @@
             android:maxLength="2"
             android:title="@string/activity_prefs_sleep_duration"
             app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
 
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        android:key="pref_category_targets"
+        app:selectable="false"
+        android:title="@string/activity_prefs_goals">
         <EditTextPreference
             app:iconSpaceReserved="false"
             android:defaultValue="2000"
             android:inputType="number"
             android:key="activity_user_calories_burnt"
+            app:selectable="false"
             android:maxLength="4"
             android:title="@string/activity_prefs_calories_burnt"
             app:useSimpleSummaryProvider="true" />
-
         <EditTextPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="5000"
+            android:defaultValue="200"
             android:inputType="number"
-            android:key="activity_user_distance_meters"
-            android:maxLength="5"
-            android:title="@string/activity_prefs_distance_meters"
-            app:useSimpleSummaryProvider="true" />
-
+            android:key="activity_user_carb_goal"
+            android:maxLength="4"
+            app:selectable="false"
+            android:dialogTitle="@string/activity_prefs_carb_goal"
+            android:title="@string/activity_prefs_carb_goal"
+            app:useSimpleSummaryProvider="true"/>
         <EditTextPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="60"
+            android:defaultValue="200"
             android:inputType="number"
-            android:key="activity_user_activetime_minutes"
-            android:maxLength="3"
-            android:title="@string/activity_prefs_activetime_minutes"
-            app:useSimpleSummaryProvider="true" />
-
+            android:key="activity_user_protein_goal"
+            android:maxLength="4"
+            app:selectable="false"
+            android:title="@string/activity_prefs_protein_goal"
+            app:useSimpleSummaryProvider="true"/>
         <EditTextPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="12"
+            android:defaultValue="200"
             android:inputType="number"
-            android:key="activity_user_goal_standing_time_minutes"
-            android:maxLength="2"
-            android:title="@string/activity_prefs_goal_standing_time_minutes"
-            app:useSimpleSummaryProvider="true" />
-
-        <EditTextPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="30"
-            android:inputType="number"
-            android:key="activity_user_goal_fat_burn_time_minutes"
-            android:maxLength="3"
-            android:title="@string/activity_prefs_goal_fat_burn_time_minutes"
-            app:useSimpleSummaryProvider="true" />
+            android:key="activity_user_fat_goal"
+            android:maxLength="4"
+            app:selectable="false"
+            android:title="@string/activity_prefs_fat_goal"
+            app:useSimpleSummaryProvider="true"/>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -30,7 +30,6 @@ import com.example.gr.activity.MainActivity;
 import com.example.gr.constant.ActivityKind;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.model.DeviceService;
-import com.example.gr.device.settings.SettingsActivity;
 import com.example.gr.service.DeviceCommunicationService;
 
 import org.slf4j.Logger;
@@ -53,7 +52,6 @@ public class GB {
     public static final int NOTIFICATION_ID_INSTALL = 2;
     public static final int NOTIFICATION_ID_LOW_BATTERY = 3;
     public static final int NOTIFICATION_ID_TRANSFER = 4;
-    public static final int NOTIFICATION_ID_EXPORT_FAILED = 5;
     public static final int NOTIFICATION_ID_PHONE_FIND = 6;
     public static final int NOTIFICATION_ID_GPS = 7;
     public static final int NOTIFICATION_ID_SCAN = 8;
@@ -559,28 +557,6 @@ public class GB {
         removeNotification(NOTIFICATION_ID_LOW_BATTERY, context);
     }
 
-    public static Notification createExportFailedNotification(String text, Context context) {
-        Intent notificationIntent = new Intent(context, SettingsActivity.class);
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntentUtils.getActivity(context, 0,
-                notificationIntent, 0, false);
-
-        NotificationCompat.Builder nb = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
-                .setContentTitle(context.getString(R.string.notif_export_failed_title))
-                .setContentText(text)
-                .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_notification)
-                .setPriority(Notification.PRIORITY_HIGH)
-                .setOngoing(false);
-
-        return nb.build();
-    }
-
-    public static void updateExportFailedNotification(String text, Context context) {
-        Notification notification = createExportFailedNotification(text, context);
-        notify(NOTIFICATION_ID_EXPORT_FAILED, notification, context);
-    }
     public static void assertThat(boolean condition, String errorMessage) {
         if (!condition) {
             throw new AssertionError(errorMessage);

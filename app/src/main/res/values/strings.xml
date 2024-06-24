@@ -701,7 +701,7 @@
     <string name="discovery_entered_invalid_authkey">The secret auth key you entered is invalid! Long press on the device to edit.</string>
     <string name="discovery_note">Note:</string>
     <string name="candidate_item_device_image">Device image</string>
-    <string name="miband_prefs_alias">Name/Alias</string>
+    <string name="miband_prefs_alias">Tên </string>
     <string name="pref_header_vibration_count">Vibration count</string>
     <string name="watch9_pairing_tap_hint">When your watch vibrates, shake the device or press its button.</string>
     <string name="title_activity_sleepmonitor">Sleep monitor</string>
@@ -854,7 +854,7 @@
     <string name="chart_no_active_data">No activities detected.</string>
     <string name="chart_get_active_and_synchronize">Do some activity and synchronize device.</string>
     <string name="user_feedback_miband_activity_data_transfer">About to transfer %1$s of data starting from %2$s</string>
-    <string name="miband_prefs_fitness_goal">Daily step target</string>
+    <string name="miband_prefs_fitness_goal">Mục tiêu số bước chân mỗi ngày</string>
     <string name="prefs_heartrate_alert_experimental_title">Heart rate alert (experimental)</string>
     <string name="prefs_heartrate_alert_experimental_description">Vibrate the band when the heart rate is over a threshold, without any obvious physical activity in the last 10 minutes. This feature is experimental, and was not extensively tested.</string>
     <string name="prefs_heartrate_alert_threshold">Heart rate alert threshold</string>
@@ -1147,13 +1147,26 @@
     <string name="danish">Danish</string>
     <string name="FetchActivityOperation_about_to_transfer_since">About to transfer data since %1$s</string>
     <string name="waiting_for_reconnect">Waiting for reconnect</string>
-    <string name="activity_prefs_about_you">About you</string>
-    <string name="activity_prefs_goals">Goals</string>
-    <string name="activity_prefs_year_birth">Year of birth</string>
-    <string name="activity_prefs_gender">Gender</string>
-    <string name="activity_prefs_height_cm">Height in cm</string>
-    <string name="activity_prefs_weight_kg">Weight in kg</string>
-    <string name="activity_prefs_target_weight_kg">Target weight in kg</string>
+    <string name="activity_prefs_about_you">Thông tin về bạn</string>
+    <string name="activity_prefs_goals">Mục tiêu</string>
+    <string name="activity_prefs_year_birth">Năm sinh</string>
+    <string name="activity_prefs_gender">Giới tính</string>
+    <string name="activity_prefs_height_cm">Chiều cao (cm)</string>
+    <string name="activity_prefs_weight_kg">Cân nặng (kg)</string>
+    <string name="activity_user_activity_level">Mức độ vận động</string>
+    <string name="active_level_low">Ít vận động : không tập luyện | nhân viên văn phòng</string>
+    <string name="active_level_light">Vận động nhẹ : Tập luyện 1–3 lần/tuần</string>
+    <string name="active_level_moderate">Vận động vừa : Tập luyện 3–5 lần/tuần</string>
+    <string name="active_level_active">Vận động nhiều : Tập luyện 6–7 lần/tuần</string>
+    <string name="active_level_very_active">Vận động cực nhiều : Tập luyện 2 lần/ngày | là vận động viên</string>
+
+    <string name="activity_user_purpose">Mục tiêu của bạn</string>
+    <string name="mild_weight_loss">Giảm 0.25 kg/tuần</string>
+    <string name="weight_loss">Giảm 0.5 kg/tuần</string>
+    <string name="mild_weight_gain">Tăng 0.25 kg/tuần</string>
+    <string name="weight_gain">Tăng 0.5 kg/tuần</string>
+
+    <string name="activity_prefs_target_weight_kg">Cân nặng mong muốn (kg)</string>
     <string name="activity_prefs_step_length_cm">Step length in cm</string>
     <!-- Settings - Charts Preferences -->
     <string name="pref_header_charts">Charts Settings</string>
@@ -1183,7 +1196,7 @@
     <string name="activity_prefs_chart_min_session_length">Minimal activity length (minutes)</string>
     <string name="authenticating">Authenticating</string>
     <string name="authentication_required">Authentication required</string>
-    <string name="activity_prefs_sleep_duration">Preferred sleep duration in hours</string>
+    <string name="activity_prefs_sleep_duration">Mục tiêu tổng thời gian ngủ (giờ)</string>
     <string name="device_hw">Hardware revision: %1$s</string>
     <string name="device_fw">Firmware version: %1$s</string>
     <string name="error_creating_directory_for_logfiles">Error creating directory for log files: %1$s</string>
@@ -1195,7 +1208,11 @@
     <string name="charts_legend_heartrate_average">Heart rate average</string>
     <string name="charts_legend_stress_average">Stress average</string>
     <string name="charts_legend_spo2_average">Blood oxygen average</string>
-    <string name="activity_prefs_calories_burnt">Daily target: calories burnt</string>
+    <string name="activity_prefs_calories_burnt">Số calories cần tiêu thụ mỗi ngày</string>
+    <string name="activity_prefs_carb_goal">Số calories từ tinh bột cần tiêu thụ</string>
+    <string name="activity_prefs_protein_goal">Số calories từ chất đạm cần tiêu thụ</string>
+    <string name="activity_prefs_fat_goal">Số calories từ chất béo cần tiêu thụ</string>
+
     <string name="activity_prefs_distance_meters">Daily target: distance in meters</string>
     <string name="activity_prefs_activetime_minutes">Daily target: active time in minutes</string>
     <string name="activity_prefs_goal_standing_time_minutes">Daily target: standing time in minutes</string>

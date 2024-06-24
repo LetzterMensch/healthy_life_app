@@ -56,6 +56,18 @@
             android:background="@drawable/ripple_effect"
             app:drawableStartCompat="@drawable/ic_add_30_red" />
         <TextView
+            android:id="@+id/delete_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:padding="20dp"
+            android:text="@string/Delete"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:drawablePadding="8dp"
+            android:background="@drawable/ripple_effect"
+            app:drawableStartCompat="@drawable/ic_disconnect_30" />
+        <TextView
             android:id="@+id/disconnect_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -23,6 +23,9 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView connectDevice;
 
   @NonNull
+  public final TextView deleteButton;
+
+  @NonNull
   public final TextView deviceSettings;
 
   @NonNull
@@ -44,12 +47,14 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView tvEmail;
 
   private FragmentProfileBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView connectDevice, @NonNull TextView deviceSettings,
-      @NonNull TextView deviceSync, @NonNull TextView disconnectButton,
-      @NonNull TextView profileGoal, @NonNull TextView profileLogOut,
-      @NonNull TextView tvAboutUsContent, @NonNull TextView tvEmail) {
+      @NonNull TextView connectDevice, @NonNull TextView deleteButton,
+      @NonNull TextView deviceSettings, @NonNull TextView deviceSync,
+      @NonNull TextView disconnectButton, @NonNull TextView profileGoal,
+      @NonNull TextView profileLogOut, @NonNull TextView tvAboutUsContent,
+      @NonNull TextView tvEmail) {
     this.rootView = rootView;
     this.connectDevice = connectDevice;
+    this.deleteButton = deleteButton;
     this.deviceSettings = deviceSettings;
     this.deviceSync = deviceSync;
     this.disconnectButton = disconnectButton;
@@ -89,6 +94,12 @@ public final class FragmentProfileBinding implements ViewBinding {
       id = R.id.connect_device;
       TextView connectDevice = ViewBindings.findChildViewById(rootView, id);
       if (connectDevice == null) {
+        break missingId;
+      }
+
+      id = R.id.delete_button;
+      TextView deleteButton = ViewBindings.findChildViewById(rootView, id);
+      if (deleteButton == null) {
         break missingId;
       }
 
@@ -134,8 +145,9 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProfileBinding((ConstraintLayout) rootView, connectDevice, deviceSettings,
-          deviceSync, disconnectButton, profileGoal, profileLogOut, tvAboutUsContent, tvEmail);
+      return new FragmentProfileBinding((ConstraintLayout) rootView, connectDevice, deleteButton,
+          deviceSettings, deviceSync, disconnectButton, profileGoal, profileLogOut,
+          tvAboutUsContent, tvEmail);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

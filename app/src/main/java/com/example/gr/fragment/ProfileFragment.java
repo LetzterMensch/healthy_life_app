@@ -20,6 +20,7 @@ import com.example.gr.databinding.FragmentProfileBinding;
 import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.DeviceManager;
 import com.example.gr.device.GBDevice;
+import com.example.gr.device.settings.AboutUserPreferencesActivity;
 import com.example.gr.utils.DeviceHelper;
 import com.example.gr.utils.GB;
 import com.example.gr.utils.GBPrefs;
@@ -50,6 +51,10 @@ public class ProfileFragment extends BaseFragment {
         mFragmentProfileBinding.connectDevice.setOnClickListener(v->{
 
         });
+        mFragmentProfileBinding.deleteButton.setOnClickListener(v->{
+            device = deviceManager.getDevices().get(0);
+            showRemoveDeviceDialog(device);
+        });
         mFragmentProfileBinding.deviceSettings.setOnClickListener(v->{
 
         });
@@ -57,7 +62,8 @@ public class ProfileFragment extends BaseFragment {
 
         });
         mFragmentProfileBinding.profileGoal.setOnClickListener(v->{
-
+            Intent intent = new Intent(requireContext(), AboutUserPreferencesActivity.class);
+            startActivity(intent);
         });
         mFragmentProfileBinding.profileLogOut.setOnClickListener(v->{
 
@@ -65,7 +71,7 @@ public class ProfileFragment extends BaseFragment {
     }
     private void initUi(){
         if(deviceManager.getDevices().size() < 1){
-            mFragmentProfileBinding.disconnectButton.setVisibility(View.INVISIBLE);
+            mFragmentProfileBinding.disconnectButton.setVisibility(View.GONE);
             mFragmentProfileBinding.connectDevice.setVisibility(View.VISIBLE);
         }else{
             mFragmentProfileBinding.disconnectButton.setVisibility(View.VISIBLE);

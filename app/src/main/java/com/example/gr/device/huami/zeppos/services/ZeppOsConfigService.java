@@ -16,7 +16,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 package com.example.gr.device.huami.zeppos.services;
 
-import static org.apache.commons.lang3.ArrayUtils.subarray;
 import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_ACTIVATE_DISPLAY_ON_LIFT;
 import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_AGPS_EXPIRE_TIME;
 import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_AGPS_EXPIRY_REMINDER_ENABLED;
@@ -61,6 +60,7 @@ import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_INACTIV
 import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_LANGUAGE;
 import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_LANGUAGE_AUTO;
 import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_LOWER_BUTTON_SHORT_PRESS;
+import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_MEASUREMENT_SYSTEM;
 import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_NOTIFICATION_DELAY_CALLS;
 import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_OFFLINE_VOICE_LANGUAGE;
 import static com.example.gr.constant.DeviceSettingsPreferenceConst.PREF_OFFLINE_VOICE_RESPOND_SCREEN_ON;
@@ -91,11 +91,34 @@ import static com.example.gr.constant.HuamiConst.PREF_EXPOSE_HR_THIRDPARTY;
 import static com.example.gr.constant.MiBandConst.PREF_NIGHT_MODE;
 import static com.example.gr.constant.MiBandConst.PREF_NIGHT_MODE_END;
 import static com.example.gr.constant.MiBandConst.PREF_NIGHT_MODE_START;
+import static org.apache.commons.lang3.ArrayUtils.subarray;
 
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.gr.BuildConfig;
+import com.example.gr.constant.DeviceSettingsPreferenceConst;
+import com.example.gr.constant.MiBandConst;
+import com.example.gr.device.btle.BLETypeConversions;
+import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.device.capability.GpsCapability;
+import com.example.gr.device.capability.WorkoutDetectionCapability;
+import com.example.gr.device.events.GBDeviceEventUpdatePreferences;
+import com.example.gr.device.huami.ActivateDisplayOnLift;
+import com.example.gr.device.huami.ActivateDisplayOnLiftSensitivity;
+import com.example.gr.device.huami.AlwaysOnDisplay;
+import com.example.gr.device.huami.HuamiLanguageType;
+import com.example.gr.device.huami.miband.DoNotDisturb;
+import com.example.gr.device.huami.zeppos.AbstractZeppOsService;
+import com.example.gr.device.huami.zeppos.ZeppOsMenuType;
+import com.example.gr.device.huami.zeppos.ZeppOsSupport;
+import com.example.gr.utils.DeviceSettingsUtils;
+import com.example.gr.utils.GB;
+import com.example.gr.utils.MapUtils;
+import com.example.gr.utils.Prefs;
+import com.example.gr.utils.StringUtils;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
@@ -124,30 +147,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.example.gr.BuildConfig;
-import com.example.gr.device.capability.GpsCapability;
-import com.example.gr.device.capability.WorkoutDetectionCapability;
-import com.example.gr.device.events.GBDeviceEventUpdatePreferences;
-import com.example.gr.device.huami.ActivateDisplayOnLift;
-import com.example.gr.device.huami.ActivateDisplayOnLiftSensitivity;
-import com.example.gr.device.huami.AlwaysOnDisplay;
-import com.example.gr.device.huami.miband.DoNotDisturb;
-import com.example.gr.device.huami.zeppos.ZeppOsSupport;
-import com.example.gr.device.settings.SettingsActivity ;
-import com.example.gr.constant.DeviceSettingsPreferenceConst;
-
-import com.example.gr.constant.MiBandConst;
-import com.example.gr.device.btle.BLETypeConversions;
-import com.example.gr.device.btle.TransactionBuilder;
-import com.example.gr.device.huami.HuamiLanguageType;
-import com.example.gr.device.huami.zeppos.AbstractZeppOsService;
-import com.example.gr.device.huami.zeppos.ZeppOsMenuType;
-import com.example.gr.utils.DeviceSettingsUtils;
-import com.example.gr.utils.GB;
-import com.example.gr.utils.MapUtils;
-import com.example.gr.utils.Prefs;
-import com.example.gr.utils.StringUtils;
 
 public class ZeppOsConfigService extends AbstractZeppOsService {
     private static final Logger LOG = LoggerFactory.getLogger(ZeppOsConfigService.class);
@@ -493,7 +492,7 @@ public class ZeppOsConfigService extends AbstractZeppOsService {
         DND_SCHEDULED_START(ConfigGroup.SYSTEM, ConfigType.DATETIME_HH_MM, 0x0b, PREF_DO_NOT_DISTURB_START),
         DND_SCHEDULED_END(ConfigGroup.SYSTEM, ConfigType.DATETIME_HH_MM, 0x0c, PREF_DO_NOT_DISTURB_END),
         CALL_DELAY(ConfigGroup.SYSTEM, ConfigType.SHORT, 0x11, PREF_NOTIFICATION_DELAY_CALLS),
-        TEMPERATURE_UNIT(ConfigGroup.SYSTEM, ConfigType.BYTE, 0x12, SettingsActivity.PREF_MEASUREMENT_SYSTEM),
+        TEMPERATURE_UNIT(ConfigGroup.SYSTEM, ConfigType.BYTE, 0x12, PREF_MEASUREMENT_SYSTEM),
         TIME_FORMAT_FOLLOWS_PHONE(ConfigGroup.SYSTEM, ConfigType.BOOL, 0x13, null /* special case, handled below */),
         UPPER_BUTTON_LONG_PRESS(ConfigGroup.SYSTEM, ConfigType.STRING_LIST, 0x15, PREF_UPPER_BUTTON_LONG_PRESS),
         LOWER_BUTTON_PRESS(ConfigGroup.SYSTEM, ConfigType.STRING_LIST, 0x16, PREF_LOWER_BUTTON_SHORT_PRESS),
