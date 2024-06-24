@@ -54,13 +54,24 @@ public class Diary implements Serializable {
         this.dinnerLogs = new ArrayList<>();
         this.snackLogs = new ArrayList<>();
         this.date = DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime());
+        ActivityUser activityUser = new ActivityUser();
+        caloriesGoal = activityUser.getCaloriesBurntGoal();
+        carbGoal = activityUser.getActivityUserCarbGoal();
+        proteinGoal = activityUser.getActivityUserProteinGoal();
+        fatGoal = activityUser.getActivityUserFatGoal();
     }
+    @Ignore
     public Diary(String date){
         this.breakfastLogs = new ArrayList<>();
         this.lunchLogs = new ArrayList<>();
         this.dinnerLogs = new ArrayList<>();
         this.snackLogs = new ArrayList<>();
         this.date = date;
+        ActivityUser activityUser = new ActivityUser();
+        caloriesGoal = activityUser.getCaloriesBurntGoal();
+        carbGoal = activityUser.getActivityUserCarbGoal();
+        proteinGoal = activityUser.getActivityUserProteinGoal();
+        fatGoal = activityUser.getActivityUserFatGoal();
     }
 
     public void updateDiary() {
@@ -71,7 +82,7 @@ public class Diary implements Serializable {
     public void logWorkout(Workout workout) {
         this.workoutList.add(workout);
         this.burntCalories += workout.getCaloriesBurnt();
-        recalculateRemainingCalories(this.intakeCalories, this.burntCalories);
+        updateDiary();
     }
 
     public void logFood(FoodLog foodLog) {

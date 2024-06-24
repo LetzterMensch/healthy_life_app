@@ -11,7 +11,10 @@ import androidx.annotation.Nullable;
 
 import com.example.gr.R;
 import com.example.gr.activity.MainActivity;
+import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.FragmentDashboardBinding;
+import com.example.gr.model.Diary;
+import com.example.gr.utils.DateTimeUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -20,12 +23,13 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DashboardFragment extends BaseFragment {
     private FragmentDashboardBinding mfragmentDashboardBinding;
     private LineChart lineChart;
-
+    private Diary mDiary;
     //    private ContactAdapter mContactAdapter;
     @Nullable
     @Override
@@ -34,10 +38,20 @@ public class DashboardFragment extends BaseFragment {
 
         initUi();
 //        initListener();
+        getDiary(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
 
         return mfragmentDashboardBinding.getRoot();
     }
+    private void getDiary(String date) {
+        mDiary = LocalDatabase.getInstance(this.requireActivity()).diaryDAO().getDiaryByDate(date);
+        if (mDiary == null) {
+            mDiary = new Diary(date);
+            LocalDatabase.getInstance(this.requireActivity()).diaryDAO().insertDiary(mDiary);
+        }
+    }
+    private void displayDiaryInfo(){
 
+    }
     private void initUi() {
         lineChart = mfragmentDashboardBinding.lineChart;
         List<Entry> entries = new ArrayList<>();

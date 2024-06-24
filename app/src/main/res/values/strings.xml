@@ -1166,6 +1166,11 @@
     <string name="mild_weight_gain">Tăng 0.25 kg/tuần</string>
     <string name="weight_gain">Tăng 0.5 kg/tuần</string>
 
+    <string name="type_of_diet">Chế độ ăn (protein/fat/carb)</string>
+    <string name="low_carb">Ít tinh bột : 40/40/20</string>
+    <string name="moderate_carb">Vừa phải tinh bột : 30/35/35</string>
+    <string name="high_carb">Giàu tinh bột : 30/20/50</string>
+
     <string name="activity_prefs_target_weight_kg">Cân nặng mong muốn (kg)</string>
     <string name="activity_prefs_step_length_cm">Step length in cm</string>
     <!-- Settings - Charts Preferences -->

@@ -46,8 +46,12 @@ public class ActivityUser {
     private int activityUserActiveTimeGoalMinutes;
     private int activityUserStandingTimeGoalHours;
     private int activityUserStepLengthCm;
-    private int activityUserActiveLevel;
+    private float activityUserActiveLevel;
     private int activityUserPurpose;
+    private int activityUserDiet;
+    private int activityUserCarbGoal;
+    private int activityUserProteinGoal;
+    private int activityUserFatGoal;
 
     private static final String defaultUserName = "gadgetbridge-user";
     public static final int defaultUserGender = GENDER_FEMALE;
@@ -75,7 +79,7 @@ public class ActivityUser {
     public static final String PREF_USER_CARB = "activity_user_carb_goal";
     public static final String PREF_USER_PROTEIN = "activity_user_protein_goal";
     public static final String PREF_USER_FAT = "activity_user_fat_goal";
-
+    public static final String PREF_USER_DIET="activity_user_diet";
     public static final String PREF_USER_SLEEP_DURATION = "activity_user_sleep_duration";
     public static final String PREF_USER_STEPS_GOAL = "fitness_goal"; // FIXME: for compatibility
     public static final String PREF_USER_CALORIES_BURNT = "activity_user_calories_burnt";
@@ -178,18 +182,40 @@ public class ActivityUser {
         activityUserActiveTimeGoalMinutes = prefs.getInt(PREF_USER_ACTIVETIME_MINUTES, defaultUserActiveTimeGoalMinutes);
         activityUserStandingTimeGoalHours = prefs.getInt(PREF_USER_GOAL_STANDING_TIME_HOURS, defaultUserGoalStandingTimeHours);
         activityUserStepLengthCm = prefs.getInt(PREF_USER_STEP_LENGTH_CM, defaultUserStepLengthCm);
-        activityUserActiveLevel = prefs.getInt(PREF_USER_ACTIVE_LEVEL,0);
+        activityUserActiveLevel = prefs.getFloat(PREF_USER_ACTIVE_LEVEL,0.0f);
         activityUserPurpose = prefs.getInt(PREF_USER_PURPOSE,0);
+        activityUserDiet = prefs.getInt(PREF_USER_DIET,0);
+        activityUserCarbGoal = prefs.getInt(PREF_USER_CARB,0);
+        activityUserProteinGoal = prefs.getInt(PREF_USER_PROTEIN,0);
+        activityUserFatGoal = prefs.getInt(PREF_USER_FAT,0);
     }
-    private void setGoalPrefs(int caloriesGoal, int carbGoal, int proteinGoal, int fatGoal){
+    public void setNutritionGoal( int carbGoal, int proteinGoal, int fatGoal){
         Prefs prefs = ControllerApplication.getPrefs();
-        prefs.getPreferences().edit().putInt(PREF_USER_ACTIVE_LEVEL,caloriesGoal).apply();
-        prefs.getPreferences().edit().putInt(PREF_USER_CARB,carbGoal).apply();
-        prefs.getPreferences().edit().putInt(PREF_USER_PROTEIN,proteinGoal).apply();
-        prefs.getPreferences().edit().putInt(PREF_USER_FAT,fatGoal).apply();
-
+        prefs.getPreferences().edit().putString(PREF_USER_CARB,String.valueOf(carbGoal)).apply();
+        prefs.getPreferences().edit().putString(PREF_USER_PROTEIN,String.valueOf(proteinGoal)).apply();
+        prefs.getPreferences().edit().putString(PREF_USER_FAT,String.valueOf(fatGoal)).apply();
     }
-    public int getActivityUserActiveLevel() {
+    public void setActivityUserCaloriesBurntGoal(int caloriesGoal){
+        Prefs prefs = ControllerApplication.getPrefs();
+        prefs.getPreferences().edit().putString(PREF_USER_CALORIES_BURNT,String.valueOf(caloriesGoal)).apply();
+    }
+    public int getActivityUserDiet() {
+        return activityUserDiet;
+    }
+
+    public int getActivityUserCarbGoal(){
+        return activityUserCarbGoal;
+    }
+
+    public int getActivityUserProteinGoal() {
+        return activityUserProteinGoal;
+    }
+
+    public int getActivityUserFatGoal() {
+        return activityUserFatGoal;
+    }
+
+    public float getActivityUserActiveLevel() {
         return activityUserActiveLevel;
     }
 

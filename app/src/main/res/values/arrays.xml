@@ -151,11 +151,11 @@
         <item name="very_active">@string/active_level_very_active</item>
     </string-array>
     <string-array name="active_level_value">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item>1.2</item>
+        <item>1.375</item>
+        <item>1.55</item>
+        <item>1.725</item>
+        <item>1.9</item>
     </string-array>
     <string-array name="purpose">
         <item name="mild_loss">@string/mild_weight_loss</item>
@@ -164,10 +164,20 @@
         <item name="gain">@string/weight_gain</item>
     </string-array>
     <string-array name="purpose_value">
+        <item>-250</item>
+        <item>-500</item>
+        <item>250</item>
+        <item>500</item>
+    </string-array>
+    <string-array name="type_of_diet">
+        <item name="low_carb">@string/low_carb</item>
+        <item name="moderate_carb">@string/moderate_carb</item>
+        <item name="high_carb">@string/high_carb</item>
+    </string-array>
+    <string-array name="type_of_diet_value">
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
     </string-array>
     <string-array name="wearside">
         <item>@string/left</item>

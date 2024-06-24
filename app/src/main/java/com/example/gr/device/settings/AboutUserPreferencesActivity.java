@@ -32,6 +32,7 @@ import static com.example.gr.model.ActivityUser.PREF_USER_WEIGHT_KG;
 import static com.example.gr.model.ActivityUser.PREF_USER_YEAR_OF_BIRTH;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 
@@ -47,6 +48,11 @@ public class AboutUserPreferencesActivity extends AbstractSettingsActivityV2 {
     @Override
     protected String fragmentTag() {
         return AboutUserPreferencesFragment.FRAGMENT_TAG;
+    }
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
     }
 
     @Override

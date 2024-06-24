@@ -396,6 +396,8 @@ int array sonyswr12_smart_alarm_interval_values 0x7f03012d
 int array sonyswr12_smart_alarm_intervals 0x7f03012e
 int array temperature_scales_cf 0x7f03012f
 int array temperature_scales_cf_values 0x7f030130
+int array type_of_diet 0x7f03014b
+int array type_of_diet_value 0x7f03014c
 int array vibration_profile 0x7f030131
 int array vibration_profile_values 0x7f030132
 int array weardirection 0x7f030133
@@ -5908,6 +5910,7 @@ int string heartrate_bpm_50 0x7f1203d9
 int string hebrew 0x7f1203da
 int string hello_blank_fragment 0x7f1203db
 int string hide_bottom_view_on_scroll_behavior 0x7f1203dc
+int string high_carb 0x7f120ba8
 int string hint_search_ex_name 0x7f1203dd
 int string hint_search_name 0x7f1203de
 int string homepage_url 0x7f1203df
@@ -6038,6 +6041,7 @@ int string liveactivity_live_activity 0x7f12045b
 int string log_out 0x7f12045c
 int string long_press 0x7f12045d
 int string lorem_ipsum 0x7f12045e
+int string low_carb 0x7f120ba9
 int string low_power_gps 0x7f12045f
 int string loyalty_cards 0x7f120460
 int string loyalty_cards_catima 0x7f120461
@@ -6275,6 +6279,7 @@ int string minutes_5 0x7f120546
 int string minutes_km 0x7f120547
 int string minutes_mi 0x7f120548
 int string mode_configuration 0x7f120549
+int string moderate_carb 0x7f120baa
 int string movement_intensity 0x7f12054a
 int string msg_exit_app 0x7f12054b
 int string mtrl_badge_numberless_content_description 0x7f12054c
@@ -7653,6 +7658,7 @@ int string totalStride 0x7f120aa8
 int string traditional_chinese 0x7f120aa9
 int string triple_tap 0x7f120aaa
 int string turkish 0x7f120aab
+int string type_of_diet 0x7f120bab
 int string ukrainian 0x7f120aac
 int string ukranian 0x7f120aad
 int string uncheck_all_applications 0x7f120aae

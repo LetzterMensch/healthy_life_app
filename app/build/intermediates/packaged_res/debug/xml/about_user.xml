@@ -50,7 +50,7 @@
             app:useSimpleSummaryProvider="true" />
         <ListPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="2"
+            android:defaultValue="1.2"
             android:entries="@array/active_level"
             android:entryValues="@array/active_level_value"
             android:key="activity_user_active_level"
@@ -58,13 +58,20 @@
             android:title="@string/activity_user_activity_level" />
         <ListPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="2"
+            android:defaultValue="-500"
             android:entries="@array/purpose"
             android:entryValues="@array/purpose_value"
             android:key="activity_user_purpose"
             android:summary="%s"
             android:title="@string/activity_user_purpose" />
-
+        <ListPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="2"
+            android:entries="@array/type_of_diet"
+            android:entryValues="@array/type_of_diet_value"
+            android:key="activity_user_diet"
+            android:summary="%s"
+            android:title="@string/type_of_diet" />
         <EditTextPreference
             app:iconSpaceReserved="false"
             android:inputType="number"

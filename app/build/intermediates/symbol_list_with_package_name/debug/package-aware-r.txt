@@ -397,6 +397,8 @@ array sonyswr12_smart_alarm_interval_values
 array sonyswr12_smart_alarm_intervals
 array temperature_scales_cf
 array temperature_scales_cf_values
+array type_of_diet
+array type_of_diet_value
 array vibration_profile
 array vibration_profile_values
 array weardirection
@@ -5909,6 +5911,7 @@ string heartrate_bpm_50
 string hebrew
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
+string high_carb
 string hint_search_ex_name
 string hint_search_name
 string homepage_url
@@ -6039,6 +6042,7 @@ string liveactivity_live_activity
 string log_out
 string long_press
 string lorem_ipsum
+string low_carb
 string low_power_gps
 string loyalty_cards
 string loyalty_cards_catima
@@ -6276,6 +6280,7 @@ string minutes_5
 string minutes_km
 string minutes_mi
 string mode_configuration
+string moderate_carb
 string movement_intensity
 string msg_exit_app
 string mtrl_badge_numberless_content_description
@@ -7654,6 +7659,7 @@ string totalStride
 string traditional_chinese
 string triple_tap
 string turkish
+string type_of_diet
 string ukrainian
 string ukranian
 string uncheck_all_applications

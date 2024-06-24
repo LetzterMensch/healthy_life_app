@@ -1,5 +1,6 @@
 package com.example.gr.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.DeviceManager;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.settings.AboutUserPreferencesActivity;
+import com.example.gr.model.ActivityUser;
 import com.example.gr.utils.DeviceHelper;
 import com.example.gr.utils.GB;
 import com.example.gr.utils.GBPrefs;
@@ -37,6 +39,7 @@ public class ProfileFragment extends BaseFragment {
     private GBDevice device;
     private Context context;
 
+    public static final int REQ_CODE_RECALCULATE_TDEE = 666;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

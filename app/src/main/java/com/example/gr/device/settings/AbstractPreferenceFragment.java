@@ -1,6 +1,15 @@
 
 package com.example.gr.device.settings;
 
+import static android.app.Activity.RESULT_OK;
+import static com.example.gr.model.ActivityUser.PREF_USER_ACTIVE_LEVEL;
+import static com.example.gr.model.ActivityUser.PREF_USER_DIET;
+import static com.example.gr.model.ActivityUser.PREF_USER_GENDER;
+import static com.example.gr.model.ActivityUser.PREF_USER_HEIGHT_CM;
+import static com.example.gr.model.ActivityUser.PREF_USER_PURPOSE;
+import static com.example.gr.model.ActivityUser.PREF_USER_WEIGHT_KG;
+import static com.example.gr.model.ActivityUser.PREF_USER_YEAR_OF_BIRTH;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,6 +27,7 @@ import androidx.preference.SeekBarPreference;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.example.gr.R;
+import com.example.gr.model.ActivityUser;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -142,7 +152,42 @@ public abstract class AbstractPreferenceFragment extends PreferenceFragmentCompa
             sharedPreferencesChangeHandler.onSharedPreferenceChanged(sharedPreferences, preference.getKey());
         }
     }
-
+    private void recalculateNutritionGoal(int caloriesGoal){
+        ActivityUser activityUser = new ActivityUser();
+        int carbGoal = 0;
+        int proteinGoal = 0;
+        int fatGoal = 0;
+        switch (activityUser.getActivityUserDiet()){
+            case 0 :
+                carbGoal = (int) Math.round(caloriesGoal * 0.2);
+                proteinGoal = (int) Math.round(caloriesGoal*0.4);
+                fatGoal = (int) Math.round(caloriesGoal*0.4);
+                break;
+            case 1:
+                carbGoal = (int) Math.round(caloriesGoal * 0.35);
+                proteinGoal = (int) Math.round(caloriesGoal*0.3);
+                fatGoal = (int) Math.round(caloriesGoal*0.35);
+                break;
+            case 2:
+                carbGoal = (int) Math.round(caloriesGoal * 0.5);
+                proteinGoal = (int) Math.round(caloriesGoal*0.3);
+                fatGoal = (int) Math.round(caloriesGoal*0.2);
+                break;
+        }
+        activityUser.setNutritionGoal(carbGoal,proteinGoal,fatGoal);
+    }
+    private void recalculateCaloriesBurntGoal(){
+        ActivityUser activityUser = new ActivityUser();
+        double BMR = 0;
+        if(activityUser.getGender() == 1){
+            BMR = activityUser.getWeightKg()*10 + activityUser.getHeightCm()*6.25 - activityUser.getAge()*5 + 5;
+        }else if(activityUser.getGender() == 0){
+            BMR = activityUser.getWeightKg()*10 + activityUser.getHeightCm()*6.25 - activityUser.getAge()*5 - 161;
+        }
+        int caloriesGoal = (int) Math.round( BMR * activityUser.getActivityUserActiveLevel() + activityUser.getActivityUserPurpose());
+        activityUser.setActivityUserCaloriesBurntGoal(caloriesGoal);
+        recalculateNutritionGoal(caloriesGoal);
+    }
     /**
      * Handler for preference changes, update UI accordingly (if device updates the preferences).
      */
@@ -155,14 +200,23 @@ public abstract class AbstractPreferenceFragment extends PreferenceFragmentCompa
                 LOG.warn("Preference null, ignoring");
                 return;
             }
-
+            if (key.equals(PREF_USER_ACTIVE_LEVEL) || key.equals(PREF_USER_PURPOSE) ||
+                    key.equals(PREF_USER_WEIGHT_KG) || key.equals(PREF_USER_HEIGHT_CM) ||
+                    key.equals(PREF_USER_GENDER) || key.equals(PREF_USER_YEAR_OF_BIRTH)
+            ) {
+                recalculateCaloriesBurntGoal();
+            }
+            if (key.equals(PREF_USER_DIET)){
+                ActivityUser activityUser = new ActivityUser();
+                recalculateNutritionGoal(activityUser.getCaloriesBurntGoal());
+            }
             final Preference preference = findPreference(key);
             if (preference == null) {
                 LOG.warn("Preference {} not found", key);
 
                 return;
             }
-
+            System.out.println(key);
             if (preference instanceof SeekBarPreference) {
                 final SeekBarPreference seekBarPreference = (SeekBarPreference) preference;
                 seekBarPreference.setValue(prefs.getInt(key, seekBarPreference.getValue()));
