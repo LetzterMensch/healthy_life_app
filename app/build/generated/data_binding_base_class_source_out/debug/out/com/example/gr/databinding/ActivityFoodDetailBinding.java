@@ -57,6 +57,9 @@ public final class ActivityFoodDetailBinding implements ViewBinding {
   public final ImageView imgBack;
 
   @NonNull
+  public final ImageView imgSave;
+
+  @NonNull
   public final TextView numberOfServings;
 
   @NonNull
@@ -70,7 +73,7 @@ public final class ActivityFoodDetailBinding implements ViewBinding {
       @NonNull LinearProgressIndicator fatIndicator, @NonNull TextView foodCarb,
       @NonNull RelativeLayout foodDetailToolbar, @NonNull TextView foodFat,
       @NonNull TextView foodName, @NonNull TextView foodProtein, @NonNull ImageView imgAdd,
-      @NonNull ImageView imgBack, @NonNull TextView numberOfServings,
+      @NonNull ImageView imgBack, @NonNull ImageView imgSave, @NonNull TextView numberOfServings,
       @NonNull LinearProgressIndicator proteinIndicator, @NonNull TextView servingSize) {
     this.rootView = rootView;
     this.calories = calories;
@@ -84,6 +87,7 @@ public final class ActivityFoodDetailBinding implements ViewBinding {
     this.foodProtein = foodProtein;
     this.imgAdd = imgAdd;
     this.imgBack = imgBack;
+    this.imgSave = imgSave;
     this.numberOfServings = numberOfServings;
     this.proteinIndicator = proteinIndicator;
     this.servingSize = servingSize;
@@ -182,6 +186,12 @@ public final class ActivityFoodDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.img_save;
+      ImageView imgSave = ViewBindings.findChildViewById(rootView, id);
+      if (imgSave == null) {
+        break missingId;
+      }
+
       id = R.id.number_of_servings;
       TextView numberOfServings = ViewBindings.findChildViewById(rootView, id);
       if (numberOfServings == null) {
@@ -202,7 +212,7 @@ public final class ActivityFoodDetailBinding implements ViewBinding {
 
       return new ActivityFoodDetailBinding((ConstraintLayout) rootView, calories, carbIndicator,
           editNumberOfServings, fatIndicator, foodCarb, foodDetailToolbar, foodFat, foodName,
-          foodProtein, imgAdd, imgBack, numberOfServings, proteinIndicator, servingSize);
+          foodProtein, imgAdd, imgBack, imgSave, numberOfServings, proteinIndicator, servingSize);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

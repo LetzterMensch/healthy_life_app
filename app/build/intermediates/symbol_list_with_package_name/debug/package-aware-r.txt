@@ -3718,6 +3718,7 @@ drawable ic_call_answer_video
 drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
+drawable ic_check_36
 drawable ic_clear_black_24
 drawable ic_clock
 drawable ic_clock_black_24dp
@@ -4209,6 +4210,7 @@ id img_add
 id img_back
 id img_food
 id img_next
+id img_save
 id img_search
 id immediateStop
 id included

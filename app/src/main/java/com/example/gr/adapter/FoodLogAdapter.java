@@ -11,20 +11,20 @@ import com.example.gr.ControllerApplication;
 import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.ItemFoodBinding;
 import com.example.gr.listener.IOnClickDeleteFoodLogListener;
-import com.example.gr.listener.IOnClickFoodItemListener;
+import com.example.gr.listener.IOnClickFoodLogItemListener;
 import com.example.gr.model.Food;
 import com.example.gr.model.FoodLog;
 
 import java.util.List;
 
 public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.FoodLogViewHolder>{
-    public final IOnClickFoodItemListener iOnClickFoodItemListener;
+    public final IOnClickFoodLogItemListener iOnClickFoodLogItemListener;
     private List<FoodLog> mFoodLogsList;
     public final IOnClickDeleteFoodLogListener iOnClickDeleteFoodLogListener;
     private int sum;
-    public FoodLogAdapter(List<FoodLog> mFoodLogsList, IOnClickFoodItemListener iOnClickFoodItemListener, IOnClickDeleteFoodLogListener iOnClickDeleteFoodLogListener) {
+    public FoodLogAdapter(List<FoodLog> mFoodLogsList, IOnClickFoodLogItemListener iOnClickFoodLogItemListener, IOnClickDeleteFoodLogListener iOnClickDeleteFoodLogListener) {
         this.mFoodLogsList = mFoodLogsList;
-        this.iOnClickFoodItemListener = iOnClickFoodItemListener;
+        this.iOnClickFoodLogItemListener = iOnClickFoodLogItemListener;
         this.iOnClickDeleteFoodLogListener = iOnClickDeleteFoodLogListener;
         this.sum = calculateMealTotalCalories(mFoodLogsList);
     }
@@ -56,7 +56,7 @@ public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.FoodLogV
             deleteFoodLog(foodLog,position);
             iOnClickDeleteFoodLogListener.onClickDeleteItemFoodLog(foodLog);
         });
-        holder.mItemFoodBinding.layoutItem.setOnClickListener(v->iOnClickFoodItemListener.onClickItemFood(food));
+        holder.mItemFoodBinding.layoutItem.setOnClickListener(v->iOnClickFoodLogItemListener.onClickItemFoodLog(foodLog));
     }
 
     @Override

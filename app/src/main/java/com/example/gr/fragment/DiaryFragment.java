@@ -147,9 +147,11 @@ public class DiaryFragment extends BaseFragment {
         displayFoodLogs(mDate);
     }
 
-    private void goToFoodDetail(@NonNull Food food) {
+    private void goToFoodDetail(@NonNull FoodLog foodLog) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constant.KEY_INTENT_FOOD_OBJECT, food);
+        bundle.putSerializable(Constant.KEY_INTENT_EDIT_FOOD_LOG_OBJECT, foodLog);
+        bundle.putInt("key_meal",foodLog.getMeal());
+        bundle.putSerializable("key_diary",mDiary);
         GlobalFunction.startActivity(getActivity(), FoodDetailActivity.class, bundle);
     }
 

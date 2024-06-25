@@ -3717,6 +3717,7 @@ int drawable ic_call_answer_video 0x7f0800c7
 int drawable ic_call_answer_video_low 0x7f0800c8
 int drawable ic_call_decline 0x7f0800c9
 int drawable ic_call_decline_low 0x7f0800ca
+int drawable ic_check_36 0x7f08015e
 int drawable ic_clear_black_24 0x7f0800cb
 int drawable ic_clock 0x7f0800cc
 int drawable ic_clock_black_24dp 0x7f0800cd
@@ -4208,6 +4209,7 @@ int id img_add 0x7f0a014f
 int id img_back 0x7f0a0150
 int id img_food 0x7f0a0151
 int id img_next 0x7f0a0152
+int id img_save 0x7f0a02fa
 int id img_search 0x7f0a0153
 int id immediateStop 0x7f0a0154
 int id included 0x7f0a0155

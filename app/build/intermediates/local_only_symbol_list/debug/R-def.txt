@@ -505,6 +505,7 @@ drawable ic_baseline_arrow_drop_down_36
 drawable ic_bedtime_24dp
 drawable ic_bluetooth
 drawable ic_bluetooth_searching
+drawable ic_check_36
 drawable ic_clock
 drawable ic_close_36
 drawable ic_complete_diary
@@ -665,6 +666,7 @@ id img_add
 id img_back
 id img_food
 id img_next
+id img_save
 id img_search
 id indoorBtn
 id item_details

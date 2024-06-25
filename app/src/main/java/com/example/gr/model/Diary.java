@@ -1,5 +1,7 @@
 package com.example.gr.model;
 
+import android.service.controls.Control;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -7,6 +9,7 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.example.gr.ControllerApplication;
+import com.example.gr.adapter.FoodLogAdapter;
 import com.example.gr.database.Converters;
 import com.example.gr.database.LocalDatabase;
 import com.example.gr.utils.DateTimeUtils;
@@ -84,7 +87,14 @@ public class Diary implements Serializable {
         this.burntCalories += workout.getCaloriesBurnt();
         updateDiaryAfterLogging();
     }
-
+    public void updateFoodLog(FoodLog foodLog){
+        LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().updateFoodLog(foodLog);
+        this.intakeCalories += foodLog.getTotalCalories();
+        this.intakeCarb += foodLog.getTotalCarb();
+        this.intakeFat += foodLog.getTotalFat();
+        this.intakeProtein += foodLog.getTotalProtein();
+        updateDiaryAfterLogging();
+    }
     public void logFood(FoodLog foodLog) {
         LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().insertFoodLog(foodLog);
         switch (foodLog.getMeal()) {

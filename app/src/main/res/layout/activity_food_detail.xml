@@ -40,6 +40,15 @@
             android:padding="@dimen/define_dimen_10"
             android:src="@drawable/ic_add_36"
             android:visibility="visible" />
+        <ImageView
+            android:id="@+id/img_save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="3dp"
+            android:padding="@dimen/define_dimen_10"
+            android:src="@drawable/ic_check_36"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <LinearLayout
@@ -67,7 +76,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="15dp"
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1"
             android:orientation="horizontal">
@@ -105,6 +114,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center|right"
                 android:paddingRight="10dp"
+                android:inputType="number"
                 android:text="1.5"
                 android:textColor="@color/black"
                 android:textSize="18sp"

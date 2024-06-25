@@ -28,7 +28,6 @@ public class FoodDetailActivity extends BaseActivity {
         mActivityFoodDetailBinding = ActivityFoodDetailBinding.inflate(getLayoutInflater());
         setContentView(mActivityFoodDetailBinding.getRoot());
         initToolbar();
-//        mDiary = LocalDatabase.getInstance(this).diaryDAO().getDiaryByDate(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
         getDataIntent();
         displayFoodDetail();
 
@@ -44,8 +43,18 @@ public class FoodDetailActivity extends BaseActivity {
                 addFoodLog();
             }
         });
+        mActivityFoodDetailBinding.imgSave.setOnClickListener(v->{
+            Toast.makeText(FoodDetailActivity.this, "Đã lưu lại chỉnh sửa", Toast.LENGTH_SHORT).show();
+            saveFoodLog();
+        });
     }
-
+    private void saveFoodLog(){
+        numberOfServings = Float.parseFloat(String.valueOf(mActivityFoodDetailBinding.editNumberOfServings.getText()));
+        mFoodLog.updateFoodLog(numberOfServings);
+        mDiary.updateDiaryAfterRemove(mFoodLog);
+        mDiary.updateFoodLog(mFoodLog);
+        finish();
+    }
     private void addFoodLog() {
         numberOfServings = Float.parseFloat(String.valueOf(mActivityFoodDetailBinding.editNumberOfServings.getText()));
         mFoodLog.updateFoodLog(numberOfServings);
@@ -58,7 +67,6 @@ public class FoodDetailActivity extends BaseActivity {
         if (bundle != null) {
             if (bundle.get(Constant.KEY_INTENT_FOOD_OBJECT) != null) {
                 mFood = (Food) bundle.get(Constant.KEY_INTENT_FOOD_OBJECT);
-                mActivityFoodDetailBinding.numberOfServings.setVisibility(View.VISIBLE);
                 mActivityFoodDetailBinding.editNumberOfServings.setVisibility(View.GONE);
                 mActivityFoodDetailBinding.numberOfServings.setText(String.valueOf(mFood.getNumberOfServings()));
                 mActivityFoodDetailBinding.imgAdd.setVisibility(View.GONE);
@@ -73,6 +81,18 @@ public class FoodDetailActivity extends BaseActivity {
                 mActivityFoodDetailBinding.editNumberOfServings.setVisibility(View.VISIBLE);
                 mActivityFoodDetailBinding.editNumberOfServings.setText(String.valueOf(mFoodLog.getFood().getNumberOfServings()));
                 mActivityFoodDetailBinding.imgAdd.setVisibility(View.VISIBLE);
+            }else if (bundle.get(Constant.KEY_INTENT_EDIT_FOOD_LOG_OBJECT) != null) {
+                mFoodLog = (FoodLog) bundle.get(Constant.KEY_INTENT_EDIT_FOOD_LOG_OBJECT);
+                mFood = LocalDatabase.getInstance(this).foodDAO().getFoodById(mFoodLog.getFoodId());
+                mFoodLog.setFood(mFood);
+                mDiary = (Diary) bundle.getSerializable("key_diary");
+                meal = bundle.getInt("key_meal");
+                mActivityFoodDetailBinding.numberOfServings.setVisibility(View.GONE);
+                mActivityFoodDetailBinding.editNumberOfServings.setVisibility(View.VISIBLE);
+                mActivityFoodDetailBinding.imgAdd.setVisibility(View.GONE);
+                mActivityFoodDetailBinding.imgSave.setVisibility(View.VISIBLE);
+                mActivityFoodDetailBinding.editNumberOfServings.setText(String.valueOf(mFoodLog.getNumberOfServings()));
+
             }
         }
     }

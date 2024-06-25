@@ -5,6 +5,7 @@ public interface Constant {
     String KEY_INTENT_DIARY_OBJECT = "diary_object";
     String KEY_INTENT_RECIPE_OBJECT = "recipe_object";
     String KEY_INTENT_CREATE_RECIPE_OBJECT = "create_recipe_object";
-    String KEY_INTENT_ADD_FOOD_LOG_OBJECT = "food_log_object";
+    String KEY_INTENT_ADD_FOOD_LOG_OBJECT = "add_food_log_object";
+    String KEY_INTENT_EDIT_FOOD_LOG_OBJECT = "edit_food_log_object";
 
 }

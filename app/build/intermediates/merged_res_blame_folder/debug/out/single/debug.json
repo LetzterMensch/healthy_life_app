@@ -340,6 +340,10 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\layout\\activity_recipe_detail.xml"
     },
     {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_check_36.xml.flat",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_check_36.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\drawable_ic_complete_diary.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\ic_complete_diary.xml"
     },
@@ -356,8 +360,8 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-56:\\drawable\\bg_white_shape_top_border_red_corner_30.xml"
     },
     {
-        "merged": "com.example.gr.app-merged_res-54:/layout_item_food.xml.flat",
-        "source": "com.example.gr.app-main-56:/layout/item_food.xml"
+        "merged": "com.example.gr.app-merged_res-54:/layout_activity_food_detail.xml.flat",
+        "source": "com.example.gr.app-main-56:/layout/activity_food_detail.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-54:\\layout_fragment_dashboard.xml.flat",
