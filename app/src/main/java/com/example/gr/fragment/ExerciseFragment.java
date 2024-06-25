@@ -32,17 +32,27 @@ import com.example.gr.activity.MainActivity;
 import com.example.gr.activity.SearchForExerciseActivity;
 import com.example.gr.adapter.HistoryAdapter;
 import com.example.gr.constant.GlobalFunction;
+import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.FragmentExerciseBinding;
 import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.DeviceManager;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.model.RecordedDataTypes;
+import com.example.gr.model.ActivityUser;
+import com.example.gr.model.Diary;
+import com.example.gr.utils.DateTimeUtils;
 import com.example.gr.utils.GB;
 import com.example.gr.model.BaseWorkout;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class ExerciseFragment extends BaseFragment {
@@ -56,16 +66,43 @@ public class ExerciseFragment extends BaseFragment {
     private DeviceManager deviceManager;
     private GBDevice device;
     private Button syncBtn;
+    private Diary mDiary;
+    private ActivityUser activityUser;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mFragmentExerciseBinding = FragmentExerciseBinding.inflate(inflater, container, false);
+        getDiary(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
+        activityUser = new ActivityUser();
         initUI();
         return mFragmentExerciseBinding.getRoot();
     }
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getStepsData(HashMap<String,long[]> deviceActivityHashMap){
+        long[] dailyTotals = new long[]{0, 0};
+        if (deviceActivityHashMap.containsKey(device.getAddress())) {
+            dailyTotals = deviceActivityHashMap.get(device.getAddress());
+        }
+        int steps = (int) dailyTotals[0];
+        int sleep = (int) dailyTotals[1];
+        System.out.println("steps : " + steps);
+        mDiary.setTotalSteps(steps);
+        displayWorkoutInfo();
+    }
     private void initUI() {
+        displayWorkoutInfo();
         workoutList = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             workoutList.add(new BaseWorkout(12, LocalDateTime.now()));
@@ -122,6 +159,30 @@ public class ExerciseFragment extends BaseFragment {
                 .setIcon(Icon.createWithResource(context, coordinator.getDefaultIconResource()))
                 .build()
         );
+    }
+    private void displayWorkoutInfo() {
+        if (mDiary != null) {
+            mFragmentExerciseBinding.exCalBurnt.setText(mDiary.getBurntCalories() + "cal");
+            int minute = (mDiary.getTotalWorkoutDuration() - (mDiary.getTotalWorkoutDuration() / 60) * 60);
+            String min = null;
+            if (minute < 10) {
+                min = "0" + minute;
+            }else {
+                min = String.valueOf(minute);
+            }
+            mFragmentExerciseBinding.exCalBurntHr.setText(mDiary.getTotalWorkoutDuration() / 60 + ":" + min+" h");
+            mFragmentExerciseBinding.stepsBarIndicator.setProgress(mDiary.getTotalSteps()*100/activityUser.getStepsGoal());
+            mFragmentExerciseBinding.exSteps.setText(String.valueOf(mDiary.getTotalSteps()));
+            mFragmentExerciseBinding.titleGoalSteps.setText("Mục tiêu : " + activityUser.getStepsGoal() + " bước");
+        }
+    }
+    private void getDiary(String date) {
+        mDiary = LocalDatabase.getInstance(this.requireActivity()).diaryDAO().getDiaryByDate(date);
+        if (mDiary == null) {
+            mDiary = new Diary(date);
+            LocalDatabase.getInstance(this.requireActivity()).diaryDAO().insertDiary(mDiary);
+        }
+        System.out.println(mDiary.getDate());
     }
 
     private void fetchData() {
@@ -182,6 +243,7 @@ public class ExerciseFragment extends BaseFragment {
     }
     @Override
     protected void updateUIAfterShowSnackBar() {
+        displayWorkoutInfo();
         showAddWearableInfo();
     }
 

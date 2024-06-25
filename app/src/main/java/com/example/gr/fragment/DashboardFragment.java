@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.activity.MainActivity;
 import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.FragmentDashboardBinding;
+import com.example.gr.device.DeviceManager;
+import com.example.gr.device.GBDevice;
 import com.example.gr.model.ActivityUser;
 import com.example.gr.model.Diary;
 import com.example.gr.utils.DateTimeUtils;
@@ -22,8 +25,13 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class DashboardFragment extends BaseFragment {
@@ -43,7 +51,34 @@ public class DashboardFragment extends BaseFragment {
         initUi();
         return mfragmentDashboardBinding.getRoot();
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getStepsData(HashMap<String,long[]> deviceActivityHashMap){
+        DeviceManager deviceManager = ((ControllerApplication) getActivity().getApplication()).getDeviceManager();
+        GBDevice device = null;
+        if (deviceManager.getDevices().size() > 0) {
+            device = deviceManager.getDevices().get(0);
+        }
+        long[] dailyTotals = new long[]{0, 0};
+        if (deviceActivityHashMap.containsKey(device.getAddress())) {
+            dailyTotals = deviceActivityHashMap.get(device.getAddress());
+        }
+        int steps = (int) dailyTotals[0];
+        int sleep = (int) dailyTotals[1];
+        System.out.println("steps : " + steps);
+        mDiary.setTotalSteps(steps);
+        displayWorkoutInfo();
+    }
     @Override
     public void onResume() {
         displayChartInfo();

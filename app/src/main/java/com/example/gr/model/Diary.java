@@ -103,7 +103,6 @@ public class Diary implements Serializable {
         int sum = 0;
         for (Workout workout : this.workoutList
         ) {
-            System.out.println(workout.getDiaryID());
             sum += workout.getDuration();
         }
         return sum;

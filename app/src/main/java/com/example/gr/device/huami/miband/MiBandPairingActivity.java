@@ -182,8 +182,9 @@ public class MiBandPairingActivity extends AbstractGBActivity implements Bonding
             ControllerApplication.getPrefs().getPreferences().edit().putBoolean("display_add_wearable_btn", false).apply();
             Intent intent = new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.setAction(ControllerApplication.ACTION_NAV_EXERCISE_FRAGMENT);
-            LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
             startActivity(intent);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
         }
         ControllerApplication.getPrefs().getBoolean("display_add_wearable_btn", false);
         finish();

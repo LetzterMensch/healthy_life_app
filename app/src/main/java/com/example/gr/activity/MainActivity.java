@@ -39,6 +39,8 @@ import com.example.gr.utils.GB;
 import com.example.gr.utils.HeartRateUtils;
 import com.example.gr.utils.LimitedQueue;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -59,6 +61,9 @@ public class MainActivity extends BaseActivity {
 //    private GBDeviceAdapterv2 mGBDeviceAdapter;
 
     private HashMap<String,long[]> deviceActivityHashMap = new HashMap();
+    public HashMap<String,long[]> getDeviceActivityHashMap(){
+        return this.deviceActivityHashMap;
+    }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -68,6 +73,7 @@ public class MainActivity extends BaseActivity {
                 case ControllerApplication.ACTION_NAV_DASHBOARD_FRAGMENT:
                     mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_dashboard).setChecked(true);
                     mActivityMainBinding.viewpager2.setCurrentItem(0);
+                    createRefreshTask("get activity data", getApplication()).execute();
                     break;
                 case ControllerApplication.ACTION_NAV_DIARY_FRAGMENT:
                     mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_diary).setChecked(true);
@@ -76,10 +82,13 @@ public class MainActivity extends BaseActivity {
                 case ControllerApplication.ACTION_NAV_EXERCISE_FRAGMENT:
                     mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_exercise).setChecked(true);
                     mActivityMainBinding.viewpager2.setCurrentItem(2);
+                    createRefreshTask("get activity data", getApplication()).execute();
+                    EventBus.getDefault().post(deviceActivityHashMap);
                     break;
                 case ControllerApplication.ACTION_NAV_SLEEP_FRAGMENT:
                     mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_sleep).setChecked(true);
                     mActivityMainBinding.viewpager2.setCurrentItem(3);
+                    createRefreshTask("get activity data", getApplication()).execute();
                     break;
                 case ControllerApplication.ACTION_NAV_PROFILE_FRAGMENT:
                     mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_profile).setChecked(true);
@@ -91,6 +100,7 @@ public class MainActivity extends BaseActivity {
                 case DeviceManager.ACTION_DEVICES_CHANGED:
                 case ControllerApplication.ACTION_NEW_DATA:
                     createRefreshTask("get activity data", getApplication()).execute();
+                    EventBus.getDefault().post(deviceActivityHashMap);
 //                    mGBDeviceAdapter.rebuildFolders();
 //                    refreshPairedDevices();
                     break;
@@ -124,6 +134,12 @@ public class MainActivity extends BaseActivity {
         intentFilter.addAction(DeviceService.ACTION_REALTIME_SAMPLES);
         deviceManager = ((ControllerApplication) getApplication()).getDeviceManager();
         deviceList = deviceManager.getDevices();
+        createRefreshTask("get activity data", getApplication()).execute();
+
+
+
+
+
 
         mActivityMainBinding.viewpager2.setUserInputEnabled(false);
         mainViewPagerAdapter = new MainViewPagerAdapter(this);
