@@ -118,7 +118,7 @@
                 </RelativeLayout>
 
 
-                <TextView
+                <EditText
                     android:id="@+id/dialog_tv_count"
                     android:layout_width="@dimen/define_dimen_70"
                     android:layout_height="@dimen/define_dimen_40"
@@ -127,6 +127,7 @@
                     android:background="@drawable/bg_white_shape_border_red_corner_3"
                     android:gravity="center"
                     android:text="@string/label_quantity_1"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_normal" />
                 <RelativeLayout

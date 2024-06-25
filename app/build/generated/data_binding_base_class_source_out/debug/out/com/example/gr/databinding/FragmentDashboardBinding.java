@@ -27,6 +27,9 @@ public final class FragmentDashboardBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final TextView calBurntDuration;
+
+  @NonNull
   public final LinearLayout calProcessContainer;
 
   @NonNull
@@ -52,9 +55,6 @@ public final class FragmentDashboardBinding implements ViewBinding {
 
   @NonNull
   public final TextView dashboardCalBurnt;
-
-  @NonNull
-  public final TextView dashboardCalBurntHr;
 
   @NonNull
   public final TextView dashboardCarb;
@@ -93,11 +93,11 @@ public final class FragmentDashboardBinding implements ViewBinding {
   public final CardView weightLineChart;
 
   private FragmentDashboardBinding(@NonNull ConstraintLayout rootView,
-      @NonNull LinearLayout calProcessContainer, @NonNull TextView caloriesBurnt,
-      @NonNull CircularProgressIndicator caloriesCircle, @NonNull TextView caloriesInput,
-      @NonNull TextView caloriesRemain, @NonNull LinearProgressIndicator carbIndicator,
-      @NonNull CardView cardBurntContainer, @NonNull MaterialCardView cardContainer,
-      @NonNull TextView dashboardCalBurnt, @NonNull TextView dashboardCalBurntHr,
+      @NonNull TextView calBurntDuration, @NonNull LinearLayout calProcessContainer,
+      @NonNull TextView caloriesBurnt, @NonNull CircularProgressIndicator caloriesCircle,
+      @NonNull TextView caloriesInput, @NonNull TextView caloriesRemain,
+      @NonNull LinearProgressIndicator carbIndicator, @NonNull CardView cardBurntContainer,
+      @NonNull MaterialCardView cardContainer, @NonNull TextView dashboardCalBurnt,
       @NonNull TextView dashboardCarb, @NonNull TextView dashboardFat,
       @NonNull TextView dashboardProtein, @NonNull TextView dashboardSteps,
       @NonNull LinearProgressIndicator fatIndicator, @NonNull LineChart lineChart,
@@ -106,6 +106,7 @@ public final class FragmentDashboardBinding implements ViewBinding {
       @NonNull TextView titleGoalSteps, @NonNull AppCompatTextView titleToday,
       @NonNull CardView weightLineChart) {
     this.rootView = rootView;
+    this.calBurntDuration = calBurntDuration;
     this.calProcessContainer = calProcessContainer;
     this.caloriesBurnt = caloriesBurnt;
     this.caloriesCircle = caloriesCircle;
@@ -115,7 +116,6 @@ public final class FragmentDashboardBinding implements ViewBinding {
     this.cardBurntContainer = cardBurntContainer;
     this.cardContainer = cardContainer;
     this.dashboardCalBurnt = dashboardCalBurnt;
-    this.dashboardCalBurntHr = dashboardCalBurntHr;
     this.dashboardCarb = dashboardCarb;
     this.dashboardFat = dashboardFat;
     this.dashboardProtein = dashboardProtein;
@@ -157,6 +157,12 @@ public final class FragmentDashboardBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.cal_burnt_duration;
+      TextView calBurntDuration = ViewBindings.findChildViewById(rootView, id);
+      if (calBurntDuration == null) {
+        break missingId;
+      }
+
       id = R.id.cal_process_container;
       LinearLayout calProcessContainer = ViewBindings.findChildViewById(rootView, id);
       if (calProcessContainer == null) {
@@ -208,12 +214,6 @@ public final class FragmentDashboardBinding implements ViewBinding {
       id = R.id.dashboard_cal_burnt;
       TextView dashboardCalBurnt = ViewBindings.findChildViewById(rootView, id);
       if (dashboardCalBurnt == null) {
-        break missingId;
-      }
-
-      id = R.id.dashboard_cal_burnt_hr;
-      TextView dashboardCalBurntHr = ViewBindings.findChildViewById(rootView, id);
-      if (dashboardCalBurntHr == null) {
         break missingId;
       }
 
@@ -289,9 +289,9 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentDashboardBinding((ConstraintLayout) rootView, calProcessContainer,
-          caloriesBurnt, caloriesCircle, caloriesInput, caloriesRemain, carbIndicator,
-          cardBurntContainer, cardContainer, dashboardCalBurnt, dashboardCalBurntHr, dashboardCarb,
+      return new FragmentDashboardBinding((ConstraintLayout) rootView, calBurntDuration,
+          calProcessContainer, caloriesBurnt, caloriesCircle, caloriesInput, caloriesRemain,
+          carbIndicator, cardBurntContainer, cardContainer, dashboardCalBurnt, dashboardCarb,
           dashboardFat, dashboardProtein, dashboardSteps, fatIndicator, lineChart, proteinIndicator,
           stepsBarIndicator, titleCalories, titleGoalSteps, titleToday, weightLineChart);
     }

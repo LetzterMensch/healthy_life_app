@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,14 +20,18 @@ import com.example.gr.constant.GlobalFunction;
 import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.ActivitySearchForExerciseBinding;
 import com.example.gr.model.ActivityUser;
+import com.example.gr.model.Diary;
 import com.example.gr.model.Exercise;
+import com.example.gr.model.FoodLog;
 import com.example.gr.model.Workout;
+import com.example.gr.utils.DateTimeUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +41,7 @@ public class SearchForExerciseActivity extends BaseActivity {
     private Workout tempWorkout;
     private List<Exercise> mExerciseList;
     ExerciseAdapter exerciseAdapter;
+    private Diary mDiary;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +50,7 @@ public class SearchForExerciseActivity extends BaseActivity {
         setContentView(mActivitySearchForExerciseBinding.getRoot());
         activityUser = new ActivityUser();
         tempWorkout = new Workout();
+        getDiary(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
         initListener();
         initToolbar();
         getListExerciseFromLocalDatabase("");
@@ -58,11 +65,15 @@ public class SearchForExerciseActivity extends BaseActivity {
         displayExerciseList();
     }
     private void displayExerciseList() {
-        exerciseAdapter = new ExerciseAdapter(mExerciseList, this::onClickViewDetail);
+        exerciseAdapter = new ExerciseAdapter(mExerciseList, this::onClickViewDetail,this::quickAddBtn);
         mActivitySearchForExerciseBinding.rcvExerciseList.setLayoutManager(new LinearLayoutManager(this));
         mActivitySearchForExerciseBinding.rcvExerciseList.setAdapter(exerciseAdapter);
     }
-
+    private void quickAddBtn(Workout workout){
+        workout.setDiaryID(mDiary.getId());
+        mDiary.logWorkout(workout);
+        Toast.makeText(this, "Đã thêm vào nhật ký", Toast.LENGTH_SHORT).show();
+    }
     private void onClickViewDetail(Exercise exercise) {
 //        Toast.makeText(this, "Received", Toast.LENGTH_SHORT).show();
         tempWorkout.setExercise(exercise);
@@ -72,7 +83,7 @@ public class SearchForExerciseActivity extends BaseActivity {
         TextView tvExerciseName = viewDialog.findViewById(R.id.dialog_ex_item_name);
         TextView tvExerciseCaloriesBurnt = viewDialog.findViewById(R.id.dialog_exercise_item_calo);
         TextView tvExerciseDuration = viewDialog.findViewById(R.id.dialog_exercise_item_min);
-        TextView tvCount = viewDialog.findViewById(R.id.dialog_tv_count);
+        EditText tvCount = viewDialog.findViewById(R.id.dialog_tv_count);
         TextView tvSubstractBtn = viewDialog.findViewById(R.id.dialog_tv_subtract);
         TextView tvAddBtn = viewDialog.findViewById(R.id.dialog_tv_add);
         TextView tvCloseBtn = viewDialog.findViewById(R.id.dialog_sheet_close_btn);
@@ -116,15 +127,23 @@ public class SearchForExerciseActivity extends BaseActivity {
 //            FoodDatabase.getInstance(FoodDetailActivity.this).foodDAO().insertFood(mFood);
 //            setStatusButtonAddToCart();
 //            EventBus.getDefault().post(new ReloadListCartEvent());
-            tempWorkout.setCreatedAt(new Date().toString());
+            tempWorkout.setCreatedAt(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
+            tempWorkout.setDiaryID(mDiary.getId());
+            mDiary.logWorkout(tempWorkout);
             Toast.makeText(this, "added to diary", Toast.LENGTH_SHORT).show();
             bottomSheetDialog.dismiss();
-
         });
 
         bottomSheetDialog.show();
 
 
+    }
+    private void getDiary(String date) {
+        mDiary = LocalDatabase.getInstance(this).diaryDAO().getDiaryByDate(date);
+        if (mDiary == null) {
+            mDiary = new Diary(date);
+            LocalDatabase.getInstance(this).diaryDAO().insertDiary(mDiary);
+        }
     }
     private void initListener() {
         mActivitySearchForExerciseBinding.edtSearchName.addTextChangedListener(new TextWatcher() {

@@ -63,31 +63,53 @@ public class Diary implements Serializable {
     @Ignore
     public Diary(String date) {
         this.date = date;
+        this.totalSteps = 0;
         ActivityUser activityUser = new ActivityUser();
-        caloriesGoal = activityUser.getCaloriesBurntGoal();
-        carbGoal = activityUser.getActivityUserCarbGoal();
-        proteinGoal = activityUser.getActivityUserProteinGoal();
-        fatGoal = activityUser.getActivityUserFatGoal();
+        this.caloriesGoal = activityUser.getCaloriesBurntGoal();
+        this.carbGoal = activityUser.getActivityUserCarbGoal();
+        this.proteinGoal = activityUser.getActivityUserProteinGoal();
+        this.fatGoal = activityUser.getActivityUserFatGoal();
     }
 
     public void updateDiaryAfterLogging() {
         recalculateRemainingCalories(this.intakeCalories, this.burntCalories);
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
-    public void updateDiaryAfterRemove(FoodLog foodLog){
+
+    public void updateDiaryAfterRemove(FoodLog foodLog) {
         this.intakeCalories -= foodLog.getTotalCalories();
         this.intakeCarb -= foodLog.getTotalCarb();
         this.intakeProtein -= foodLog.getTotalProtein();
         this.intakeFat -= foodLog.getTotalFat();
-        recalculateRemainingCalories(this.intakeCalories,this.burntCalories);
+        recalculateRemainingCalories(this.intakeCalories, this.burntCalories);
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
+    private void getWorkoutList(){
+        this.workoutList = LocalDatabase.getInstance(ControllerApplication.getContext()).workoutDAO().findWorkoutByDiaryId(this.id);
+        if (this.workoutList == null) {
+            this.workoutList = new ArrayList<>();
+        }
+    }
     public void logWorkout(Workout workout) {
+        getWorkoutList();
         this.workoutList.add(workout);
         this.burntCalories += workout.getCaloriesBurnt();
+        LocalDatabase.getInstance(ControllerApplication.getContext()).workoutDAO().insertWorkout(workout);
         updateDiaryAfterLogging();
     }
-    public void updateFoodLog(FoodLog foodLog){
+
+    public int getTotalWorkoutDuration() {
+        getWorkoutList();
+        int sum = 0;
+        for (Workout workout : this.workoutList
+        ) {
+            System.out.println(workout.getDiaryID());
+            sum += workout.getDuration();
+        }
+        return sum;
+    }
+
+    public void updateFoodLog(FoodLog foodLog) {
         LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().updateFoodLog(foodLog);
         this.intakeCalories += foodLog.getTotalCalories();
         this.intakeCarb += foodLog.getTotalCarb();
@@ -95,6 +117,7 @@ public class Diary implements Serializable {
         this.intakeProtein += foodLog.getTotalProtein();
         updateDiaryAfterLogging();
     }
+
     public void logFood(FoodLog foodLog) {
         LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().insertFoodLog(foodLog);
         switch (foodLog.getMeal()) {

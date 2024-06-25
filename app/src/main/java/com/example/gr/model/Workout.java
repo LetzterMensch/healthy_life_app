@@ -17,6 +17,7 @@ public class Workout implements Serializable {
     private int id;
     @Ignore
     private Exercise exercise;
+    private int diaryID;
     private int exerciseId;
     private int duration;//minute
     private int caloriesBurnt;
@@ -35,6 +36,14 @@ public class Workout implements Serializable {
         this.exercise = exercise;
         this.duration = duration;
         this.caloriesBurnt = calories_burnt;
+    }
+
+    public int getDiaryID() {
+        return diaryID;
+    }
+
+    public void setDiaryID(int diaryID) {
+        this.diaryID = diaryID;
     }
 
     public int getExerciseId() {

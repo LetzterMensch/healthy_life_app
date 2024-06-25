@@ -579,6 +579,7 @@ id btn_snack_add
 id btn_view_more
 id cal_breakfast
 id cal_burnt
+id cal_burnt_duration
 id cal_card_container
 id cal_dinner
 id cal_goal
@@ -601,7 +602,6 @@ id charts_fetch_activity_data
 id connect_device
 id content
 id dashboard_cal_burnt
-id dashboard_cal_burnt_hr
 id dashboard_carb
 id dashboard_fat
 id dashboard_protein

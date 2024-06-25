@@ -489,7 +489,7 @@
                                     android:src="@drawable/ic_clock" />
 
                                 <TextView
-                                    android:id="@+id/dashboard_cal_burnt_hr"
+                                    android:id="@+id/cal_burnt_duration"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"

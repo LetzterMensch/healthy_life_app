@@ -3996,6 +3996,7 @@ id buttonPanel
 id cache_measures
 id cal_breakfast
 id cal_burnt
+id cal_burnt_duration
 id cal_card_container
 id cal_dinner
 id cal_goal
@@ -4056,7 +4057,6 @@ id custom
 id customPanel
 id cut
 id dashboard_cal_burnt
-id dashboard_cal_burnt_hr
 id dashboard_carb
 id dashboard_fat
 id dashboard_protein

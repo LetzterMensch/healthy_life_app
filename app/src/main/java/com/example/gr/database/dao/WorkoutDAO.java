@@ -17,8 +17,8 @@ public interface WorkoutDAO {
 
     @Query("SELECT * FROM workout LIMIT 10")
     List<Workout> getAllWorkout();
-//    @Query("SELECT * FROM workout WHERE name LIKE :searchSeq")
-//    List<Workout> findWorkoutByName(String searchSeq);
+    @Query("SELECT * FROM workout WHERE diaryID = :diaryID")
+    List<Workout> findWorkoutByDiaryId(int diaryID);
     @Query("SELECT * FROM workout WHERE id=:id")
     Workout getWorkoutById(int id);
 
