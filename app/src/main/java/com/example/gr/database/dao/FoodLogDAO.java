@@ -19,6 +19,16 @@ public interface FoodLogDAO {
 
     @Query("SELECT * FROM foodlog LIMIT 10")
     List<FoodLog> getAllFoodLog();
+
+    @Query("Select * from foodlog where diaryId = :diaryId AND meal = 0")
+    List<FoodLog> getBreakfastFoodLogs(int diaryId);
+    @Query("Select * from foodlog where diaryId = :diaryId AND meal = 1")
+    List<FoodLog> getLunchFoodLogs(int diaryId);
+    @Query("Select * from foodlog where diaryId = :diaryId AND meal = 2")
+    List<FoodLog> getDinnerFoodLogs(int diaryId);
+    @Query("Select * from foodlog where diaryId = :diaryId AND meal = 3")
+    List<FoodLog> getSnackFoodLogs(int diaryId);
+
 //    @Query("SELECT * FROM foodlog WHERE name LIKE :searchSeq")
 //    List<FoodLog> findFoodLogByName(String searchSeq);
     @Query("SELECT * FROM foodlog WHERE id=:id")

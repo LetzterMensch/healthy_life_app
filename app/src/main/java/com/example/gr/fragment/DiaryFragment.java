@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.activity.FoodDetailActivity;
 import com.example.gr.activity.MainActivity;
 import com.example.gr.activity.SearchForFoodActivity;
@@ -165,9 +166,7 @@ public class DiaryFragment extends BaseFragment {
 
     }
 
-    private void displayFoodLogs(String date) {
-        //TODO
-        // reload data of the current date and display it.
+    private void displayDiaryInfo(String date) {
         getDiary(date);
         mfragmentDiaryBinding.calGoal.setText(String.valueOf(mDiary.getCaloriesGoal()));
         mfragmentDiaryBinding.calIntake.setText(String.valueOf(mDiary.getIntakeCalories()));
@@ -185,65 +184,71 @@ public class DiaryFragment extends BaseFragment {
             mfragmentDiaryBinding.proteinIndicator.setProgress(0);
             mfragmentDiaryBinding.fatIndicator.setProgress(0);
         }
-        mFoodLogAdapter = new FoodLogAdapter(breakfastLogsList, this::goToFoodDetail);
+    }
+
+    private void displayMealsTotalCalories() {
+
+    }
+
+    private void displayFoodLogs(String date) {
+        //TODO
+        // reload data of the current date and display it.
+        getDiary(date);
+        displayDiaryInfo(date);
         mfragmentDiaryBinding.layoutSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToSearchActivity(4,mDiary);
+                goToSearchActivity(4, mDiary);
             }
         });
-        mfragmentDiaryBinding.calBreakfast.setText(String.valueOf(calculateMealTotalCalories(breakfastLogsList)));
+        mFoodLogAdapter = new FoodLogAdapter(breakfastLogsList, this::goToFoodDetail, this::deleteFoodLog);
+        mfragmentDiaryBinding.calBreakfast.setText(String.valueOf(mFoodLogAdapter.getSum()));
         mfragmentDiaryBinding.rcvBreakfastFood.setLayoutManager(new LinearLayoutManager(getActivity()));
         mfragmentDiaryBinding.rcvBreakfastFood.setAdapter(mFoodLogAdapter);
         mfragmentDiaryBinding.btnBreakfastAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToSearchActivity(0,mDiary);
+                goToSearchActivity(0, mDiary);
             }
         });
 
-        mFoodLogAdapter.setFoodLogsList(lunchLogsList);
-        mfragmentDiaryBinding.calLunch.setText(String.valueOf(calculateMealTotalCalories(lunchLogsList)));
+        mFoodLogAdapter = new FoodLogAdapter(lunchLogsList, this::goToFoodDetail, this::deleteFoodLog);
+        mfragmentDiaryBinding.calLunch.setText(String.valueOf(mFoodLogAdapter.getSum()));
         mfragmentDiaryBinding.rcvLunchFood.setLayoutManager(new LinearLayoutManager(getActivity()));
         mfragmentDiaryBinding.rcvLunchFood.setAdapter(mFoodLogAdapter);
         mfragmentDiaryBinding.btnLunchAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToSearchActivity(1,mDiary);
+                goToSearchActivity(1, mDiary);
             }
         });
 
-        mFoodLogAdapter.setFoodLogsList(dinnerLogsList);
-        mfragmentDiaryBinding.calDinner.setText(String.valueOf(calculateMealTotalCalories(dinnerLogsList)));
+        mFoodLogAdapter = new FoodLogAdapter(dinnerLogsList, this::goToFoodDetail, this::deleteFoodLog);
+        mfragmentDiaryBinding.calDinner.setText(String.valueOf(mFoodLogAdapter.getSum()));
         mfragmentDiaryBinding.rcvDinnerFood.setLayoutManager(new LinearLayoutManager(getActivity()));
         mfragmentDiaryBinding.rcvDinnerFood.setAdapter(mFoodLogAdapter);
         mfragmentDiaryBinding.btnDinnerAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToSearchActivity(2,mDiary);
+                goToSearchActivity(2, mDiary);
             }
         });
 
-        mFoodLogAdapter.setFoodLogsList(snackLogsList);
-        mfragmentDiaryBinding.calSnack.setText(String.valueOf(calculateMealTotalCalories(snackLogsList)));
+        mFoodLogAdapter = new FoodLogAdapter(snackLogsList, this::goToFoodDetail, this::deleteFoodLog);
+        mfragmentDiaryBinding.calSnack.setText(String.valueOf(mFoodLogAdapter.getSum()));
         mfragmentDiaryBinding.rcvSnackFood.setLayoutManager(new LinearLayoutManager(getActivity()));
         mfragmentDiaryBinding.rcvSnackFood.setAdapter(mFoodLogAdapter);
         mfragmentDiaryBinding.btnSnackAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToSearchActivity(3,mDiary);
+                goToSearchActivity(3, mDiary);
             }
         });
     }
 
-    private int calculateMealTotalCalories(List<FoodLog> foodLogs) {
-        int sum = 0;
-        if (foodLogs != null) {
-            for (FoodLog foodLog : foodLogs) {
-                sum += foodLog.getTotalCalories();
-            }
-        }
-        return sum;
+    private void deleteFoodLog(FoodLog foodLog) {
+        mDiary.updateDiaryAfterRemove(foodLog);
+        displayFoodLogs(mDate);
     }
 
     //TODO
@@ -252,8 +257,9 @@ public class DiaryFragment extends BaseFragment {
     public void onPause() {
         super.onPause();
     }
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         mfragmentDiaryBinding.date.setText("Hôm nay");
         calendar = Calendar.getInstance();

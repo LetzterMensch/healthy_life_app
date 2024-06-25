@@ -302,7 +302,7 @@ public final class FoodDAO_Impl implements FoodDAO {
 
   @Override
   public Food getFoodById(final int id) {
-    final String _sql = "SELECT * FROM food WHERE id=?";
+    final String _sql = "SELECT * FROM food WHERE id LIKE ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
     _statement.bindLong(_argIndex, id);

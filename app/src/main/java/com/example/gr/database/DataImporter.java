@@ -27,8 +27,9 @@ public class DataImporter {
             ArrayList<Food> foodList = new Gson().fromJson(reader, foodListType);
 //            System.out.println(foodList.get(0).getNumberOfServings());
             // Insert data into Room database
-            db.foodDAO().deleteAllFood();
-            db.foodDAO().insertAll(foodList);
+            if (db.foodDAO().getAllFood().isEmpty()){
+                db.foodDAO().insertAll(foodList);
+            }
         } catch (Exception e) {
             Log.e("DataImporter", "Error importing data", e);
         }
@@ -41,8 +42,9 @@ public class DataImporter {
             Type exerciseListType = new TypeToken<List<Exercise>>(){}.getType();
             ArrayList<Exercise> exerciseList = new Gson().fromJson(reader, exerciseListType);
             // Insert data into Room database
-            db.exerciseDAO().deleteAllExercise();
-            db.exerciseDAO().insertAll(exerciseList);
+            if(db.exerciseDAO().getAllExercise().isEmpty()){
+                db.exerciseDAO().insertAll(exerciseList);
+            }
         } catch (Exception e) {
             Log.e("DataImporter", "Error importing data", e);
         }

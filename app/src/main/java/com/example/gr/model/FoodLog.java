@@ -22,7 +22,7 @@ public class FoodLog implements Serializable {
     private int foodId;
     private int diaryId;
     @Ignore
-    private Food food;
+    public Food food; // FoodLog inside foodLogList does not have food -> null. Because of @Ignore
     public FoodLog(){}
     @Ignore
     public FoodLog(Food food, int meal, float numberOfServings, int diaryId){
@@ -32,9 +32,9 @@ public class FoodLog implements Serializable {
         this.meal = meal;
         this.numberOfServings = numberOfServings;
         this.totalCalories =  Math.round(food.getCalories()*numberOfServings);
-        this.totalFat = food.getFat()*numberOfServings;
-        this.totalCarb = food.getCarb()*numberOfServings;
-        this.totalProtein = food.getProtein()*numberOfServings;
+        this.totalFat = food.getFat()*numberOfServings*9;
+        this.totalCarb = food.getCarb()*numberOfServings*4;
+        this.totalProtein = food.getProtein()*numberOfServings*4;
     }
     public void updateFoodLog(float numberOfServings){
         this.numberOfServings = numberOfServings;
@@ -117,7 +117,7 @@ public class FoodLog implements Serializable {
     }
 
     public Food getFood() {
-        return food;
+        return this.food;
     }
 
     public void setFood(Food food) {

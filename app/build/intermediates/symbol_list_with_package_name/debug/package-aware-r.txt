@@ -4069,6 +4069,7 @@ id deepSleepIndicator
 id deep_sleep_hr
 id deep_sleep_percentage
 id default_activity_button
+id delete_btn
 id delete_button
 id deltaRelative
 id dependency_ordering

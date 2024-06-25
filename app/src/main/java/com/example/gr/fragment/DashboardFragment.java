@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.gr.R;
 import com.example.gr.activity.MainActivity;
 import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.FragmentDashboardBinding;
@@ -50,9 +49,18 @@ public class DashboardFragment extends BaseFragment {
         }
     }
     private void displayDiaryInfo(){
+        if(mDiary != null){
+            mfragmentDashboardBinding.caloriesBurnt.setText(mDiary.getBurntCalories());
+            mfragmentDashboardBinding.caloriesInput.setText(mDiary.getIntakeCalories());
+            mfragmentDashboardBinding.caloriesRemain.setText(mDiary.getRemainingCalories());
 
+            mfragmentDashboardBinding.caloriesCircle.setProgress((int)(mDiary.getIntakeCalories()*100/mDiary.getCaloriesGoal()));
+            mfragmentDashboardBinding.carbIndicator.setProgress((int)(mDiary.getIntakeCarb()*100/mDiary.getCarbGoal()));
+            mfragmentDashboardBinding.proteinIndicator.setProgress((int)(mDiary.getIntakeProtein()*100/mDiary.getProteinGoal()));
+            mfragmentDashboardBinding.fatIndicator.setProgress((int)(mDiary.getIntakeFat()*100/mDiary.getFatGoal()));
+        }
     }
-    private void initUi() {
+    private void displayChartInfo(){
         lineChart = mfragmentDashboardBinding.lineChart;
         List<Entry> entries = new ArrayList<>();
         entries.add(new Entry(0f, 81f));
@@ -102,6 +110,10 @@ public class DashboardFragment extends BaseFragment {
         leftAxis.setAxisMaximum(150f);
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setGranularity(1f); // Thiết lập khoảng cách tối thiểu giữa các giá trị trên trục X
+    }
+    private void initUi() {
+        displayDiaryInfo();
+        displayChartInfo();
     }
 
     @Override

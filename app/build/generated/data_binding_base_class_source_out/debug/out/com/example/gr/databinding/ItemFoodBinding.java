@@ -24,6 +24,9 @@ public final class ItemFoodBinding implements ViewBinding {
   public final ImageButton addBtn;
 
   @NonNull
+  public final ImageButton deleteBtn;
+
+  @NonNull
   public final TextView foodItemCalo;
 
   @NonNull
@@ -42,11 +45,13 @@ public final class ItemFoodBinding implements ViewBinding {
   public final LinearLayout layoutItem;
 
   private ItemFoodBinding(@NonNull LinearLayout rootView, @NonNull ImageButton addBtn,
-      @NonNull TextView foodItemCalo, @NonNull TextView foodItemName,
-      @NonNull TextView foodItemServingSize, @NonNull TextView foodItemServings,
-      @NonNull LinearLayout itemInfo, @NonNull LinearLayout layoutItem) {
+      @NonNull ImageButton deleteBtn, @NonNull TextView foodItemCalo,
+      @NonNull TextView foodItemName, @NonNull TextView foodItemServingSize,
+      @NonNull TextView foodItemServings, @NonNull LinearLayout itemInfo,
+      @NonNull LinearLayout layoutItem) {
     this.rootView = rootView;
     this.addBtn = addBtn;
+    this.deleteBtn = deleteBtn;
     this.foodItemCalo = foodItemCalo;
     this.foodItemName = foodItemName;
     this.foodItemServingSize = foodItemServingSize;
@@ -88,6 +93,12 @@ public final class ItemFoodBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.delete_btn;
+      ImageButton deleteBtn = ViewBindings.findChildViewById(rootView, id);
+      if (deleteBtn == null) {
+        break missingId;
+      }
+
       id = R.id.food_item_calo;
       TextView foodItemCalo = ViewBindings.findChildViewById(rootView, id);
       if (foodItemCalo == null) {
@@ -120,8 +131,8 @@ public final class ItemFoodBinding implements ViewBinding {
 
       LinearLayout layoutItem = (LinearLayout) rootView;
 
-      return new ItemFoodBinding((LinearLayout) rootView, addBtn, foodItemCalo, foodItemName,
-          foodItemServingSize, foodItemServings, itemInfo, layoutItem);
+      return new ItemFoodBinding((LinearLayout) rootView, addBtn, deleteBtn, foodItemCalo,
+          foodItemName, foodItemServingSize, foodItemServings, itemInfo, layoutItem);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

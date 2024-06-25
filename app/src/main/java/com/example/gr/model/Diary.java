@@ -49,10 +49,6 @@ public class Diary implements Serializable {
     private List<Workout> workoutList;
 
     public Diary() {
-        this.breakfastLogs = new ArrayList<>();
-        this.lunchLogs = new ArrayList<>();
-        this.dinnerLogs = new ArrayList<>();
-        this.snackLogs = new ArrayList<>();
         this.date = DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime());
         ActivityUser activityUser = new ActivityUser();
         caloriesGoal = activityUser.getCaloriesBurntGoal();
@@ -60,12 +56,9 @@ public class Diary implements Serializable {
         proteinGoal = activityUser.getActivityUserProteinGoal();
         fatGoal = activityUser.getActivityUserFatGoal();
     }
+
     @Ignore
-    public Diary(String date){
-        this.breakfastLogs = new ArrayList<>();
-        this.lunchLogs = new ArrayList<>();
-        this.dinnerLogs = new ArrayList<>();
-        this.snackLogs = new ArrayList<>();
+    public Diary(String date) {
         this.date = date;
         ActivityUser activityUser = new ActivityUser();
         caloriesGoal = activityUser.getCaloriesBurntGoal();
@@ -74,15 +67,22 @@ public class Diary implements Serializable {
         fatGoal = activityUser.getActivityUserFatGoal();
     }
 
-    public void updateDiary() {
+    public void updateDiaryAfterLogging() {
         recalculateRemainingCalories(this.intakeCalories, this.burntCalories);
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
-
+    public void updateDiaryAfterRemove(FoodLog foodLog){
+        this.intakeCalories -= foodLog.getTotalCalories();
+        this.intakeCarb -= foodLog.getTotalCarb();
+        this.intakeProtein -= foodLog.getTotalProtein();
+        this.intakeFat -= foodLog.getTotalFat();
+        recalculateRemainingCalories(this.intakeCalories,this.burntCalories);
+        LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
+    }
     public void logWorkout(Workout workout) {
         this.workoutList.add(workout);
         this.burntCalories += workout.getCaloriesBurnt();
-        updateDiary();
+        updateDiaryAfterLogging();
     }
 
     public void logFood(FoodLog foodLog) {
@@ -105,7 +105,7 @@ public class Diary implements Serializable {
         this.intakeCarb += foodLog.getTotalCarb();
         this.intakeFat += foodLog.getTotalFat();
         this.intakeProtein += foodLog.getTotalProtein();
-        updateDiary();
+        updateDiaryAfterLogging();
     }
 
     protected void recalculateRemainingCalories(int intakeCalories, int burntCalories) {
@@ -113,32 +113,39 @@ public class Diary implements Serializable {
     }
 
     public List<FoodLog> getBreakfastLogs() {
-        return breakfastLogs;
+        this.breakfastLogs = LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().getBreakfastFoodLogs(this.id);
+        return this.breakfastLogs;
+    }
+
+    public List<FoodLog> getLunchLogs() {
+        this.lunchLogs = LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().getLunchFoodLogs(this.id);
+        return this.lunchLogs;
+    }
+
+    public List<FoodLog> getDinnerLogs() {
+        this.dinnerLogs = LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().getDinnerFoodLogs(this.id);
+        return this.dinnerLogs;
+    }
+
+    public List<FoodLog> getSnackLogs() {
+        this.snackLogs = LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().getSnackFoodLogs(this.id);
+        return this.snackLogs;
     }
 
     public void setBreakfastLogs(List<FoodLog> breakfastLogs) {
         this.breakfastLogs = breakfastLogs;
     }
 
-    public List<FoodLog> getLunchLogs() {
-        return lunchLogs;
-    }
 
     public void setLunchLogs(List<FoodLog> lunchLogs) {
         this.lunchLogs = lunchLogs;
     }
 
-    public List<FoodLog> getDinnerLogs() {
-        return dinnerLogs;
-    }
 
     public void setDinnerLogs(List<FoodLog> dinnerLogs) {
         this.dinnerLogs = dinnerLogs;
     }
 
-    public List<FoodLog> getSnackLogs() {
-        return snackLogs;
-    }
 
     public void setSnackLogs(List<FoodLog> snackLogs) {
         this.snackLogs = snackLogs;

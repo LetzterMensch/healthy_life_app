@@ -24,7 +24,7 @@ public interface FoodDAO {
     List<Food> getAllFood();
     @Query("SELECT * FROM food WHERE name LIKE :searchSeq")
     List<Food> findFoodByName(String searchSeq);
-    @Query("SELECT * FROM food WHERE id=:id")
+    @Query("SELECT * FROM food WHERE id LIKE :id")
     Food getFoodById(int id);
 
     @Delete

@@ -34,9 +34,8 @@
 
             <TextView
                 android:id="@+id/food_item_calo"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="right"
                 android:text="118"
                 android:paddingRight="10dp"
@@ -75,4 +74,13 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/bg_indicatior_selected"
         android:src="@drawable/ic_add_36" />
+    <ImageButton
+        android:id="@+id/delete_btn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:src="@drawable/ic_disconnect_30" />
 </LinearLayout>

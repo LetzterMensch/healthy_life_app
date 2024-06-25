@@ -4068,6 +4068,7 @@ int id deepSleepIndicator 0x7f0a00c5
 int id deep_sleep_hr 0x7f0a00c6
 int id deep_sleep_percentage 0x7f0a00c7
 int id default_activity_button 0x7f0a00c8
+int id delete_btn 0x7f0a02f9
 int id delete_button 0x7f0a02f8
 int id deltaRelative 0x7f0a00c9
 int id dependency_ordering 0x7f0a00ca
