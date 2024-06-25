@@ -35,9 +35,9 @@ public class DashboardFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mfragmentDashboardBinding = FragmentDashboardBinding.inflate(inflater, container, false);
 
-        initUi();
 //        initListener();
         getDiary(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
+        initUi();
 
         return mfragmentDashboardBinding.getRoot();
     }
@@ -47,18 +47,27 @@ public class DashboardFragment extends BaseFragment {
             mDiary = new Diary(date);
             LocalDatabase.getInstance(this.requireActivity()).diaryDAO().insertDiary(mDiary);
         }
+        System.out.println(mDiary.getDate());
     }
     private void displayDiaryInfo(){
         if(mDiary != null){
-            mfragmentDashboardBinding.caloriesBurnt.setText(mDiary.getBurntCalories());
-            mfragmentDashboardBinding.caloriesInput.setText(mDiary.getIntakeCalories());
-            mfragmentDashboardBinding.caloriesRemain.setText(mDiary.getRemainingCalories());
+            mfragmentDashboardBinding.caloriesBurnt.setText(String.valueOf(mDiary.getBurntCalories()));
+            mfragmentDashboardBinding.caloriesInput.setText(String.valueOf(mDiary.getIntakeCalories()));
+            mfragmentDashboardBinding.caloriesRemain.setText(String.valueOf(mDiary.getRemainingCalories()));
 
             mfragmentDashboardBinding.caloriesCircle.setProgress((int)(mDiary.getIntakeCalories()*100/mDiary.getCaloriesGoal()));
             mfragmentDashboardBinding.carbIndicator.setProgress((int)(mDiary.getIntakeCarb()*100/mDiary.getCarbGoal()));
             mfragmentDashboardBinding.proteinIndicator.setProgress((int)(mDiary.getIntakeProtein()*100/mDiary.getProteinGoal()));
             mfragmentDashboardBinding.fatIndicator.setProgress((int)(mDiary.getIntakeFat()*100/mDiary.getFatGoal()));
+
+            mfragmentDashboardBinding.dashboardCarb.setText(mDiary.getIntakeCarb() + "/" + mDiary.getCarbGoal());
+            mfragmentDashboardBinding.dashboardProtein.setText(mDiary.getIntakeProtein() + "/" + mDiary.getProteinGoal());
+            mfragmentDashboardBinding.dashboardFat.setText(mDiary.getIntakeFat() + "/" + mDiary.getFatGoal());
+
         }
+    }
+    private void displayWorkoutInfo(){
+
     }
     private void displayChartInfo(){
         lineChart = mfragmentDashboardBinding.lineChart;
