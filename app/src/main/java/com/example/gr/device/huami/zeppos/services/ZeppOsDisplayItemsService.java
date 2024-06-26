@@ -19,7 +19,7 @@ package com.example.gr.device.huami.zeppos.services;
 import static org.apache.commons.lang3.ArrayUtils.subarray;
 
 import com.example.gr.constant.HuamiConst;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.events.GBDeviceEventUpdatePreferences;
 import com.example.gr.device.huami.zeppos.AbstractZeppOsService;
 import com.example.gr.device.huami.zeppos.ZeppOsMenuType;

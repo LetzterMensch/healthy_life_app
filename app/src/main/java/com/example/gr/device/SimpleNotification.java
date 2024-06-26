@@ -17,7 +17,7 @@
 package com.example.gr.device;
 
 
-import com.example.gr.device.btle.profiles.alertnotification.AlertCategory;
+import com.example.gr.service.btle.profiles.alertnotification.AlertCategory;
 import com.example.gr.device.model.NotificationType;
 
 public class SimpleNotification {

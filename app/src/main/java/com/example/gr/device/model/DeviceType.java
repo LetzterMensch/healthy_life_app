@@ -29,7 +29,6 @@ package com.example.gr.device.model;
 
 
 import com.example.gr.device.DeviceCoordinator;
-import com.example.gr.device.huami.miband.MiBandCoordinator;
 import com.example.gr.device.huami.miband7.MiBand7Coordinator;
 import com.example.gr.device.unknown.UnknownDeviceCoordinator;
 
@@ -47,7 +46,6 @@ import com.example.gr.device.unknown.UnknownDeviceCoordinator;
  * in GBApplication.
  */
 public enum DeviceType {
-    MIBAND(MiBandCoordinator.class),
     UNKNOWN(UnknownDeviceCoordinator.class),
     MIBAND7(MiBand7Coordinator.class);
 

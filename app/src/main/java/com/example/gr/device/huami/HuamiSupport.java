@@ -102,7 +102,7 @@ import static com.example.gr.constant.MiBandConst.VIBRATION_COUNT;
 import static com.example.gr.constant.MiBandConst.VIBRATION_PROFILE;
 import static com.example.gr.constant.MiBandConst.getNotificationPrefIntValue;
 import static com.example.gr.constant.MiBandConst.getNotificationPrefStringValue;
-import static com.example.gr.device.btle.GattCharacteristic.UUID_CHARACTERISTIC_ALERT_LEVEL;
+import static com.example.gr.service.btle.GattCharacteristic.UUID_CHARACTERISTIC_ALERT_LEVEL;
 import static com.example.gr.device.huami.Huami2021Service.WORKOUT_GPS_FLAG_POSITION;
 import static com.example.gr.device.huami.Huami2021Service.WORKOUT_GPS_FLAG_STATUS;
 import static com.example.gr.device.huami.HuamiService.COMMAND_ALARMS;
@@ -159,20 +159,20 @@ import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.GBDevice.State;
 import com.example.gr.device.SimpleNotification;
-import com.example.gr.device.btle.AbstractBTLEDeviceSupport;
-import com.example.gr.device.btle.BLETypeConversions;
-import com.example.gr.device.btle.BtLEAction;
-import com.example.gr.device.btle.GattCharacteristic;
-import com.example.gr.device.btle.GattService;
-import com.example.gr.device.btle.TransactionBuilder;
-import com.example.gr.device.btle.actions.AbortTransactionAction;
-import com.example.gr.device.btle.actions.ConditionalWriteAction;
-import com.example.gr.device.btle.actions.SetDeviceStateAction;
-import com.example.gr.device.btle.profiles.IntentListener;
-import com.example.gr.device.btle.profiles.alertnotification.AlertCategory;
-import com.example.gr.device.btle.profiles.alertnotification.AlertNotificationProfile;
-import com.example.gr.device.btle.profiles.alertnotification.NewAlert;
-import com.example.gr.device.btle.profiles.deviceinfo.DeviceInfoProfile;
+import com.example.gr.service.btle.AbstractBTLEDeviceSupport;
+import com.example.gr.service.btle.BLETypeConversions;
+import com.example.gr.service.btle.BtLEAction;
+import com.example.gr.service.btle.GattCharacteristic;
+import com.example.gr.service.btle.GattService;
+import com.example.gr.service.btle.TransactionBuilder;
+import com.example.gr.service.btle.actions.AbortTransactionAction;
+import com.example.gr.service.btle.actions.ConditionalWriteAction;
+import com.example.gr.service.btle.actions.SetDeviceStateAction;
+import com.example.gr.service.btle.profiles.IntentListener;
+import com.example.gr.service.btle.profiles.alertnotification.AlertCategory;
+import com.example.gr.service.btle.profiles.alertnotification.AlertNotificationProfile;
+import com.example.gr.service.btle.profiles.alertnotification.NewAlert;
+import com.example.gr.service.btle.profiles.deviceinfo.DeviceInfoProfile;
 import com.example.gr.device.events.GBDeviceEvent;
 import com.example.gr.device.events.GBDeviceEventBatteryInfo;
 import com.example.gr.device.events.GBDeviceEventCallControl;
@@ -188,7 +188,6 @@ import com.example.gr.device.huami.miband.DoNotDisturb;
 import com.example.gr.device.huami.miband.Mi2NotificationStrategy;
 import com.example.gr.device.huami.miband.Mi2TextNotificationStrategy;
 import com.example.gr.device.huami.miband.MiBand2SampleProvider;
-import com.example.gr.device.huami.miband.MiBandCoordinator;
 import com.example.gr.device.huami.miband.MiBandService;
 import com.example.gr.device.huami.miband.NotificationStrategy;
 import com.example.gr.device.huami.miband.RealtimeSamplesSupport;
@@ -227,10 +226,11 @@ import com.example.gr.device.model.WearingState;
 import com.example.gr.device.model.Weather;
 import com.example.gr.device.model.WeatherSpec;
 import com.example.gr.device.model.WorldClock;
-import com.example.gr.device.serial.GBDeviceProtocol;
+import com.example.gr.service.serial.GBDeviceProtocol;
 import com.example.gr.externalevents.gps.GBLocationManager;
 import com.example.gr.externalevents.opentracks.OpenTracksController;
 import com.example.gr.model.ActivityUser;
+import com.example.gr.service.btle.profiles.deviceinfo.DeviceInfo;
 import com.example.gr.utils.AlarmUtils;
 import com.example.gr.utils.GB;
 import com.example.gr.utils.GBPrefs;
@@ -305,7 +305,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
         public void notify(Intent intent) {
             String s = intent.getAction();
             if (DeviceInfoProfile.ACTION_DEVICE_INFO.equals(s)) {
-                handleDeviceInfo((com.example.gr.device.btle.profiles.deviceinfo.DeviceInfo) intent.getParcelableExtra(DeviceInfoProfile.EXTRA_DEVICE_INFO));
+                handleDeviceInfo((DeviceInfo) intent.getParcelableExtra(DeviceInfoProfile.EXTRA_DEVICE_INFO));
             }
         }
     };
@@ -1722,6 +1722,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
         if (nextOperation != null) {
             try {
                 System.out.println("Try to perform");
+                System.out.println(nextOperation.getName());
                 nextOperation.perform();
                 System.out.println("done preforming");
             } catch (final IOException e) {
@@ -2699,7 +2700,7 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
         // TODO: react on 0x10, 0x02, 0x01 on notification (success)
     }
 
-    protected void handleDeviceInfo(com.example.gr.device.btle.profiles.deviceinfo.DeviceInfo info) {
+    protected void handleDeviceInfo(DeviceInfo info) {
 //        if (getDeviceInfo().supportsHeartrate()) {
 //            getDevice().addDeviceInfo(new GenericItem(
 //                    getContext().getString(R.string.DEVINFO_HR_VER),

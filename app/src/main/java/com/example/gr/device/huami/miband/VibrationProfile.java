@@ -20,7 +20,7 @@ import android.content.Context;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
-import com.example.gr.device.btle.profiles.alertnotification.AlertLevel;
+import com.example.gr.service.btle.profiles.alertnotification.AlertLevel;
 
 
 public class VibrationProfile {

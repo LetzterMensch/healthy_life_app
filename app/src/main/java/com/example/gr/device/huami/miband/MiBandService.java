@@ -18,10 +18,10 @@
 package com.example.gr.device.huami.miband;
 
 
-import static com.example.gr.device.btle.AbstractBTLEDeviceSupport.BASE_UUID;
+import static com.example.gr.service.btle.AbstractBTLEDeviceSupport.BASE_UUID;
 
-import com.example.gr.device.btle.GattCharacteristic;
-import com.example.gr.device.btle.GattService;
+import com.example.gr.service.btle.GattCharacteristic;
+import com.example.gr.service.btle.GattService;
 
 import java.util.HashMap;
 import java.util.Map;

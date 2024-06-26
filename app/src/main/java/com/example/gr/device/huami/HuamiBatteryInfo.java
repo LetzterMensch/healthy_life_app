@@ -21,7 +21,7 @@ import java.util.GregorianCalendar;
 import com.example.gr.device.events.GBDeviceEventBatteryInfo;
 import com.example.gr.device.huami.miband.MiBandDateConverter;
 import com.example.gr.device.model.BatteryState;
-import com.example.gr.device.btle.BLETypeConversions;
+import com.example.gr.service.btle.BLETypeConversions;
 import com.example.gr.device.huami.miband.AbstractInfo;
 
 //00000006-0000-3512-2118-0009af100700

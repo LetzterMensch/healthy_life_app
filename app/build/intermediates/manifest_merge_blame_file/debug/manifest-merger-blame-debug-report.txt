@@ -317,8 +317,8 @@
 169
 170        <service
 170-->E:\20232\GR\app\src\main\AndroidManifest.xml:153:9-157:19
-171            android:name="com.example.gr.device.btle.BLEScanService"
-171-->E:\20232\GR\app\src\main\AndroidManifest.xml:154:13-55
+171            android:name="com.example.gr.service.btle.BLEScanService"
+171-->E:\20232\GR\app\src\main\AndroidManifest.xml:154:13-56
 172            android:enabled="true"
 172-->E:\20232\GR\app\src\main\AndroidManifest.xml:155:13-35
 173            android:exported="false" >

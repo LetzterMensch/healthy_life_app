@@ -19,7 +19,7 @@ package com.example.gr.device.huami.operations.fetch;
 import androidx.annotation.NonNull;
 
 import com.example.gr.R;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.huami.HuamiSupport;
 import com.example.gr.utils.FileUtils;
 

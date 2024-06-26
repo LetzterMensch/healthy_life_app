@@ -19,9 +19,9 @@ package com.example.gr.device.huami.miband.operations;
 import android.widget.Toast;
 
 import com.example.gr.utils.GB;
-import com.example.gr.device.btle.AbstractBTLEDeviceSupport;
-import com.example.gr.device.btle.AbstractBTLEOperation;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.AbstractBTLEDeviceSupport;
+import com.example.gr.service.btle.AbstractBTLEOperation;
+import com.example.gr.service.btle.TransactionBuilder;
 
 import java.io.IOException;
 

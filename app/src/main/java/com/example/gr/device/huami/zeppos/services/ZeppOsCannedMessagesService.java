@@ -31,8 +31,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import com.example.gr.device.btle.BLETypeConversions;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.BLETypeConversions;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.events.GBDeviceEventCallControl;
 import com.example.gr.device.events.GBDeviceEventNotificationControl;
 import com.example.gr.device.events.GBDeviceEventUpdatePreferences;

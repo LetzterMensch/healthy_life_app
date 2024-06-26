@@ -71,7 +71,7 @@ public class FetchActivityOperation extends AbstractRepeatingFetchOperation {
             GB.toast(getContext(), "Unexpected " + getName() + " array size: " + bytes.length, Toast.LENGTH_LONG, GB.ERROR);
             return false;
         }
-
+        System.out.println("inside fetch activity operation");
         final List<MiBandActivitySample> samples = new ArrayList<>(60 * 24); // 1day per default
 
         for (int i = 0; i < bytes.length; i += sampleSize) {

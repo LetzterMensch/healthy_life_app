@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 package com.example.gr.device.huami;
 
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.huami.miband.operations.AbstractMiBandOperation;
 
 public abstract class AbstractHuamiOperation extends AbstractMiBandOperation<HuamiSupport> {

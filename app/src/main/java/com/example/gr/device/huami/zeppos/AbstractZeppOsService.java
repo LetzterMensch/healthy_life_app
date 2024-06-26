@@ -22,12 +22,9 @@ import androidx.annotation.Nullable;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.device.DeviceCoordinator;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.events.GBDeviceEvent;
 import com.example.gr.utils.Prefs;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 public abstract class AbstractZeppOsService {

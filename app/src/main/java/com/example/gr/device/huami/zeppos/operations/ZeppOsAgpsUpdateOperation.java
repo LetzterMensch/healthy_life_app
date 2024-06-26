@@ -22,9 +22,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 import com.example.gr.R;
-import com.example.gr.device.btle.AbstractBTLEOperation;
-import com.example.gr.device.btle.TransactionBuilder;
-import com.example.gr.device.btle.actions.SetProgressAction;
+import com.example.gr.service.btle.AbstractBTLEOperation;
+import com.example.gr.service.btle.TransactionBuilder;
+import com.example.gr.service.btle.actions.SetProgressAction;
 import com.example.gr.device.huami.zeppos.ZeppOsSupport;
 import com.example.gr.device.huami.zeppos.services.ZeppOsAgpsService;
 import com.example.gr.device.huami.zeppos.services.ZeppOsConfigService;

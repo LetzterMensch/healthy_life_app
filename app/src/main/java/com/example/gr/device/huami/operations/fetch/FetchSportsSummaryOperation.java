@@ -29,7 +29,7 @@ import com.example.gr.database.entities.DaoSession;
 import com.example.gr.database.entities.Device;
 import com.example.gr.database.entities.User;
 import com.example.gr.device.DeviceCoordinator;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.huami.AbstractHuamiActivityDetailsParser;
 import com.example.gr.device.huami.HuamiActivitySummaryParser;
 import com.example.gr.device.huami.HuamiSupport;

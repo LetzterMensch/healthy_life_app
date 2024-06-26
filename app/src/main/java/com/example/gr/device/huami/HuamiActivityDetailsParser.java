@@ -18,7 +18,7 @@ package com.example.gr.device.huami;
 
 import com.example.gr.database.entities.BaseActivitySummary;
 import com.example.gr.device.GBException;
-import com.example.gr.device.btle.BLETypeConversions;
+import com.example.gr.service.btle.BLETypeConversions;
 import com.example.gr.device.model.ActivityPoint;
 import com.example.gr.device.model.ActivityTrack;
 import com.example.gr.device.model.GPSCoordinate;

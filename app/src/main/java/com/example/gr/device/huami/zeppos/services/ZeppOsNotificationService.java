@@ -23,8 +23,8 @@ import android.graphics.drawable.Drawable;
 
 import com.example.gr.BuildConfig;
 import com.example.gr.constant.DeviceSettingsPreferenceConst;
-import com.example.gr.device.btle.BLETypeConversions;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.BLETypeConversions;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.events.GBDeviceEventCallControl;
 import com.example.gr.device.events.GBDeviceEventNotificationControl;
 import com.example.gr.device.huami.zeppos.AbstractZeppOsService;

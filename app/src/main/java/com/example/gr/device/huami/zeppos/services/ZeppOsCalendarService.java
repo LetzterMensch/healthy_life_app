@@ -23,8 +23,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 
-import com.example.gr.device.btle.BLETypeConversions;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.BLETypeConversions;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.events.GBDeviceEventUpdatePreferences;
 import com.example.gr.device.huami.zeppos.AbstractZeppOsService;
 import com.example.gr.device.huami.zeppos.ZeppOsSupport;

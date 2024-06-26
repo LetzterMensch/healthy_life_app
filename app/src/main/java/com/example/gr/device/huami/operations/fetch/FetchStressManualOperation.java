@@ -36,7 +36,7 @@ import com.example.gr.database.entities.DaoSession;
 import com.example.gr.database.entities.Device;
 import com.example.gr.database.entities.HuamiStressSample;
 import com.example.gr.database.entities.User;
-import com.example.gr.device.btle.BLETypeConversions;
+import com.example.gr.service.btle.BLETypeConversions;
 import com.example.gr.device.huami.HuamiCoordinator;
 import com.example.gr.device.huami.HuamiStressSampleProvider;
 import com.example.gr.device.huami.HuamiSupport;

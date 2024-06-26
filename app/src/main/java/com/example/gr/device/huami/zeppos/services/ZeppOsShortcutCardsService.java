@@ -21,8 +21,7 @@ import static com.example.gr.constant.DeviceSettingsPreferenceConst.SHORTCUT_CAR
 
 import android.text.TextUtils;
 
-import com.example.gr.constant.DeviceSettingsPreferenceConst;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.events.GBDeviceEventUpdatePreferences;
 import com.example.gr.device.huami.zeppos.AbstractZeppOsService;
 import com.example.gr.device.huami.zeppos.ZeppOsSupport;

@@ -17,7 +17,7 @@
 package com.example.gr.device.huami;
 
 
-import static com.example.gr.device.btle.AbstractBTLEDeviceSupport.BASE_UUID;
+import static com.example.gr.service.btle.AbstractBTLEDeviceSupport.BASE_UUID;
 
 import java.util.HashMap;
 import java.util.Map;

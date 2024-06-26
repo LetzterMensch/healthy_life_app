@@ -19,7 +19,7 @@ package com.example.gr.device.huami.zeppos.services;
 import android.widget.Toast;
 
 import com.example.gr.constant.DeviceSettingsPreferenceConst;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.events.GBDeviceEventUpdatePreferences;
 import com.example.gr.device.huami.zeppos.AbstractZeppOsService;
 import com.example.gr.device.huami.zeppos.ZeppOsSupport;

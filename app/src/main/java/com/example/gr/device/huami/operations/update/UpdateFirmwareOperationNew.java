@@ -27,9 +27,9 @@ import java.io.IOException;
 
 import com.example.gr.R;
 import com.example.gr.device.huami.HuamiService;
-import com.example.gr.device.btle.BLETypeConversions;
-import com.example.gr.device.btle.TransactionBuilder;
-import com.example.gr.device.btle.actions.SetDeviceBusyAction;
+import com.example.gr.service.btle.BLETypeConversions;
+import com.example.gr.service.btle.TransactionBuilder;
+import com.example.gr.service.btle.actions.SetDeviceBusyAction;
 import com.example.gr.device.huami.AbstractHuamiFirmwareInfo;
 import com.example.gr.device.huami.HuamiFirmwareType;
 import com.example.gr.device.huami.HuamiSupport;

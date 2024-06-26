@@ -20,7 +20,7 @@ import static com.example.gr.utils.ArrayUtils.startsWith;
 
 import androidx.annotation.Nullable;
 
-import com.example.gr.device.btle.BLETypeConversions;
+import com.example.gr.service.btle.BLETypeConversions;
 import com.example.gr.utils.CheckSums;
 
 import org.apache.commons.lang3.ArrayUtils;

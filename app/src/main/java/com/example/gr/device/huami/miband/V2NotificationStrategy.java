@@ -21,10 +21,10 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import androidx.annotation.Nullable;
 
 import com.example.gr.device.SimpleNotification;
-import com.example.gr.device.btle.AbstractBTLEDeviceSupport;
-import com.example.gr.device.btle.BtLEAction;
-import com.example.gr.device.btle.GattCharacteristic;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.AbstractBTLEDeviceSupport;
+import com.example.gr.service.btle.BtLEAction;
+import com.example.gr.service.btle.GattCharacteristic;
+import com.example.gr.service.btle.TransactionBuilder;
 
 public class V2NotificationStrategy<T extends AbstractBTLEDeviceSupport> implements NotificationStrategy {
     private final T support;

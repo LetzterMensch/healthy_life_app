@@ -14,7 +14,7 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 import com.example.gr.device.model.GPSCoordinate;
-import com.example.gr.device.btle.BLETypeConversions;
+import com.example.gr.service.btle.BLETypeConversions;
 import com.example.gr.utils.ArrayUtils;
 import com.example.gr.utils.StringUtils;
 import com.example.gr.utils.gpx.GpxParseException;

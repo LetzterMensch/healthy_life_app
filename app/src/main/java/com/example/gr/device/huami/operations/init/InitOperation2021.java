@@ -33,8 +33,8 @@ import com.example.gr.device.GBDevice;
 import com.example.gr.device.huami.Huami2021Service;
 import com.example.gr.device.huami.HuamiService;
 
-import com.example.gr.device.btle.TransactionBuilder;
-import com.example.gr.device.btle.actions.SetDeviceStateAction;
+import com.example.gr.service.btle.TransactionBuilder;
+import com.example.gr.service.btle.actions.SetDeviceStateAction;
 import com.example.gr.device.huami.Huami2021ChunkedDecoder;
 import com.example.gr.device.huami.Huami2021ChunkedEncoder;
 import com.example.gr.device.huami.Huami2021Handler;

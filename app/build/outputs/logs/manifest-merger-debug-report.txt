@@ -405,14 +405,14 @@ ADDED from E:\20232\GR\app\src\main\AndroidManifest.xml:150:9-152:39
 		ADDED from E:\20232\GR\app\src\main\AndroidManifest.xml:152:13-37
 	android:name
 		ADDED from E:\20232\GR\app\src\main\AndroidManifest.xml:151:13-57
-service#com.example.gr.device.btle.BLEScanService
+service#com.example.gr.service.btle.BLEScanService
 ADDED from E:\20232\GR\app\src\main\AndroidManifest.xml:153:9-157:19
 	android:enabled
 		ADDED from E:\20232\GR\app\src\main\AndroidManifest.xml:155:13-35
 	android:exported
 		ADDED from E:\20232\GR\app\src\main\AndroidManifest.xml:156:13-37
 	android:name
-		ADDED from E:\20232\GR\app\src\main\AndroidManifest.xml:154:13-55
+		ADDED from E:\20232\GR\app\src\main\AndroidManifest.xml:154:13-56
 service#com.example.gr.service.DeviceCommunicationService
 ADDED from E:\20232\GR\app\src\main\AndroidManifest.xml:158:9-71
 	android:name

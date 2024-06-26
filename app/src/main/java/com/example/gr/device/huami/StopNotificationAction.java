@@ -20,7 +20,7 @@ import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 
-import com.example.gr.device.btle.actions.AbortTransactionAction;
+import com.example.gr.service.btle.actions.AbortTransactionAction;
 
 
 public abstract class StopNotificationAction extends AbortTransactionAction {

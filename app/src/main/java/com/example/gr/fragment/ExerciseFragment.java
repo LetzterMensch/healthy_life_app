@@ -194,7 +194,7 @@ public class ExerciseFragment extends BaseFragment {
             return;
         }
         showTransientSnackbar(R.string.busy_task_fetch_activity_data);
-        ControllerApplication.deviceService(device).onFetchRecordedData(RecordedDataTypes.TYPE_SYNC);
+        ControllerApplication.deviceService(device).onFetchRecordedData(RecordedDataTypes.TYPE_ACTIVITY);
     }
 
     private void showAddWearableInfo() {

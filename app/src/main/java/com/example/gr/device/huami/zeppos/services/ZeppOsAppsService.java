@@ -17,7 +17,7 @@
 package com.example.gr.device.huami.zeppos.services;
 
 import com.example.gr.device.GBDeviceApp;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.huami.zeppos.AbstractZeppOsService;
 import com.example.gr.device.huami.zeppos.ZeppOsSupport;
 

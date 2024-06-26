@@ -23,7 +23,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.example.gr.database.DBHelper;
 import com.example.gr.device.model.Alarm;
 import com.example.gr.device.DeviceCoordinator;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.huami.zeppos.AbstractZeppOsService;
 import com.example.gr.device.huami.zeppos.ZeppOsSupport;
 import com.example.gr.device.model.DeviceService;

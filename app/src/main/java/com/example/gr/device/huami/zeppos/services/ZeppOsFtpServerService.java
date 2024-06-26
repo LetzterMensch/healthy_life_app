@@ -25,14 +25,10 @@ import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 
 import com.example.gr.constant.DeviceSettingsPreferenceConst;
-import com.example.gr.device.btle.BLETypeConversions;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.events.GBDeviceEventUpdatePreferences;
 import com.example.gr.device.huami.zeppos.AbstractZeppOsService;
-import com.example.gr.device.huami.zeppos.ZeppOsCoordinator;
 import com.example.gr.device.huami.zeppos.ZeppOsSupport;
-import com.example.gr.device.model.WeatherSpec;
-import com.example.gr.utils.DeviceSettingsUtils;
 import com.example.gr.utils.GB;
 import com.example.gr.utils.Prefs;
 import com.example.gr.utils.StringUtils;

@@ -18,7 +18,7 @@ package com.example.gr.device.huami;
 
 import android.bluetooth.BluetoothGattCharacteristic;
 
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.utils.CheckSums;
 import com.example.gr.utils.CryptoUtils;
 

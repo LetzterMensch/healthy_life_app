@@ -40,9 +40,9 @@ import javax.crypto.spec.SecretKeySpec;
 import com.example.gr.ControllerApplication;
 import com.example.gr.device.huami.HuamiService;
 import com.example.gr.device.GBDevice;
-import com.example.gr.device.btle.AbstractBTLEOperation;
-import com.example.gr.device.btle.TransactionBuilder;
-import com.example.gr.device.btle.actions.SetDeviceStateAction;
+import com.example.gr.service.btle.AbstractBTLEOperation;
+import com.example.gr.service.btle.TransactionBuilder;
+import com.example.gr.service.btle.actions.SetDeviceStateAction;
 import com.example.gr.device.huami.HuamiSupport;
 import com.example.gr.utils.GB;
 

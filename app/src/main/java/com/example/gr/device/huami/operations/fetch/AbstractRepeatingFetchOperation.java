@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 package com.example.gr.device.huami.operations.fetch;
 
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.huami.HuamiSupport;
 import com.example.gr.utils.FileUtils;
 

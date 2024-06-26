@@ -19,8 +19,8 @@ package com.example.gr.device.huami.miband;
 import androidx.annotation.Nullable;
 
 import com.example.gr.device.SimpleNotification;
-import com.example.gr.device.btle.BtLEAction;
-import com.example.gr.device.btle.TransactionBuilder;
+import com.example.gr.service.btle.BtLEAction;
+import com.example.gr.service.btle.TransactionBuilder;
 
 
 public interface NotificationStrategy {

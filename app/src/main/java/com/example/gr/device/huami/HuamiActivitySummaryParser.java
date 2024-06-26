@@ -23,7 +23,7 @@ import static com.example.gr.device.model.ActivitySummaryEntries.*;
 import com.example.gr.constant.ActivityKind;
 import com.example.gr.data.parser.ActivitySummaryParser;
 import com.example.gr.database.entities.BaseActivitySummary;
-import com.example.gr.device.btle.BLETypeConversions;
+import com.example.gr.service.btle.BLETypeConversions;
 
 import org.json.JSONException;
 import org.json.JSONObject;

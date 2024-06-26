@@ -21,10 +21,10 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import androidx.annotation.Nullable;
 
 import com.example.gr.device.SimpleNotification;
-import com.example.gr.device.btle.BtLEAction;
-import com.example.gr.device.btle.GattCharacteristic;
-import com.example.gr.device.btle.TransactionBuilder;
-import com.example.gr.device.btle.profiles.alertnotification.AlertCategory;
+import com.example.gr.service.btle.BtLEAction;
+import com.example.gr.service.btle.GattCharacteristic;
+import com.example.gr.service.btle.TransactionBuilder;
+import com.example.gr.service.btle.profiles.alertnotification.AlertCategory;
 import com.example.gr.device.huami.HuamiSupport;
 
 
