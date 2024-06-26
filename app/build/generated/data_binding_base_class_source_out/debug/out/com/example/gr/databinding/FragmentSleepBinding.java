@@ -54,6 +54,9 @@ public final class FragmentSleepBinding implements ViewBinding {
   public final NestedScrollView nestedScrollView;
 
   @NonNull
+  public final TextView remSleep;
+
+  @NonNull
   public final LinearProgressIndicator shallowSleepIndicator;
 
   @NonNull
@@ -82,7 +85,7 @@ public final class FragmentSleepBinding implements ViewBinding {
       @NonNull SwipeRefreshLayout activitySwipeLayout, @NonNull RelativeLayout calendarToolbar,
       @NonNull CardView chartCardView, @NonNull TextView date, @NonNull TextView deepSleepHr,
       @NonNull LinearProgressIndicator deepSleepIndicator, @NonNull TextView deepSleepPercentage,
-      @NonNull NestedScrollView nestedScrollView,
+      @NonNull NestedScrollView nestedScrollView, @NonNull TextView remSleep,
       @NonNull LinearProgressIndicator shallowSleepIndicator,
       @NonNull ImageView sleepFragmentImgBack, @NonNull ImageView sleepFragmentImgNext,
       @NonNull TextView sleepScore, @NonNull CardView sleepScoreCardView,
@@ -98,6 +101,7 @@ public final class FragmentSleepBinding implements ViewBinding {
     this.deepSleepIndicator = deepSleepIndicator;
     this.deepSleepPercentage = deepSleepPercentage;
     this.nestedScrollView = nestedScrollView;
+    this.remSleep = remSleep;
     this.shallowSleepIndicator = shallowSleepIndicator;
     this.sleepFragmentImgBack = sleepFragmentImgBack;
     this.sleepFragmentImgNext = sleepFragmentImgNext;
@@ -189,6 +193,12 @@ public final class FragmentSleepBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.rem_sleep;
+      TextView remSleep = ViewBindings.findChildViewById(rootView, id);
+      if (remSleep == null) {
+        break missingId;
+      }
+
       id = R.id.shallowSleepIndicator;
       LinearProgressIndicator shallowSleepIndicator = ViewBindings.findChildViewById(rootView, id);
       if (shallowSleepIndicator == null) {
@@ -239,9 +249,9 @@ public final class FragmentSleepBinding implements ViewBinding {
 
       return new FragmentSleepBinding((ConstraintLayout) rootView, REMSleepIndicator,
           activitySwipeLayout, calendarToolbar, chartCardView, date, deepSleepHr,
-          deepSleepIndicator, deepSleepPercentage, nestedScrollView, shallowSleepIndicator,
-          sleepFragmentImgBack, sleepFragmentImgNext, sleepScore, sleepScoreCardView, sleepchart,
-          summaryCardView, totalSleepTime);
+          deepSleepIndicator, deepSleepPercentage, nestedScrollView, remSleep,
+          shallowSleepIndicator, sleepFragmentImgBack, sleepFragmentImgNext, sleepScore,
+          sleepScoreCardView, sleepchart, summaryCardView, totalSleepTime);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

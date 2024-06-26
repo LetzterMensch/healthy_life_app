@@ -105,5 +105,8 @@ public class FoodDetailActivity extends BaseActivity {
         mActivityFoodDetailBinding.foodName.setText(mFood.getName());
         mActivityFoodDetailBinding.servingSize.setText(String.valueOf(mFood.getServingSize()));
         mActivityFoodDetailBinding.calories.setText(String.valueOf(mFood.getCalories()));
+        mActivityFoodDetailBinding.foodCarb.setText(String.valueOf(mFood.getCarb()*4));
+        mActivityFoodDetailBinding.foodProtein.setText(String.valueOf(mFood.getProtein()*4));
+        mActivityFoodDetailBinding.foodFat.setText(String.valueOf(mFood.getFat()*9));
     }
 }

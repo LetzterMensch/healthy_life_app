@@ -739,6 +739,7 @@ id recordTime
 id recorderAutoStartOverlay
 id recorderWaitingOverlay
 id recorderWaitingSatellites
+id rem_sleep
 id search_tabLayout
 id serving_size
 id settings_container

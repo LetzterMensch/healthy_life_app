@@ -203,7 +203,6 @@ public abstract class AbstractChartFragment<D extends ChartsData> extends Abstra
         } else if (ChartsHost.DATE_NEXT_DAY.equals(action)) {
             handleDate(getStartDate(), getEndDate(), +1);
         } else if (ChartsHost.DATE_PREV_DAY.equals(action)) {
-            Toast.makeText(this.getContext(),"received intent",Toast.LENGTH_SHORT).show();
             handleDate(getStartDate(), getEndDate(), -1);
         } else if (ChartsHost.DATE_NEXT_WEEK.equals(action)) {
             handleDate(getStartDate(), getEndDate(), +7);

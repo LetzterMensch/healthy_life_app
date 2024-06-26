@@ -76,6 +76,10 @@ public class Diary implements Serializable {
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
 
+    public void updateDiary() {
+        LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
+    }
+
     public void updateDiaryAfterRemove(FoodLog foodLog) {
         this.intakeCalories -= foodLog.getTotalCalories();
         this.intakeCarb -= foodLog.getTotalCarb();
@@ -84,12 +88,14 @@ public class Diary implements Serializable {
         recalculateRemainingCalories(this.intakeCalories, this.burntCalories);
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
-    private void getWorkoutList(){
+
+    private void getWorkoutList() {
         this.workoutList = LocalDatabase.getInstance(ControllerApplication.getContext()).workoutDAO().findWorkoutByDiaryId(this.id);
         if (this.workoutList == null) {
             this.workoutList = new ArrayList<>();
         }
     }
+
     public void logWorkout(Workout workout) {
         getWorkoutList();
         this.workoutList.add(workout);

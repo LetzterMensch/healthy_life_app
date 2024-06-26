@@ -80,11 +80,6 @@ public class ExerciseFragment extends BaseFragment {
         return mFragmentExerciseBinding.getRoot();
     }
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-    @Override
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
@@ -99,7 +94,9 @@ public class ExerciseFragment extends BaseFragment {
         int sleep = (int) dailyTotals[1];
         System.out.println("steps : " + steps);
         mDiary.setTotalSteps(steps);
+        mDiary.updateDiary();
         displayWorkoutInfo();
+        EventBus.getDefault().unregister(this);
     }
     private void initUI() {
         displayWorkoutInfo();
@@ -239,6 +236,9 @@ public class ExerciseFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         showAddWearableInfo();
     }
     @Override

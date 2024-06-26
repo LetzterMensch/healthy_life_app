@@ -776,7 +776,7 @@ public class ZeppOsSupport extends HuamiSupport implements ZeppOsFileTransferSer
 
     @Override
     protected ZeppOsSupport setHeartrateSleepSupport(final TransactionBuilder builder) {
-        final boolean enableHrSleepSupport = MiBandCoordinator.getHeartrateSleepSupport(gbDevice.getAddress());
+        final boolean enableHrSleepSupport = getHeartrateSleepSupport(gbDevice.getAddress());
 
         configService.newSetter()
                 .setBoolean(SLEEP_HIGH_ACCURACY_MONITORING, enableHrSleepSupport)

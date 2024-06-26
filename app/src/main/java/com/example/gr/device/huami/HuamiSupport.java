@@ -685,12 +685,20 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
      * @param builder
      * @return
      */
+    public static int getWearLocation(String deviceAddress) throws IllegalArgumentException {
+        int location = 0; //left hand
+        Prefs prefs = new Prefs(ControllerApplication.getDeviceSpecificSharedPrefs(deviceAddress));
+        if ("right".equals(prefs.getString(DeviceSettingsPreferenceConst.PREF_WEARLOCATION, "left"))) {
+            location = 1; // right hand
+        }
+        return location;
+    }
     protected HuamiSupport setWearLocation(TransactionBuilder builder) {
         LOG.info("Attempting to set wear location...");
         BluetoothGattCharacteristic characteristic = getCharacteristic(HuamiService.UUID_CHARACTERISTIC_8_USER_SETTINGS);
         if (characteristic != null) {
             builder.notify(characteristic, true);
-            int location = MiBandCoordinator.getWearLocation(gbDevice.getAddress());
+            int location = getWearLocation(gbDevice.getAddress());
             switch (location) {
                 case 0: // left hand
                     builder.write(characteristic, HuamiService.WEAR_LOCATION_LEFT_WRIST);
@@ -764,8 +772,12 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
      *
      * @param builder
      */
+    public static boolean getHeartrateSleepSupport(String deviceAddress) throws IllegalArgumentException {
+        Prefs prefs = new Prefs(ControllerApplication.getDeviceSpecificSharedPrefs(deviceAddress));
+        return prefs.getBoolean(DeviceSettingsPreferenceConst.PREF_HEARTRATE_USE_FOR_SLEEP_DETECTION, false);
+    }
     protected HuamiSupport setHeartrateSleepSupport(TransactionBuilder builder) {
-        final boolean enableHrSleepSupport = MiBandCoordinator.getHeartrateSleepSupport(gbDevice.getAddress());
+        final boolean enableHrSleepSupport = getHeartrateSleepSupport(gbDevice.getAddress());
         if (characteristicHRControlPoint != null) {
             builder.notify(characteristicHRControlPoint, true);
             if (enableHrSleepSupport) {

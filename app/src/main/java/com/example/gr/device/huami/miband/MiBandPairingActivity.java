@@ -19,6 +19,7 @@
 package com.example.gr.device.huami.miband;
 
 
+import static com.example.gr.model.ActivityUser.PREF_USER_NAME;
 import static com.example.gr.utils.BondingUtil.STATE_DEVICE_CANDIDATE;
 
 import android.annotation.SuppressLint;
@@ -42,6 +43,7 @@ import com.example.gr.activity.MainActivity;
 import com.example.gr.constant.MiBandConst;
 import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.settings.AboutUserPreferencesActivity;
+import com.example.gr.model.ActivityUser;
 import com.example.gr.utils.GB;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.GBDeviceCandidate;
@@ -102,7 +104,7 @@ public class MiBandPairingActivity extends AbstractGBActivity implements Bonding
             }
         }
 
-        if (!MiBandCoordinator.hasValidUserInfo()) {
+        if (!hasValidUserInfo()) {
             Intent userSettingsIntent = new Intent(this, AboutUserPreferencesActivity.class);
             startActivityForResult(userSettingsIntent, REQ_CODE_USER_SETTINGS, null);
             return;
@@ -111,7 +113,30 @@ public class MiBandPairingActivity extends AbstractGBActivity implements Bonding
         // already valid user info available, use that and pair
         startPairing();
     }
+    public static UserInfo getConfiguredUserInfo(String miBandAddress) throws IllegalArgumentException {
+        ActivityUser activityUser = new ActivityUser();
+        Prefs prefs = ControllerApplication.getPrefs();
 
+        UserInfo info = UserInfo.create(
+                miBandAddress,
+                prefs.getString(PREF_USER_NAME, null),
+                activityUser.getGender(),
+                activityUser.getAge(),
+                activityUser.getHeightCm(),
+                activityUser.getWeightKg(),
+                0
+        );
+        return info;
+    }
+    public static boolean hasValidUserInfo() {
+        String dummyMacAddress = MiBandService.MAC_ADDRESS_FILTER_1_1A + ":00:00:00";
+        try {
+            UserInfo userInfo = getConfiguredUserInfo(dummyMacAddress);
+            return true;
+        } catch (IllegalArgumentException ex) {
+            return false;
+        }
+    }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -129,7 +154,7 @@ public class MiBandPairingActivity extends AbstractGBActivity implements Bonding
         super.onActivityResult(requestCode, resultCode, data);
         // start pairing immediately when we return from the user settings
         if (requestCode == REQ_CODE_USER_SETTINGS) {
-            if (!MiBandCoordinator.hasValidUserInfo()) {
+            if (!hasValidUserInfo()) {
                 GB.toast(this, getString(R.string.miband_pairing_using_dummy_userdata), Toast.LENGTH_LONG, GB.WARN);
             }
             startPairing();

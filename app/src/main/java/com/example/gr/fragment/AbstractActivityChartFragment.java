@@ -332,8 +332,8 @@ public abstract class AbstractActivityChartFragment<D extends ChartsData> extend
                 LineDataSet remSleepSet = createDataSet(remSleepEntries, akRemSleep.color, "REM Sleep");
                 lineDataSets.add(remSleepSet);
             }
-            LineDataSet notWornSet = createDataSet(notWornEntries, akNotWorn.color, "Not worn");
-            lineDataSets.add(notWornSet);
+//            LineDataSet notWornSet = createDataSet(notWornEntries, akNotWorn.color, "Not worn");
+//            lineDataSets.add(notWornSet);
 
             if (hr && heartrateEntries.size() > 0) {
                 LineDataSet heartrateSet = createHeartrateSet(heartrateEntries, "Heart Rate");

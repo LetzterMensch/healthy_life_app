@@ -21,6 +21,7 @@ import android.app.DatePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -108,8 +109,6 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     private int heartRateMax = 0;
     private float intensityTotal = 0;
     private FragmentSleepBinding mFragmentSleepBinding;
-
-
     private int mSmartAlarmFrom = -1;
     private int mSmartAlarmTo = -1;
     private int mTimestampFrom = -1;
@@ -126,7 +125,8 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
             switch (Objects.requireNonNull(action)) {
                 case GBDevice.ACTION_DEVICE_CHANGED:
                     GBDevice dev = intent.getParcelableExtra(GBDevice.EXTRA_DEVICE);
-                    if (dev != null) {
+                    if (dev != null && dev.isInitialized()) {
+                        mGBDevice = mDeviceManager.getDevices().get(0);
                         refreshBusyState(dev);
                     }
                     break;
@@ -220,7 +220,7 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         set.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         data.setDataSet(set);
-
+        //setup sleep data statistics
         //setupLegend(pieChart);
         return new MySleepChartsData(totalSleep, data, sleepSessions);
     }
@@ -252,7 +252,7 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     @Override
     protected void updateChartsnUIThread(MyChartsData mcd) {
         MySleepChartsData pieData = mcd.getPieData();
-//        mSleepAmountChart.setCenterText(pieData.getTotalSleep());
+        mFragmentSleepBinding.totalSleepTime.setText(pieData.getTotalSleep());
 //        mSleepAmountChart.setData(pieData.getPieData());
         mActivityChart.setData(null); // workaround for https://github.com/PhilJay/MPAndroidChart/issues/2317
         mActivityChart.getXAxis().setValueFormatter(mcd.getChartsData().getXValueFormatter());
@@ -375,6 +375,8 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mFragmentSleepBinding = FragmentSleepBinding.inflate(inflater, container, false);
+
+        //replace AbstractChartsActivity
         if (savedInstanceState != null) {
             setEndDate(new Date(savedInstanceState.getLong(STATE_END_DATE, System.currentTimeMillis())));
             setStartDate(new Date(savedInstanceState.getLong(STATE_START_DATE, DateTimeUtils.shiftByDays(getEndDate(), -1).getTime())));
@@ -382,53 +384,36 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
             setEndDate(new Date());
             setStartDate(DateTimeUtils.shiftByDays(getEndDate(), -1));
         }
-        mDeviceManager = ((ControllerApplication) getActivity().getApplication()).getDeviceManager();
-        if (mDeviceManager.getDevices().size() > 1) {
-            if (mDeviceManager.getDevices().get(0).isInitialized() && mDeviceManager.getDevices().get(0).isConnected()) {
-                mGBDevice = mDeviceManager.getDevices().get(0);
-                enableSwipeRefresh(true);
-                setupActivityChart();
-                refresh();
-
-            }
-        }
+        final IntentFilter filterLocal = new IntentFilter();
+        filterLocal.addAction(GBDevice.ACTION_DEVICE_CHANGED);
+        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mReceiver, filterLocal);
         mActivityChart = mFragmentSleepBinding.sleepchart;
         this.calendar = Calendar.getInstance();
         this.today = this.calendar.get(Calendar.DAY_OF_MONTH);
-//        mSleepAmountChart = rootView.findViewById(R.id.sleepchart_pie_light_deep);
-//        mSleepchartInfo = rootView.findViewById(R.id.sleepchart_info);
-//        heartRateIcon = rootView.findViewById(R.id.heartrate_widget_icon);
-//        heartRateAverageLabel = rootView.findViewById(R.id.heartrate_widget_label);
-//        intensityTotalIcon = rootView.findViewById(R.id.intensity_widget_icon);
-//        intensityTotalLabel = rootView.findViewById(R.id.intensity_widget_label);
-
-//        ConstraintLayout intensityTotalWidgetLayout = rootView.findViewById(R.id.intensity_widget_layout);
-//        ConstraintLayout heartRateWidgetLayout = rootView.findViewById(R.id.heartrate_widget_layout);
-//        mSleepchartInfo.setMaxLines(sleepLinesLimit);
-
-//        View.OnClickListener listener = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                DecimalFormat df = new DecimalFormat("###.#");
-//                String detailedDuration = String.format(getString(R.string.charts_min_max_heartrate_popup), heartRateMin, heartRateMax, df.format(intensityTotal));
-//                new ShowDurationDialog(detailedDuration, getContext()).show();
-//            }
-//        };
-
-//        heartRateWidgetLayout.setOnClickListener(listener);
-//        intensityTotalWidgetLayout.setOnClickListener(listener);
-//        intensityTotalIcon.setOnClickListener(listener);
-//        intensityTotalLabel.setOnClickListener(listener);
         swipeLayout = mFragmentSleepBinding.activitySwipeLayout;
         swipeLayout.setOnRefreshListener(this::fetchRecordedData);
         ImageView mPrevButton = mFragmentSleepBinding.sleepFragmentImgBack;
         mPrevButton.setOnClickListener(v -> getPreviousDay());
         ImageView mNextButton = mFragmentSleepBinding.sleepFragmentImgNext;
         mNextButton.setOnClickListener(v -> getNextDay());
+        mDeviceManager = ((ControllerApplication) getActivity().getApplication()).getDeviceManager();
+        if (mDeviceManager.getDevices().size() > 0) {
+            if (mDeviceManager.getDevices().get(0).isInitialized() && mDeviceManager.getDevices().get(0).isConnected()) {
+                mGBDevice = mDeviceManager.getDevices().get(0);
+                enableSwipeRefresh(true);
+                setupActivityChart();
+                refresh();
+            }else {
+                setupActivityChart();
+
+            }
+        }
         // setupSleepAmountChart();
 
         // refresh immediately instead of use refreshIfVisible(), for perceived performance
-
+//        enableSwipeRefresh(true);
+//        setupActivityChart();
+//        refresh();
         return mFragmentSleepBinding.getRoot();
     }
 
@@ -471,19 +456,19 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
 
         YAxis y = mActivityChart.getAxisLeft();
         y.setDrawGridLines(false);
-//        y.setDrawLabels(false);
+        y.setDrawLabels(false);
         // TODO: make fixed max value optional
         y.setAxisMaximum(1f);
         y.setAxisMinimum(0);
         y.setDrawTopYLabelEntry(false);
         y.setTextColor(CHART_TEXT_COLOR);
 
-//        y.setLabelCount(5);
+        y.setLabelCount(5);
         y.setEnabled(true);
 
         YAxis yAxisRight = mActivityChart.getAxisRight();
         yAxisRight.setDrawGridLines(false);
-//        yAxisRight.setEnabled(supportsHeartrate(getChartsHost().getDevice()));
+        yAxisRight.setEnabled(true);
         yAxisRight.setDrawLabels(true);
         yAxisRight.setDrawTopYLabelEntry(true);
         yAxisRight.setTextColor(CHART_TEXT_COLOR);
@@ -503,12 +488,10 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         deepSleepEntry.label = akDeepSleep.label;
         deepSleepEntry.formColor = akDeepSleep.color;
         legendEntries.add(deepSleepEntry);
-        if (supportsRemSleep(getChartsHost().getDevice())) {
-            LegendEntry remSleepEntry = new LegendEntry();
-            remSleepEntry.label = akRemSleep.label;
-            remSleepEntry.formColor = akRemSleep.color;
-            legendEntries.add(remSleepEntry);
-        }
+        LegendEntry remSleepEntry = new LegendEntry();
+        remSleepEntry.label = akRemSleep.label;
+        remSleepEntry.formColor = akRemSleep.color;
+        legendEntries.add(remSleepEntry);
 
 //        heartRateIcon.setVisibility(View.GONE); //hide heart icon
 //        intensityTotalIcon.setVisibility(View.GONE); //hide intensity icon
@@ -669,6 +652,10 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     }
 
     private void getNextDay() {
+        if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) &&
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH)) {
+            return;
+        }
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         if (calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
             mFragmentSleepBinding.date.setText("Hôm qua");
@@ -727,7 +714,7 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
             swipeLayout.setRefreshing(false);
             if (mDeviceManager.getDevices().size() > 0) {
                 mGBDevice = mDeviceManager.getDevices().get(0);
-                if (mGBDevice.isInitialized() && mGBDevice.isConnected()) {
+                if (mGBDevice.isInitialized()) {
                     enableSwipeRefresh(true);
                     setupActivityChart();
                     refresh();
@@ -758,6 +745,7 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
             setStartDate(new Date(savedInstanceState.getLong(STATE_START_DATE, DateTimeUtils.shiftByDays(getEndDate(), -1).getTime())));
         }
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -770,10 +758,11 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         onMadeInvisibleInActivity();
     }
+
     @Override
     public void onDestroy() {
         LocalBroadcastManager.getInstance(this.getContext()).unregisterReceiver(mReceiver);

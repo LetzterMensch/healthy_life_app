@@ -36,7 +36,6 @@ public class Food implements Serializable {
     @Ignore
     public Food(String name, float numberOfServings, int calories){
         this.name = name;
-        this.servingSize = 100f;
         this.calories = calories;
         this.numberOfServings = numberOfServings;
         this.servingSize = 100f;

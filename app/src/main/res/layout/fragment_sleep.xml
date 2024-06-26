@@ -257,6 +257,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="left"
+                                    android:id="@+id/rem_sleep"
                                     android:text="49 phút"
                                     android:textColor="@color/black"
                                     android:textSize="18sp" />
@@ -372,24 +373,6 @@
                             android:text="Ngủ muộn"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_marginLeft="10dp"
-                            android:text="Thống kê"
-                            android:textColor="@color/purple_700"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_marginLeft="10dp"
-                            android:text="Thống kê"
-                            android:textColor="@color/purple_700"
-                            android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

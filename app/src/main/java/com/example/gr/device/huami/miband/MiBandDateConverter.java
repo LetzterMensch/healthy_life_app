@@ -17,6 +17,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 package com.example.gr.device.huami.miband;
 
+import com.example.gr.ControllerApplication;
+import com.example.gr.constant.MiBandConst;
+import com.example.gr.utils.Prefs;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -27,7 +31,10 @@ public class MiBandDateConverter {
     public static GregorianCalendar createCalendar() {
         return new GregorianCalendar();
     }
-
+    public static int getDeviceTimeOffsetHours(String deviceAddress) throws IllegalArgumentException {
+        Prefs prefs = new Prefs(ControllerApplication.getDeviceSpecificSharedPrefs(deviceAddress));
+        return prefs.getInt(MiBandConst.PREF_MIBAND_DEVICE_TIME_OFFSET_HOURS, 0);
+    }
     /**
      * uses the standard algorithm to convert bytes received from the MiBand to a Calendar object
      *
@@ -57,7 +64,7 @@ public class MiBandDateConverter {
                     value[offset + 4],
                     value[offset + 5]);
 
-            int offsetInHours = MiBandCoordinator.getDeviceTimeOffsetHours(deviceAddress);
+            int offsetInHours = getDeviceTimeOffsetHours(deviceAddress);
             if (offsetInHours != 0)
                 timestamp.add(Calendar.HOUR_OF_DAY, -offsetInHours);
 
@@ -82,7 +89,7 @@ public class MiBandDateConverter {
 	    // If you usually sleep, say, from 6am to 2pm, set the
 	    // shift to -8, so at 6am the device thinks it's still 10pm
 	    // of the day before.
-        int offsetInHours = MiBandCoordinator.getDeviceTimeOffsetHours(deviceAddress);
+        int offsetInHours = getDeviceTimeOffsetHours(deviceAddress);
         if (offsetInHours != 0)
             timestamp.add(Calendar.HOUR_OF_DAY, offsetInHours);
 

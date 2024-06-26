@@ -4444,6 +4444,7 @@ int id recorderWaitingOverlay 0x7f0a0239
 int id recorderWaitingSatellites 0x7f0a023a
 int id rectangles 0x7f0a023b
 int id recycler_view 0x7f0a023c
+int id rem_sleep 0x7f0a02fc
 int id report_drawn 0x7f0a023d
 int id reverseSawtooth 0x7f0a023e
 int id right 0x7f0a023f

@@ -1,43 +1,30 @@
 package com.example.gr.activity;
 
-import static com.example.gr.utils.GB.toast;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
-import com.example.gr.activity.charts.AbstractChartsActivity;
-import com.example.gr.adapter.AbstractFragmentPagerAdapter;
 import com.example.gr.adapter.MainViewPagerAdapter;
 import com.example.gr.data.sample.ActivitySample;
 import com.example.gr.database.DBAccess;
 import com.example.gr.database.DBHandler;
-import com.example.gr.database.DataImporter;
-import com.example.gr.database.LocalDatabase;
 import com.example.gr.databinding.ActivityMainBinding;
 import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.DeviceManager;
 import com.example.gr.device.GBDevice;
-import com.example.gr.device.model.ActivityAmounts;
 import com.example.gr.device.model.DailyTotals;
 import com.example.gr.device.model.DeviceService;
-import com.example.gr.device.model.RecordedDataTypes;
 import com.example.gr.fragment.BaseFragment;
-import com.example.gr.fragment.SleepFragment;
-import com.example.gr.utils.GB;
 import com.example.gr.utils.HeartRateUtils;
-import com.example.gr.utils.LimitedQueue;
 
 import org.greenrobot.eventbus.EventBus;
 

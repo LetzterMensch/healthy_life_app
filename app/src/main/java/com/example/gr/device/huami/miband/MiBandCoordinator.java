@@ -54,6 +54,7 @@ import com.example.gr.device.GBDeviceCandidate;
 import com.example.gr.device.GBException;
 import com.example.gr.device.ServiceDeviceSupport;
 import com.example.gr.constant.DeviceSettingsPreferenceConst;
+import com.example.gr.device.huami.zeppos.ZeppOsSupport;
 import com.example.gr.model.ActivityUser;
 import com.example.gr.utils.Prefs;
 
@@ -273,7 +274,7 @@ public class MiBandCoordinator extends AbstractBLEDeviceCoordinator {
     @NonNull
     @Override
     public Class<? extends DeviceSupport> getDeviceSupportClass() {
-        return MiBandSupport.class;
+        return ZeppOsSupport.class;
     }
 
     private boolean isMi1S(String hardwareVersion) {
