@@ -321,8 +321,8 @@
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/alata"
                                 android:paddingBottom="5dp"
-                                android:text="@string/out_door_workout"
-                                android:textAlignment="textStart"
+                                android:text="@string/recorded_workout"
+                                android:textAlignment="viewEnd"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -336,13 +336,13 @@
                                 android:src="@drawable/ic_run_blue_50" />
 
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/btn_gps_start"
+                                android:id="@+id/btn_exercise_sync"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:background="@drawable/bg_blue_shape_corner_6"
                                 android:paddingHorizontal="10dp"
-                                android:text="@string/add"
+                                android:text="@string/action_sync"
                                 android:textColor="@color/white"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
@@ -372,7 +372,7 @@
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/alata"
                                 android:paddingBottom="5dp"
-                                android:text="@string/in_door_workout"
+                                android:text="@string/normal_workout"
                                 android:textAlignment="textStart"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"

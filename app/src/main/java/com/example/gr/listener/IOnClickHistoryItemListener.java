@@ -1,9 +1,8 @@
 package com.example.gr.listener;
 
-import com.example.gr.model.BaseWorkout;
-import com.example.gr.model.Food;
+import com.example.gr.model.RecordedWorkout;
 
 public interface IOnClickHistoryItemListener {
-    void onClickItemHistory(BaseWorkout baseWorkout);
+    void onClickItemHistory(RecordedWorkout recordedWorkout);
 
 }

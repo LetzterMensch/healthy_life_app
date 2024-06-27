@@ -85,6 +85,10 @@ public class Diary implements Serializable {
         this.intakeCarb -= foodLog.getTotalCarb();
         this.intakeProtein -= foodLog.getTotalProtein();
         this.intakeFat -= foodLog.getTotalFat();
+        this.intakeFat = Math.max(this.intakeFat, 0);
+        this.intakeCarb = Math.max(this.intakeCarb, 0);
+        this.intakeProtein = Math.max(this.intakeProtein, 0);
+        this.intakeCalories = Math.max(this.intakeCalories, 0);
         recalculateRemainingCalories(this.intakeCalories, this.burntCalories);
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
@@ -147,6 +151,10 @@ public class Diary implements Serializable {
     }
 
     protected void recalculateRemainingCalories(int intakeCalories, int burntCalories) {
+        if((this.caloriesGoal - intakeCalories + burntCalories) < 0){
+            this.remainingCalories = 0;
+            return;
+        }
         this.remainingCalories = this.caloriesGoal - intakeCalories + burntCalories;
     }
 

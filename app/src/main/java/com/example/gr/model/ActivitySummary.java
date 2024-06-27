@@ -24,8 +24,7 @@ import java.util.Date;
  *
  * // TODO: split into separate entities?
  */
-public interface
-ActivitySummary extends Serializable {
+public interface ActivitySummary extends Serializable {
     Long getId();
     String getName();
     Date getStartTime();

@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
     private BaseFragment currentFragment;
 //    private GBDeviceAdapterv2 mGBDeviceAdapter;
 
-    private HashMap<String,long[]> deviceActivityHashMap = new HashMap();
+    private HashMap<String,long[]> deviceActivityHashMap = new HashMap<>();
     public HashMap<String,long[]> getDeviceActivityHashMap(){
         return this.deviceActivityHashMap;
     }

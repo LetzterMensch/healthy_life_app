@@ -88,6 +88,7 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
     protected void startFetching() throws IOException {
         expectedDataLength = 0;
         lastPacketCounter = -1;
+        System.out.println("inside huami abstract fetch operation");
 
         final TransactionBuilder builder = performInitialized(getName());
         if (fetchCount == 0) {
@@ -216,7 +217,8 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
             onOperationFinished();
             return;
         }
-
+        System.out.println("about to get in the switch");
+        System.out.println("value[1] : "+ value[1]);
         switch (value[1]) {
             case HuamiService.COMMAND_ACTIVITY_DATA_START_DATE:
                 handleStartDateResponse(value);
@@ -226,6 +228,7 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
                 return;
             case HuamiService.COMMAND_ACK_ACTIVITY_DATA:
                 LOG.info("Got reply to COMMAND_ACK_ACTIVITY_DATA");
+                System.out.println("COMMAND_ACK_ACTIVITY_DATA");
                 onOperationFinished();
                 return;
             default:
@@ -283,18 +286,23 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
 
     private void handleFetchDataResponse(final byte[] value) {
         if (value[2] != HuamiService.SUCCESS) {
+            System.out.println("exit at 1");
             LOG.warn("Fetch data unsuccessful response: {}", Logging.formatBytes(value));
             onOperationFinished();
             return;
         }
 
         if (value.length != 3 && value.length != 7) {
+            System.out.println("exit at 2");
+
             LOG.warn("Fetch data unexpected metadata length: {}", Logging.formatBytes(value));
             onOperationFinished();
             return;
         }
 
         if (value.length == 7 && !validChecksum(BLETypeConversions.toUint32(value, 3))) {
+            System.out.println("exit at 3");
+
             LOG.warn("Data checksum invalid");
             // If we're on Zepp OS, ack but keep data on device
             if (isZeppOs()) {

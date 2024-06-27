@@ -570,7 +570,7 @@ id breakfast_card
 id btn_breakfast_add
 id btn_container
 id btn_dinner_add
-id btn_gps_start
+id btn_exercise_sync
 id btn_import
 id btn_import_recipe
 id btn_lunch_add
@@ -598,6 +598,7 @@ id carb_indicator
 id card_burnt_container
 id card_container
 id chartCardView
+id chartsFragmentHolder
 id charts_fetch_activity_data
 id connect_device
 id content
@@ -777,6 +778,14 @@ id wearable_name
 id wearable_status
 id webview
 id weight_line_chart
+id workout_avg_hr
+id workout_cal_burnt
+id workout_detail_toolbar
+id workout_distance
+id workout_duration
+id workout_header
+id workout_max_hr
+id workout_min_hr
 layout activity_device_settings
 layout activity_discovery
 layout activity_food_detail
@@ -788,6 +797,7 @@ layout activity_record_workout
 layout activity_search_for_exercise
 layout activity_search_for_food
 layout activity_splash
+layout activity_workout_detail
 layout fragment_dashboard
 layout fragment_diary
 layout fragment_exercise
@@ -865,6 +875,7 @@ string action_ok
 string action_quit
 string action_settings
 string action_start
+string action_sync
 string action_view_more
 string activeSeconds
 string active_level_active
@@ -1322,6 +1333,7 @@ string controlcenter_set_preferences
 string controlcenter_snackbar_connecting
 string controlcenter_snackbar_disconnecting
 string controlcenter_snackbar_need_longpress
+string controlcenter_snackbar_not_connected
 string controlcenter_snackbar_requested_screenshot
 string controlcenter_start_activity_tracks
 string controlcenter_start_activitymonitor
@@ -1808,7 +1820,6 @@ string icon_placeholder
 string ignore_bonded_devices
 string ignore_bonded_devices_description
 string import_recipe
-string in_door_workout
 string in_door_workout_title
 string indonesian
 string info_connected_count
@@ -1857,9 +1868,15 @@ string km
 string km_h
 string korean
 string label_add
+string label_avg_hr
 string label_burnt
+string label_cal_burnt
+string label_distance
+string label_duraion
 string label_goal
 string label_intake
+string label_max_hr
+string label_min_hr
 string label_nutrition
 string label_quantity_1
 string label_recipe_ingredients
@@ -2104,6 +2121,7 @@ string no_data
 string no_device_found
 string no_limit
 string normal
+string normal_workout
 string norwegian_bokmal
 string not_connected
 string not_set
@@ -2147,7 +2165,6 @@ string open_fw_installer_select_file
 string open_fw_installer_warning_text
 string open_fw_installer_warning_title
 string other
-string out_door_workout
 string out_door_workout_title
 string overslept
 string overstep
@@ -3098,6 +3115,7 @@ string quick_alarm
 string quick_alarm_description
 string quick_attention
 string recipe_suggest
+string recorded_workout
 string red
 string reminder_date
 string reminder_delete_confirm_description

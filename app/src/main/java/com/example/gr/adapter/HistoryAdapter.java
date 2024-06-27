@@ -9,21 +9,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gr.R;
 import com.example.gr.databinding.ItemExerciseHistoryBinding;
 import com.example.gr.listener.IOnClickHistoryItemListener;
-import com.example.gr.model.BaseWorkout;
+import com.example.gr.model.RecordedWorkout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>{
-//    public final IOnClickHistoryItemListener iOnClickHistoryItemListener;
-    private final List<BaseWorkout> mWorkoutHistoryList;
+    public final IOnClickHistoryItemListener iOnClickHistoryItemListener;
+    private final List<RecordedWorkout> mWorkoutHistoryList;
 
-    public HistoryAdapter(List<BaseWorkout> workoutHistoryList) {
-//        this.iOnClickHistoryItemListener = iOnClickHistoryItemListener;
-        this.mWorkoutHistoryList = new ArrayList<BaseWorkout>();
-        this.mWorkoutHistoryList.add(workoutHistoryList.get(workoutHistoryList.size()-1));
-        this.mWorkoutHistoryList.add(workoutHistoryList.get(workoutHistoryList.size()-2));
-
+    public HistoryAdapter(List<RecordedWorkout> workoutHistoryList, IOnClickHistoryItemListener iOnClickHistoryItemListener) {
+        this.iOnClickHistoryItemListener = iOnClickHistoryItemListener;
+        this.mWorkoutHistoryList = workoutHistoryList;
     }
 
     @NonNull
@@ -35,13 +31,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-        BaseWorkout baseWorkout = mWorkoutHistoryList.get(position);
-        if(baseWorkout == null){
+        RecordedWorkout recordedWorkout = mWorkoutHistoryList.get(position);
+        if(recordedWorkout == null){
             return;
         }
-        holder.mItemExerciseHistoryBinding.historyDate.setText(baseWorkout.getLocalDateTime().toString());
-        holder.mItemExerciseHistoryBinding.historyDuration.setText(String.valueOf(baseWorkout.getDuration()));
-        holder.mItemExerciseHistoryBinding.historyTitle.setText(R.string.in_door_workout_title);
+        holder.mItemExerciseHistoryBinding.historyDate.setText(recordedWorkout.getStartTime());
+        holder.mItemExerciseHistoryBinding.historyDuration.setText(String.valueOf(recordedWorkout.getDuration()));
+        if(recordedWorkout.getName() != null){
+            holder.mItemExerciseHistoryBinding.historyTitle.setText(recordedWorkout.getName());
+        }else{
+            holder.mItemExerciseHistoryBinding.historyTitle.setText(recordedWorkout.getExercise().getName());
+        }
+        holder.mItemExerciseHistoryBinding.itemExHistoryLayout.setOnClickListener(v->iOnClickHistoryItemListener.onClickItemHistory(recordedWorkout));
     }
 
     @Override

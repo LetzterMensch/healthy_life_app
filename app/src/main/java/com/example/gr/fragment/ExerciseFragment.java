@@ -1,15 +1,11 @@
 package com.example.gr.fragment;
 
-import static com.example.gr.device.model.DeviceService.ACTION_CONNECT;
 import static com.example.gr.utils.GB.toast;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.pm.ShortcutInfo;
-import android.content.pm.ShortcutManager;
-import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,7 +17,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -32,7 +27,12 @@ import com.example.gr.activity.MainActivity;
 import com.example.gr.activity.SearchForExerciseActivity;
 import com.example.gr.adapter.HistoryAdapter;
 import com.example.gr.constant.GlobalFunction;
+import com.example.gr.database.DBHandler;
+import com.example.gr.database.DBHelper;
 import com.example.gr.database.LocalDatabase;
+import com.example.gr.database.entities.BaseActivitySummary;
+import com.example.gr.database.entities.BaseActivitySummaryDao;
+import com.example.gr.database.entities.Device;
 import com.example.gr.databinding.FragmentExerciseBinding;
 import com.example.gr.device.DeviceCoordinator;
 import com.example.gr.device.DeviceManager;
@@ -42,23 +42,25 @@ import com.example.gr.model.ActivityUser;
 import com.example.gr.model.Diary;
 import com.example.gr.utils.DateTimeUtils;
 import com.example.gr.utils.GB;
-import com.example.gr.model.BaseWorkout;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.gr.model.RecordedWorkout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import de.greenrobot.dao.query.QueryBuilder;
 
 public class ExerciseFragment extends BaseFragment {
     private FragmentExerciseBinding mFragmentExerciseBinding;
     private HistoryAdapter mHistoryAdapter;
-    private List<BaseWorkout> workoutList;
+    private List<RecordedWorkout> workoutList;
     private Button addWearableBtn;
     private TextView tvWearableName;
     private TextView tvWearableStatus;
@@ -95,24 +97,45 @@ public class ExerciseFragment extends BaseFragment {
         System.out.println("steps : " + steps);
         mDiary.setTotalSteps(steps);
         mDiary.updateDiary();
-        displayWorkoutInfo();
+        updateUIAfterShowSnackBar();
         EventBus.getDefault().unregister(this);
+    }
+    private void displayHistoryList(){
+        if(workoutList == null){
+            workoutList = new ArrayList<>();
+        }
+        //get BaseActivitySummaries
+        try (DBHandler handler = ControllerApplication.acquireDB()) {
+            BaseActivitySummaryDao summaryDao = handler.getDaoSession().getBaseActivitySummaryDao();
+            Device dbDevice = DBHelper.findDevice(device, handler.getDaoSession());
+            QueryBuilder<BaseActivitySummary> qb = summaryDao.queryBuilder();
+            qb.where(
+                    BaseActivitySummaryDao.Properties.DeviceId.eq(
+                            dbDevice.getId())).orderDesc(BaseActivitySummaryDao.Properties.StartTime);
+            List<BaseActivitySummary> allSummaries = new ArrayList<>();
+            allSummaries.add(new BaseActivitySummary());
+            allSummaries.addAll(qb.build().list());
+        } catch (Exception e) {
+            GB.toast("Error loading activity summaries.", Toast.LENGTH_SHORT, GB.ERROR, e);
+        }
+        //Initialize a queue to load both Workout and RecoredWorkout
+
+        mHistoryAdapter = new HistoryAdapter(workoutList,this::goToWorkoutItemDetailActivity);
+        mFragmentExerciseBinding.rcvExHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mFragmentExerciseBinding.rcvExHistory.setAdapter(mHistoryAdapter);
     }
     private void initUI() {
         displayWorkoutInfo();
-        workoutList = new ArrayList<>();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            workoutList.add(new BaseWorkout(12, LocalDateTime.now()));
-            workoutList.add(new BaseWorkout(13, LocalDateTime.now()));
-            workoutList.add(new BaseWorkout(14, LocalDateTime.now()));
-        }
-        mHistoryAdapter = new HistoryAdapter(workoutList);
-        mFragmentExerciseBinding.rcvExHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mFragmentExerciseBinding.rcvExHistory.setAdapter(mHistoryAdapter);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            workoutList.add(new RecordedWorkout(12, DateTimeUtils.simpleDateFormat(Date.from(Instant.now()))));
+//            workoutList.add(new RecordedWorkout(13, DateTimeUtils.simpleDateFormat(Date.from(Instant.now()))));
+//            workoutList.add(new RecordedWorkout(14, DateTimeUtils.simpleDateFormat(Date.from(Instant.now()))));
+//        }
+//        displayHistoryList();
         addWearableBtn = mFragmentExerciseBinding.addWearableBtn;
         syncBtn = mFragmentExerciseBinding.syncBtn;
-        mFragmentExerciseBinding.btnGpsStart.setOnClickListener(v->{
-            goToSearchForExerciseActivity();
+        mFragmentExerciseBinding.btnExerciseSync.setOnClickListener(v->{
+            fetchWorkoutSummaryData();
         });
         mFragmentExerciseBinding.indoorBtn.setOnClickListener(v->{
             goToSearchForExerciseActivity();
@@ -136,27 +159,10 @@ public class ExerciseFragment extends BaseFragment {
         Bundle bundle = new Bundle();
         GlobalFunction.startActivity(getActivity(),SearchForExerciseActivity.class,bundle);
     }
+    private void goToWorkoutItemDetailActivity(RecordedWorkout recordedWorkout){
 
-    @RequiresApi(api = Build.VERSION_CODES.R)
-    void createDynamicShortcut(GBDevice device) {
-        Context context = this.getContext();
-        Intent intent = new Intent(context, MainActivity.class)
-                .setAction(ACTION_CONNECT)
-                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                .putExtra("device", device.getAddress());
-
-        ShortcutManager shortcutManager = (ShortcutManager) context.getApplicationContext().getSystemService(Context.SHORTCUT_SERVICE);
-
-        DeviceCoordinator coordinator = device.getDeviceCoordinator();
-
-        shortcutManager.pushDynamicShortcut(new ShortcutInfo.Builder(context, device.getAddress())
-                .setLongLived(false)
-                .setShortLabel(device.getAliasOrName())
-                .setIntent(intent)
-                .setIcon(Icon.createWithResource(context, coordinator.getDefaultIconResource()))
-                .build()
-        );
     }
+
     private void displayWorkoutInfo() {
         if (mDiary != null) {
             mFragmentExerciseBinding.exCalBurnt.setText(mDiary.getBurntCalories() + "cal");
@@ -181,20 +187,54 @@ public class ExerciseFragment extends BaseFragment {
         }
         System.out.println(mDiary.getDate());
     }
-
+    //Reset last fetching timestamp to 00:00:00 to start a new day.
+    // If it was set to yesterday then reset it.
+    // Else set timestamp = lastTimeStamp + 1000 (this is done in FetchSportsSummaryOperation's processBufferedData () )
+    private void resetLastFetchTimeStamp(){
+        Calendar date = Calendar.getInstance();
+        date.set(Calendar.HOUR_OF_DAY,0);
+        date.set(Calendar.MINUTE,0);
+        date.set(Calendar.SECOND,1);
+        long timestamp = date.getTimeInMillis();
+        SharedPreferences sharedPreferences = ControllerApplication.getDeviceSpecificSharedPrefs(device.getAddress());
+        SharedPreferences.Editor editor = ControllerApplication.getDeviceSpecificSharedPrefs(device.getAddress()).edit();
+        long lastTimeStamp = sharedPreferences.getLong("lastSportsActivityTimeMillis",0);
+        System.out.println("Last timestamp : " + lastTimeStamp);
+        System.out.println("reset time stamp : "+timestamp);
+        // it should be like this
+//        if(today < timestamp || today == 0){
+//            editor.remove("lastSportsActivityTimeMillis");
+//            editor.putLong("lastSportsActivityTimeMillis", timestamp);
+//            editor.apply();
+//        }
+        //For debug purpose only
+        editor.remove("lastSportsActivityTimeMillis");
+        editor.putLong("lastSportsActivityTimeMillis", timestamp);
+        editor.apply();
+    }
+    private void fetchWorkoutSummaryData(){
+        if (device.isInitialized() && !device.isBusy()) {
+            System.out.println("inside fetching summary data");
+            resetLastFetchTimeStamp();
+            showTransientSnackbar(R.string.busy_task_fetch_activity_data);
+            ControllerApplication.deviceService(device).onFetchRecordedData(RecordedDataTypes.TYPE_GPS_TRACKS);
+        } else {
+            showTransientSnackbar(R.string.controlcenter_snackbar_not_connected);
+        }
+    }
     private void fetchData() {
         if (device.isInitialized() && device.isConnected()) {
-            showTransientSnackbar(R.string.controlcenter_snackbar_need_longpress);
+//            showTransientSnackbar(R.string.controlcenter_snackbar_need_longpress);
+            showTransientSnackbar(R.string.busy_task_fetch_activity_data);
+            ControllerApplication.deviceService(device).onFetchRecordedData(RecordedDataTypes.TYPE_ACTIVITY);
+            fetchWorkoutSummaryData();
         } else {
             showTransientSnackbar(R.string.controlcenter_snackbar_connecting);
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 //                createDynamicShortcut(device);
 //            }
             ControllerApplication.deviceService(device).connect();
-            return;
         }
-        showTransientSnackbar(R.string.busy_task_fetch_activity_data);
-        ControllerApplication.deviceService(device).onFetchRecordedData(RecordedDataTypes.TYPE_ACTIVITY);
     }
 
     private void showAddWearableInfo() {

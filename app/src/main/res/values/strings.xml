@@ -18,6 +18,7 @@
     <string name="complete_diary">Hoàn thành nhật ký</string>
     <string name="action_start">Bắt đầu</string>
     <string name="action_view_more">Xem thêm</string>
+    <string name="action_sync">Cập nhật</string>
     // calories
     <string name="label_intake">đã nạp</string>
     <string name="label_burnt">tiêu hao</string>
@@ -25,6 +26,14 @@
     <string name="label_goal">mục tiêu</string>
     <string name="title_calories">Calories</string>
     <string name="formula_cal">cần nạp = mục tiêu - đã nạp + tiêu hao</string>
+    // workout
+    <string name="label_duraion">Thời gian tập luyện</string>
+    <string name="label_avg_hr">Nhịp tim trung bình</string>
+    <string name="label_max_hr">Nhịp tim cao nhất</string>
+    <string name="label_min_hr">Nhịp tim thấp nhất</string>
+    <string name="label_cal_burnt">Calories đã tiêu hao</string>
+    <string name="label_distance">Khoảng cách đã đi</string>
+
     // profile
     <string name="profile_device_settings">Cài đặt thiết bị</string>
     <string name="profile_device_connect">Kết nối thiết bị</string>
@@ -40,8 +49,8 @@
     <string name="ex_title_exercise">tập luyện</string>
     <string name="ex_burnt_cal">0 cal</string>
     <string name="ex_burnt_hr">0:00 h</string>
-    <string name="out_door_workout">Ngoài trời</string>
-    <string name="in_door_workout">Trong nhà</string>
+    <string name="normal_workout">Bài tập thông thường</string>
+    <string name="recorded_workout">Bài tập từ thiết bị</string>
     <string name="out_door_workout_title">Thể dục ngoài trời</string>
     <string name="in_door_workout_title">Thể dục trong nhà</string>
     <string name="label_sub">-</string>
@@ -119,7 +128,8 @@
     <string name="controlcenter_navigation_drawer_close">Close navigation drawer</string>
     <string name="controlcenter_snackbar_need_longpress">Long press the card to disconnect</string>
     <string name="controlcenter_snackbar_disconnecting">Disconnecting</string>
-    <string name="controlcenter_snackbar_connecting">Connecting…</string>
+    <string name="controlcenter_snackbar_connecting">Đang kết nối…</string>
+    <string name="controlcenter_snackbar_not_connected">Chưa kết nối với thiết bị, vui lòng thử lại sau khi kết nối !</string>
     <string name="controlcenter_snackbar_requested_screenshot">Taking a screenshot of the device</string>
     <string name="controlcenter_calibrate_device">Calibrate Device</string>
     <string name="controlcenter_get_heartrate_measurement">Get heart rate measurement</string>
@@ -710,8 +720,8 @@
     <string name="pref_cache_weather_summary">Weather information will be cached across application restarts.</string>
     <string name="pref_write_logfiles_not_available">File logging initialization failed, writing log files is currently not available. Restart the application to attempt to initialize the log files again.</string>
     <string name="initializing">Initializing</string>
-    <string name="busy_task_fetch_activity_data">Fetching activity data</string>
-    <string name="busy_task_fetch_sports_summaries">Fetching sports summaries</string>
+    <string name="busy_task_fetch_activity_data">Đang đồng bộ dữ liệu</string>
+    <string name="busy_task_fetch_sports_summaries">Đang cập nhật dữ liệu tập luyện</string>
     <string name="busy_task_fetch_sports_details">Fetching sports details</string>
     <string name="busy_task_fetch_sports_details_interrupted">Fetching sports details was interrupted</string>
     <string name="busy_task_fetch_debug_logs">Fetching debug logs</string>

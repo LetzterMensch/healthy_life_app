@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.protobuf")
 }
 
 android {
@@ -35,9 +36,16 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    sourceSets {
+        named("main") {
+            java.srcDirs("build/generated/source/proto/main/java")
+        }
+    }
 }
 
 dependencies {
+    //protobuf
+    implementation("com.google.protobuf:protobuf-javalite:3.21.7")
 
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.12.0")

@@ -32,7 +32,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
   public final RelativeLayout btnContainer;
 
   @NonNull
-  public final AppCompatButton btnGpsStart;
+  public final AppCompatButton btnExerciseSync;
 
   @NonNull
   public final TextView btnViewMore;
@@ -75,7 +75,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
 
   private FragmentExerciseBinding(@NonNull ConstraintLayout rootView,
       @NonNull Button addWearableBtn, @NonNull RelativeLayout btnContainer,
-      @NonNull AppCompatButton btnGpsStart, @NonNull TextView btnViewMore,
+      @NonNull AppCompatButton btnExerciseSync, @NonNull TextView btnViewMore,
       @NonNull TextView exCalBurnt, @NonNull TextView exCalBurntHr,
       @NonNull LinearLayout exStatsLayout, @NonNull TextView exSteps,
       @NonNull AppCompatButton indoorBtn, @NonNull RecyclerView rcvExHistory,
@@ -85,7 +85,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
     this.rootView = rootView;
     this.addWearableBtn = addWearableBtn;
     this.btnContainer = btnContainer;
-    this.btnGpsStart = btnGpsStart;
+    this.btnExerciseSync = btnExerciseSync;
     this.btnViewMore = btnViewMore;
     this.exCalBurnt = exCalBurnt;
     this.exCalBurntHr = exCalBurntHr;
@@ -140,9 +140,9 @@ public final class FragmentExerciseBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btn_gps_start;
-      AppCompatButton btnGpsStart = ViewBindings.findChildViewById(rootView, id);
-      if (btnGpsStart == null) {
+      id = R.id.btn_exercise_sync;
+      AppCompatButton btnExerciseSync = ViewBindings.findChildViewById(rootView, id);
+      if (btnExerciseSync == null) {
         break missingId;
       }
 
@@ -225,7 +225,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
       }
 
       return new FragmentExerciseBinding((ConstraintLayout) rootView, addWearableBtn, btnContainer,
-          btnGpsStart, btnViewMore, exCalBurnt, exCalBurntHr, exStatsLayout, exSteps, indoorBtn,
+          btnExerciseSync, btnViewMore, exCalBurnt, exCalBurntHr, exStatsLayout, exSteps, indoorBtn,
           rcvExHistory, stepsBarIndicator, syncBtn, textView, titleGoalSteps, wearableName,
           wearableStatus);
     }

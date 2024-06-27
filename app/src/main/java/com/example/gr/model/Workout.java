@@ -6,7 +6,10 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.gr.utils.DateTimeUtils;
+
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -26,9 +29,10 @@ public class Workout implements Serializable {
     @Ignore
     public Workout(Exercise exercise, int duration, int weight){
         this.exercise = exercise;
+        this.exerciseId = exercise.getId();
         this.duration = duration;
         this.caloriesBurnt = (int)exercise.getMet() * (duration/60) * weight;
-        this.createdAt = new Date().toString();
+        this.createdAt = DateTimeUtils.simpleDateTimeFormat(Date.from(Instant.now()));
     }
     @Ignore
     public Workout(int id, Exercise exercise, int duration, int calories_burnt) {

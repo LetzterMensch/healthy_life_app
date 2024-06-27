@@ -17,6 +17,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 package com.example.gr.device.huami.operations.fetch;
 
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.example.gr.ControllerApplication;
@@ -38,6 +39,7 @@ import com.example.gr.utils.GB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 
 
@@ -100,7 +102,17 @@ public class FetchSportsSummaryOperation extends AbstractFetchOperation {
             summary.setDevice(device);
             summary.setUser(user);
             summary.setRawSummaryData(buffer.toByteArray());
-            session.getBaseActivitySummaryDao().insertOrReplace(summary);
+            long timestamp = summary.getEndTime().getTime() + 10000;
+
+            SharedPreferences sharedPreferences = ControllerApplication.getDeviceSpecificSharedPrefs(getDevice().getAddress());
+            long lastTimeStamp = sharedPreferences.getLong("lastSportsActivityTimeMillis",0);
+            if(lastTimeStamp < timestamp){
+                session.getBaseActivitySummaryDao().insertOrReplace(summary);
+                SharedPreferences.Editor editor = ControllerApplication.getDeviceSpecificSharedPrefs(getDevice().getAddress()).edit();
+                editor.remove("lastSportsActivityTimeMillis"); //FIXME: key reconstruction is BAD
+                editor.putLong("lastSportsActivityTimeMillis", timestamp);
+                editor.apply();
+            }
         } catch (final Exception ex) {
             GB.toast(getContext(), "Error saving activity summary", Toast.LENGTH_LONG, GB.ERROR, ex);
             return false;

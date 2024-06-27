@@ -69,6 +69,14 @@ public class DateTimeUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date.getTime());
     }
+    public static String simpleDateTimeFormat(Date date){
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateTimeFormat.format(date.getTime());
+    }
+    public static Date parseSimpleDateTimeFormat(String string) throws ParseException {
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateTimeFormat.parse(string);
+    }
     public static String formatIso8601(Date date) {
         if(ControllerApplication.isRunningNougatOrLater()){
             return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.US).format(date);

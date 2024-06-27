@@ -41,14 +41,21 @@ public class HuamiActivitySummaryParser implements ActivitySummaryParser {
 
 
     public BaseActivitySummary parseBinaryData(BaseActivitySummary summary) {
+        System.out.println("inside summary parser");
         Date startTime = summary.getStartTime();
+        System.out.println(startTime);
         if (startTime == null) {
             LOG.error("Due to a bug, we can only parse the summary when startTime is already set");
             return null;
         }
         summaryData = new JSONObject();
+        System.out.println("before parsing");
+        System.out.println("start time : " + summary.getStartTime());
         parseBinaryData(summary, startTime);
+        System.out.println("summaryData (JSON) : " + summaryData);
+        System.out.println("after parsing data");
         summary.setSummaryData(summaryData.toString());
+        System.out.println(summary.getSummaryData());
         return summary;
     }
 
@@ -57,6 +64,7 @@ public class HuamiActivitySummaryParser implements ActivitySummaryParser {
     }
 
     protected void parseBinaryData(BaseActivitySummary summary, Date startTime) {
+        System.out.println("inside parseBinary method");
         ByteBuffer buffer = ByteBuffer.wrap(summary.getRawSummaryData()).order(ByteOrder.LITTLE_ENDIAN);
 
         short version = buffer.getShort(); // version
@@ -71,7 +79,7 @@ public class HuamiActivitySummaryParser implements ActivitySummaryParser {
             addSummaryData("Raw Activity Kind", rawKind, UNIT_NONE);
         }
         summary.setActivityKind(activityKind);
-
+        System.out.println(summary.getActivityKind());
         // FIXME: should honor timezone we were in at that time etc
         long timestamp_start = BLETypeConversions.toUnsigned(buffer.getInt()) * 1000;
         long timestamp_end = BLETypeConversions.toUnsigned(buffer.getInt()) * 1000;
@@ -84,7 +92,7 @@ public class HuamiActivitySummaryParser implements ActivitySummaryParser {
         // FIXME ... so do it like this
         long duration = timestamp_end - timestamp_start;
         summary.setEndTime(new Date(startTime.getTime() + duration));
-
+        System.out.println(summary.getEndTime());
         int baseLongitude = buffer.getInt();
         int baseLatitude = buffer.getInt();
         int baseAltitude = buffer.getInt();
