@@ -26,12 +26,14 @@ public class LogInActivity extends BaseActivity{
         mActivityLogInBinding = ActivityLogInBinding.inflate(getLayoutInflater());
         setContentView(mActivityLogInBinding.getRoot());
         mAuth = FirebaseAuth.getInstance();
-        mActivityLogInBinding.btnLogIn.setOnClickListener(v->signIn(email,password));
+        mActivityLogInBinding.btnLogIn.setOnClickListener(v->signIn());
         mActivityLogInBinding.layoutBtnSignUp.setOnClickListener(v->goToSignUpActivity());
     }
     private boolean validateEmailAndPassword(){
         email = mActivityLogInBinding.logInEditEmail.getText().toString().trim();
         password = mActivityLogInBinding.logInEditPassword.getText().toString().trim();
+        System.out.println(email);
+        System.out.println(password);
         if(email.isEmpty()){
             showAlertDialog("Vui lòng nhập email !");
             return false;
@@ -47,9 +49,10 @@ public class LogInActivity extends BaseActivity{
         startActivity(intent);
         finish();
     }
-    private void signIn(String email, String password) {
+    private void signIn() {
         if(validateEmailAndPassword()){
             showProgressDialog(true);
+
             // [START sign_in_with_email]
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

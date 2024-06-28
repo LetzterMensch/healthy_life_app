@@ -29,7 +29,7 @@ public class SignUpActivity extends BaseActivity{
         mActivitySignUpBinding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(mActivitySignUpBinding.getRoot());
         mAuth = FirebaseAuth.getInstance();
-        mActivitySignUpBinding.btnSignUp.setOnClickListener(v->createAccount(email,password));
+        mActivitySignUpBinding.btnSignUp.setOnClickListener(v->createAccount());
     }
     private boolean validateEmailAndPassword(){
         email = mActivitySignUpBinding.signUpEditEmail.getText().toString().trim();
@@ -51,7 +51,7 @@ public class SignUpActivity extends BaseActivity{
         }
         return true;
     }
-    private void createAccount(String email, String password) {
+    private void createAccount() {
         // [START create_user_with_email]
         if(validateEmailAndPassword()){
             showProgressDialog(true);
