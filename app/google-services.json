@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "10410209559",
+    "project_id": "grproject-cf2fa",
+    "storage_bucket": "grproject-cf2fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10410209559:android:1657bc703e17d12b578752",
+        "android_client_info": {
+          "package_name": "com.example.gr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG38nR-GKN3Ms-nfIe6jDgl968GRAJfh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

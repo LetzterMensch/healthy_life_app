@@ -584,6 +584,7 @@ attr buttonIconDimen
 attr buttonIconTint
 attr buttonIconTintMode
 attr buttonPanelSideLayout
+attr buttonSize
 attr buttonStyle
 attr buttonStyleSmall
 attr buttonTint
@@ -651,6 +652,7 @@ attr chipStrokeColor
 attr chipStrokeWidth
 attr chipStyle
 attr chipSurfaceColor
+attr circleCrop
 attr circleRadius
 attr circularProgressIndicatorStyle
 attr circularflow_angles
@@ -729,6 +731,7 @@ attr colorPrimaryFixedDim
 attr colorPrimaryInverse
 attr colorPrimarySurface
 attr colorPrimaryVariant
+attr colorScheme
 attr colorSecondary
 attr colorSecondaryContainer
 attr colorSecondaryFixed
@@ -1034,6 +1037,8 @@ attr iconTintMode
 attr iconifiedByDefault
 attr ifTagNotSet
 attr ifTagSet
+attr imageAspectRatio
+attr imageAspectRatioAdjust
 attr imageButtonStyle
 attr imagePanX
 attr imagePanY
@@ -1482,6 +1487,7 @@ attr roundedCorners
 attr route
 attr saturation
 attr scaleFromTextSize
+attr scopeUris
 attr scrimAnimationDuration
 attr scrimBackground
 attr scrimVisibleHeightTrigger
@@ -1879,6 +1885,10 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+color browser_actions_bg_grey
+color browser_actions_divider_color
+color browser_actions_text_color
+color browser_actions_title_color
 color button_material_dark
 color button_material_light
 color call_notification_answer_color
@@ -1890,6 +1900,17 @@ color cardview_shadow_start_color
 color colorAccent
 color colorPrimary
 color colorPrimaryDark
+color common_google_signin_btn_text_dark
+color common_google_signin_btn_text_dark_default
+color common_google_signin_btn_text_dark_disabled
+color common_google_signin_btn_text_dark_focused
+color common_google_signin_btn_text_dark_pressed
+color common_google_signin_btn_text_light
+color common_google_signin_btn_text_light_default
+color common_google_signin_btn_text_light_disabled
+color common_google_signin_btn_text_light_focused
+color common_google_signin_btn_text_light_pressed
+color common_google_signin_btn_tint
 color dark_orange
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
@@ -2741,6 +2762,8 @@ dimen abc_text_size_title_material_toolbar
 dimen activity_horizontal_margin
 dimen activity_vertical_margin
 dimen appcompat_dialog_background_inset
+dimen browser_actions_context_menu_max_width
+dimen browser_actions_context_menu_min_padding
 dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
 dimen cardview_default_radius
@@ -3670,6 +3693,25 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable common_full_open_on_phone
+drawable common_google_signin_btn_icon_dark
+drawable common_google_signin_btn_icon_dark_focused
+drawable common_google_signin_btn_icon_dark_normal
+drawable common_google_signin_btn_icon_dark_normal_background
+drawable common_google_signin_btn_icon_disabled
+drawable common_google_signin_btn_icon_light
+drawable common_google_signin_btn_icon_light_focused
+drawable common_google_signin_btn_icon_light_normal
+drawable common_google_signin_btn_icon_light_normal_background
+drawable common_google_signin_btn_text_dark
+drawable common_google_signin_btn_text_dark_focused
+drawable common_google_signin_btn_text_dark_normal
+drawable common_google_signin_btn_text_dark_normal_background
+drawable common_google_signin_btn_text_disabled
+drawable common_google_signin_btn_text_light
+drawable common_google_signin_btn_text_light_focused
+drawable common_google_signin_btn_text_light_normal
+drawable common_google_signin_btn_text_light_normal_background
 drawable default_img
 drawable design_fab_background
 drawable design_ic_visibility
@@ -3677,6 +3719,8 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable divider
+drawable googleg_disabled_color_18
+drawable googleg_standard_color_18
 drawable ic_activity_badmington
 drawable ic_activity_basketball
 drawable ic_activity_bike_trainer
@@ -3725,6 +3769,7 @@ drawable ic_clock_black_24dp
 drawable ic_close_36
 drawable ic_complete_diary
 drawable ic_dashboard_black_24dp
+drawable ic_delete_36
 drawable ic_device_default
 drawable ic_device_default_disabled
 drawable ic_device_miband
@@ -3763,6 +3808,9 @@ drawable ic_notification_disconnected
 drawable ic_notification_low_battery
 drawable ic_notifications_black_24dp
 drawable ic_open_in_browser
+drawable ic_other_sign_in
+drawable ic_passkey
+drawable ic_password
 drawable ic_profile_black_24dp
 drawable ic_refresh
 drawable ic_run_blue_50
@@ -3948,6 +3996,8 @@ id activity_swipe_layout
 id add
 id add_btn
 id add_wearable_btn
+id adjust_height
+id adjust_width
 id alertTitle
 id aligned
 id all
@@ -3982,14 +4032,21 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id breakfast_card
+id browser_actions_header_text
+id browser_actions_menu_item_icon
+id browser_actions_menu_item_text
+id browser_actions_menu_items
+id browser_actions_menu_view
 id btn_breakfast_add
 id btn_container
 id btn_dinner_add
 id btn_exercise_sync
 id btn_import
 id btn_import_recipe
+id btn_log_in
 id btn_lunch_add
 id btn_save_recipe
+id btn_sign_up
 id btn_snack_add
 id btn_view_more
 id buttonPanel
@@ -4057,6 +4114,7 @@ id currentState
 id custom
 id customPanel
 id cut
+id dark
 id dashboard_cal_burnt
 id dashboard_carb
 id dashboard_fat
@@ -4073,6 +4131,7 @@ id deep_sleep_percentage
 id default_activity_button
 id delete_btn
 id delete_button
+id delete_history_btn
 id deltaRelative
 id dependency_ordering
 id design_bottom_sheet
@@ -4202,6 +4261,7 @@ id icon
 id icon_frame
 id icon_group
 id icon_history
+id icon_only
 id ifRoom
 id ignore
 id ignoreRequest
@@ -4236,6 +4296,7 @@ id jumpToEnd
 id jumpToStart
 id labeled
 id layout
+id layout_btn_sign_up
 id layout_image
 id layout_item
 id layout_search
@@ -4245,6 +4306,7 @@ id layout_toolbar
 id left
 id leftToRight
 id legacy
+id light
 id line1
 id line3
 id lineChart
@@ -4253,6 +4315,8 @@ id linearLayout
 id listMode
 id list_item
 id locale
+id log_in_edit_email
+id log_in_edit_password
 id ltr
 id lunch_card
 id m3_side_sheet
@@ -4491,6 +4555,9 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id sign_up_edit_confirm_password
+id sign_up_edit_email
+id sign_up_edit_password
 id sin
 id skipCollapsed
 id skipped
@@ -4626,6 +4693,7 @@ id wearable_status
 id webview
 id weight_line_chart
 id west
+id wide
 id withText
 id with_icon
 id withinBounds
@@ -4637,6 +4705,7 @@ id workout_duration
 id workout_header
 id workout_max_hr
 id workout_min_hr
+id workout_name
 id wrap
 id wrap_content
 id wrap_content_constrained
@@ -4651,6 +4720,7 @@ integer config_navAnimTime
 integer config_tooltipAnimTime
 integer design_snackbar_text_max_lines
 integer design_tab_indicator_anim_duration_ms
+integer google_play_services_version
 integer hide_password_duration
 integer m3_badge_max_number
 integer m3_btn_anim_delay_ms
@@ -4761,14 +4831,18 @@ layout activity_device_settings
 layout activity_discovery
 layout activity_food_detail
 layout activity_import_recipe
+layout activity_log_in
 layout activity_main
 layout activity_mi_band_pairing
 layout activity_recipe_detail
 layout activity_record_workout
 layout activity_search_for_exercise
 layout activity_search_for_food
+layout activity_sign_up
 layout activity_splash
 layout activity_workout_detail
+layout browser_actions_context_menu_page
+layout browser_actions_context_menu_row
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -4926,6 +5000,7 @@ mipmap img_profile_default_round
 plurals mtrl_badge_content_description
 plurals satelliteCount
 plurals widget_alarm_target_hours
+raw firebase_common_keep
 string Activity
 string Cancel
 string DEVINFO_HR_VER
@@ -5269,7 +5344,9 @@ string alarm_wed_short
 string all_satellites
 string always
 string anaerobicTrainingEffect
+string android_credentials_TYPE_PASSWORD_CREDENTIAL
 string android_pairing_hint
+string androidx_credentials_TYPE_PUBLIC_KEY_CREDENTIAL
 string androidx_startup
 string app_configure
 string app_install_info
@@ -5432,6 +5509,24 @@ string clear_text_end_icon_content_description
 string clock
 string cm
 string codeberg_url
+string common_google_play_services_enable_button
+string common_google_play_services_enable_text
+string common_google_play_services_enable_title
+string common_google_play_services_install_button
+string common_google_play_services_install_text
+string common_google_play_services_install_title
+string common_google_play_services_notification_channel_name
+string common_google_play_services_notification_ticker
+string common_google_play_services_unknown_issue
+string common_google_play_services_unsupported_text
+string common_google_play_services_update_button
+string common_google_play_services_update_text
+string common_google_play_services_update_title
+string common_google_play_services_updating_text
+string common_google_play_services_wear_update_text
+string common_open_on_phone
+string common_signin_button_text
+string common_signin_button_text_long
 string common_symbols
 string companiondevice_pairing
 string companiondevice_pairing_details
@@ -5486,6 +5581,7 @@ string controlcenter_take_screenshot
 string controlcenter_toggle_details
 string controlcenter_unset_folder
 string copy
+string copy_toast_msg
 string croatian
 string currentWorkoutLoad
 string custom
@@ -5797,6 +5893,9 @@ string exposed_dropdown_menu_content_description
 string extended_ascii
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string fallback_menu_item_copy_link
+string fallback_menu_item_open_in_browser
+string fallback_menu_item_share_link
 string fat
 string fdroid_url
 string female
@@ -5820,6 +5919,7 @@ string firmware_update_progress
 string flatDistance
 string flatSeconds
 string food_suggest
+string forgot_password
 string formula_cal
 string fossil_hr_auth_failed
 string fossil_hr_button_config_info
@@ -5886,9 +5986,14 @@ string fwapp_install_device_not_ready
 string fwapp_install_device_not_supported
 string fwappinstaller_connection_state
 string fwinstaller_firmware_not_compatible_to_device
+string gcm_defaultSenderId
 string georgian
 string german
 string getting_heart_rate
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string gps
 string gps_bds
 string gps_galileo
@@ -6060,6 +6165,7 @@ string live_activity_steps_history
 string live_activity_steps_per_minute_history
 string live_activity_total_steps
 string liveactivity_live_activity
+string log_in
 string log_out
 string long_press
 string lorem_ipsum
@@ -7335,6 +7441,7 @@ string profile_device_disconnect
 string profile_device_goal
 string profile_device_settings
 string profile_device_sync
+string project_id
 string prompt_restart_gadgetbridge
 string protein
 string protocol_version
@@ -7445,6 +7552,7 @@ string share_screenshot
 string show_ongoing_activity
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
+string sign_up
 string silent_mode_normal_silent
 string silent_mode_normal_vibrate
 string silent_mode_vibrate_silent
@@ -8517,6 +8625,7 @@ style Theme_Design_Light_BottomSheetDialog
 style Theme_Design_Light_NoActionBar
 style Theme_Design_NoActionBar
 style Theme_GR
+style Theme_Hidden
 style Theme_Material3_Dark
 style Theme_Material3_Dark_BottomSheetDialog
 style Theme_Material3_Dark_Dialog
@@ -9189,6 +9298,7 @@ styleable LinearProgressIndicator indeterminateAnimationType indicatorDirectionL
 styleable ListPopupWindow android_dropDownHorizontalOffset android_dropDownVerticalOffset
 styleable ListPreference android_entries android_entryValues entries entryValues useSimpleSummaryProvider
 styleable LiveLockScreen settingsActivity type
+styleable LoadingImageView circleCrop imageAspectRatio imageAspectRatioAdjust
 styleable MDRootLayout md_reduce_padding_no_title_no_buttons
 styleable MaterialAlertDialog backgroundInsetBottom backgroundInsetEnd backgroundInsetStart backgroundInsetTop backgroundTint
 styleable MaterialAlertDialogTheme materialAlertDialogBodyTextStyle materialAlertDialogButtonSpacerVisibility materialAlertDialogTheme materialAlertDialogTitleIconStyle materialAlertDialogTitlePanelStyle materialAlertDialogTitleTextStyle
@@ -9258,6 +9368,7 @@ styleable SeekBarPreference android_layout android_max adjustable min seekBarInc
 styleable ShapeAppearance cornerFamily cornerFamilyBottomLeft cornerFamilyBottomRight cornerFamilyTopLeft cornerFamilyTopRight cornerSize cornerSizeBottomLeft cornerSizeBottomRight cornerSizeTopLeft cornerSizeTopRight
 styleable ShapeableImageView contentPadding contentPaddingBottom contentPaddingEnd contentPaddingLeft contentPaddingRight contentPaddingStart contentPaddingTop shapeAppearance shapeAppearanceOverlay strokeColor strokeWidth
 styleable SideSheetBehavior_Layout android_maxWidth android_maxHeight android_elevation backgroundTint behavior_draggable coplanarSiblingViewId shapeAppearance shapeAppearanceOverlay
+styleable SignInButton buttonSize colorScheme scopeUris
 styleable Slider android_enabled android_value android_stepSize android_valueFrom android_valueTo haloColor haloRadius labelBehavior labelStyle minTouchTargetSize thumbColor thumbElevation thumbHeight thumbRadius thumbStrokeColor thumbStrokeWidth thumbTrackGapSize thumbWidth tickColor tickColorActive tickColorInactive tickRadiusActive tickRadiusInactive tickVisible trackColor trackColorActive trackColorInactive trackHeight trackInsideCornerSize trackStopIndicatorSize
 styleable Snackbar snackbarButtonStyle snackbarStyle snackbarTextViewStyle
 styleable SnackbarLayout android_maxWidth actionTextColorAlpha animationMode backgroundOverlayColorAlpha backgroundTint backgroundTintMode elevation maxActionInlineWidth shapeAppearance shapeAppearanceOverlay
@@ -9299,4 +9410,6 @@ xml devicesettings_pairingkey_explanation
 xml devicesettings_reconnect_bl_classic
 xml devicesettings_reconnect_ble
 xml devicesettings_root_authentication
+xml ga_ad_services_config
+xml image_share_filepaths
 xml preferences

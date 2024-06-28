@@ -11,11 +11,12 @@ import com.example.gr.utils.DateTimeUtils;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity(tableName = "workout")
 
-public class Workout implements Serializable {
+public class Workout implements Serializable,WorkoutItem {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @Ignore
@@ -25,6 +26,7 @@ public class Workout implements Serializable {
     private int duration;//minute
     private int caloriesBurnt;
     private String createdAt;
+    private long timestamp;
     public Workout(){}
     @Ignore
     public Workout(Exercise exercise, int duration, int weight){
@@ -32,14 +34,16 @@ public class Workout implements Serializable {
         this.exerciseId = exercise.getId();
         this.duration = duration;
         this.caloriesBurnt = (int)exercise.getMet() * (duration/60) * weight;
-        this.createdAt = DateTimeUtils.simpleDateTimeFormat(Date.from(Instant.now()));
+        this.timestamp = Calendar.getInstance().getTimeInMillis();
+        this.createdAt = DateTimeUtils.formatDate(new Date((long)this.timestamp));
     }
-    @Ignore
-    public Workout(int id, Exercise exercise, int duration, int calories_burnt) {
-        this.id = id;
-        this.exercise = exercise;
-        this.duration = duration;
-        this.caloriesBurnt = calories_burnt;
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getDiaryID() {
@@ -104,5 +108,10 @@ public class Workout implements Serializable {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             this.createdAt = createdAt.toString();
         }
+    }
+
+    @Override
+    public int getType() {
+        return 1;
     }
 }

@@ -29,7 +29,7 @@ public class FoodDetailActivity extends BaseActivity {
         setContentView(mActivityFoodDetailBinding.getRoot());
         initToolbar();
         getDataIntent();
-        displayFoodDetail();
+        initUI();
 
 //        initListener();
     }
@@ -49,9 +49,9 @@ public class FoodDetailActivity extends BaseActivity {
         });
     }
     private void saveFoodLog(){
+        mDiary.updateDiaryAfterRemove(mFoodLog);
         numberOfServings = Float.parseFloat(String.valueOf(mActivityFoodDetailBinding.editNumberOfServings.getText()));
         mFoodLog.updateFoodLog(numberOfServings);
-        mDiary.updateDiaryAfterRemove(mFoodLog);
         mDiary.updateFoodLog(mFoodLog);
         finish();
     }
@@ -98,7 +98,7 @@ public class FoodDetailActivity extends BaseActivity {
     }
 
     // Display general information about the food
-    private void displayFoodDetail() {
+    private void initUI() {
         if (mFood == null) {
             return;
         }

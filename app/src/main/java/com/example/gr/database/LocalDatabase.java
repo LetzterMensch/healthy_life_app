@@ -12,15 +12,17 @@ import com.example.gr.database.dao.ExerciseDAO;
 import com.example.gr.database.dao.FoodDAO;
 import com.example.gr.database.dao.FoodLogDAO;
 import com.example.gr.database.dao.RecipeDAO;
+import com.example.gr.database.dao.RecordedWorkoutDAO;
 import com.example.gr.database.dao.WorkoutDAO;
 import com.example.gr.model.Diary;
 import com.example.gr.model.Exercise;
 import com.example.gr.model.Food;
 import com.example.gr.model.FoodLog;
 import com.example.gr.model.Recipe;
+import com.example.gr.model.RecordedWorkout;
 import com.example.gr.model.Workout;
 
-@Database(entities = {Food.class, Diary.class, Workout.class, FoodLog.class, Recipe.class, Exercise.class}, version = 1)
+@Database(entities = {Food.class, Diary.class, Workout.class, FoodLog.class, Recipe.class, Exercise.class, RecordedWorkout.class}, version = 1)
 @TypeConverters({Converters.class})
 public abstract class LocalDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "dev.db";
@@ -42,4 +44,5 @@ public abstract class LocalDatabase extends RoomDatabase {
     public abstract FoodLogDAO foodLogDAO();
     public abstract WorkoutDAO workoutDAO();
     public abstract RecipeDAO recipeDAO();
+    public abstract RecordedWorkoutDAO recordedWorkoutDAO();
 }

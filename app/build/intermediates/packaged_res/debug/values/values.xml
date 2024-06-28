@@ -4570,7 +4570,7 @@
     <string name="estonian">Estonian</string>
     <string name="ex_burnt_cal">0 cal</string>
     <string name="ex_burnt_hr">0:00 h</string>
-    <string name="ex_history">Lịch sử tập luyện</string>
+    <string name="ex_history">Lịch sử tập luyện hôm nay</string>
     <string name="ex_steps">0</string>
     <string name="ex_title_exercise">tập luyện</string>
     <string name="ex_title_steps">bước chân</string>
@@ -4599,6 +4599,7 @@
     <string name="flatDistance">Flat distance</string>
     <string name="flatSeconds">Flat</string>
     <string name="food_suggest">Gợi ý món ăn</string>
+    <string name="forgot_password">Quên mật khẩu</string>
     <string name="formula_cal">cần nạp = mục tiêu - đã nạp + tiêu hao</string>
     <string name="fossil_hr_auth_failed">Authentication failed, limited functionality</string>
     <string name="fossil_hr_button_config_info">Some buttons cannot be configured because their functions are hard-coded in the watch firmware.\n\nWarning: long-pressing the upper button when a watchface from the official Fossil app is installed will also toggle between showing/hiding widgets.</string>
@@ -4677,9 +4678,14 @@
     <string name="fwapp_install_device_not_supported">File cannot be installed, device not supported.</string>
     <string name="fwappinstaller_connection_state">Connection to device: %1$s</string>
     <string name="fwinstaller_firmware_not_compatible_to_device">This firmware is not compatible with the device</string>
+    <string name="gcm_defaultSenderId" translatable="false">10410209559</string>
     <string name="georgian">Georgian</string>
     <string name="german">German</string>
     <string name="getting_heart_rate">Measuring</string>
+    <string name="google_api_key" translatable="false">AIzaSyAG38nR-GKN3Ms-nfIe6jDgl968GRAJfh0</string>
+    <string name="google_app_id" translatable="false">1:10410209559:android:1657bc703e17d12b578752</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAG38nR-GKN3Ms-nfIe6jDgl968GRAJfh0</string>
+    <string name="google_storage_bucket" translatable="false">grproject-cf2fa.appspot.com</string>
     <string name="gps">GPS</string>
     <string name="gps_bds">GPS + BDS</string>
     <string name="gps_galileo">GPS + GALILEO</string>
@@ -4848,6 +4854,7 @@
     <string name="live_activity_steps_per_minute_history">Steps per minute history</string>
     <string name="live_activity_total_steps">Total steps</string>
     <string name="liveactivity_live_activity">Live activity</string>
+    <string name="log_in">Đăng Nhập</string>
     <string name="log_out">Đăng xuất</string>
     <string name="long_press">Long Press</string>
     <string name="lorem_ipsum" translatable="false">Lorem Ipsum</string>
@@ -6015,6 +6022,7 @@
     <string name="profile_device_goal">Mục tiêu dinh dưỡng</string>
     <string name="profile_device_settings">Cài đặt thiết bị</string>
     <string name="profile_device_sync">Đồng bộ</string>
+    <string name="project_id" translatable="false">grproject-cf2fa</string>
     <string name="prompt_restart_gadgetbridge">Please restart GB in order to take effect.</string>
     <string name="protein">chất đạm</string>
     <string name="protocol_version">Protocol Version</string>
@@ -6119,6 +6127,7 @@
     <string name="share_log_warning">Please keep in mind Gadgetbridge logs files that may contain lots of personal info, including but not limited to health data, unique identifiers (such as a device\'s MAC address), music preferences, etc. Consider editing the file and removing this info before sending the file to a public issue report.</string>
     <string name="share_screenshot">Share screenshot</string>
     <string name="show_ongoing_activity">Show ongoing activity popup</string>
+    <string name="sign_up">Đăng ký</string>
     <string name="silent_mode_normal_silent">Normal / Silent</string>
     <string name="silent_mode_normal_vibrate">Normal / Vibrate</string>
     <string name="silent_mode_vibrate_silent">Vibrate / Silent</string>

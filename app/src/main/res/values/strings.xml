@@ -40,10 +40,13 @@
     <string name="profile_device_disconnect">Ngắt kết nối</string>
     <string name="profile_device_sync">Đồng bộ</string>
     <string name="profile_device_goal">Mục tiêu dinh dưỡng</string>
+    <string name="log_in">Đăng Nhập</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="forgot_password">Quên mật khẩu</string>
     <string name="log_out">Đăng xuất</string>
     //exercise
     <string name="ex_title_steps">bước chân</string>
-    <string name="ex_history">Lịch sử tập luyện</string>
+    <string name="ex_history">Lịch sử tập luyện hôm nay</string>
     <string name="ex_steps">0</string>
     <string name="ex_txt_goal_steps">mục tiêu : 10000 bước</string>
     <string name="ex_title_exercise">tập luyện</string>

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("com.google.protobuf")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -11,7 +12,7 @@ android {
     }
     defaultConfig {
         applicationId = "com.example.gr"
-        minSdk = 22
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -44,6 +45,10 @@ android {
 }
 
 dependencies {
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
     //protobuf
     implementation("com.google.protobuf:protobuf-javalite:3.21.7")
 

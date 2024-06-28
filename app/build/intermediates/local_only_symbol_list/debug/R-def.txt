@@ -510,6 +510,7 @@ drawable ic_clock
 drawable ic_close_36
 drawable ic_complete_diary
 drawable ic_dashboard_black_24dp
+drawable ic_delete_36
 drawable ic_device_default
 drawable ic_device_default_disabled
 drawable ic_device_miband
@@ -573,8 +574,10 @@ id btn_dinner_add
 id btn_exercise_sync
 id btn_import
 id btn_import_recipe
+id btn_log_in
 id btn_lunch_add
 id btn_save_recipe
+id btn_sign_up
 id btn_snack_add
 id btn_view_more
 id cal_breakfast
@@ -613,6 +616,7 @@ id deep_sleep_hr
 id deep_sleep_percentage
 id delete_btn
 id delete_button
+id delete_history_btn
 id device_settings
 id device_sync
 id dialog_ex_item_name
@@ -679,6 +683,7 @@ id item_name
 id item_number
 id item_preview
 id item_status
+id layout_btn_sign_up
 id layout_image
 id layout_item
 id layout_search
@@ -687,6 +692,8 @@ id layout_spinner
 id layout_toolbar
 id lineChart
 id linearLayout
+id log_in_edit_email
+id log_in_edit_password
 id lunch_card
 id mapFrameView
 id mapGpsFocus
@@ -745,6 +752,9 @@ id search_tabLayout
 id serving_size
 id settings_container
 id shallowSleepIndicator
+id sign_up_edit_confirm_password
+id sign_up_edit_email
+id sign_up_edit_password
 id sleepScoreCardView
 id sleep_fragment_img_back
 id sleep_fragment_img_next
@@ -786,16 +796,19 @@ id workout_duration
 id workout_header
 id workout_max_hr
 id workout_min_hr
+id workout_name
 layout activity_device_settings
 layout activity_discovery
 layout activity_food_detail
 layout activity_import_recipe
+layout activity_log_in
 layout activity_main
 layout activity_mi_band_pairing
 layout activity_recipe_detail
 layout activity_record_workout
 layout activity_search_for_exercise
 layout activity_search_for_food
+layout activity_sign_up
 layout activity_splash
 layout activity_workout_detail
 layout fragment_dashboard
@@ -1669,6 +1682,7 @@ string firmware_update_progress
 string flatDistance
 string flatSeconds
 string food_suggest
+string forgot_password
 string formula_cal
 string fossil_hr_auth_failed
 string fossil_hr_button_config_info
@@ -1735,9 +1749,14 @@ string fwapp_install_device_not_ready
 string fwapp_install_device_not_supported
 string fwappinstaller_connection_state
 string fwinstaller_firmware_not_compatible_to_device
+string gcm_defaultSenderId
 string georgian
 string german
 string getting_heart_rate
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string gps
 string gps_bds
 string gps_galileo
@@ -1906,6 +1925,7 @@ string live_activity_steps_history
 string live_activity_steps_per_minute_history
 string live_activity_total_steps
 string liveactivity_live_activity
+string log_in
 string log_out
 string long_press
 string lorem_ipsum
@@ -3073,6 +3093,7 @@ string profile_device_disconnect
 string profile_device_goal
 string profile_device_settings
 string profile_device_sync
+string project_id
 string prompt_restart_gadgetbridge
 string protein
 string protocol_version
@@ -3177,6 +3198,7 @@ string share_log_not_enabled_message
 string share_log_warning
 string share_screenshot
 string show_ongoing_activity
+string sign_up
 string silent_mode_normal_silent
 string silent_mode_normal_vibrate
 string silent_mode_vibrate_silent

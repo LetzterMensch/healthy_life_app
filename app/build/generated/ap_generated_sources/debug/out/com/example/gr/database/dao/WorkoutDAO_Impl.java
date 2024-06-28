@@ -37,7 +37,7 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `workout` (`id`,`diaryID`,`exerciseId`,`duration`,`caloriesBurnt`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `workout` (`id`,`diaryID`,`exerciseId`,`duration`,`caloriesBurnt`,`createdAt`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?,?,?)";
       }
 
       @Override
@@ -52,6 +52,7 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
         } else {
           statement.bindString(6, entity.getCreatedAt());
         }
+        statement.bindLong(7, entity.getTimestamp());
       }
     };
     this.__deletionAdapterOfWorkout = new EntityDeletionOrUpdateAdapter<Workout>(__db) {
@@ -70,7 +71,7 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `workout` SET `id` = ?,`diaryID` = ?,`exerciseId` = ?,`duration` = ?,`caloriesBurnt` = ?,`createdAt` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `workout` SET `id` = ?,`diaryID` = ?,`exerciseId` = ?,`duration` = ?,`caloriesBurnt` = ?,`createdAt` = ?,`timestamp` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -85,7 +86,8 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
         } else {
           statement.bindString(6, entity.getCreatedAt());
         }
-        statement.bindLong(7, entity.getId());
+        statement.bindLong(7, entity.getTimestamp());
+        statement.bindLong(8, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteAllWorkout = new SharedSQLiteStatement(__db) {
@@ -164,6 +166,7 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
       final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
       final int _cursorIndexOfCaloriesBurnt = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurnt");
       final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+      final int _cursorIndexOfTimestamp = CursorUtil.getColumnIndexOrThrow(_cursor, "timestamp");
       final List<Workout> _result = new ArrayList<Workout>(_cursor.getCount());
       while (_cursor.moveToNext()) {
         final Workout _item;
@@ -190,6 +193,9 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
           _tmpCreatedAt = _cursor.getString(_cursorIndexOfCreatedAt);
         }
         _item.setCreatedAt(_tmpCreatedAt);
+        final long _tmpTimestamp;
+        _tmpTimestamp = _cursor.getLong(_cursorIndexOfTimestamp);
+        _item.setTimestamp(_tmpTimestamp);
         _result.add(_item);
       }
       return _result;
@@ -214,6 +220,7 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
       final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
       final int _cursorIndexOfCaloriesBurnt = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurnt");
       final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+      final int _cursorIndexOfTimestamp = CursorUtil.getColumnIndexOrThrow(_cursor, "timestamp");
       final List<Workout> _result = new ArrayList<Workout>(_cursor.getCount());
       while (_cursor.moveToNext()) {
         final Workout _item;
@@ -240,6 +247,67 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
           _tmpCreatedAt = _cursor.getString(_cursorIndexOfCreatedAt);
         }
         _item.setCreatedAt(_tmpCreatedAt);
+        final long _tmpTimestamp;
+        _tmpTimestamp = _cursor.getLong(_cursorIndexOfTimestamp);
+        _item.setTimestamp(_tmpTimestamp);
+        _result.add(_item);
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public List<Workout> findWorkoutByDate(final String dateTime) {
+    final String _sql = "SELECT * FROM workout WHERE createdAt LIKE ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (dateTime == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, dateTime);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final int _cursorIndexOfDiaryID = CursorUtil.getColumnIndexOrThrow(_cursor, "diaryID");
+      final int _cursorIndexOfExerciseId = CursorUtil.getColumnIndexOrThrow(_cursor, "exerciseId");
+      final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
+      final int _cursorIndexOfCaloriesBurnt = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurnt");
+      final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+      final int _cursorIndexOfTimestamp = CursorUtil.getColumnIndexOrThrow(_cursor, "timestamp");
+      final List<Workout> _result = new ArrayList<Workout>(_cursor.getCount());
+      while (_cursor.moveToNext()) {
+        final Workout _item;
+        _item = new Workout();
+        final int _tmpId;
+        _tmpId = _cursor.getInt(_cursorIndexOfId);
+        _item.setId(_tmpId);
+        final int _tmpDiaryID;
+        _tmpDiaryID = _cursor.getInt(_cursorIndexOfDiaryID);
+        _item.setDiaryID(_tmpDiaryID);
+        final int _tmpExerciseId;
+        _tmpExerciseId = _cursor.getInt(_cursorIndexOfExerciseId);
+        _item.setExerciseId(_tmpExerciseId);
+        final int _tmpDuration;
+        _tmpDuration = _cursor.getInt(_cursorIndexOfDuration);
+        _item.setDuration(_tmpDuration);
+        final int _tmpCaloriesBurnt;
+        _tmpCaloriesBurnt = _cursor.getInt(_cursorIndexOfCaloriesBurnt);
+        _item.setCaloriesBurnt(_tmpCaloriesBurnt);
+        final String _tmpCreatedAt;
+        if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
+          _tmpCreatedAt = null;
+        } else {
+          _tmpCreatedAt = _cursor.getString(_cursorIndexOfCreatedAt);
+        }
+        _item.setCreatedAt(_tmpCreatedAt);
+        final long _tmpTimestamp;
+        _tmpTimestamp = _cursor.getLong(_cursorIndexOfTimestamp);
+        _item.setTimestamp(_tmpTimestamp);
         _result.add(_item);
       }
       return _result;
@@ -264,6 +332,7 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
       final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
       final int _cursorIndexOfCaloriesBurnt = CursorUtil.getColumnIndexOrThrow(_cursor, "caloriesBurnt");
       final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+      final int _cursorIndexOfTimestamp = CursorUtil.getColumnIndexOrThrow(_cursor, "timestamp");
       final Workout _result;
       if (_cursor.moveToFirst()) {
         _result = new Workout();
@@ -289,6 +358,9 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
           _tmpCreatedAt = _cursor.getString(_cursorIndexOfCreatedAt);
         }
         _result.setCreatedAt(_tmpCreatedAt);
+        final long _tmpTimestamp;
+        _tmpTimestamp = _cursor.getLong(_cursorIndexOfTimestamp);
+        _result.setTimestamp(_tmpTimestamp);
       } else {
         _result = null;
       }

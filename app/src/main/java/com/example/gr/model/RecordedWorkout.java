@@ -1,20 +1,69 @@
 package com.example.gr.model;
 
-public class RecordedWorkout extends Workout {
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import com.example.gr.ControllerApplication;
+import com.example.gr.database.LocalDatabase;
+
+import java.io.Serializable;
+
+@Entity(tableName = "recordedworkout")
+public class RecordedWorkout implements Serializable, WorkoutItem {
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     private long baseActivitySummaryId;
     private String createdAt;
-    private String endTime;
-    private int duration;
+    private int activityKind;
+    private long endTime;
+    private long duration;//
     private int avgHeartRate = -1;
     private int minHeartRate = -1;
     private int maxHeartRate = -1;
     private int caloriesBurnt;
-    private int distance;
+    private double distance;
+    private long timeStamp;
+    private int diaryID;
+
+    public RecordedWorkout(){}
+    @Ignore
     public RecordedWorkout(int duration, String createdAt){
         this.duration = duration;
         this.createdAt = createdAt;
+    }
+    public void saveRecordedWorkout(RecordedWorkout recordedWorkout){
+        LocalDatabase.getInstance(ControllerApplication.getContext()).recordedWorkoutDAO().insertRecordedWorkout(recordedWorkout);
+    }
+    @Ignore
+    public RecordedWorkout(String name, long baseActivitySummaryId, String createdAt, long endTime, int duration, int avgHeartRate, int minHeartRate, int maxHeartRate, int caloriesBurnt, int distance) {
+        this.name = name;
+        this.baseActivitySummaryId = baseActivitySummaryId;
+        this.createdAt = createdAt;
+        this.endTime = endTime;
+        this.duration = duration;
+        this.avgHeartRate = avgHeartRate;
+        this.minHeartRate = minHeartRate;
+        this.maxHeartRate = maxHeartRate;
+        this.caloriesBurnt = caloriesBurnt;
+        this.distance = distance;
+    }
+
+    public int getDiaryID() {
+        return diaryID;
+    }
+
+    public void setDiaryID(int diaryID) {
+        this.diaryID = diaryID;
+    }
+
+    public int getActivityKind() {
+        return activityKind;
+    }
+
+    public void setActivityKind(int activityKind) {
+        this.activityKind = activityKind;
     }
 
     public int getId() {
@@ -41,27 +90,27 @@ public class RecordedWorkout extends Workout {
         this.baseActivitySummaryId = baseActivitySummaryId;
     }
 
-    public String getStartTime() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setStartTime(String startTime) {
-        this.createdAt = startTime;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public String getEndTime() {
+    public long getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(long endTime) {
         this.endTime = endTime;
     }
 
-    public int getDuration() {
+    public long getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(long duration) {
         this.duration = duration;
     }
 
@@ -97,11 +146,24 @@ public class RecordedWorkout extends Workout {
         this.caloriesBurnt = caloriesBurnt;
     }
 
-    public int getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
+    }
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    @Override
+    public int getType() {
+        return 2;
     }
 }

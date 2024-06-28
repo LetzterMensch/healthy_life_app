@@ -22,25 +22,40 @@ import android.widget.Toast;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
+import com.example.gr.constant.ActivityKind;
+import com.example.gr.data.ActivitySummaryJsonSummary;
 import com.example.gr.data.parser.ActivitySummaryParser;
 import com.example.gr.database.DBHandler;
 import com.example.gr.database.DBHelper;
+import com.example.gr.database.LocalDatabase;
 import com.example.gr.database.entities.BaseActivitySummary;
+import com.example.gr.database.entities.BaseActivitySummaryDao;
 import com.example.gr.database.entities.DaoSession;
 import com.example.gr.database.entities.Device;
 import com.example.gr.database.entities.User;
 import com.example.gr.device.DeviceCoordinator;
+import com.example.gr.model.RecordedWorkout;
 import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.device.huami.AbstractHuamiActivityDetailsParser;
 import com.example.gr.device.huami.HuamiActivitySummaryParser;
 import com.example.gr.device.huami.HuamiSupport;
+import com.example.gr.utils.DateTimeUtils;
 import com.example.gr.utils.GB;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
+import java.util.List;
+
+import de.greenrobot.dao.query.QueryBuilder;
 
 
 /**
@@ -70,6 +85,7 @@ public class FetchSportsSummaryOperation extends AbstractFetchOperation {
 
     @Override
     protected boolean processBufferedData() {
+        System.out.println("insde process Buffered Data");
         LOG.info("{} has finished round {}", getName(), fetchCount);
 
         if (buffer.size() < 2) {
@@ -89,11 +105,9 @@ public class FetchSportsSummaryOperation extends AbstractFetchOperation {
             GB.toast(getContext(), "Failed to parse activity summary", Toast.LENGTH_LONG, GB.ERROR, e);
             return false;
         }
-
         if (summary == null) {
             return false;
         }
-
         summary.setSummaryData(null); // remove json before saving to database,
         try (DBHandler dbHandler = ControllerApplication.acquireDB()) {
             final DaoSession session = dbHandler.getDaoSession();
@@ -102,6 +116,10 @@ public class FetchSportsSummaryOperation extends AbstractFetchOperation {
             summary.setDevice(device);
             summary.setUser(user);
             summary.setRawSummaryData(buffer.toByteArray());
+            //Check if the record is already existed
+//            QueryBuilder<BaseActivitySummary> qb = session.getBaseActivitySummaryDao().queryBuilder();
+//            qb.where(BaseActivitySummaryDao.Properties.StartTime.eq(summary.getStartTime()));
+//            if(qb.build() != null) return true;
             long timestamp = summary.getEndTime().getTime() + 10000;
 
             SharedPreferences sharedPreferences = ControllerApplication.getDeviceSpecificSharedPrefs(getDevice().getAddress());

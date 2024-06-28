@@ -53,12 +53,16 @@ public final class ActivityWorkoutDetailBinding implements ViewBinding {
   @NonNull
   public final TextView workoutMinHr;
 
+  @NonNull
+  public final TextView workoutName;
+
   private ActivityWorkoutDetailBinding(@NonNull ConstraintLayout rootView,
       @NonNull FrameLayout chartsFragmentHolder, @NonNull ImageView imgBack,
       @NonNull TextView workoutAvgHr, @NonNull TextView workoutCalBurnt,
       @NonNull RelativeLayout workoutDetailToolbar, @NonNull TextView workoutDistance,
       @NonNull TextView workoutDuration, @NonNull LinearLayout workoutHeader,
-      @NonNull TextView workoutMaxHr, @NonNull TextView workoutMinHr) {
+      @NonNull TextView workoutMaxHr, @NonNull TextView workoutMinHr,
+      @NonNull TextView workoutName) {
     this.rootView = rootView;
     this.chartsFragmentHolder = chartsFragmentHolder;
     this.imgBack = imgBack;
@@ -70,6 +74,7 @@ public final class ActivityWorkoutDetailBinding implements ViewBinding {
     this.workoutHeader = workoutHeader;
     this.workoutMaxHr = workoutMaxHr;
     this.workoutMinHr = workoutMinHr;
+    this.workoutName = workoutName;
   }
 
   @Override
@@ -159,9 +164,15 @@ public final class ActivityWorkoutDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.workout_name;
+      TextView workoutName = ViewBindings.findChildViewById(rootView, id);
+      if (workoutName == null) {
+        break missingId;
+      }
+
       return new ActivityWorkoutDetailBinding((ConstraintLayout) rootView, chartsFragmentHolder,
           imgBack, workoutAvgHr, workoutCalBurnt, workoutDetailToolbar, workoutDistance,
-          workoutDuration, workoutHeader, workoutMaxHr, workoutMinHr);
+          workoutDuration, workoutHeader, workoutMaxHr, workoutMinHr, workoutName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

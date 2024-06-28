@@ -41,21 +41,16 @@ public class HuamiActivitySummaryParser implements ActivitySummaryParser {
 
 
     public BaseActivitySummary parseBinaryData(BaseActivitySummary summary) {
-        System.out.println("inside summary parser");
+        System.out.println("inside huami activity summary parser");
         Date startTime = summary.getStartTime();
-        System.out.println(startTime);
         if (startTime == null) {
             LOG.error("Due to a bug, we can only parse the summary when startTime is already set");
             return null;
         }
         summaryData = new JSONObject();
-        System.out.println("before parsing");
-        System.out.println("start time : " + summary.getStartTime());
+        //Called ZeppOSActivitySummaryParser
         parseBinaryData(summary, startTime);
-        System.out.println("summaryData (JSON) : " + summaryData);
-        System.out.println("after parsing data");
         summary.setSummaryData(summaryData.toString());
-        System.out.println(summary.getSummaryData());
         return summary;
     }
 

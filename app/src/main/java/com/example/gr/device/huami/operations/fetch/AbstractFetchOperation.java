@@ -24,22 +24,39 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.Logging;
 import com.example.gr.R;
+import com.example.gr.data.ActivitySummaryJsonSummary;
+import com.example.gr.data.parser.ActivitySummaryParser;
+import com.example.gr.database.DBHandler;
+import com.example.gr.database.DBHelper;
+import com.example.gr.database.LocalDatabase;
+import com.example.gr.database.entities.BaseActivitySummary;
+import com.example.gr.database.entities.BaseActivitySummaryDao;
+import com.example.gr.database.entities.Device;
 import com.example.gr.device.huami.HuamiCoordinator;
 import com.example.gr.device.huami.HuamiService;
+import com.example.gr.model.RecordedWorkout;
 import com.example.gr.service.btle.BLETypeConversions;
 import com.example.gr.service.btle.TransactionBuilder;
 import com.example.gr.service.btle.actions.SetDeviceBusyAction;
@@ -47,7 +64,10 @@ import com.example.gr.device.huami.AbstractHuamiOperation;
 import com.example.gr.device.huami.HuamiSupport;
 import com.example.gr.device.huami.zeppos.ZeppOsSupport;
 import com.example.gr.utils.CheckSums;
+import com.example.gr.utils.DateTimeUtils;
 import com.example.gr.utils.GB;
+
+import de.greenrobot.dao.query.QueryBuilder;
 
 /**
  * An operation that fetches activity data.
@@ -218,7 +238,7 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
             return;
         }
         System.out.println("about to get in the switch");
-        System.out.println("value[1] : "+ value[1]);
+        System.out.println("value[1] : " + value[1]);
         switch (value[1]) {
             case HuamiService.COMMAND_ACTIVITY_DATA_START_DATE:
                 handleStartDateResponse(value);
@@ -285,6 +305,7 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
     }
 
     private void handleFetchDataResponse(final byte[] value) {
+        System.out.println("inside abstract fetch ope");
         if (value[2] != HuamiService.SUCCESS) {
             System.out.println("exit at 1");
             LOG.warn("Fetch data unsuccessful response: {}", Logging.formatBytes(value));

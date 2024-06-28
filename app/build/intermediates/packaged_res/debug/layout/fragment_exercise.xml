@@ -415,15 +415,15 @@
                         android:textSize="20sp"
                         android:textStyle="normal|italic" />
                 </RelativeLayout>
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv_ex_history"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/define_dimen_10"
                     android:layout_marginBottom="@dimen/define_dimen_10"
                     android:focusable="false"
-                    android:nestedScrollingEnabled="false" />
+                    android:clickable="false"
+                    android:nestedScrollingEnabled="true" />
 
                 <TextView
                     android:id="@+id/btn_view_more"
@@ -434,7 +434,8 @@
                     android:text="@string/action_view_more"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:visibility="gone"/>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
