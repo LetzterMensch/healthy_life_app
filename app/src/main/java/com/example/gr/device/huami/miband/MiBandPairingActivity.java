@@ -38,20 +38,20 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
+import com.example.gr.activity.BaseActivity;
 import com.example.gr.activity.DiscoveryActivityV2;
 import com.example.gr.activity.MainActivity;
 import com.example.gr.constant.MiBandConst;
 import com.example.gr.device.DeviceCoordinator;
-import com.example.gr.device.settings.AboutUserPreferencesActivity;
-import com.example.gr.model.ActivityUser;
-import com.example.gr.utils.GB;
 import com.example.gr.device.GBDevice;
 import com.example.gr.device.GBDeviceCandidate;
-import com.example.gr.activity.AbstractGBActivity;
+import com.example.gr.device.settings.AboutUserPreferencesActivity;
+import com.example.gr.model.ActivityUser;
 import com.example.gr.utils.AndroidUtils;
 import com.example.gr.utils.BondingInterface;
 import com.example.gr.utils.BondingUtil;
 import com.example.gr.utils.DeviceHelper;
+import com.example.gr.utils.GB;
 import com.example.gr.utils.Prefs;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -59,7 +59,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class MiBandPairingActivity extends AbstractGBActivity implements BondingInterface {
+public class MiBandPairingActivity extends BaseActivity implements BondingInterface {
     private static final Logger LOG = LoggerFactory.getLogger(MiBandPairingActivity.class);
 
     private static final int REQ_CODE_USER_SETTINGS = 52;

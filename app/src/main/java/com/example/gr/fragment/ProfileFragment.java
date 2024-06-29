@@ -80,6 +80,7 @@ public class ProfileFragment extends BaseFragment {
     }
 
     private void initUi() {
+        mFragmentProfileBinding.tvEmail.setText(firebaseUser.getEmail());
         if (deviceManager.getDevices().size() < 1) {
             mFragmentProfileBinding.disconnectButton.setVisibility(View.GONE);
             mFragmentProfileBinding.connectDevice.setVisibility(View.VISIBLE);

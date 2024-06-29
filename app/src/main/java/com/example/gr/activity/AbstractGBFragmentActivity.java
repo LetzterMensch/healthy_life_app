@@ -40,7 +40,7 @@ import com.example.gr.fragment.AbstractGBFragment;
  *
  * @see AbstractGBFragment
  */
-public abstract class AbstractGBFragmentActivity extends AbstractGBActivity {
+public abstract class AbstractGBFragmentActivity extends BaseActivity {
     /**
      * The {@link PagerAdapter} that will provide
      * fragments for each of the sections. We use a

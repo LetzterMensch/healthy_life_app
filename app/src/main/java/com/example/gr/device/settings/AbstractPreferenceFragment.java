@@ -27,31 +27,37 @@ import androidx.preference.SeekBarPreference;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.example.gr.R;
+import com.example.gr.database.LocalDatabase;
 import com.example.gr.model.ActivityUser;
+import com.example.gr.model.Diary;
+import com.example.gr.utils.DateTimeUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 public abstract class AbstractPreferenceFragment extends PreferenceFragmentCompat {
     protected static final Logger LOG = LoggerFactory.getLogger(AbstractPreferenceFragment.class);
-
+    private Diary mDiary;
     private final SharedPreferencesChangeHandler sharedPreferencesChangeHandler = new SharedPreferencesChangeHandler();
 
     @Override
     public void onStart() {
         super.onStart();
+        mDiary = LocalDatabase.getInstance(this.requireActivity()).diaryDAO().getDiaryByDate(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
 
         final SharedPreferences sharedPreferences = getPreferenceManager().getSharedPreferences();
 
         reloadPreferences(sharedPreferences, getPreferenceScreen());
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferencesChangeHandler);
+
     }
 
     @Override
@@ -174,6 +180,11 @@ public abstract class AbstractPreferenceFragment extends PreferenceFragmentCompa
                 fatGoal = (int) Math.round(caloriesGoal*0.2);
                 break;
         }
+        mDiary.setCarbGoal(carbGoal);
+        mDiary.setProteinGoal(proteinGoal);
+        mDiary.setFatGoal(fatGoal);
+        mDiary.setCaloriesGoal(caloriesGoal);
+        mDiary.updateDiary();
         activityUser.setNutritionGoal(carbGoal,proteinGoal,fatGoal);
     }
     private void recalculateCaloriesBurntGoal(){

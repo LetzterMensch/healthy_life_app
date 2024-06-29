@@ -108,7 +108,6 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
     protected void startFetching() throws IOException {
         expectedDataLength = 0;
         lastPacketCounter = -1;
-        System.out.println("inside huami abstract fetch operation");
 
         final TransactionBuilder builder = performInitialized(getName());
         if (fetchCount == 0) {
@@ -237,7 +236,7 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
             onOperationFinished();
             return;
         }
-        System.out.println("about to get in the switch");
+        System.out.println("inside huami abstract fetch operation : about to get in the switch");
         System.out.println("value[1] : " + value[1]);
         switch (value[1]) {
             case HuamiService.COMMAND_ACTIVITY_DATA_START_DATE:
@@ -305,9 +304,8 @@ public abstract class AbstractFetchOperation extends AbstractHuamiOperation {
     }
 
     private void handleFetchDataResponse(final byte[] value) {
-        System.out.println("inside abstract fetch ope");
         if (value[2] != HuamiService.SUCCESS) {
-            System.out.println("exit at 1");
+            System.out.println(" inside abstract fetch ope exit at 1");
             LOG.warn("Fetch data unsuccessful response: {}", Logging.formatBytes(value));
             onOperationFinished();
             return;

@@ -692,7 +692,7 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     }
 
     protected int getRecordedDataType() {
-        return RecordedDataTypes.TYPE_ACTIVITY | RecordedDataTypes.TYPE_STRESS;
+        return RecordedDataTypes.TYPE_ACTIVITY;
     }
 
     protected boolean allowRefresh() {

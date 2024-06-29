@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -37,6 +38,9 @@ import java.util.Objects;
 
 // Hỗ trợ chuyển tiếp giữa các fragments
 public class MainActivity extends BaseActivity {
+    private static final long DEBOUNCE_INTERVAL = 500; // 500ms
+    private Handler handler = new Handler();
+    private Runnable runnable;
 
     private ActivityMainBinding mActivityMainBinding;
     private DeviceManager deviceManager;
@@ -70,7 +74,7 @@ public class MainActivity extends BaseActivity {
                     mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_exercise).setChecked(true);
                     mActivityMainBinding.viewpager2.setCurrentItem(2);
                     createRefreshTask("get activity data", getApplication()).execute();
-                    EventBus.getDefault().post(deviceActivityHashMap);
+                    postDebouncedEvent(deviceActivityHashMap);
                     break;
                 case ControllerApplication.ACTION_NAV_SLEEP_FRAGMENT:
                     mActivityMainBinding.navView.getMenu().findItem(R.id.navigation_sleep).setChecked(true);
@@ -87,7 +91,7 @@ public class MainActivity extends BaseActivity {
                 case DeviceManager.ACTION_DEVICES_CHANGED:
                 case ControllerApplication.ACTION_NEW_DATA:
                     createRefreshTask("get activity data", getApplication()).execute();
-                    EventBus.getDefault().post(deviceActivityHashMap);
+                    postDebouncedEvent(deviceActivityHashMap);
 //                    mGBDeviceAdapter.rebuildFolders();
 //                    refreshPairedDevices();
                     break;
@@ -103,6 +107,20 @@ public class MainActivity extends BaseActivity {
             }
         }
     };
+    public void postDebouncedEvent(final Object event) {
+        if (runnable != null) {
+            handler.removeCallbacks(runnable);
+        }
+
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                EventBus.getDefault().post(event);
+            }
+        };
+
+        handler.postDelayed(runnable, DEBOUNCE_INTERVAL);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

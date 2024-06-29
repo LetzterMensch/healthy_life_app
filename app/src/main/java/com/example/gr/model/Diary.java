@@ -80,7 +80,13 @@ public class Diary implements Serializable {
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
     public void updateDiaryAfterRemove(Workout workout){
-        this.burntCalories += workout.getCaloriesBurnt();
+        if(this.burntCalories - workout.getCaloriesBurnt() >= 0){
+            this.burntCalories -= workout.getCaloriesBurnt();
+            this.workoutList.remove(workout);
+        }else {
+            this.burntCalories = 0;
+            this.workoutList.clear();
+        }
         recalculateRemainingCalories(this.intakeCalories,this.burntCalories);
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }

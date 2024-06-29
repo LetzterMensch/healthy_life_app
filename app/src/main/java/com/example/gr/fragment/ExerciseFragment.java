@@ -91,17 +91,24 @@ public class ExerciseFragment extends BaseFragment {
     private ActivityUser activityUser;
     private RecyclerView recyclerView;
     private int currentItemCount;
+    private long lastReceiveTime = 0;
+    private static final long DEBOUNCE_INTERVAL = 1000; // 500ms
     private Calendar today;
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+            long currentTime = System.currentTimeMillis();
+
             switch (Objects.requireNonNull(action)) {
                 case GBDevice.ACTION_DEVICE_CHANGED:
                     device = intent.getParcelableExtra(GBDevice.EXTRA_DEVICE);
                     if (device.isBusy()) {
                     } else {
-                        updateUIAfterShowSnackBar();
+                        if (currentTime - lastReceiveTime >= DEBOUNCE_INTERVAL) {
+                            lastReceiveTime = currentTime;
+                            updateUIAfterShowSnackBar();
+                        }
                     }
                     break;
             }
@@ -155,6 +162,7 @@ public class ExerciseFragment extends BaseFragment {
     private void populateHistoryList() {
         workoutList = new ArrayList<>();
         long now = (long) today.getTimeInMillis();
+//        long now = (long) Calendar.getInstance().getTimeInMillis();
         List<Workout> normalWorkoutList = LocalDatabase.getInstance(requireActivity()).workoutDAO().
                 findWorkoutByDate(DateTimeUtils.formatDate(new Date(now)));
         List<RecordedWorkout> recordedWorkoutList = LocalDatabase.getInstance(requireActivity()).recordedWorkoutDAO().
@@ -162,21 +170,25 @@ public class ExerciseFragment extends BaseFragment {
         int listSize = Math.min(normalWorkoutList.size(), recordedWorkoutList.size());
         System.out.println("date time : " + DateTimeUtils.simpleDateFormat(today.getTime()));
         System.out.println("nomal vs recorded : " + recordedWorkoutList.size() + "/" + normalWorkoutList.size());
-        for (int i = 0; i < listSize; i++) {
-            Workout workout = normalWorkoutList.get(i);
-            RecordedWorkout recordedWorkout = recordedWorkoutList.get(i);
-            if (workout.getTimestamp() > recordedWorkout.getTimeStamp()) {
-                workoutList.add(recordedWorkout);
-                recordedWorkoutList.remove(recordedWorkout);
-            } else {
-                workoutList.add(workout);
-                normalWorkoutList.remove(workout);
+        while(listSize > 0){
+            for (int i = 0; i < listSize; i++) {
+                Workout workout = normalWorkoutList.get(i);
+                RecordedWorkout recordedWorkout = recordedWorkoutList.get(i);
+                if (workout.getTimestamp() > recordedWorkout.getTimeStamp()) {
+                    workoutList.add(workout);
+                    normalWorkoutList.remove(workout);
+                } else {
+                    workoutList.add(recordedWorkout);
+                    recordedWorkoutList.remove(recordedWorkout);
+                }
             }
+            listSize = Math.min(normalWorkoutList.size(), recordedWorkoutList.size());
         }
-        if (listSize == normalWorkoutList.size()) {
-            workoutList.addAll(recordedWorkoutList);
-        } else {
+
+        if (normalWorkoutList.size() > 0) {
             workoutList.addAll(normalWorkoutList);
+        } else {
+            workoutList.addAll(recordedWorkoutList);
         }
         System.out.println("check list size : " + workoutList.size());
     }
@@ -188,8 +200,8 @@ public class ExerciseFragment extends BaseFragment {
         populateHistoryList();
         //Initialize a list that can contains both to load both Workout and RecordedWorkout
 
-        mHistoryAdapter = new HistoryAdapter(workoutList, this::goToWorkoutItemDetailActivity, this::goToWorkoutItemDetailActivity);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mHistoryAdapter = new HistoryAdapter(workoutList, this::goToWorkoutItemDetailActivity, this::goToWorkoutItemDetailActivity, this::deleteWorkout);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireActivity());
         mFragmentExerciseBinding.rcvExHistory.setLayoutManager(layoutManager);
         mFragmentExerciseBinding.rcvExHistory.setAdapter(mHistoryAdapter);
         currentItemCount = mHistoryAdapter.getItemCount();
@@ -202,6 +214,7 @@ public class ExerciseFragment extends BaseFragment {
     private void deleteWorkout(Workout workout) {
         mDiary.updateDiaryAfterRemove(workout);
         displayHistoryList();
+        displayWorkoutInfo();
     }
     private void initListener() {
         mFragmentExerciseBinding.btnExerciseSync.setOnClickListener(v -> {
@@ -251,7 +264,6 @@ public class ExerciseFragment extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
         if (requestCode == 1) {
-            populateHistoryList();
             updateUIAfterShowSnackBar();
         }
     }
@@ -394,7 +406,10 @@ public class ExerciseFragment extends BaseFragment {
 //        today.add(Calendar.DAY_OF_YEAR, -1);
 
 //        today.set(Calendar.DATE, -1);
-//        today.set(Calendar.MONTH,5);
+        if (today.getTime().getDate() != 26) {
+            today.set(Calendar.DAY_OF_MONTH,26);
+            today.set(Calendar.MONTH,5);
+        }
         long timestamp = today.getTimeInMillis();
         SharedPreferences sharedPreferences = ControllerApplication.getDeviceSpecificSharedPrefs(device.getAddress());
         SharedPreferences.Editor editor = ControllerApplication.getDeviceSpecificSharedPrefs(device.getAddress()).edit();
@@ -402,7 +417,7 @@ public class ExerciseFragment extends BaseFragment {
         System.out.println("Last timestamp : " + lastTimeStamp);
         System.out.println("reset time stamp : " + timestamp);
         // it should be like this
-        if (lastTimeStamp < timestamp || today.getTimeInMillis() == 0) {
+        if (lastTimeStamp <= timestamp || today.getTimeInMillis() == 0) {
             editor.remove("lastSportsActivityTimeMillis");
             editor.putLong("lastSportsActivityTimeMillis", timestamp);
             editor.apply();
@@ -420,7 +435,6 @@ public class ExerciseFragment extends BaseFragment {
             showTransientSnackbar(R.string.busy_task_fetch_activity_data);
             ControllerApplication.deviceService(device).onFetchRecordedData(RecordedDataTypes.TYPE_GPS_TRACKS);
             createNewRecordedData();
-
         } else {
             showTransientSnackbar(R.string.controlcenter_snackbar_not_connected);
         }
@@ -457,7 +471,7 @@ public class ExerciseFragment extends BaseFragment {
                     tvWearableStatus.setText(R.string.connected);
                 } else if (device.isConnecting()) {
                     tvWearableStatus.setText(R.string.connecting);
-                } else {
+                } else if(!device.isConnected()){
                     tvWearableStatus.setText(R.string.not_connected);
                 }
             }

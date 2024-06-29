@@ -1,5 +1,7 @@
 package com.example.gr.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -49,25 +51,31 @@ public class SearchForExerciseActivity extends BaseActivity {
         initToolbar();
         getListExerciseFromLocalDatabase("");
     }
-    private void getListExerciseFromFirebase(String searchkey){}
-    private void getListExerciseFromLocalDatabase(String searchkey){
-        if(searchkey == null || searchkey.isEmpty()){
-            mExerciseList= LocalDatabase.getInstance(this).exerciseDAO().getAllExercise();
-        }else{
-            mExerciseList = LocalDatabase.getInstance(this).exerciseDAO().findExerciseByName("%"+searchkey+"%");
+
+    private void getListExerciseFromFirebase(String searchkey) {
+    }
+
+    private void getListExerciseFromLocalDatabase(String searchkey) {
+        if (searchkey == null || searchkey.isEmpty()) {
+            mExerciseList = LocalDatabase.getInstance(this).exerciseDAO().getAllExercise();
+        } else {
+            mExerciseList = LocalDatabase.getInstance(this).exerciseDAO().findExerciseByName("%" + searchkey + "%");
         }
         displayExerciseList();
     }
+
     private void displayExerciseList() {
-        exerciseAdapter = new ExerciseAdapter(mExerciseList, this::onClickViewDetail,this::quickAddBtn);
+        exerciseAdapter = new ExerciseAdapter(mExerciseList, this::onClickViewDetail, this::quickAddBtn);
         mActivitySearchForExerciseBinding.rcvExerciseList.setLayoutManager(new LinearLayoutManager(this));
         mActivitySearchForExerciseBinding.rcvExerciseList.setAdapter(exerciseAdapter);
     }
-    private void quickAddBtn(Workout workout){
+
+    private void quickAddBtn(Workout workout) {
         workout.setDiaryID(mDiary.getId());
         mDiary.logWorkout(workout);
         Toast.makeText(this, "Đã thêm vào nhật ký", Toast.LENGTH_SHORT).show();
     }
+
     private void onClickViewDetail(Exercise exercise) {
 //        Toast.makeText(this, "Received", Toast.LENGTH_SHORT).show();
         AtomicInteger newCaloBurnt = new AtomicInteger((int) exercise.getMet() * exercise.getDefaultDuration() / 60 * activityUser.getWeightKg());
@@ -153,6 +161,7 @@ public class SearchForExerciseActivity extends BaseActivity {
 
 
     }
+
     private void getDiary(String date) {
         mDiary = LocalDatabase.getInstance(this).diaryDAO().getDiaryByDate(date);
         if (mDiary == null) {
@@ -160,6 +169,7 @@ public class SearchForExerciseActivity extends BaseActivity {
             LocalDatabase.getInstance(this).diaryDAO().insertDiary(mDiary);
         }
     }
+
     private void initListener() {
         mActivitySearchForExerciseBinding.edtSearchName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -192,6 +202,7 @@ public class SearchForExerciseActivity extends BaseActivity {
             return false;
         });
     }
+
     private void searchExercise() {
         String searchkey = mActivitySearchForExerciseBinding.edtSearchName.getText().toString().trim();
         if (mExerciseList != null) mExerciseList.clear();
