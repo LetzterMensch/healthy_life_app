@@ -93,7 +93,6 @@ public class FoodDetailActivity extends BaseActivity {
             }
         }
     }
-
     // Display general information about the food
     private void initUI() {
         if (mFood == null) {

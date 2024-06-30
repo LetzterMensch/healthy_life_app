@@ -36,9 +36,9 @@ public class FoodLog implements Serializable {
     public void updateFoodLog(float numberOfServings){
         this.numberOfServings = numberOfServings;
         this.totalCalories =  Math.round(food.getCalories()*numberOfServings);
-        this.totalFat = food.getFat()*numberOfServings;
-        this.totalCarb = food.getCarb()*numberOfServings;
-        this.totalProtein = food.getProtein()*numberOfServings;
+        this.totalFat = food.getFat()*numberOfServings*9;
+        this.totalCarb = food.getCarb()*numberOfServings*4;
+        this.totalProtein = food.getProtein()*numberOfServings*4;
     }
 
     public int getDiaryId() {

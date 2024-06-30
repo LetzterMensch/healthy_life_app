@@ -103,10 +103,11 @@ public class FetchActivityOperation extends AbstractRepeatingFetchOperation {
             DaoSession session = handler.getDaoSession();
 
             DeviceCoordinator coordinator = getDevice().getDeviceCoordinator();
+            //ZeppOsCoordinator -> getSampleProvider = getHuamiExtendedActivitySample 's object -> save into db
             SampleProvider sampleProvider = coordinator.getSampleProvider(getDevice(), session);
             Device device = DBHelper.getDevice(getDevice(), session);
             User user = DBHelper.getUser(session);
-
+            //Generic programming because HuamiExtendedActivitySample extends MiBandActivitySample
             for (MiBandActivitySample sample : samples) {
                 sample.setDevice(device);
                 sample.setUser(user);

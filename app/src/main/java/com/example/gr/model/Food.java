@@ -6,6 +6,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(tableName = "food")
 public class Food implements Serializable {
@@ -19,6 +20,10 @@ public class Food implements Serializable {
     private float carb;
     private float protein;
     private float fat;
+    private boolean isCustomized;
+    private String subFoodIds;
+    @Ignore
+    private List<Food> subFoodList;
     public Food(String name,int calories ,float protein, float fat, float carb){
         this.name = name;
         this.calories = calories;
@@ -50,6 +55,30 @@ public class Food implements Serializable {
         this.carb = carb;
         this.protein = protein;
         this.fat = fat;
+    }
+
+    public boolean isCustomized() {
+        return isCustomized;
+    }
+
+    public void setCustomized(boolean customized) {
+        isCustomized = customized;
+    }
+
+    public String getSubFoodIds() {
+        return subFoodIds;
+    }
+
+    public void setSubFoodIds(String subFoodIds) {
+        this.subFoodIds = subFoodIds;
+    }
+
+    public List<Food> getSubFoodList() {
+        return subFoodList;
+    }
+
+    public void setSubFoodList(List<Food> subFoodList) {
+        this.subFoodList = subFoodList;
     }
 
     public float getCarb() {

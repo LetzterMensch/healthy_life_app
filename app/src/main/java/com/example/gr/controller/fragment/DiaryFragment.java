@@ -265,8 +265,8 @@ public class DiaryFragment extends BaseFragment {
         displayFoodLogs(mDate);
     }
     @Override
-    public void onDestroyView(){
+    public void onDestroy(){
         mFoodLogAdapter = null;
-        super.onDestroyView();
+        super.onDestroy();
     }
 }
