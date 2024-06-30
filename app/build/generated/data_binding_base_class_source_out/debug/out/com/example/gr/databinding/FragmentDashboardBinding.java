@@ -4,6 +4,7 @@ package com.example.gr.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -75,6 +76,9 @@ public final class FragmentDashboardBinding implements ViewBinding {
   public final LineChart lineChart;
 
   @NonNull
+  public final ImageButton logWeightBtn;
+
+  @NonNull
   public final LinearProgressIndicator proteinIndicator;
 
   @NonNull
@@ -101,7 +105,7 @@ public final class FragmentDashboardBinding implements ViewBinding {
       @NonNull TextView dashboardCarb, @NonNull TextView dashboardFat,
       @NonNull TextView dashboardProtein, @NonNull TextView dashboardSteps,
       @NonNull LinearProgressIndicator fatIndicator, @NonNull LineChart lineChart,
-      @NonNull LinearProgressIndicator proteinIndicator,
+      @NonNull ImageButton logWeightBtn, @NonNull LinearProgressIndicator proteinIndicator,
       @NonNull LinearProgressIndicator stepsBarIndicator, @NonNull AppCompatTextView titleCalories,
       @NonNull TextView titleGoalSteps, @NonNull AppCompatTextView titleToday,
       @NonNull CardView weightLineChart) {
@@ -122,6 +126,7 @@ public final class FragmentDashboardBinding implements ViewBinding {
     this.dashboardSteps = dashboardSteps;
     this.fatIndicator = fatIndicator;
     this.lineChart = lineChart;
+    this.logWeightBtn = logWeightBtn;
     this.proteinIndicator = proteinIndicator;
     this.stepsBarIndicator = stepsBarIndicator;
     this.titleCalories = titleCalories;
@@ -253,6 +258,12 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.log_weight_btn;
+      ImageButton logWeightBtn = ViewBindings.findChildViewById(rootView, id);
+      if (logWeightBtn == null) {
+        break missingId;
+      }
+
       id = R.id.protein_indicator;
       LinearProgressIndicator proteinIndicator = ViewBindings.findChildViewById(rootView, id);
       if (proteinIndicator == null) {
@@ -292,8 +303,9 @@ public final class FragmentDashboardBinding implements ViewBinding {
       return new FragmentDashboardBinding((ConstraintLayout) rootView, calBurntDuration,
           calProcessContainer, caloriesBurnt, caloriesCircle, caloriesInput, caloriesRemain,
           carbIndicator, cardBurntContainer, cardContainer, dashboardCalBurnt, dashboardCarb,
-          dashboardFat, dashboardProtein, dashboardSteps, fatIndicator, lineChart, proteinIndicator,
-          stepsBarIndicator, titleCalories, titleGoalSteps, titleToday, weightLineChart);
+          dashboardFat, dashboardProtein, dashboardSteps, fatIndicator, lineChart, logWeightBtn,
+          proteinIndicator, stepsBarIndicator, titleCalories, titleGoalSteps, titleToday,
+          weightLineChart);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

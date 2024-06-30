@@ -4,14 +4,6 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_search_for_exercise.xml"
     },
     {
-        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_discovery.xml",
-        "source": "com.example.gr.app-main-67:/layout/activity_discovery.xml"
-    },
-    {
-        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_exercise.xml",
-        "source": "com.example.gr.app-main-67:/layout/fragment_exercise.xml"
-    },
-    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_discovery.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_discovery.xml"
     },
@@ -34,14 +26,6 @@
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_search_for_food.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_search_for_food.xml"
-    },
-    {
-        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_diary.xml",
-        "source": "com.example.gr.app-main-67:/layout/fragment_diary.xml"
-    },
-    {
-        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_sleep.xml",
-        "source": "com.example.gr.app-main-67:/layout/fragment_sleep.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\preference_material_switch.xml",
@@ -72,20 +56,12 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_food_detail.xml"
     },
     {
-        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_import_recipe.xml",
-        "source": "com.example.gr.app-main-67:/layout/activity_import_recipe.xml"
-    },
-    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_diary.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_diary.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_food.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_food.xml"
-    },
-    {
-        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_mi_band_pairing.xml",
-        "source": "com.example.gr.app-main-67:/layout/activity_mi_band_pairing.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_mi_band_pairing.xml",

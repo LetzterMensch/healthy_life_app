@@ -694,6 +694,7 @@ id lineChart
 id linearLayout
 id log_in_edit_email
 id log_in_edit_password
+id log_weight_btn
 id lunch_card
 id mapFrameView
 id mapGpsFocus

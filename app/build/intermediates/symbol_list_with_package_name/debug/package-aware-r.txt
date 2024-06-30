@@ -4317,6 +4317,7 @@ id list_item
 id locale
 id log_in_edit_email
 id log_in_edit_password
+id log_weight_btn
 id ltr
 id lunch_card
 id m3_side_sheet

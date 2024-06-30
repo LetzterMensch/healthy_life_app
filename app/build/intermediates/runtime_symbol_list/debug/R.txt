@@ -4316,6 +4316,7 @@ int id list_item 0x7f0a018c
 int id locale 0x7f0a018d
 int id log_in_edit_email 0x7f0a018e
 int id log_in_edit_password 0x7f0a018f
+int id log_weight_btn 0x7f0a031a
 int id ltr 0x7f0a0190
 int id lunch_card 0x7f0a0191
 int id m3_side_sheet 0x7f0a0192
