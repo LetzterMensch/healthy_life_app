@@ -12,6 +12,7 @@
             android:key="mi_user_alias"
             android:maxLength="17"
             android:title="@string/miband_prefs_alias"
+
             app:iconSpaceReserved="false"
             app:useSimpleSummaryProvider="true" />
 

@@ -18,7 +18,7 @@ package com.example.gr.utils.gpx.model;
 
 import androidx.annotation.Nullable;
 
-import com.example.gr.device.model.GPSCoordinate;
+import com.example.gr.controller.device.model.GPSCoordinate;
 
 public class GpxWaypoint extends GPSCoordinate {
     @Nullable

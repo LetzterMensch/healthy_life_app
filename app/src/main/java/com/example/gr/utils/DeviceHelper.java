@@ -33,17 +33,17 @@ import android.widget.Toast;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
-import com.example.gr.constant.MiBandConst;
-import com.example.gr.database.DBHandler;
-import com.example.gr.database.DBHelper;
-import com.example.gr.database.entities.Device;
-import com.example.gr.database.entities.DeviceAttributes;
-import com.example.gr.device.model.BatteryConfig;
-import com.example.gr.device.DeviceCoordinator;
-import com.example.gr.device.model.DeviceType;
-import com.example.gr.device.GBDevice;
-import com.example.gr.device.GBDeviceCandidate;
-import com.example.gr.device.GBException;
+import com.example.gr.utils.constant.MiBandConst;
+import com.example.gr.model.database.DBHandler;
+import com.example.gr.model.database.DBHelper;
+import com.example.gr.model.database.entities.Device;
+import com.example.gr.model.database.entities.DeviceAttributes;
+import com.example.gr.controller.device.model.BatteryConfig;
+import com.example.gr.controller.device.DeviceCoordinator;
+import com.example.gr.controller.device.model.DeviceType;
+import com.example.gr.controller.device.GBDevice;
+import com.example.gr.controller.device.GBDeviceCandidate;
+import com.example.gr.controller.device.GBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

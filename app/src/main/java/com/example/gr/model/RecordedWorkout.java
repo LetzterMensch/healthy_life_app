@@ -5,7 +5,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.gr.ControllerApplication;
-import com.example.gr.database.LocalDatabase;
+import com.example.gr.model.database.LocalDatabase;
 
 import java.io.Serializable;
 

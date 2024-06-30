@@ -29,8 +29,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.gr.R;
-import com.example.gr.device.model.CallSpec;
-import com.example.gr.device.model.NotificationSpec;
+import com.example.gr.controller.device.model.CallSpec;
+import com.example.gr.controller.device.model.NotificationSpec;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

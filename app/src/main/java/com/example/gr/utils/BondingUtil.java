@@ -42,10 +42,10 @@ import androidx.annotation.RequiresApi;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
-import com.example.gr.constant.MiBandConst;
-import com.example.gr.device.DeviceCoordinator;
-import com.example.gr.device.GBDevice;
-import com.example.gr.device.GBDeviceCandidate;
+import com.example.gr.utils.constant.MiBandConst;
+import com.example.gr.controller.device.DeviceCoordinator;
+import com.example.gr.controller.device.GBDevice;
+import com.example.gr.controller.device.GBDeviceCandidate;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.slf4j.Logger;

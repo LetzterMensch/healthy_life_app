@@ -23,7 +23,7 @@ import android.content.Context;
 import android.media.AudioManager;
 
 import com.example.gr.ControllerApplication;
-import com.example.gr.constant.DeviceSettingsPreferenceConst;
+import com.example.gr.utils.constant.DeviceSettingsPreferenceConst;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

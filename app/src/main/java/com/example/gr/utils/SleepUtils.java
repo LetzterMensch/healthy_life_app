@@ -17,7 +17,7 @@
 package com.example.gr.utils;
 
 
-import com.example.gr.constant.ActivityKind;
+import com.example.gr.utils.constant.ActivityKind;
 
 public class SleepUtils {
     public static final float Y_VALUE_DEEP_SLEEP = 0.01f;

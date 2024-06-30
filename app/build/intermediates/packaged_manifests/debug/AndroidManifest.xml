@@ -97,7 +97,7 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
         android:testOnly="true"
         android:theme="@style/Theme.GR" >
         <receiver
-            android:name="com.example.gr.externalevents.AutoStartReceiver"
+            android:name="com.example.gr.controller.externalevents.AutoStartReceiver"
             android:exported="false"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
             <intent-filter>
@@ -109,7 +109,7 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.example.gr.externalevents.BluetoothStateChangeReceiver"
+            android:name="com.example.gr.controller.externalevents.BluetoothStateChangeReceiver"
             android:exported="true"
             android:permission="android.permission.BLUETOOTH_ADMIN" >
             <intent-filter>
@@ -122,7 +122,7 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
         </receiver>
 
         <activity
-            android:name="com.example.gr.activity.SplashActivity"
+            android:name="com.example.gr.controller.activity.SplashActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -131,58 +131,58 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.gr.device.settings.DeviceSettingsActivity"
+            android:name="com.example.gr.controller.device.settings.DeviceSettingsActivity"
             android:exported="false"
-            android:parentActivityName="com.example.gr.activity.MainActivity" />
+            android:parentActivityName="com.example.gr.controller.activity.MainActivity" />
         <activity
-            android:name="com.example.gr.activity.DiscoveryActivityV2"
+            android:name="com.example.gr.controller.activity.DiscoveryActivityV2"
             android:exported="false"
-            android:parentActivityName="com.example.gr.activity.MainActivity" />
+            android:parentActivityName="com.example.gr.controller.activity.MainActivity" />
         <activity
-            android:name="com.example.gr.activity.MainActivity"
+            android:name="com.example.gr.controller.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.SearchForFoodActivity"
+            android:name="com.example.gr.controller.activity.SearchForFoodActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.SearchForExerciseActivity"
+            android:name="com.example.gr.controller.activity.SearchForExerciseActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.FoodDetailActivity"
+            android:name="com.example.gr.controller.activity.FoodDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.ScrapeRecipeActivity"
+            android:name="com.example.gr.controller.activity.ScrapeRecipeActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.WorkoutDetailActivity"
+            android:name="com.example.gr.controller.activity.WorkoutDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.device.huami.miband.MiBandPairingActivity"
+            android:name="com.example.gr.controller.device.huami.miband.MiBandPairingActivity"
             android:exported="false"
             android:label="@string/title_activity_mi_band_pairing"
-            android:parentActivityName="com.example.gr.activity.MainActivity" />
+            android:parentActivityName="com.example.gr.controller.activity.MainActivity" />
         <activity
-            android:name="com.example.gr.device.settings.AboutUserPreferencesActivity"
+            android:name="com.example.gr.controller.device.settings.AboutUserPreferencesActivity"
             android:exported="false"
-            android:parentActivityName="com.example.gr.activity.MainActivity" />
+            android:parentActivityName="com.example.gr.controller.activity.MainActivity" />
         <activity
-            android:name="com.example.gr.activity.RecipeDetailActivity"
+            android:name="com.example.gr.controller.activity.RecipeDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.HistoryListActivity"
+            android:name="com.example.gr.controller.activity.HistoryListActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.LogInActivity"
+            android:name="com.example.gr.controller.activity.LogInActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.gr.activity.SignUpActivity"
+            android:name="com.example.gr.controller.activity.SignUpActivity"
             android:exported="false" />
 
         <service
-            android:name="com.example.gr.service.btle.BLEScanService"
+            android:name="com.example.gr.controller.service.btle.BLEScanService"
             android:enabled="true"
             android:exported="false" />
-        <service android:name="com.example.gr.service.DeviceCommunicationService" />
+        <service android:name="com.example.gr.controller.service.DeviceCommunicationService" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -185,8 +185,8 @@
 98-->E:\20232\GR\app\src\main\AndroidManifest.xml:78:9-40
 99        <receiver
 99-->E:\20232\GR\app\src\main\AndroidManifest.xml:80:9-89:20
-100            android:name="com.example.gr.externalevents.AutoStartReceiver"
-100-->E:\20232\GR\app\src\main\AndroidManifest.xml:81:13-61
+100            android:name="com.example.gr.controller.externalevents.AutoStartReceiver"
+100-->E:\20232\GR\app\src\main\AndroidManifest.xml:81:13-72
 101            android:exported="false"
 101-->E:\20232\GR\app\src\main\AndroidManifest.xml:82:13-37
 102            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
@@ -208,8 +208,8 @@
 110        </receiver>
 111        <receiver
 111-->E:\20232\GR\app\src\main\AndroidManifest.xml:90:9-102:20
-112            android:name="com.example.gr.externalevents.BluetoothStateChangeReceiver"
-112-->E:\20232\GR\app\src\main\AndroidManifest.xml:91:13-72
+112            android:name="com.example.gr.controller.externalevents.BluetoothStateChangeReceiver"
+112-->E:\20232\GR\app\src\main\AndroidManifest.xml:91:13-83
 113            android:exported="true"
 113-->E:\20232\GR\app\src\main\AndroidManifest.xml:92:13-36
 114            android:permission="android.permission.BLUETOOTH_ADMIN" >
@@ -236,8 +236,8 @@
 123
 124        <activity
 124-->E:\20232\GR\app\src\main\AndroidManifest.xml:104:9-112:20
-125            android:name="com.example.gr.activity.SplashActivity"
-125-->E:\20232\GR\app\src\main\AndroidManifest.xml:105:13-52
+125            android:name="com.example.gr.controller.activity.SplashActivity"
+125-->E:\20232\GR\app\src\main\AndroidManifest.xml:105:13-63
 126            android:exported="true" >
 126-->E:\20232\GR\app\src\main\AndroidManifest.xml:106:13-36
 127            <intent-filter>
@@ -252,111 +252,111 @@
 131            </intent-filter>
 132        </activity>
 133        <activity
-133-->E:\20232\GR\app\src\main\AndroidManifest.xml:113:9-116:66
-134            android:name="com.example.gr.device.settings.DeviceSettingsActivity"
-134-->E:\20232\GR\app\src\main\AndroidManifest.xml:114:13-67
+133-->E:\20232\GR\app\src\main\AndroidManifest.xml:113:9-116:77
+134            android:name="com.example.gr.controller.device.settings.DeviceSettingsActivity"
+134-->E:\20232\GR\app\src\main\AndroidManifest.xml:114:13-78
 135            android:exported="false"
 135-->E:\20232\GR\app\src\main\AndroidManifest.xml:115:13-37
-136            android:parentActivityName="com.example.gr.activity.MainActivity" />
-136-->E:\20232\GR\app\src\main\AndroidManifest.xml:116:13-64
+136            android:parentActivityName="com.example.gr.controller.activity.MainActivity" />
+136-->E:\20232\GR\app\src\main\AndroidManifest.xml:116:13-75
 137        <activity
-137-->E:\20232\GR\app\src\main\AndroidManifest.xml:117:9-120:66
-138            android:name="com.example.gr.activity.DiscoveryActivityV2"
-138-->E:\20232\GR\app\src\main\AndroidManifest.xml:118:13-57
+137-->E:\20232\GR\app\src\main\AndroidManifest.xml:117:9-120:77
+138            android:name="com.example.gr.controller.activity.DiscoveryActivityV2"
+138-->E:\20232\GR\app\src\main\AndroidManifest.xml:118:13-68
 139            android:exported="false"
 139-->E:\20232\GR\app\src\main\AndroidManifest.xml:119:13-37
-140            android:parentActivityName="com.example.gr.activity.MainActivity" />
-140-->E:\20232\GR\app\src\main\AndroidManifest.xml:120:13-64
+140            android:parentActivityName="com.example.gr.controller.activity.MainActivity" />
+140-->E:\20232\GR\app\src\main\AndroidManifest.xml:120:13-75
 141        <activity
 141-->E:\20232\GR\app\src\main\AndroidManifest.xml:121:9-123:39
-142            android:name="com.example.gr.activity.MainActivity"
-142-->E:\20232\GR\app\src\main\AndroidManifest.xml:122:13-50
+142            android:name="com.example.gr.controller.activity.MainActivity"
+142-->E:\20232\GR\app\src\main\AndroidManifest.xml:122:13-61
 143            android:exported="false" />
 143-->E:\20232\GR\app\src\main\AndroidManifest.xml:123:13-37
 144        <activity
 144-->E:\20232\GR\app\src\main\AndroidManifest.xml:124:9-126:40
-145            android:name="com.example.gr.activity.SearchForFoodActivity"
-145-->E:\20232\GR\app\src\main\AndroidManifest.xml:125:13-59
+145            android:name="com.example.gr.controller.activity.SearchForFoodActivity"
+145-->E:\20232\GR\app\src\main\AndroidManifest.xml:125:13-70
 146            android:exported="false" />
 146-->E:\20232\GR\app\src\main\AndroidManifest.xml:126:13-37
 147        <activity
 147-->E:\20232\GR\app\src\main\AndroidManifest.xml:127:9-129:40
-148            android:name="com.example.gr.activity.SearchForExerciseActivity"
-148-->E:\20232\GR\app\src\main\AndroidManifest.xml:128:13-63
+148            android:name="com.example.gr.controller.activity.SearchForExerciseActivity"
+148-->E:\20232\GR\app\src\main\AndroidManifest.xml:128:13-74
 149            android:exported="false" />
 149-->E:\20232\GR\app\src\main\AndroidManifest.xml:129:13-37
 150        <activity
 150-->E:\20232\GR\app\src\main\AndroidManifest.xml:130:9-132:40
-151            android:name="com.example.gr.activity.FoodDetailActivity"
-151-->E:\20232\GR\app\src\main\AndroidManifest.xml:131:13-56
+151            android:name="com.example.gr.controller.activity.FoodDetailActivity"
+151-->E:\20232\GR\app\src\main\AndroidManifest.xml:131:13-67
 152            android:exported="false" />
 152-->E:\20232\GR\app\src\main\AndroidManifest.xml:132:13-37
 153        <activity
 153-->E:\20232\GR\app\src\main\AndroidManifest.xml:133:9-135:40
-154            android:name="com.example.gr.activity.ScrapeRecipeActivity"
-154-->E:\20232\GR\app\src\main\AndroidManifest.xml:134:13-58
+154            android:name="com.example.gr.controller.activity.ScrapeRecipeActivity"
+154-->E:\20232\GR\app\src\main\AndroidManifest.xml:134:13-69
 155            android:exported="false" />
 155-->E:\20232\GR\app\src\main\AndroidManifest.xml:135:13-37
 156        <activity
 156-->E:\20232\GR\app\src\main\AndroidManifest.xml:136:9-138:40
-157            android:name="com.example.gr.activity.WorkoutDetailActivity"
-157-->E:\20232\GR\app\src\main\AndroidManifest.xml:137:13-59
+157            android:name="com.example.gr.controller.activity.WorkoutDetailActivity"
+157-->E:\20232\GR\app\src\main\AndroidManifest.xml:137:13-70
 158            android:exported="false" />
 158-->E:\20232\GR\app\src\main\AndroidManifest.xml:138:13-37
 159        <activity
-159-->E:\20232\GR\app\src\main\AndroidManifest.xml:139:9-143:67
-160            android:name="com.example.gr.device.huami.miband.MiBandPairingActivity"
-160-->E:\20232\GR\app\src\main\AndroidManifest.xml:140:13-70
+159-->E:\20232\GR\app\src\main\AndroidManifest.xml:139:9-143:78
+160            android:name="com.example.gr.controller.device.huami.miband.MiBandPairingActivity"
+160-->E:\20232\GR\app\src\main\AndroidManifest.xml:140:13-81
 161            android:exported="false"
 161-->E:\20232\GR\app\src\main\AndroidManifest.xml:141:13-37
 162            android:label="@string/title_activity_mi_band_pairing"
 162-->E:\20232\GR\app\src\main\AndroidManifest.xml:142:13-67
-163            android:parentActivityName="com.example.gr.activity.MainActivity" />
-163-->E:\20232\GR\app\src\main\AndroidManifest.xml:143:13-64
+163            android:parentActivityName="com.example.gr.controller.activity.MainActivity" />
+163-->E:\20232\GR\app\src\main\AndroidManifest.xml:143:13-75
 164        <activity
-164-->E:\20232\GR\app\src\main\AndroidManifest.xml:144:9-147:67
-165            android:name="com.example.gr.device.settings.AboutUserPreferencesActivity"
-165-->E:\20232\GR\app\src\main\AndroidManifest.xml:145:13-73
+164-->E:\20232\GR\app\src\main\AndroidManifest.xml:144:9-147:78
+165            android:name="com.example.gr.controller.device.settings.AboutUserPreferencesActivity"
+165-->E:\20232\GR\app\src\main\AndroidManifest.xml:145:13-84
 166            android:exported="false"
 166-->E:\20232\GR\app\src\main\AndroidManifest.xml:146:13-37
-167            android:parentActivityName="com.example.gr.activity.MainActivity" />
-167-->E:\20232\GR\app\src\main\AndroidManifest.xml:147:13-64
+167            android:parentActivityName="com.example.gr.controller.activity.MainActivity" />
+167-->E:\20232\GR\app\src\main\AndroidManifest.xml:147:13-75
 168        <activity
 168-->E:\20232\GR\app\src\main\AndroidManifest.xml:148:9-150:40
-169            android:name="com.example.gr.activity.RecipeDetailActivity"
-169-->E:\20232\GR\app\src\main\AndroidManifest.xml:149:13-58
+169            android:name="com.example.gr.controller.activity.RecipeDetailActivity"
+169-->E:\20232\GR\app\src\main\AndroidManifest.xml:149:13-69
 170            android:exported="false" />
 170-->E:\20232\GR\app\src\main\AndroidManifest.xml:150:13-37
 171        <activity
 171-->E:\20232\GR\app\src\main\AndroidManifest.xml:151:9-153:40
-172            android:name="com.example.gr.activity.HistoryListActivity"
-172-->E:\20232\GR\app\src\main\AndroidManifest.xml:152:13-57
+172            android:name="com.example.gr.controller.activity.HistoryListActivity"
+172-->E:\20232\GR\app\src\main\AndroidManifest.xml:152:13-68
 173            android:exported="false" />
 173-->E:\20232\GR\app\src\main\AndroidManifest.xml:153:13-37
 174        <activity
 174-->E:\20232\GR\app\src\main\AndroidManifest.xml:154:9-156:40
-175            android:name="com.example.gr.activity.LogInActivity"
-175-->E:\20232\GR\app\src\main\AndroidManifest.xml:155:13-51
+175            android:name="com.example.gr.controller.activity.LogInActivity"
+175-->E:\20232\GR\app\src\main\AndroidManifest.xml:155:13-62
 176            android:exported="false" />
 176-->E:\20232\GR\app\src\main\AndroidManifest.xml:156:13-37
 177        <activity
 177-->E:\20232\GR\app\src\main\AndroidManifest.xml:157:9-159:36
-178            android:name="com.example.gr.activity.SignUpActivity"
-178-->E:\20232\GR\app\src\main\AndroidManifest.xml:158:9-48
+178            android:name="com.example.gr.controller.activity.SignUpActivity"
+178-->E:\20232\GR\app\src\main\AndroidManifest.xml:158:9-59
 179            android:exported="false" />
 179-->E:\20232\GR\app\src\main\AndroidManifest.xml:159:9-33
 180
 181        <service
 181-->E:\20232\GR\app\src\main\AndroidManifest.xml:160:9-163:39
-182            android:name="com.example.gr.service.btle.BLEScanService"
-182-->E:\20232\GR\app\src\main\AndroidManifest.xml:161:13-56
+182            android:name="com.example.gr.controller.service.btle.BLEScanService"
+182-->E:\20232\GR\app\src\main\AndroidManifest.xml:161:13-67
 183            android:enabled="true"
 183-->E:\20232\GR\app\src\main\AndroidManifest.xml:162:13-35
 184            android:exported="false" />
 184-->E:\20232\GR\app\src\main\AndroidManifest.xml:163:13-37
-185        <service android:name="com.example.gr.service.DeviceCommunicationService" />
-185-->E:\20232\GR\app\src\main\AndroidManifest.xml:164:9-71
-185-->E:\20232\GR\app\src\main\AndroidManifest.xml:164:18-68
+185        <service android:name="com.example.gr.controller.service.DeviceCommunicationService" />
+185-->E:\20232\GR\app\src\main\AndroidManifest.xml:164:9-82
+185-->E:\20232\GR\app\src\main\AndroidManifest.xml:164:18-79
 186
 187        <meta-data
 187-->E:\20232\GR\app\src\main\AndroidManifest.xml:166:9-168:57

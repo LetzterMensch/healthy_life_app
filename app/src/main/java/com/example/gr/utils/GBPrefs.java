@@ -31,8 +31,8 @@ import android.util.Log;
 import androidx.core.app.ActivityCompat;
 
 import com.example.gr.ControllerApplication;
-import com.example.gr.device.GBDevice;
-import com.example.gr.constant.DeviceSettingsPreferenceConst;
+import com.example.gr.controller.device.GBDevice;
+import com.example.gr.utils.constant.DeviceSettingsPreferenceConst;
 
 import java.text.ParseException;
 import java.util.Date;

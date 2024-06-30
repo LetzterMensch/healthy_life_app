@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 package com.example.gr.utils.gpx.model;
 
-import com.example.gr.device.model.GPSCoordinate;
+import com.example.gr.controller.device.model.GPSCoordinate;
 
 import java.util.Date;
 import java.util.Objects;

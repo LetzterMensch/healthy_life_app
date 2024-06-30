@@ -4,9 +4,6 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.example.gr.ControllerApplication;
-import com.example.gr.database.LocalDatabase;
-
 import java.io.Serializable;
 
 @Entity(tableName = "foodlog")

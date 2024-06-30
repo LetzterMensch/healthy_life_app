@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.gr.activity.DiscoveryActivityV2">
+    tools:context="com.example.gr.controller.activity.DiscoveryActivityV2">
     <include layout="@layout/layout_actionbar"/>
     <LinearLayout
         android:orientation="vertical"

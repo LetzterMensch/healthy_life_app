@@ -1,0 +1,642 @@
+package com.example.gr.controller.device;
+
+import android.app.Activity;
+import android.bluetooth.le.ScanFilter;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+
+import com.example.gr.controller.device.capability.HeartRateCapability;
+import com.example.gr.controller.device.model.AbstractNotificationPattern;
+import com.example.gr.controller.device.model.BatteryConfig;
+import com.example.gr.controller.device.model.DeviceType;
+import com.example.gr.controller.device.settings.DeviceSpecificSettings;
+import com.example.gr.model.data.parser.ActivitySummaryParser;
+import com.example.gr.model.data.sample.ActivitySample;
+import com.example.gr.model.data.sample.HeartRateSample;
+import com.example.gr.model.data.sample.PaiSample;
+import com.example.gr.model.data.sample.SampleProvider;
+import com.example.gr.model.data.sample.SleepRespiratoryRateSample;
+import com.example.gr.model.data.sample.Spo2Sample;
+import com.example.gr.model.data.sample.StressSample;
+import com.example.gr.model.data.sample.TemperatureSample;
+import com.example.gr.model.data.sample.TimeSampleProvider;
+import com.example.gr.model.database.entities.DaoSession;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.EnumSet;
+import java.util.List;
+
+/**
+ * This interface is implemented at least once for every supported gadget device.
+ * It allows Gadgetbridge to generically deal with different kinds of devices
+ * without actually knowing the details of any device.
+ * <p/>
+ * Instances will be created as needed and asked whether they support a given
+ * device. If a coordinator answers true, it will be used to assist in handling
+ * the given device.
+ */
+public interface DeviceCoordinator {
+    String EXTRA_DEVICE_CANDIDATE = "com.example.gr.device.GBDeviceCandidate.EXTRA_DEVICE_CANDIDATE";
+    /**
+     * Do not attempt to bond after discovery.
+     */
+    int BONDING_STYLE_NONE = 0;
+    /**
+     * Bond after discovery.
+     * This is not recommended, as there are mobile devices on which bonding does not work.
+     * Prefer to use #BONDING_STYLE_ASK instead.
+     */
+    int BONDING_STYLE_BOND = 1;
+    /**
+     * Let the user decide whether to bond or not after discovery.
+     * Prefer this over #BONDING_STYLE_BOND
+     */
+    int BONDING_STYLE_ASK = 2;
+
+    /**
+     * A secret key has to be entered before connecting
+     */
+    int BONDING_STYLE_REQUIRE_KEY = 3;
+
+    /**
+     * Lazy pairing, i.e. device initiated pairing is requested
+     */
+    int BONDING_STYLE_LAZY = 4;
+
+    enum ConnectionType{
+        BLE(false, true),
+        BT_CLASSIC(true, false),
+        BOTH(true, true)
+        ;
+        boolean usesBluetoothClassic, usesBluetoothLE;
+
+        ConnectionType(boolean usesBluetoothClassic, boolean usesBluetoothLE) {
+            this.usesBluetoothClassic = usesBluetoothClassic;
+            this.usesBluetoothLE = usesBluetoothLE;
+        }
+
+        public boolean usesBluetoothLE(){
+            return usesBluetoothLE;
+        }
+
+        public boolean usesBluetoothClassic(){
+            return usesBluetoothClassic;
+        }
+    }
+
+    /**
+     * Returns the type of connection, Classic of BLE
+     *
+     * @return ConnectionType
+     */
+    ConnectionType getConnectionType();
+
+    /**
+     * Checks whether this coordinator handles the given candidate.
+     *
+     * @param candidate
+     * @return true if this coordinator handles the given candidate.
+     */
+    boolean supports(GBDeviceCandidate candidate);
+
+    /**
+     * Returns a list of scan filters that shall be used to discover devices supported
+     * by this coordinator.
+     * @return the list of scan filters, may be empty
+     */
+    @NonNull
+    Collection<? extends ScanFilter> createBLEScanFilters();
+
+    GBDevice createDevice(GBDeviceCandidate candidate, DeviceType type);
+
+    /**
+     * Deletes all information, including all related database content about the
+     * given device.
+     * @throws GBException
+     */
+    void deleteDevice(GBDevice device) throws GBException;
+
+    /**
+     * Returns the Activity class to be started in order to perform a pairing of a
+     * given device after its discovery.
+     *
+     * @return the activity class for pairing/initial authentication, or null if none
+     */
+    @Nullable
+    Class<? extends Activity> getPairingActivity();
+
+    @Nullable
+    Class<? extends Activity> getCalibrationActivity();
+
+    /**
+     * Returns true if activity data fetching is supported by the device
+     * (with this coordinator).
+     * This enables the sync button in control center and the device can thus be asked to send the data
+     * (as opposed the device pushing the data to us by itself)
+     *
+     * @return
+     */
+    boolean supportsActivityDataFetching();
+
+    /**
+     * Returns true if activity tracking is supported by the device
+     * (with this coordinator).
+     * This enables the ActivityChartsActivity.
+     *
+     * @return
+     */
+    boolean supportsActivityTracking();
+
+    /**
+     * Indicates whether the device supports recording dedicated activity tracks, like
+     * walking, hiking, running, swimming, etc. and retrieving the recorded
+     * data. This is different from the constant activity tracking since the tracks are
+     * usually recorded with additional features, like e.g. GPS.
+     */
+    boolean supportsActivityTracks();
+
+    /**
+     * Returns true if stress measurement and fetching is supported by the device
+     * (with this coordinator).
+     */
+    boolean supportsStressMeasurement();
+
+    boolean supportsSleepMeasurement();
+    boolean supportsStepCounter();
+    boolean supportsSpeedzones();
+    boolean supportsActivityTabs();
+
+    /**
+     * Returns true if measurement and fetching of body temperature is supported by the device
+     * (with this coordinator).
+     */
+    boolean supportsTemperatureMeasurement();
+
+    /**
+     * Returns true if SpO2 measurement and fetching is supported by the device
+     * (with this coordinator).
+     */
+    boolean supportsSpo2();
+
+    /**
+     * Returns true if heart rate stats (max, resting, manual) measurement and fetching is supported
+     * by the device (with this coordinator).
+     */
+    boolean supportsHeartRateStats();
+
+    /**
+     * Returns true if PAI (Personal Activity Intelligence) measurement and fetching is supported by
+     * the device (with this coordinator).
+     */
+    boolean supportsPai();
+
+    /**
+     * Returns the device-specific name for PAI (eg. Vitality Score).
+     */
+    @StringRes
+    int getPaiName();
+
+    /**
+     * Returns true if the device is capable of providing the time contribution for each PAI type
+     * (light, moderate, high).
+     */
+    boolean supportsPaiTime();
+
+    /**
+     * Returns true if sleep respiratory rate measurement and fetching is supported by
+     * the device (with this coordinator).
+     */
+    boolean supportsSleepRespiratoryRate();
+
+    /**
+     * Returns true if activity data fetching is supported AND possible at this
+     * very moment. This will consider the device state (being connected/disconnected/busy...)
+     * etc.
+     *
+     * @param device
+     * @return
+     */
+    boolean allowFetchActivityData(GBDevice device);
+
+    /**
+     * Returns the sample provider for the device being supported.
+     *
+     * @return
+     */
+    SampleProvider<? extends ActivitySample> getSampleProvider(GBDevice device, DaoSession session);
+
+    /**
+     * Returns the sample provider for stress data, for the device being supported.
+     */
+    TimeSampleProvider<? extends StressSample> getStressSampleProvider(GBDevice device, DaoSession session);
+
+    /**
+     * Returns the stress ranges (relaxed, mild, moderate, high), so that stress can be categorized.
+     */
+    int[] getStressRanges();
+
+    /**
+     * Returns the sample provider for temperature data, for the device being supported.
+     */
+    TimeSampleProvider<? extends TemperatureSample> getTemperatureSampleProvider(GBDevice device, DaoSession session);
+
+    /**
+     * Returns the sample provider for SpO2 data, for the device being supported.
+     */
+    TimeSampleProvider<? extends Spo2Sample> getSpo2SampleProvider(GBDevice device, DaoSession session);
+
+    /**
+     * Returns the sample provider for max HR data, for the device being supported.
+     */
+    TimeSampleProvider<? extends HeartRateSample> getHeartRateMaxSampleProvider(GBDevice device, DaoSession session);
+
+    /**
+     * Returns the sample provider for resting HR data, for the device being supported.
+     */
+    TimeSampleProvider<? extends HeartRateSample> getHeartRateRestingSampleProvider(GBDevice device, DaoSession session);
+
+    /**
+     * Returns the sample provider for manual HR data, for the device being supported.
+     */
+    TimeSampleProvider<? extends HeartRateSample> getHeartRateManualSampleProvider(GBDevice device, DaoSession session);
+
+    /**
+     * Returns the sample provider for PAI data, for the device being supported.
+     */
+    TimeSampleProvider<? extends PaiSample> getPaiSampleProvider(GBDevice device, DaoSession session);
+
+    /**
+     * Returns the sample provider for sleep respiratory rate data, for the device being supported.
+     */
+    TimeSampleProvider<? extends SleepRespiratoryRateSample> getSleepRespiratoryRateSampleProvider(GBDevice device, DaoSession session);
+
+    /**
+     * Returns the {@link ActivitySummaryParser} for the device being supported.
+     *
+     * @return
+     */
+    ActivitySummaryParser getActivitySummaryParser(final GBDevice device);
+
+    /**
+     * Returns true if this device/coordinator supports installing files like firmware,
+     * watchfaces, gps, resources, fonts...
+     *
+     * @return
+     */
+    boolean supportsFlashing();
+
+    /**
+     * Finds an install handler for the given uri that can install the given
+     * uri on the device being managed.
+     *
+     * @param uri
+     * @param context
+     * @return the install handler or null if that uri cannot be installed on the device
+     */
+//    InstallHandler findInstallHandler(Uri uri, Context context);
+
+    /**
+     * Returns true if this device/coordinator supports taking screenshots.
+     *
+     * @return
+     */
+    boolean supportsScreenshots();
+
+    /**
+     * Returns the number of alarms this device/coordinator supports
+     * Shall return 0 also if it is not possible to set alarms via
+     * protocol, but only on the smart device itself.
+     *
+     * @return
+     */
+    int getAlarmSlotCount(GBDevice device);
+
+    /**
+     * Returns true if this device/coordinator supports an alarm with smart wakeup for the current position
+     * @param alarmPosition Position of the alarm
+     */
+    boolean supportsSmartWakeup(GBDevice device, int alarmPosition);
+
+    /**
+     * Returns true if the smart alarm at the specified position supports setting an interval for this device/coordinator
+     * @param alarmPosition Position of the alarm
+     */
+    boolean supportsSmartWakeupInterval(GBDevice device, int alarmPosition);
+
+    /**
+     * Returns true if the alarm at the specified position *must* be a smart alarm for this device/coordinator
+     * @param alarmPosition Position of the alarm
+     * @return True if it must be a smart alarm, false otherwise
+     */
+    boolean forcedSmartWakeup(GBDevice device, int alarmPosition);
+
+    /**
+     * Returns true if this device/coordinator supports alarm snoozing
+     * @return
+     */
+    boolean supportsAlarmSnoozing();
+
+    /**
+     * Returns true if this device/coordinator supports alarm titles
+     * @return
+     */
+    boolean supportsAlarmTitle(GBDevice device);
+
+    /**
+     * Returns the character limit for the alarm title, negative if no limit.
+     * @return
+     */
+    int getAlarmTitleLimit(GBDevice device);
+
+    /**
+     * Returns true if this device/coordinator supports alarm descriptions
+     * @return
+     */
+    boolean supportsAlarmDescription(GBDevice device);
+
+    /**
+     * Returns true if the given device supports heart rate measurements.
+     * @return
+     */
+    boolean supportsHeartRateMeasurement(GBDevice device);
+
+    /**
+     * Returns true if the device supports triggering manual one-shot heart rate measurements.
+     */
+    boolean supportsManualHeartRateMeasurement(GBDevice device);
+
+    /**
+     * Returns the readable name of the manufacturer.
+     */
+    String getManufacturer();
+
+    /**
+     * Returns true if this device/coordinator supports managing device apps.
+     *
+     * @return
+     */
+    boolean supportsAppsManagement(GBDevice device);
+
+    boolean supportsCachedAppManagement(GBDevice device);
+    boolean supportsInstalledAppManagement(GBDevice device);
+    boolean supportsWatchfaceManagement(GBDevice device);
+
+    /**
+     * Returns the Activity class that will be used to manage device apps.
+     *
+     * @return
+     */
+    Class<? extends Activity> getAppsManagementActivity();
+
+    /**
+     * Returns the Activity class that will be used to design watchfaces.
+     *
+     * @return
+     */
+    Class<? extends Activity> getWatchfaceDesignerActivity();
+
+    /**
+     * Returns the device app cache directory.
+     */
+    File getAppCacheDir() throws IOException;
+
+    /**
+     * Returns a String containing the device app sort order filename.
+     */
+    String getAppCacheSortFilename();
+
+    /**
+     * Returns a String containing the file extension for watch apps.
+     */
+    String getAppFileExtension();
+
+    /**
+     * Indicated whether the device supports fetching a list of its apps.
+     */
+    boolean supportsAppListFetching();
+
+    /**
+     * Indicates whether the device supports reordering of apps.
+     */
+    boolean supportsAppReordering();
+
+    /**
+     * Returns how/if the given device should be bonded before connecting to it.
+     */
+    int getBondingStyle();
+
+    /**
+     * Returns true if this device is in an experimental state / not tested.
+     */
+    boolean isExperimental();
+
+    /**
+     * Indicates whether the device has some kind of calender we can sync to.
+     * Also used for generated sunrise/sunset events
+     */
+    boolean supportsCalendarEvents();
+
+    /**
+     * Indicates whether the device supports getting a stream of live data.
+     * This can be live HR, steps etc.
+     */
+    boolean supportsRealtimeData();
+
+    /**
+     * Indicates whether the device supports REM sleep tracking.
+     */
+    boolean supportsRemSleep();
+
+    /**
+     * Indicates whether the device supports current weather and/or weather
+     * forecast display.
+     */
+    boolean supportsWeather();
+
+    /**
+     * Indicates whether the device supports being found by vibrating, 
+     * making some sound or lighting up
+     */
+    boolean supportsFindDevice();
+
+    /**
+     * Indicates whether the device supports displaying music information
+     * like artist, title, album, play state etc.
+     */
+    boolean supportsMusicInfo();
+
+    /**
+     * Indicates the maximum reminder message length.
+     */
+    int getMaximumReminderMessageLength();
+
+    /**
+     * Indicates the maximum number of reminder slots available in the device.
+     */
+    int getReminderSlotCount(GBDevice device);
+
+    /**
+     * Indicates the maximum number of canned replies available in the device.
+     */
+    int getCannedRepliesSlotCount(GBDevice device);
+
+    /**
+     * Indicates the maximum number of slots available for world clocks in the device.
+     */
+    int getWorldClocksSlotCount();
+
+    /**
+     * Indicates the maximum label length for a world clock in the device.
+     */
+    int getWorldClocksLabelLength();
+
+    /**
+     * Indicates whether the device supports disabled world clocks that can be enabled through
+     * a menu on the device.
+     */
+    boolean supportsDisabledWorldClocks();
+
+    /**
+     * Indicates the maximum number of slots available for contacts in the device.
+     */
+    int getContactsSlotCount(GBDevice device);
+
+    /**
+     * Indicates whether the device has an led which supports custom colors
+     */
+    boolean supportsLedColor();
+
+    /**
+     * Indicates whether the device's led supports any RGB color,
+     * or only preset colors
+     */
+    boolean supportsRgbLedColor();
+
+    /**
+     * Returns the preset colors supported by the device, if any, in ARGB, with alpha = 255
+     */
+    @NonNull
+    int[] getColorPresets();
+
+    /**
+     * Indicates whether the device supports unicode emojis.
+     */
+    boolean supportsUnicodeEmojis();
+
+    /**
+     * Returns device specific settings related to connection
+     *
+     * @return int[]
+     */
+    int[] getSupportedDeviceSpecificConnectionSettings();
+
+    /**
+     * Returns device specific settings related to the Auth key
+     * @return int[]
+     */
+    int[] getSupportedDeviceSpecificAuthenticationSettings();
+
+    /**
+     * Indicates which device specific settings the device supports (not per device type or family, but unique per device).
+     *
+     * @deprecated use getDeviceSpecificSettings
+     */
+    @Deprecated
+    int[] getSupportedDeviceSpecificSettings(GBDevice device);
+
+    /**
+     * Returns the device-specific settings supported by this specific device. See
+     */
+    @Nullable
+    DeviceSpecificSettings getDeviceSpecificSettings(GBDevice device);
+
+    /**
+     * Returns the {@link DeviceSpecificSettingsCustomizer}, allowing for the customization of the devices specific settings screen.
+     */
+//    DeviceSpecificSettingsCustomizer getDeviceSpecificSettingsCustomizer(GBDevice device);
+
+    /**
+     * Indicates which device specific language the device supports
+     */
+    String[] getSupportedLanguageSettings(GBDevice device);
+
+    /**
+     *
+     * Multiple battery support: Indicates how many batteries the device has.
+     * 1 is default, 3 is maximum at the moment (as per UI layout)
+     * 0 will disable the battery from the UI
+     */
+    int getBatteryCount();
+
+    BatteryConfig[] getBatteryConfig();
+
+    boolean supportsPowerOff();
+
+//    PasswordCapabilityImpl.Mode getPasswordCapability();
+
+    List<HeartRateCapability.MeasurementInterval> getHeartRateMeasurementIntervals();
+
+    /**
+     * Whether the device supports screens with configurable widgets.
+     */
+    boolean supportsWidgets(GBDevice device);
+
+    /**
+//     * Gets the {link WidgetManager} for this device. Must not be null if supportsWidgets is true.
+     */
+//    @Nullable
+//    WidgetManager getWidgetManager(GBDevice device);
+
+    boolean supportsNavigation();
+
+    int getOrderPriority();
+
+    @NonNull
+    Class<? extends DeviceSupport> getDeviceSupportClass();
+
+    EnumSet<ServiceDeviceSupport.Flags> getInitialFlags();
+
+    @StringRes
+    int getDeviceNameResource();
+
+    @DrawableRes
+    int getDefaultIconResource();
+
+    @DrawableRes
+    int getDisabledIconResource();
+
+    /**
+     * Whether the device supports a variety of vibration patterns for notifications.
+     */
+    boolean supportsNotificationVibrationPatterns();
+    /**
+     * Whether the device supports a variety of vibration pattern repetitions for notifications.
+     */
+    boolean supportsNotificationVibrationRepetitionPatterns();
+
+    /**
+     * Whether the device supports a variety of LED patterns for notifications.
+     */
+    boolean supportsNotificationLedPatterns();
+    /**
+     * What vibration pattern repetitions for notifications are supported by the device.
+     */
+     AbstractNotificationPattern[] getNotificationVibrationPatterns();
+    /**
+     * What vibration pattern repetitions for notifications are supported by the device.
+     * Technote: this is not an int or a range because some devices (e.g. Wena 3) only allow
+     * a very specific set of value combinations here.
+     */
+    AbstractNotificationPattern[] getNotificationVibrationRepetitionPatterns();
+    /**
+     * What LED patterns for notifications are supported by the device.
+     */
+    AbstractNotificationPattern[] getNotificationLedPatterns();
+
+    boolean validateAuthKey(String authKey);
+}

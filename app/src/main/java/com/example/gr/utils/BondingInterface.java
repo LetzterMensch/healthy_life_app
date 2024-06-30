@@ -19,7 +19,7 @@ package com.example.gr.utils;
 
 import android.content.Context;
 
-import com.example.gr.device.GBDeviceCandidate;
+import com.example.gr.controller.device.GBDeviceCandidate;
 
 
 public interface BondingInterface {

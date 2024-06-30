@@ -1,17 +1,12 @@
 package com.example.gr.model;
 
-import android.service.controls.Control;
-
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.example.gr.ControllerApplication;
-import com.example.gr.adapter.FoodLogAdapter;
-import com.example.gr.database.Converters;
-import com.example.gr.database.LocalDatabase;
+import com.example.gr.model.database.Converters;
+import com.example.gr.model.database.LocalDatabase;
 import com.example.gr.utils.DateTimeUtils;
 
 import androidx.room.TypeConverters;
@@ -19,7 +14,6 @@ import androidx.room.TypeConverters;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Entity(tableName = "diary")

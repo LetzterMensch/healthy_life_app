@@ -21,14 +21,14 @@ import androidx.annotation.NonNull;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
-import com.example.gr.constant.MiBandConst;
-import com.example.gr.database.DBHandler;
-import com.example.gr.database.DBHelper;
-import com.example.gr.database.entities.Alarm;
-import com.example.gr.database.entities.DaoSession;
-import com.example.gr.database.entities.Device;
-import com.example.gr.database.entities.User;
-import com.example.gr.device.GBDevice;
+import com.example.gr.utils.constant.MiBandConst;
+import com.example.gr.model.database.DBHandler;
+import com.example.gr.model.database.DBHelper;
+import com.example.gr.model.database.entities.Alarm;
+import com.example.gr.model.database.entities.DaoSession;
+import com.example.gr.model.database.entities.Device;
+import com.example.gr.model.database.entities.User;
+import com.example.gr.controller.device.GBDevice;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -61,7 +61,7 @@ public class AlarmUtils {
      * @param alarm
      * @return
      */
-    public static Calendar toCalendar(com.example.gr.device.model.Alarm alarm) {
+    public static Calendar toCalendar(com.example.gr.controller.device.model.Alarm alarm) {
         Calendar result = Calendar.getInstance();
         Calendar now = Calendar.getInstance();
         result.set(Calendar.HOUR_OF_DAY, alarm.getHour());

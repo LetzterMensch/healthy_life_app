@@ -32,8 +32,8 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 //import com.example.gr.externalevents.NotificationListener;
-import com.example.gr.device.model.MusicSpec;
-import com.example.gr.device.model.MusicStateSpec;
+import com.example.gr.controller.device.model.MusicSpec;
+import com.example.gr.controller.device.model.MusicStateSpec;
 
 public class MediaManager {
     private static final Logger LOG = LoggerFactory.getLogger(MediaManager.class);

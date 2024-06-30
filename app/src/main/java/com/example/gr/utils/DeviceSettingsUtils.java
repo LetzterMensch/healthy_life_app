@@ -26,7 +26,7 @@ import androidx.preference.MultiSelectListPreference;
 import androidx.preference.Preference;
 
 import com.example.gr.R;
-import com.example.gr.device.settings.DeviceSpecificSettingsHandler;
+import com.example.gr.controller.device.settings.DeviceSpecificSettingsHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

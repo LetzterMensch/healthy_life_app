@@ -1,7 +1,7 @@
 package com.example.gr.utils;
 
 import static com.example.gr.ControllerApplication.isRunningOreoOrLater;
-import static com.example.gr.device.model.DeviceService.EXTRA_RECORDED_DATA_TYPES;
+import static com.example.gr.controller.device.model.DeviceService.EXTRA_RECORDED_DATA_TYPES;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -26,11 +26,11 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
-import com.example.gr.activity.MainActivity;
-import com.example.gr.constant.ActivityKind;
-import com.example.gr.device.GBDevice;
-import com.example.gr.device.model.DeviceService;
-import com.example.gr.service.DeviceCommunicationService;
+import com.example.gr.controller.activity.MainActivity;
+import com.example.gr.utils.constant.ActivityKind;
+import com.example.gr.controller.device.GBDevice;
+import com.example.gr.controller.device.model.DeviceService;
+import com.example.gr.controller.service.DeviceCommunicationService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
