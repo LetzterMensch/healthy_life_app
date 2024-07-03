@@ -129,6 +129,14 @@ public class ExerciseFragment extends BaseFragment {
 
         return mFragmentExerciseBinding.getRoot();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(mReceiver);
+
+    }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -248,12 +256,6 @@ public class ExerciseFragment extends BaseFragment {
         startActivityForResult(intent, 1);
 //        Bundle bundle = new Bundle();
 //        GlobalFunction.startActivity(getActivity(), SearchForExerciseActivity.class, bundle);
-    }
-
-    @Override
-    public void onDestroy() {
-        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(mReceiver);
-        super.onDestroy();
     }
 
     @Override

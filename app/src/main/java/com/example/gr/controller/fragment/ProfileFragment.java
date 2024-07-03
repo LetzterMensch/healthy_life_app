@@ -148,10 +148,6 @@ public class ProfileFragment extends BaseFragment {
 
     }
     @Override
-    public void onDestroy(){
-        super.onDestroy();
-    }
-    @Override
     protected void initToolbar() {
         if (getActivity() != null) {
             ((MainActivity) getActivity()).setToolBar(false, "Cá nhân");

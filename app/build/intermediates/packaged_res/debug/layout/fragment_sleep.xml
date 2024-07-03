@@ -171,7 +171,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/deep_sleep_hr"
                                     android:layout_gravity="left"
-                                    android:text="20 phút"
+                                    android:text="1 giờ"
                                     android:textColor="@color/black"
                                     android:textSize="18sp" />
 
@@ -214,7 +214,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="left"
-                                    android:text="2 giờ 11 phút"
+                                    android:text="3 giờ 58 phút"
                                     android:textColor="@color/black"
                                     android:textSize="18sp" />
 

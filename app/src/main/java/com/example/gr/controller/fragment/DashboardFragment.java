@@ -164,6 +164,8 @@ public class DashboardFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
+        displayChartInfo();
+        displayDashboardInfo();
     }
     @Override
     public void onStop() {
@@ -171,8 +173,8 @@ public class DashboardFragment extends BaseFragment {
     }
     @Override
     public void onResume() {
+        super.onResume();
         displayChartInfo();
         displayDashboardInfo();
-        super.onResume();
     }
 }

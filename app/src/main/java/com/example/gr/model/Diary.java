@@ -57,7 +57,6 @@ public class Diary implements Serializable {
     @Ignore
     public Diary(String date) {
         this.date = date;
-        this.totalSteps = 0;
         ActivityUser activityUser = new ActivityUser();
         this.caloriesGoal = activityUser.getCaloriesBurntGoal();
         this.carbGoal = activityUser.getActivityUserCarbGoal();

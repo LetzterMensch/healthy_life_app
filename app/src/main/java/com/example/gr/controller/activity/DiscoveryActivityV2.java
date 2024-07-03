@@ -6,6 +6,7 @@ import static com.example.gr.utils.GB.toast;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -33,9 +34,11 @@ import android.os.Parcelable;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -156,6 +159,18 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
 //            final Intent enableIntent = new Intent(DiscoveryActivityV2.this, DiscoveryPairingPreferenceActivity.class);
 //            startActivity(enableIntent);
 //        });
+        //show disclaimer dialog
+        builder = new AlertDialog.Builder(this);
+        inflater = getLayoutInflater();
+        dialogView = inflater.inflate(R.layout.disclaimer_dialog, null);
+        builder.setView(dialogView);
+
+        checkBoxAgree = dialogView.findViewById(R.id.checkbox_agree);
+
+        builder.setTitle("Disclaimer");
+        builder.setPositiveButton("Tiếp tục", null);
+        builder.setNegativeButton("Hủy bỏ", (dialog, which) -> dialog.dismiss());
+        dialog = builder.create();
 
         bluetoothProgress = findViewById(R.id.discovery_progressbar);
         bluetoothProgress.setProgress(0);
@@ -574,9 +589,19 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
         }
         LOG.info("Permissions seems to be fine for scanning");
     }
+    AlertDialog.Builder builder;
+    LayoutInflater inflater;
+    View dialogView;
+    CheckBox checkBoxAgree;
+    AlertDialog dialog;
+    private void showDisclaimerDialog() {
 
+
+
+    }
     @Override
     public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+
         final GBDeviceCandidate deviceCandidate = deviceCandidates.get(position);
         if (deviceCandidate == null) {
             LOG.error("Device candidate clicked, but item not found");
@@ -601,7 +626,17 @@ public class DiscoveryActivityV2 extends BaseActivity implements AdapterView.OnI
 
             final String authKey = sharedPrefs.getString("authkey", null);
             if (authKey == null || authKey.isEmpty()) {
-                toast(DiscoveryActivityV2.this, getString(R.string.discovery_need_to_enter_authkey), Toast.LENGTH_LONG, GB.WARN);
+                if (!checkBoxAgree.isChecked()){
+                    dialog.show();
+                }
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                    if (checkBoxAgree.isChecked()) {
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(DiscoveryActivityV2.this, "Bạn phải đồng ý để tiếp tục", Toast.LENGTH_SHORT).show();
+                    }
+                });
+//                toast(DiscoveryActivityV2.this, getString(R.string.discovery_need_to_enter_authkey), Toast.LENGTH_LONG, GB.WARN);
                 return;
             } else if (!coordinator.validateAuthKey(authKey)) {
                 toast(DiscoveryActivityV2.this, getString(R.string.discovery_entered_invalid_authkey), Toast.LENGTH_LONG, GB.WARN);

@@ -264,9 +264,9 @@ public class DiaryFragment extends BaseFragment {
         mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
         displayFoodLogs(mDate);
     }
-    @Override
-    public void onDestroy(){
-        mFoodLogAdapter = null;
-        super.onDestroy();
-    }
+//    @Override
+//    public void onDestroy(){
+//        mFoodLogAdapter = null;
+//        super.onDestroy();
+//    }
 }

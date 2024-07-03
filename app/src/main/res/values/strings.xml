@@ -11,7 +11,7 @@
     // action
     <string name="add">Thêm</string>
     <string name="action_ok">Đồng ý</string>
-    <string name="browse_web">Nhập từ trang web</string>
+    <string name="browse_web">Nạp từ trang web</string>
     <string name="save_recipe">Lưu công thức</string>
     <string name="import_recipe">Nạp công thức</string>
     <string name="action_cancel">Hủy bỏ</string>
@@ -19,6 +19,7 @@
     <string name="action_start">Bắt đầu</string>
     <string name="action_view_more">Xem thêm</string>
     <string name="action_sync">Cập nhật</string>
+    <string name="action_create_food">Tạo món ăn mới</string>
     // calories
     <string name="label_intake">đã nạp</string>
     <string name="label_burnt">tiêu hao</string>
@@ -33,7 +34,7 @@
     <string name="label_min_hr">Nhịp tim thấp nhất</string>
     <string name="label_cal_burnt">Calories đã tiêu hao</string>
     <string name="label_distance">Khoảng cách đã đi</string>
-
+    <string name="label_weight_log">Lịch sử cân nặng</string>
     // profile
     <string name="profile_device_settings">Cài đặt thiết bị</string>
     <string name="profile_device_connect">Kết nối thiết bị</string>
@@ -676,9 +677,9 @@
     <string name="n_a">N/A</string>
     <string name="initialized">initialized</string>
     <string name="appversion_by_creator">%1$s by %2$s</string>
-    <string name="title_activity_discovery">Device discovery</string>
-    <string name="discovery_stop_scanning">Stop scanning</string>
-    <string name="discovery_start_scanning">Start discovery</string>
+    <string name="title_activity_discovery">Khám phá thiết bị</string>
+    <string name="discovery_stop_scanning">Ngừng khám phá</string>
+    <string name="discovery_start_scanning">Bắt đầu khám phá</string>
     <string name="discovery_bluetooth_scan">Bluetooth scan:</string>
     <string name="discovery_bluetooth_le_scan">Bluetooth LE scan:</string>
     <string name="action_discover">Connect new device</string>
@@ -707,11 +708,19 @@
     <string name="wearmode_pebble">Pebble (shoe buckle)</string>
     <string name="wearmode_necklace">Necklace (neck strap)</string>
     <string name="miband_pairing_using_dummy_userdata">No valid user data given, using dummy user data for now.</string>
-    <string name="miband_pairing_tap_hint">When your Mi Band vibrates and blinks, tap it a few times in a row.</string>
+    <string name="miband_pairing_tap_hint">Nếu đợi quá 5 phút hãy thoát ra và thử lại !</string>
     <string name="appinstaller_install">Install</string>
-    <string name="discovery_connected_devices_hint">Make your device discoverable. Currently connected devices will likely not be discovered. Activate location (e.g. GPS) on Android 6+. Disable Privacy Guard for Gadgetbridge, because it may crash and reboot your phone. If no device is found after a few minutes, try again after rebooting your mobile device.</string>
-    <string name="discovery_need_to_enter_authkey">This device needs a secret auth key, long press on the device to enter it. Read the wiki.</string>
-    <string name="discovery_entered_invalid_authkey">The secret auth key you entered is invalid! Long press on the device to edit.</string>
+    <string name="discovery_connected_devices_hint">Hãy chắc rằng thiết bị của bạn đang bật và không kết nối với thiết bị nào khác. Các thiết bị vừa bị ngắt kết nối có thể sẽ không được phát hiện, nếu không tìm thấy thiết bị sau vài phút, hãy thử lại sau khi khởi động lại thiết bị di động của bạn.</string>
+    <string name="discovery_need_to_enter_authkey">Thiết bị này ần khóa xác thực để kết nối, nhấn giữ để nhập khoá</string>
+    <string name="discovery_entered_invalid_authkey">Khóa nhập vào không chính xác, nhấn giữ để nhập lại</string>
+    <string name="disclaimer">Bạn đang chuẩn bị nhập auth_key (khóa xác thực) của Mi Band 7 để kết nối với ứng dụng này. Vui lòng xác nhận những điều sau:\n
+\n
+        •Tôi xin cam đoan rằng auth_key này là hoàn toàn chính thức và được lấy từ các nguồn hợp lệ do Huami (Zepp Health) cung cấp. \n
+\n
+        •Tôi hiểu rằng việc sử dụng auth_key không chính thức có thể dẫn đến các hậu quả như bị khóa tài khoản, mất dữ liệu hoặc các vấn đề bảo mật khác.
+\n\n Lưu ý quan trọng:\n
+\n        •Nếu bạn không chắc chắn về nguồn gốc auth_key hoặc cách lấy auth_key chính thức, vui lòng liên hệ bộ phận hỗ trợ của Huami (Zepp Health) để được hướng dẫn.\n
+\nBằng cách nhấn "Xác nhận đồng ý", bạn xác nhận rằng đã đọc và hiểu rõ những thông tin trên.</string>
     <string name="discovery_note">Note:</string>
     <string name="candidate_item_device_image">Device image</string>
     <string name="miband_prefs_alias">Tên </string>
@@ -1900,7 +1909,7 @@
     <string name="error_background_service">Failed to start background service</string>
     <string name="error_background_service_reason_truncated">Starting the background service failed because…</string>
     <string name="device_is_currently_bonded">ALREADY BONDED</string>
-    <string name="device_requires_key">KEY REQUIRED, LONG PRESS TO ENTER</string>
+    <string name="device_requires_key">Cần khóa xác thực, bấm giữ để nhập</string>
     <string name="device_unsupported">UNSUPPORTED</string>
     <string name="device_experimental">EXPERIMENTAL</string>
     <string name="error_background_service_reason">Starting the background service failed because of an exception. Error: </string>

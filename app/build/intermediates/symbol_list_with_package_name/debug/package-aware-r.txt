@@ -3749,6 +3749,7 @@ drawable ic_activity_yoga
 drawable ic_activitytracker
 drawable ic_add_30_red
 drawable ic_add_36
+drawable ic_add_circle_outline_36
 drawable ic_arrow_back_black_24
 drawable ic_arrow_down_24dp
 drawable ic_back_white_36
@@ -4039,6 +4040,7 @@ id browser_actions_menu_items
 id browser_actions_menu_view
 id btn_breakfast_add
 id btn_container
+id btn_create_food
 id btn_dinner_add
 id btn_exercise_sync
 id btn_import
@@ -4087,6 +4089,7 @@ id chartCardView
 id chartsFragmentHolder
 id charts_fetch_activity_data
 id checkbox
+id checkbox_agree
 id checked
 id chronometer
 id circle_center
@@ -4160,6 +4163,7 @@ id disableHome
 id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
+id disclaimer_text
 id disconnect_button
 id discovery_ble_progressbar
 id discovery_device_candidates_list
@@ -4860,6 +4864,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout disclaimer_dialog
 layout expand_button
 layout fragment_dashboard
 layout fragment_diary
@@ -5067,6 +5072,7 @@ string accuracy
 string accuracy_first
 string action_cancel
 string action_changelog
+string action_create_food
 string action_db_management
 string action_debug
 string action_discover
@@ -5817,6 +5823,7 @@ string devicetype_y5
 string devicetype_zepp_e
 string dialog_hide
 string dinner
+string disclaimer
 string discover_unsupported_devices
 string discover_unsupported_devices_description
 string discovery_attempting_to_pair

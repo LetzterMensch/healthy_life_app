@@ -744,9 +744,9 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-//        onMadeVisibleInActivityInternal();
+    public void onStart() {
+        super.onStart();
+        onMadeVisibleInActivityInternal();
     }
 
     @Override
@@ -755,15 +755,17 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     }
 
     @Override
-    public void onPause() {
-//        onMadeInvisibleInActivity();
-        super.onPause();
+    public void onStop() {
+        super.onStop();
+        onMadeInvisibleInActivity();
+
     }
 
     @Override
     public void onDestroy() {
-        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(mReceiver);
         super.onDestroy();
+        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(mReceiver);
+
     }
 
     @Override
