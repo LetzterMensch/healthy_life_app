@@ -43,7 +43,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             return;
         }
         Workout workout = new Workout(exercise, exercise.getDefaultDuration(),activityUser.getWeightKg());
-        holder.mItemExerciseBinding.exerciseItemCalo.setText(String.valueOf((int)exercise.getMet()*exercise.getDefaultDuration()* activityUser.getWeightKg()/60)+"KCal  -  ");
+        holder.mItemExerciseBinding.exerciseItemCalo.setText(String.valueOf(Math.round(exercise.getMet()*exercise.getDefaultDuration()* activityUser.getWeightKg()/60)+"KCal  -  "));
         holder.mItemExerciseBinding.exerciseItemName.setText(exercise.getName());
         holder.mItemExerciseBinding.exerciseItemMin.setText(String.valueOf(exercise.getDefaultDuration())+" phút");
         holder.mItemExerciseBinding.itemExerciseLayout.setOnClickListener(v->iOnClickExerciseItemListener.onClickItemExercise(exercise));

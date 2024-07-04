@@ -278,8 +278,10 @@ public class ExerciseFragment extends BaseFragment {
     }
 
     private void displayWorkoutInfo() {
+        getDiary(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
         if (mDiary != null) {
-            mFragmentExerciseBinding.exCalBurnt.setText(mDiary.getBurntCalories() + "cal");
+            mFragmentExerciseBinding.exCalBurnt.setText(mDiary.getBurntCalories() + " Kcal");
+            System.out.println("burnt calo : "+mDiary.getBurntCalories());
             int minute = (mDiary.getTotalWorkoutDuration() - (mDiary.getTotalWorkoutDuration() / 60) * 60);
             String min = null;
             if (minute < 10) {
@@ -382,17 +384,6 @@ public class ExerciseFragment extends BaseFragment {
             }
         } catch (Exception e) {
             GB.toast("Error loading activity summaries.", Toast.LENGTH_SHORT, GB.ERROR, e);
-        }
-    }
-
-    private String getStringResourceByName(String aString) {
-        String packageName = requireActivity().getPackageName();
-        int resId = requireActivity().getResources().getIdentifier(aString, "string", packageName);
-        if (resId == 0) {
-            //LOG.warn("SportsActivity " + "Missing string in strings:" + aString);
-            return aString;
-        } else {
-            return requireActivity().getString(resId);
         }
     }
 

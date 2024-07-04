@@ -43,7 +43,6 @@ public class SearchForExerciseActivity extends BaseActivity {
         mActivitySearchForExerciseBinding = ActivitySearchForExerciseBinding.inflate(getLayoutInflater());
         setContentView(mActivitySearchForExerciseBinding.getRoot());
         activityUser = new ActivityUser();
-        tempWorkout = new Workout();
         getDiary(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
         initListener();
         initToolbar();
@@ -71,16 +70,13 @@ public class SearchForExerciseActivity extends BaseActivity {
     private void quickAddBtn(Workout workout) {
         workout.setDiaryID(mDiary.getId());
         mDiary.logWorkout(workout);
-        Toast.makeText(this, "Đã thêm vào nhật ký", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Đã thêm vào lịch sử tập luyện", Toast.LENGTH_SHORT).show();
     }
 
     private void onClickViewDetail(Exercise exercise) {
 //        Toast.makeText(this, "Received", Toast.LENGTH_SHORT).show();
-        AtomicInteger newCaloBurnt = new AtomicInteger((int) exercise.getMet() * exercise.getDefaultDuration() / 60 * activityUser.getWeightKg());
-
-        tempWorkout.setExercise(exercise);
-        tempWorkout.setDuration(exercise.getDefaultDuration());
-        tempWorkout.setCaloriesBurnt(newCaloBurnt.get());
+        AtomicInteger newCaloBurnt = new AtomicInteger(Math.round( exercise.getMet() * exercise.getDefaultDuration()* activityUser.getWeightKg() / 60));
+        tempWorkout = new Workout(exercise, exercise.getDefaultDuration(),activityUser.getWeightKg());
         View viewDialog = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_add_exercise, null);
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(viewDialog);
@@ -94,7 +90,7 @@ public class SearchForExerciseActivity extends BaseActivity {
         TextView tvAddToDiaryBtn = viewDialog.findViewById(R.id.dialog_tv_add_diary);
 
         tvExerciseName.setText(exercise.getName());
-        tvExerciseCaloriesBurnt.setText(getString(R.string.unit_calories_burnt, String.valueOf(String.valueOf((int) exercise.getMet() * exercise.getDefaultDuration() * activityUser.getWeightKg() / 60))));
+        tvExerciseCaloriesBurnt.setText(getString(R.string.unit_calories_burnt, String.valueOf(newCaloBurnt.get())));
         tvExerciseDuration.setText(getString(R.string._duration, exercise.getDefaultDuration()));
         tvCount.setText(String.valueOf(exercise.getDefaultDuration()));
         tvCount.addTextChangedListener(new TextWatcher() {
@@ -116,7 +112,7 @@ public class SearchForExerciseActivity extends BaseActivity {
                 if(!text.isEmpty()){
                     newCount = Integer.parseInt(tvCount.getText().toString());
                 }
-                newCaloBurnt.set(Math.round(exercise.getMet() * newCount / 60 * activityUser.getWeightKg()));
+                newCaloBurnt.set(Math.round(exercise.getMet() * newCount * activityUser.getWeightKg()/ 60));
                 tvExerciseCaloriesBurnt.setText(getString(R.string.unit_calories_burnt, String.valueOf(newCaloBurnt.get())));
                 tvExerciseDuration.setText(getString(R.string._duration, newCount));
                 tempWorkout.setDuration(newCount);
@@ -132,31 +128,20 @@ public class SearchForExerciseActivity extends BaseActivity {
                 }
                 int newCount = Integer.parseInt(tvCount.getText().toString()) - 1;
                 tvCount.setText(String.valueOf(newCount));
-                newCaloBurnt.set(Math.round(exercise.getMet() * newCount / 60 * activityUser.getWeightKg()));
-                tvExerciseCaloriesBurnt.setText(getString(R.string.unit_calories_burnt, String.valueOf(newCaloBurnt.get())));
-                tvExerciseDuration.setText(getString(R.string._duration, newCount));
-                tempWorkout.setDuration(newCount);
-                tempWorkout.setCaloriesBurnt(newCaloBurnt.get());
             }
         });
 
         tvAddBtn.setOnClickListener(v -> {
             int newCount = Integer.parseInt(tvCount.getText().toString()) + 1;
             tvCount.setText(String.valueOf(newCount));
-            newCaloBurnt.set(Math.round(exercise.getMet() * newCount / 60 * activityUser.getWeightKg()));
-            tvExerciseCaloriesBurnt.setText(getString(R.string.unit_calories_burnt, String.valueOf(newCaloBurnt.get())));
-            tvExerciseDuration.setText(getString(R.string._duration, newCount));
-            tempWorkout.setDuration(newCount);
-            tempWorkout.setCaloriesBurnt(newCaloBurnt.get());
         });
 
         tvCloseBtn.setOnClickListener(v -> bottomSheetDialog.dismiss());
 
         tvAddToDiaryBtn.setOnClickListener(v -> {
-            tempWorkout.setCreatedAt(new Date().toString());
             tempWorkout.setDiaryID(mDiary.getId());
             mDiary.logWorkout(tempWorkout);
-            Toast.makeText(this, "added to diary", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Đã thêm vào lịch sử tập luyện", Toast.LENGTH_SHORT).show();
             bottomSheetDialog.dismiss();
         });
 
