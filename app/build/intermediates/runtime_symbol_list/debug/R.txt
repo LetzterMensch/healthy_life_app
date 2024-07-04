@@ -3766,7 +3766,8 @@ int drawable ic_check_36 0x7f0800e1
 int drawable ic_clear_black_24 0x7f0800e2
 int drawable ic_clock 0x7f0800e3
 int drawable ic_clock_black_24dp 0x7f0800e4
-int drawable ic_close_36 0x7f0800e5
+int drawable ic_close_red_36 0x7f080179
+int drawable ic_close_white_40 0x7f08017a
 int drawable ic_complete_diary 0x7f0800e6
 int drawable ic_dashboard_black_24dp 0x7f0800e7
 int drawable ic_delete_36 0x7f0800e8
@@ -3995,6 +3996,7 @@ int id activity_chooser_view_content 0x7f0a004a
 int id activity_swipe_layout 0x7f0a004b
 int id add 0x7f0a004c
 int id add_btn 0x7f0a004d
+int id add_new_food_ingredients 0x7f0a031e
 int id add_wearable_btn 0x7f0a004e
 int id adjust_height 0x7f0a004f
 int id adjust_width 0x7f0a0050
@@ -4046,6 +4048,7 @@ int id btn_import 0x7f0a007d
 int id btn_import_recipe 0x7f0a007e
 int id btn_log_in 0x7f0a007f
 int id btn_lunch_add 0x7f0a0080
+int id btn_save_new_food 0x7f0a031f
 int id btn_save_recipe 0x7f0a0081
 int id btn_sign_up 0x7f0a0082
 int id btn_snack_add 0x7f0a0083
@@ -4112,6 +4115,7 @@ int id coordinator 0x7f0a00bf
 int id cos 0x7f0a00c0
 int id counterclockwise 0x7f0a00c1
 int id cradle 0x7f0a00c2
+int id create_food_toolbar 0x7f0a0320
 int id currentState 0x7f0a00c3
 int id custom 0x7f0a00c4
 int id customPanel 0x7f0a00c5
@@ -4148,9 +4152,19 @@ int id dialog_ex_item_name 0x7f0a00e3
 int id dialog_exercise_item_calo 0x7f0a00e4
 int id dialog_exercise_item_min 0x7f0a00e5
 int id dialog_sheet_close_btn 0x7f0a00e6
+int id dialog_subfood_item_calo 0x7f0a0321
+int id dialog_subfood_item_carb 0x7f0a0322
+int id dialog_subfood_item_fat 0x7f0a0323
+int id dialog_subfood_item_name 0x7f0a0324
+int id dialog_subfood_item_protein 0x7f0a0325
+int id dialog_subfood_sheet_close_btn 0x7f0a0326
+int id dialog_subfood_tv_add 0x7f0a0327
+int id dialog_subfood_tv_count 0x7f0a0328
+int id dialog_subfood_tv_subtract 0x7f0a0329
 int id dialog_tv_add 0x7f0a00e7
 int id dialog_tv_add_diary 0x7f0a00e8
 int id dialog_tv_count 0x7f0a00e9
+int id dialog_tv_subfood_add_to_list 0x7f0a032a
 int id dialog_tv_subtract 0x7f0a00ea
 int id diary_carb 0x7f0a00eb
 int id diary_fat 0x7f0a00ec
@@ -4186,6 +4200,7 @@ int id easeInOut 0x7f0a0109
 int id easeOut 0x7f0a010a
 int id east 0x7f0a010b
 int id edge 0x7f0a010c
+int id edit_new_food_name 0x7f0a032b
 int id edit_number_of_servings 0x7f0a010d
 int id edit_query 0x7f0a010e
 int id edit_search_name 0x7f0a010f
@@ -4272,6 +4287,7 @@ int id image 0x7f0a015f
 int id imageView3 0x7f0a0160
 int id img_add 0x7f0a0161
 int id img_back 0x7f0a0162
+int id img_close 0x7f0a032c
 int id img_food 0x7f0a0163
 int id img_next 0x7f0a0164
 int id img_save 0x7f0a0165
@@ -4297,6 +4313,8 @@ int id item_status 0x7f0a0178
 int id item_touch_helper_previous_elevation 0x7f0a0179
 int id jumpToEnd 0x7f0a017a
 int id jumpToStart 0x7f0a017b
+int id label_add_ingredients 0x7f0a032d
+int id label_nutrition_info 0x7f0a032e
 int id labeled 0x7f0a017c
 int id layout 0x7f0a017d
 int id layout_btn_sign_up 0x7f0a017e
@@ -4428,6 +4446,8 @@ int id nestedScrollView2 0x7f0a01fb
 int id never 0x7f0a01fc
 int id neverCompleteToEnd 0x7f0a01fd
 int id neverCompleteToStart 0x7f0a01fe
+int id new_food_name 0x7f0a032f
+int id new_food_nutrition_info 0x7f0a0330
 int id noScroll 0x7f0a01ff
 int id noState 0x7f0a0200
 int id none 0x7f0a0201
@@ -4485,7 +4505,9 @@ int id rcv_breakfast_food 0x7f0a0234
 int id rcv_dinner_food 0x7f0a0235
 int id rcv_ex_history 0x7f0a0236
 int id rcv_exercise_list 0x7f0a0237
+int id rcv_food_list 0x7f0a0331
 int id rcv_food_search_tab 0x7f0a0238
+int id rcv_ingredients 0x7f0a0332
 int id rcv_lunch_food 0x7f0a0239
 int id rcv_recipe_search_tab 0x7f0a023a
 int id rcv_snack_food 0x7f0a023b
@@ -4604,6 +4626,8 @@ int id status_bar_latest_event_content 0x7f0a02ab
 int id steps_bar_indicator 0x7f0a02ac
 int id stop 0x7f0a02ad
 int id stretch 0x7f0a02ae
+int id sub_food_layout_cardview 0x7f0a0333
+int id subfood_item_info 0x7f0a0334
 int id submenuarrow 0x7f0a02af
 int id submit_area 0x7f0a02b0
 int id summaryCardView 0x7f0a02b1
@@ -4674,6 +4698,8 @@ int id tv_calories 0x7f0a02f1
 int id tv_email 0x7f0a02f2
 int id tv_food_description 0x7f0a02f3
 int id tv_food_name 0x7f0a02f4
+int id tv_new_food_ingredients 0x7f0a0335
+int id tv_new_food_name 0x7f0a0336
 int id tv_recipe_ingredients 0x7f0a02f5
 int id tv_title 0x7f0a02f6
 int id unchecked 0x7f0a02f7
@@ -4831,6 +4857,7 @@ int layout abc_search_dropdown_item_icons_2line 0x7f0d0018
 int layout abc_search_view 0x7f0d0019
 int layout abc_select_dialog_material 0x7f0d001a
 int layout abc_tooltip 0x7f0d001b
+int layout activity_create_food 0x7f0d00c0
 int layout activity_device_settings 0x7f0d001c
 int layout activity_discovery 0x7f0d001d
 int layout activity_food_detail 0x7f0d001e
@@ -4883,6 +4910,7 @@ int layout item_search_recipe_tab 0x7f0d004c
 int layout item_with_details 0x7f0d004d
 int layout layout_actionbar 0x7f0d004e
 int layout layout_bottom_sheet_add_exercise 0x7f0d004f
+int layout layout_bottom_sheet_add_subfood 0x7f0d00c1
 int layout layout_calendar_toolbar 0x7f0d0050
 int layout layout_toolbar 0x7f0d0051
 int layout m3_alert_dialog 0x7f0d0052
@@ -5331,6 +5359,7 @@ int string activity_user_purpose 0x7f130141
 int string activity_web_view 0x7f130142
 int string add 0x7f130143
 int string add_exercise 0x7f130144
+int string add_subfood 0x7f130bd7
 int string add_test_device 0x7f130145
 int string add_widget 0x7f130146
 int string address 0x7f130147
@@ -6040,6 +6069,7 @@ int string hebrew 0x7f130406
 int string hello_blank_fragment 0x7f130407
 int string hide_bottom_view_on_scroll_behavior 0x7f130408
 int string high_carb 0x7f130409
+int string hint_new_food_name 0x7f130bd8
 int string hint_search_ex_name 0x7f13040a
 int string hint_search_name 0x7f13040b
 int string homepage_url 0x7f13040c
@@ -6134,9 +6164,11 @@ int string km 0x7f130464
 int string km_h 0x7f130465
 int string korean 0x7f130466
 int string label_add 0x7f130467
+int string label_add_ingredients 0x7f130bd9
 int string label_avg_hr 0x7f130468
 int string label_burnt 0x7f130469
 int string label_cal_burnt 0x7f13046a
+int string label_create_food 0x7f130bda
 int string label_distance 0x7f13046b
 int string label_duraion 0x7f13046c
 int string label_goal 0x7f13046d
@@ -6148,6 +6180,7 @@ int string label_quantity_1 0x7f130472
 int string label_recipe_ingredients 0x7f130473
 int string label_remaining 0x7f130474
 int string label_sub 0x7f130475
+int string label_weight_log 0x7f130bdb
 int string lack_of_sleep 0x7f130476
 int string lack_of_step 0x7f130477
 int string laneLength 0x7f130478
@@ -6483,6 +6516,9 @@ int string n_a 0x7f1305c1
 int string nav_app_bar_navigate_up_description 0x7f1305c2
 int string nav_app_bar_open_drawer_description 0x7f1305c3
 int string never 0x7f1305c4
+int string new_food_ingredients 0x7f130bdc
+int string new_food_name 0x7f130bdd
+int string new_food_nutrition_info 0x7f130bde
 int string no 0x7f1305c5
 int string noGpsMessage 0x7f1305c6
 int string noGpsTitle 0x7f1305c7
@@ -7518,6 +7554,7 @@ int string right_earbud 0x7f1309cc
 int string romanian 0x7f1309cd
 int string russian 0x7f1309ce
 int string save_configuration 0x7f1309cf
+int string save_food 0x7f130bdf
 int string save_recipe 0x7f1309d0
 int string scan_not_scanning 0x7f1309d1
 int string scan_scanning_all_devices 0x7f1309d2

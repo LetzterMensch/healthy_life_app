@@ -29,6 +29,7 @@ public class RecipeDetailActivity extends BaseActivity {
         mActivityRecipeDetailBinding.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Toast.makeText(RecipeDetailActivity.this,"Added to diary",Toast.LENGTH_SHORT).show();
             }
         });

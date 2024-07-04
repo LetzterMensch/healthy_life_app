@@ -19,7 +19,8 @@ public interface FoodDAO {
 
     @Insert
     void insertFood(Food food);
-
+    @Query("Select * from food where timestamp = :timestamp")
+    Food getFoodByTimestamp(long timestamp);
     @Query("SELECT * FROM food LIMIT 10")
     List<Food> getAllFood();
     @Query("SELECT * FROM food WHERE name LIKE :searchSeq")

@@ -508,7 +508,8 @@ drawable ic_bluetooth
 drawable ic_bluetooth_searching
 drawable ic_check_36
 drawable ic_clock
-drawable ic_close_36
+drawable ic_close_red_36
+drawable ic_close_white_40
 drawable ic_complete_diary
 drawable ic_dashboard_black_24dp
 drawable ic_delete_36
@@ -564,6 +565,7 @@ id action_bar_back_img
 id action_bar_title
 id activity_swipe_layout
 id add_btn
+id add_new_food_ingredients
 id add_wearable_btn
 id autoStartCountdownAbort
 id autoStartCountdownMsg
@@ -578,6 +580,7 @@ id btn_import
 id btn_import_recipe
 id btn_log_in
 id btn_lunch_add
+id btn_save_new_food
 id btn_save_recipe
 id btn_sign_up
 id btn_snack_add
@@ -608,6 +611,7 @@ id charts_fetch_activity_data
 id checkbox_agree
 id connect_device
 id content
+id create_food_toolbar
 id dashboard_cal_burnt
 id dashboard_carb
 id dashboard_fat
@@ -626,9 +630,19 @@ id dialog_ex_item_name
 id dialog_exercise_item_calo
 id dialog_exercise_item_min
 id dialog_sheet_close_btn
+id dialog_subfood_item_calo
+id dialog_subfood_item_carb
+id dialog_subfood_item_fat
+id dialog_subfood_item_name
+id dialog_subfood_item_protein
+id dialog_subfood_sheet_close_btn
+id dialog_subfood_tv_add
+id dialog_subfood_tv_count
+id dialog_subfood_tv_subtract
 id dialog_tv_add
 id dialog_tv_add_diary
 id dialog_tv_count
+id dialog_tv_subfood_add_to_list
 id dialog_tv_subtract
 id diary_carb
 id diary_fat
@@ -642,6 +656,7 @@ id discovery_hint
 id discovery_note
 id discovery_progressbar
 id discovery_start
+id edit_new_food_name
 id edit_number_of_servings
 id edit_search_name
 id edt_search_name
@@ -673,6 +688,7 @@ id icon_history
 id imageView3
 id img_add
 id img_back
+id img_close
 id img_food
 id img_next
 id img_save
@@ -687,6 +703,8 @@ id item_name
 id item_number
 id item_preview
 id item_status
+id label_add_ingredients
+id label_nutrition_info
 id layout_btn_sign_up
 id layout_image
 id layout_item
@@ -716,6 +734,8 @@ id navigation_profile
 id navigation_sleep
 id nestedScrollView
 id nestedScrollView2
+id new_food_name
+id new_food_nutrition_info
 id number_of_servings
 id profile_goal
 id profile_log_out
@@ -725,7 +745,9 @@ id rcv_breakfast_food
 id rcv_dinner_food
 id rcv_ex_history
 id rcv_exercise_list
+id rcv_food_list
 id rcv_food_search_tab
+id rcv_ingredients
 id rcv_lunch_food
 id rcv_recipe_search_tab
 id rcv_snack_food
@@ -769,6 +791,8 @@ id snack_card
 id spinner_item_icon
 id spinner_item_text
 id steps_bar_indicator
+id sub_food_layout_cardview
+id subfood_item_info
 id summaryCardView
 id switchWidget
 id sync_btn
@@ -785,6 +809,8 @@ id tv_calories
 id tv_email
 id tv_food_description
 id tv_food_name
+id tv_new_food_ingredients
+id tv_new_food_name
 id tv_recipe_ingredients
 id tv_title
 id viewPager2
@@ -802,6 +828,7 @@ id workout_header
 id workout_max_hr
 id workout_min_hr
 id workout_name
+layout activity_create_food
 layout activity_device_settings
 layout activity_discovery
 layout activity_food_detail
@@ -832,6 +859,7 @@ layout item_search_recipe_tab
 layout item_with_details
 layout layout_actionbar
 layout layout_bottom_sheet_add_exercise
+layout layout_bottom_sheet_add_subfood
 layout layout_calendar_toolbar
 layout layout_toolbar
 layout meal_spinner_dropdown_item
@@ -1146,6 +1174,7 @@ string activity_user_purpose
 string activity_web_view
 string add
 string add_exercise
+string add_subfood
 string add_test_device
 string add_widget
 string address
@@ -1803,6 +1832,7 @@ string heartrate_bpm_50
 string hebrew
 string hello_blank_fragment
 string high_carb
+string hint_new_food_name
 string hint_search_ex_name
 string hint_search_name
 string homepage_url
@@ -1895,9 +1925,11 @@ string km
 string km_h
 string korean
 string label_add
+string label_add_ingredients
 string label_avg_hr
 string label_burnt
 string label_cal_burnt
+string label_create_food
 string label_distance
 string label_duraion
 string label_goal
@@ -1909,6 +1941,7 @@ string label_quantity_1
 string label_recipe_ingredients
 string label_remaining
 string label_sub
+string label_weight_log
 string lack_of_sleep
 string lack_of_step
 string laneLength
@@ -2142,6 +2175,9 @@ string movement_intensity
 string msg_exit_app
 string n_a
 string never
+string new_food_ingredients
+string new_food_name
+string new_food_nutrition_info
 string no
 string noGpsMessage
 string noGpsTitle
@@ -3171,6 +3207,7 @@ string right_earbud
 string romanian
 string russian
 string save_configuration
+string save_food
 string save_recipe
 string scan_not_scanning
 string scan_scanning_all_devices

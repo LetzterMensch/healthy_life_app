@@ -88,7 +88,7 @@ public class SearchForExerciseActivity extends BaseActivity {
         TextView tvExerciseCaloriesBurnt = viewDialog.findViewById(R.id.dialog_exercise_item_calo);
         TextView tvExerciseDuration = viewDialog.findViewById(R.id.dialog_exercise_item_min);
         EditText tvCount = viewDialog.findViewById(R.id.dialog_tv_count);
-        TextView tvSubstractBtn = viewDialog.findViewById(R.id.dialog_tv_subtract);
+        TextView tvSubtractBtn = viewDialog.findViewById(R.id.dialog_tv_subtract);
         TextView tvAddBtn = viewDialog.findViewById(R.id.dialog_tv_add);
         TextView tvCloseBtn = viewDialog.findViewById(R.id.dialog_sheet_close_btn);
         TextView tvAddToDiaryBtn = viewDialog.findViewById(R.id.dialog_tv_add_diary);
@@ -110,7 +110,12 @@ public class SearchForExerciseActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                int newCount = Integer.parseInt(tvCount.getText().toString());
+                String text = s.toString();
+
+                int newCount = 0;
+                if(!text.isEmpty()){
+                    newCount = Integer.parseInt(tvCount.getText().toString());
+                }
                 newCaloBurnt.set(Math.round(exercise.getMet() * newCount / 60 * activityUser.getWeightKg()));
                 tvExerciseCaloriesBurnt.setText(getString(R.string.unit_calories_burnt, String.valueOf(newCaloBurnt.get())));
                 tvExerciseDuration.setText(getString(R.string._duration, newCount));
@@ -118,7 +123,7 @@ public class SearchForExerciseActivity extends BaseActivity {
                 tempWorkout.setCaloriesBurnt(newCaloBurnt.get());
             }
         });
-        tvSubstractBtn.setOnClickListener(new View.OnClickListener() {
+        tvSubtractBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int count = Integer.parseInt(tvCount.getText().toString());

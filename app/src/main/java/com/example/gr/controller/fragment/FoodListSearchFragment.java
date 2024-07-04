@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.gr.controller.activity.CreateFoodActivity;
 import com.example.gr.controller.activity.FoodDetailActivity;
 import com.example.gr.view.adapter.FoodSearchTabAdapter;
 import com.example.gr.utils.constant.Constant;
@@ -78,11 +79,17 @@ public class FoodListSearchFragment extends BaseFragment{
             mMeal = bundle.getInt("key_meal");
             mDiary = (Diary) bundle.getSerializable("key_diary");
         }
+        mFragmentFoodSearchBinding.btnCreateFood.setOnClickListener(v-> goToCreateFoodActivity());
 //        initListener();
 //        displayFoodItems();
         return mFragmentFoodSearchBinding.getRoot();
     }
-
+    private void goToCreateFoodActivity(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.KEY_INTENT_ADD_FOOD_OBJECT, mDiary);
+        bundle.putInt("key_meal",mMeal);
+        GlobalFunction.startActivity(getActivity(), CreateFoodActivity.class, bundle);
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

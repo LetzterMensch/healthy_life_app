@@ -4057,6 +4057,7 @@
     <string name="activity_web_view">Web View Activity</string>
     <string name="add">Thêm</string>
     <string name="add_exercise">Thêm bài tập</string>
+    <string name="add_subfood">Thêm thực phẩm</string>
     <string name="add_test_device">Add test device</string>
     <string name="add_widget">Add widget</string>
     <string name="address">Address</string>
@@ -4198,7 +4199,7 @@
     <string name="candidate_item_device_image">Device image</string>
     <string name="cannot_connect">Cannot connect: %1$s</string>
     <string name="cannot_connect_bt_address_invalid_">Cannot connect. Bluetooth address invalid?</string>
-    <string name="carbs">tinh bột</string>
+    <string name="carbs">Tinh bột</string>
     <string name="changelog_full_title">Changelog</string>
     <string name="changelog_ok_button">OK</string>
     <string name="changelog_show_full">More…</string>
@@ -4585,7 +4586,7 @@
     <string name="ex_title_steps">bước chân</string>
     <string name="ex_txt_goal_steps">mục tiêu : 10000 bước</string>
     <string name="extended_ascii">Extended ASCII</string>
-    <string name="fat">chất béo</string>
+    <string name="fat">Chất béo</string>
     <string name="fdroid_url" translatable="false">F-Droid: <a href="https://f-droid.org/packages/nodomain.freeyourgadget.gadgetbridge/">https://f-droid.org/packages/nodomain.freeyourgadget.gadgetbridge/</a></string>
     <string name="female">Female</string>
     <string name="femometer_measurement_mode_normal">Normal Mode (60s-90s)</string>
@@ -4733,6 +4734,7 @@
     <string name="hebrew">Hebrew</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="high_carb">Giàu tinh bột : 30/20/50</string>
+    <string name="hint_new_food_name">Tên món ăn mới …</string>
     <string name="hint_search_ex_name">Tên bài tập …</string>
     <string name="hint_search_name">Tên món ăn …</string>
     <string name="homepage_url" translatable="false">Homepage: <a href="https://gadgetbridge.org/">https://gadgetbridge.org/</a></string>
@@ -4825,9 +4827,11 @@
     <string name="km_h">km/h</string>
     <string name="korean">Korean</string>
     <string name="label_add">+</string>
+    <string name="label_add_ingredients">Thêm thực phẩm</string>
     <string name="label_avg_hr">Nhịp tim trung bình</string>
     <string name="label_burnt">tiêu hao</string>
     <string name="label_cal_burnt">Calories đã tiêu hao</string>
+    <string name="label_create_food">Tạo mới món ăn</string>
     <string name="label_distance">Khoảng cách đã đi</string>
     <string name="label_duraion">Thời gian tập luyện</string>
     <string name="label_goal">mục tiêu</string>
@@ -4839,6 +4843,7 @@
     <string name="label_recipe_ingredients">Nguyên liệu</string>
     <string name="label_remaining">cần nạp</string>
     <string name="label_sub">-</string>
+    <string name="label_weight_log">Lịch sử cân nặng</string>
     <string name="lack_of_sleep">Lack of sleep: %1$s</string>
     <string name="lack_of_step">Lack of steps: %1$d</string>
     <string name="laneLength">Lane Length</string>
@@ -5072,6 +5077,9 @@
     <string name="msg_exit_app">Bạn có muốn thoát ứng dụng?</string>
     <string name="n_a">N/A</string>
     <string name="never">Never</string>
+    <string name="new_food_ingredients">Thành phần thực phẩm trong món ăn</string>
+    <string name="new_food_name">Tên món ăn mới</string>
+    <string name="new_food_nutrition_info">Thành phần dinh dưỡng</string>
     <string name="no">No</string>
     <string name="noGpsMessage">Please enable GPS for tracking your workout.</string>
     <string name="noGpsTitle">GPS disabled</string>
@@ -5104,7 +5112,7 @@
     <string name="notification_gps_text">Sending GPS location to %1$d devices</string>
     <string name="notification_gps_title">Gadgetbridge GPS</string>
     <string name="num_min">%d min</string>
-    <string name="number_of_servings">Số servings</string>
+    <string name="number_of_servings">Số khẩu phần</string>
     <string name="off">Off</string>
     <string name="offline_voice_respond_screen_on">Respond when screen on</string>
     <string name="offline_voice_respond_turn_wrist">Respond when turning the wrist</string>
@@ -6033,7 +6041,7 @@
     <string name="profile_device_sync">Đồng bộ</string>
     <string name="project_id" translatable="false">grproject-cf2fa</string>
     <string name="prompt_restart_gadgetbridge">Please restart GB in order to take effect.</string>
-    <string name="protein">chất đạm</string>
+    <string name="protein">Chất đạm</string>
     <string name="protocol_version">Protocol Version</string>
     <string name="purple">Purple</string>
     <string name="qhybrid_buttons_overwrite_error">Error overwriting buttons</string>
@@ -6101,6 +6109,7 @@
     <string name="romanian">Romanian</string>
     <string name="russian">Russian</string>
     <string name="save_configuration">Save Configuration</string>
+    <string name="save_food">Tạo món ăn mới</string>
     <string name="save_recipe">Lưu công thức</string>
     <string name="scan_not_scanning">Not scanning</string>
     <string name="scan_scanning_all_devices">Scanning all devices</string>
@@ -6128,7 +6137,7 @@
     <string name="select_all">Select all</string>
     <string name="sensitive">Sensitive</string>
     <string name="serial_number">Serial Number</string>
-    <string name="serving_size">Đơn vị servings</string>
+    <string name="serving_size">Đơn vị khẩu phần</string>
     <string name="set">Set</string>
     <string name="share">Share</string>
     <string name="share_log">Share log</string>
@@ -6352,7 +6361,7 @@
     <string name="title_activity_watch9_calibration">Watch 9 calibration</string>
     <string name="title_activity_watch9_pairing">Watch 9 pairing</string>
     <string name="title_activity_world_clock_details">World Clock details</string>
-    <string name="title_calories">Calories</string>
+    <string name="title_calories">Tổng calories</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_diary">Nhật ký dinh dưỡng</string>
     <string name="title_exercise">Tập luyện</string>

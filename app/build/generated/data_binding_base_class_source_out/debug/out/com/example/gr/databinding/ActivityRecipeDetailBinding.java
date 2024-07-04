@@ -48,6 +48,9 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
   public final ImageView imgBack;
 
   @NonNull
+  public final ConstraintLayout nestedScrollView;
+
+  @NonNull
   public final LinearProgressIndicator proteinIndicator;
 
   @NonNull
@@ -72,7 +75,8 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
       @NonNull Button btnSaveRecipe, @NonNull LinearProgressIndicator carbIndicator,
       @NonNull LinearProgressIndicator fatIndicator, @NonNull TextView foodCarb,
       @NonNull TextView foodFat, @NonNull TextView foodProtein, @NonNull ImageView imgAdd,
-      @NonNull ImageView imgBack, @NonNull LinearProgressIndicator proteinIndicator,
+      @NonNull ImageView imgBack, @NonNull ConstraintLayout nestedScrollView,
+      @NonNull LinearProgressIndicator proteinIndicator,
       @NonNull RelativeLayout recipeDetailToolbar, @NonNull ImageView recipeImg,
       @NonNull TextView tvCalories, @NonNull TextView tvFoodDescription,
       @NonNull TextView tvFoodName, @NonNull TextView tvRecipeIngredients) {
@@ -85,6 +89,7 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
     this.foodProtein = foodProtein;
     this.imgAdd = imgAdd;
     this.imgBack = imgBack;
+    this.nestedScrollView = nestedScrollView;
     this.proteinIndicator = proteinIndicator;
     this.recipeDetailToolbar = recipeDetailToolbar;
     this.recipeImg = recipeImg;
@@ -169,6 +174,8 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      ConstraintLayout nestedScrollView = (ConstraintLayout) rootView;
+
       id = R.id.protein_indicator;
       LinearProgressIndicator proteinIndicator = ViewBindings.findChildViewById(rootView, id);
       if (proteinIndicator == null) {
@@ -213,8 +220,8 @@ public final class ActivityRecipeDetailBinding implements ViewBinding {
 
       return new ActivityRecipeDetailBinding((ConstraintLayout) rootView, btnSaveRecipe,
           carbIndicator, fatIndicator, foodCarb, foodFat, foodProtein, imgAdd, imgBack,
-          proteinIndicator, recipeDetailToolbar, recipeImg, tvCalories, tvFoodDescription,
-          tvFoodName, tvRecipeIngredients);
+          nestedScrollView, proteinIndicator, recipeDetailToolbar, recipeImg, tvCalories,
+          tvFoodDescription, tvFoodName, tvRecipeIngredients);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -53,7 +53,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/dialog_sheet_close_btn"
-                                android:background="@drawable/ic_close_36"
+                                android:background="@drawable/ic_close_red_36"
                                 android:layout_marginBottom="8dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"

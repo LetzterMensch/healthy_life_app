@@ -209,10 +209,10 @@ public class ExerciseFragment extends BaseFragment {
         mFragmentExerciseBinding.rcvExHistory.setLayoutManager(layoutManager);
         mFragmentExerciseBinding.rcvExHistory.setAdapter(mHistoryAdapter);
         currentItemCount = mHistoryAdapter.getItemCount();
-        if (currentItemCount < 3) {
-            recyclerView.getLayoutParams().height = 300;
-        }else{
+        if (currentItemCount < 5) {
             recyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        }else{
+            recyclerView.getLayoutParams().height = 300;
         }
     }
     private void deleteWorkout(Workout workout) {

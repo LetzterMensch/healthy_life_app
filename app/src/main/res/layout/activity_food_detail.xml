@@ -114,7 +114,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center|right"
                 android:paddingRight="10dp"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:text="1.5"
                 android:textColor="@color/black"
                 android:textSize="18sp"

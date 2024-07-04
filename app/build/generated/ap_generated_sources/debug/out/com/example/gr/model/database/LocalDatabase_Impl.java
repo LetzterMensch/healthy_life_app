@@ -58,7 +58,7 @@ public final class LocalDatabase_Impl extends LocalDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `food` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `numberOfServings` REAL NOT NULL, `servingSize` REAL NOT NULL, `calories` INTEGER NOT NULL, `carb` REAL NOT NULL, `protein` REAL NOT NULL, `fat` REAL NOT NULL, `isCustomized` INTEGER NOT NULL, `subFoodIds` TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `food` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `numberOfServings` REAL NOT NULL, `servingSize` REAL NOT NULL, `calories` INTEGER NOT NULL, `carb` REAL NOT NULL, `protein` REAL NOT NULL, `fat` REAL NOT NULL, `isCustomized` INTEGER NOT NULL, `subFoodIds` TEXT, `timestamp` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `diary` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `caloriesGoal` INTEGER NOT NULL, `burntCalories` INTEGER NOT NULL, `userId` INTEGER NOT NULL, `remainingCalories` INTEGER NOT NULL, `date` TEXT, `intakeProtein` INTEGER NOT NULL, `intakeCarb` INTEGER NOT NULL, `intakeFat` INTEGER NOT NULL, `intakeCalories` INTEGER NOT NULL, `totalSteps` INTEGER NOT NULL, `carbGoal` INTEGER NOT NULL, `proteinGoal` INTEGER NOT NULL, `fatGoal` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `workout` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `diaryID` INTEGER NOT NULL, `exerciseId` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `caloriesBurnt` INTEGER NOT NULL, `createdAt` TEXT, `timestamp` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `foodlog` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `totalCarb` REAL NOT NULL, `totalProtein` REAL NOT NULL, `totalFat` REAL NOT NULL, `totalCalories` INTEGER NOT NULL, `meal` INTEGER NOT NULL, `numberOfServings` REAL NOT NULL, `foodId` INTEGER NOT NULL, `diaryId` INTEGER NOT NULL)");
@@ -66,7 +66,7 @@ public final class LocalDatabase_Impl extends LocalDatabase {
         db.execSQL("CREATE TABLE IF NOT EXISTS `exercise` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `met` REAL NOT NULL, `category` TEXT, `defaultDuration` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `recordedworkout` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `baseActivitySummaryId` INTEGER NOT NULL, `createdAt` TEXT, `activityKind` INTEGER NOT NULL, `endTime` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `avgHeartRate` INTEGER NOT NULL, `minHeartRate` INTEGER NOT NULL, `maxHeartRate` INTEGER NOT NULL, `caloriesBurnt` INTEGER NOT NULL, `distance` REAL NOT NULL, `timeStamp` INTEGER NOT NULL, `diaryID` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3e68bade6ce6b6609fb1410ff23afb1d')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6aa709645824dbc3e8f6c4fb597fd683')");
       }
 
       @Override
@@ -121,7 +121,7 @@ public final class LocalDatabase_Impl extends LocalDatabase {
       @NonNull
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
-        final HashMap<String, TableInfo.Column> _columnsFood = new HashMap<String, TableInfo.Column>(10);
+        final HashMap<String, TableInfo.Column> _columnsFood = new HashMap<String, TableInfo.Column>(11);
         _columnsFood.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsFood.put("name", new TableInfo.Column("name", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsFood.put("numberOfServings", new TableInfo.Column("numberOfServings", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -132,6 +132,7 @@ public final class LocalDatabase_Impl extends LocalDatabase {
         _columnsFood.put("fat", new TableInfo.Column("fat", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsFood.put("isCustomized", new TableInfo.Column("isCustomized", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsFood.put("subFoodIds", new TableInfo.Column("subFoodIds", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFood.put("timestamp", new TableInfo.Column("timestamp", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysFood = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesFood = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoFood = new TableInfo("food", _columnsFood, _foreignKeysFood, _indicesFood);
@@ -263,7 +264,7 @@ public final class LocalDatabase_Impl extends LocalDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "3e68bade6ce6b6609fb1410ff23afb1d", "d9a15309c37b41537527eb13ca34753f");
+    }, "6aa709645824dbc3e8f6c4fb597fd683", "58698384bd733766069611ae4872c3dc");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

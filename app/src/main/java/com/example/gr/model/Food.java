@@ -6,6 +6,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 @Entity(tableName = "food")
@@ -21,9 +22,13 @@ public class Food implements Serializable {
     private float protein;
     private float fat;
     private boolean isCustomized;
+    @Nullable
     private String subFoodIds;
+    private long timestamp;
     @Ignore
     private List<Food> subFoodList;
+    // recipe -> food
+    @Ignore
     public Food(String name,int calories ,float protein, float fat, float carb){
         this.name = name;
         this.calories = calories;
@@ -31,30 +36,33 @@ public class Food implements Serializable {
         this.fat = fat;
         this.carb = carb;
         this.numberOfServings = 1.0f;
-        this.servingSize = 100f;
+        this.servingSize = 1.0f;
+        this.timestamp = Calendar.getInstance().getTimeInMillis();
+    }
+    // super-food -> food
+    public Food(String name,int calories ,float protein, float fat, float carb, String subFoodIds){
+        this.name = name;
+        this.calories = calories;
+        this.protein = protein;
+        this.fat = fat;
+        this.carb = carb;
+        this.numberOfServings = 1.0f;
+        this.servingSize = 1.0f;
+        this.timestamp = Calendar.getInstance().getTimeInMillis();
+        this.subFoodIds = subFoodIds;
     }
     @Ignore
     public Food(){
         this.numberOfServings = 1.0f;
         this.servingSize = 100f;
     }
-    @Ignore
-    public Food(String name, float numberOfServings, int calories){
-        this.name = name;
-        this.calories = calories;
-        this.numberOfServings = numberOfServings;
-        this.servingSize = 100f;
+
+    public long getTimestamp() {
+        return timestamp;
     }
-    @Ignore
-    public Food(int id, String name, float numberOfServings, float servingSize, int calories, float carb, float protein, float fat) {
-        this.id = id;
-        this.name = name;
-        this.numberOfServings = numberOfServings;
-        this.servingSize = servingSize;
-        this.calories = calories;
-        this.carb = carb;
-        this.protein = protein;
-        this.fat = fat;
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public boolean isCustomized() {

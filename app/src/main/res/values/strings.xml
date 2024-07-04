@@ -14,6 +14,7 @@
     <string name="browse_web">Nạp từ trang web</string>
     <string name="save_recipe">Lưu công thức</string>
     <string name="import_recipe">Nạp công thức</string>
+    <string name="save_food">Tạo món ăn mới</string>
     <string name="action_cancel">Hủy bỏ</string>
     <string name="complete_diary">Hoàn thành nhật ký</string>
     <string name="action_start">Bắt đầu</string>
@@ -25,7 +26,7 @@
     <string name="label_burnt">tiêu hao</string>
     <string name="label_remaining">cần nạp</string>
     <string name="label_goal">mục tiêu</string>
-    <string name="title_calories">Calories</string>
+    <string name="title_calories">Tổng calories</string>
     <string name="formula_cal">cần nạp = mục tiêu - đã nạp + tiêu hao</string>
     // workout
     <string name="label_duraion">Thời gian tập luyện</string>
@@ -61,15 +62,21 @@
     <string name="label_add">+</string>
     <string name="label_quantity_1">1</string>
     <string name="add_exercise">Thêm bài tập</string>
+    <string name="add_subfood">Thêm thực phẩm</string>
     <string name="unit_calories_burnt">%s KCal</string>
     <string name="_duration"> - %d phút</string>
+    <string name="label_create_food">Tạo mới món ăn</string>
     // nutrients
-    <string name="carbs">tinh bột</string>
-    <string name="protein">chất đạm</string>
-    <string name="fat">chất béo</string>
+    <string name="carbs">Tinh bột</string>
+    <string name="protein">Chất đạm</string>
+    <string name="fat">Chất béo</string>
     // food
-    <string name="number_of_servings">Số servings</string>
-    <string name="serving_size">Đơn vị servings</string>
+    <string name="number_of_servings">Số khẩu phần</string>
+    <string name="serving_size">Đơn vị khẩu phần</string>
+    <string name="new_food_ingredients">Thành phần thực phẩm trong món ăn</string>
+    <string name="new_food_name">Tên món ăn mới</string>
+    <string name="new_food_nutrition_info">Thành phần dinh dưỡng</string>
+    <string name="label_add_ingredients">Thêm thực phẩm</string>
     // diary
     <string name="calories_remain">calories cần nạp</string>
     <string name="breakfast">Bữa sáng</string>
@@ -79,6 +86,7 @@
     // dialog
     <string name="waiting_message">Vui lòng đợi…</string>
     <string name="hint_search_name">Tên món ăn …</string>
+    <string name="hint_new_food_name">Tên món ăn mới …</string>
     <string name="hint_search_ex_name">Tên bài tập …</string>
     // msg
     <string name="no_device_found">Không có thiết bị</string>
