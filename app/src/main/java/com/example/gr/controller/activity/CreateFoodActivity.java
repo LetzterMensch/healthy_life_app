@@ -79,7 +79,7 @@ public class CreateFoodActivity extends BaseActivity {
             newFood = LocalDatabase.getInstance(this).foodDAO().getFoodByTimestamp(newFood.getTimestamp());
             mDiary.logFood(new FoodLog(newFood, mMeal, newFood.getNumberOfServings(), mDiary.getId()));
             Toast.makeText(this, "Đã tạo món ăn và lưu vào nhật ký", Toast.LENGTH_SHORT).show();
-            getOnBackPressedDispatcher().onBackPressed();
+            finish();
         }
     }
 

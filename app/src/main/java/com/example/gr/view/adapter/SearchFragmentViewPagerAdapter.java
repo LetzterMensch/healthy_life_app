@@ -25,7 +25,7 @@ public class SearchFragmentViewPagerAdapter extends FragmentStateAdapter {
             case 0:
                 return FoodListSearchFragment.newInstance(meal,diary);
             case 1:
-                return new RecipeListSearchFragment();
+                return RecipeListSearchFragment.newInstance(meal, diary);
             default:
                 return FoodListSearchFragment.newInstance(meal,diary);
         }

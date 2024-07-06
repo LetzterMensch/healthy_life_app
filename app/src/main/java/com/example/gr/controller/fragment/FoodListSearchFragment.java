@@ -1,5 +1,8 @@
 package com.example.gr.controller.fragment;
 
+import static com.example.gr.controller.activity.SearchForFoodActivity.UPDATE_MEAL_DATA;
+import static com.example.gr.controller.activity.SearchForFoodActivity.UPDATE_SEARCH_DATA;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -35,9 +38,9 @@ public class FoodListSearchFragment extends BaseFragment{
     private List<Food> mfoodList;
     private int mMeal;
     private Diary mDiary;
-    public static final String UPDATE_SEARCH_DATA = "update_search_data";
-    public static final String UPDATE_MEAL_DATA = "update_meal_data";
 
+
+    // Init for quick add
     public static FoodListSearchFragment newInstance(int meal, Diary diary){
         FoodListSearchFragment foodListSearchFragment = new FoodListSearchFragment();
         Bundle args = new Bundle();
@@ -67,7 +70,6 @@ public class FoodListSearchFragment extends BaseFragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mFragmentFoodSearchBinding = FragmentFoodSearchBinding.inflate(inflater, container, false);
-//        mDiary = LocalDatabase.getInstance(getActivity()).diaryDAO().getDiaryByDate(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
         // Initialize and register the BroadcastReceiver
         IntentFilter filter = new IntentFilter(UPDATE_SEARCH_DATA);
         filter.addAction(UPDATE_MEAL_DATA);
@@ -101,11 +103,19 @@ public class FoodListSearchFragment extends BaseFragment{
         displayFoodItems();
         super.onResume();
     }
+    private void checkFoodData(){
+        for (Food mFood : mfoodList) {
+            if(((mFood.getCarb() + mFood.getProtein())*4 + mFood.getFat()*9 > (mFood.getCalories() + 15))){
+                System.out.println(mFood.getName()+"##");
+            }
+        }
+    }
     private void getListFoodFromLocalDatabase(String searchkey){
         if(searchkey == null){
             mfoodList=LocalDatabase.getInstance(getActivity()).foodDAO().getAllFood();
         }else if (searchkey.isEmpty()){
             mfoodList=LocalDatabase.getInstance(getActivity()).foodDAO().getAllFood();
+//            checkFoodData();
         }else{
             mfoodList = LocalDatabase.getInstance(getActivity()).foodDAO().findFoodByName("%"+searchkey+"%");
         }

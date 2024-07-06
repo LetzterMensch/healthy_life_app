@@ -29,9 +29,23 @@ public class FoodLog implements Serializable {
         this.meal = meal;
         this.numberOfServings = numberOfServings;
         this.totalCalories =  Math.round(food.getCalories()*numberOfServings);
-        this.totalFat = food.getFat()*numberOfServings*9;
-        this.totalCarb = food.getCarb()*numberOfServings*4;
-        this.totalProtein = food.getProtein()*numberOfServings*4;
+        if(food.getCarb() + food.getProtein() + food.getFat() < (food.getCalories() - 10)){
+            double calDiff = (food.getFat() * 9 + (food.getCarb() + food.getProtein())*4) - food.getCalories() ;
+            float correctionVal = (float) (calDiff/3);
+            if(correctionVal > 0){
+                this.totalFat = Math.round((food.getFat()*9 - correctionVal)*numberOfServings);
+                this.totalCarb =  Math.round((food.getCarb()*4 - correctionVal)*numberOfServings);
+                this.totalProtein =  Math.round((food.getProtein()*4 - correctionVal)*numberOfServings);
+            }else{
+                this.totalFat = food.getFat()*numberOfServings*9;
+                this.totalCarb = food.getCarb()*numberOfServings*4;
+                this.totalProtein = food.getProtein()*numberOfServings*4;
+            }
+        }else{
+            this.totalFat = food.getFat()*numberOfServings;
+            this.totalCarb = food.getCarb()*numberOfServings;
+            this.totalProtein = food.getProtein()*numberOfServings;
+        }
     }
     public void updateFoodLog(float numberOfServings){
         this.numberOfServings = numberOfServings;

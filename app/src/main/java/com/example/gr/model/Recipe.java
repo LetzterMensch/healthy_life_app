@@ -5,8 +5,11 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.gr.ControllerApplication;
+import com.example.gr.model.database.LocalDatabase;
+
 import java.io.Serializable;
-import java.util.List;
+import java.util.Calendar;
 
 @Entity(tableName = "recipe")
 public class Recipe implements Serializable {
@@ -24,24 +27,36 @@ public class Recipe implements Serializable {
     private int calories;
     private String ingredients;
     private String url;
+    private long timestamp;
+    public Recipe(){
+
+    }
+    @Ignore
     public Recipe(String name, String image, String description, float carbs, float protein, float fat, int calories, String ingredients, String url) {
-        food = new Food(name,calories,protein,fat,carbs);
+        this.timestamp = Calendar.getInstance().getTimeInMillis();
+        this.food = new Food(name,calories,protein,fat,carbs,this.timestamp);
         this.name = name;
         this.carbs = carbs;
         this.protein = protein;
         this.fat = fat;
         this.calories = calories;
-        this.foodID = food.getId();
         this.image = image;
         this.description = description;
         this.ingredients = ingredients;
         this.url = url;
     }
+    public void saveRecipe(){
+        LocalDatabase.getInstance(ControllerApplication.getContext()).recipeDAO().insertRecipe(this);
+    }
+    public int updateRecipe(){
+        return LocalDatabase.getInstance(ControllerApplication.getContext()).recipeDAO().updateRecipe(this);
+    }
+    public long getTimestamp() {
+        return timestamp;
+    }
 
-    @Ignore
-    public Recipe(String name, String description){
-        this.name = name;
-        this.description = description;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getId() {

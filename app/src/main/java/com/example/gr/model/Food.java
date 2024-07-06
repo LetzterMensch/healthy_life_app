@@ -29,7 +29,7 @@ public class Food implements Serializable {
     private List<Food> subFoodList;
     // recipe -> food
     @Ignore
-    public Food(String name,int calories ,float protein, float fat, float carb){
+    public Food(String name,int calories ,float protein, float fat, float carb, long timestamp){
         this.name = name;
         this.calories = calories;
         this.protein = protein;
@@ -37,7 +37,8 @@ public class Food implements Serializable {
         this.carb = carb;
         this.numberOfServings = 1.0f;
         this.servingSize = 1.0f;
-        this.timestamp = Calendar.getInstance().getTimeInMillis();
+        this.timestamp = timestamp;
+        this.isCustomized = true;
     }
     // super-food -> food
     public Food(String name,int calories ,float protein, float fat, float carb, String subFoodIds){
@@ -50,6 +51,7 @@ public class Food implements Serializable {
         this.servingSize = 1.0f;
         this.timestamp = Calendar.getInstance().getTimeInMillis();
         this.subFoodIds = subFoodIds;
+        this.isCustomized = true;
     }
     @Ignore
     public Food(){

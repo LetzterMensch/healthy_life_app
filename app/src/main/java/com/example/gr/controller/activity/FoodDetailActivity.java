@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.gr.R;
 import com.example.gr.utils.constant.Constant;
 import com.example.gr.model.database.LocalDatabase;
 import com.example.gr.databinding.ActivityFoodDetailBinding;
 import com.example.gr.model.Diary;
 import com.example.gr.model.Food;
 import com.example.gr.model.FoodLog;
+
+import java.text.DecimalFormat;
 
 public class FoodDetailActivity extends BaseActivity {
     private ActivityFoodDetailBinding mActivityFoodDetailBinding;
@@ -18,6 +21,8 @@ public class FoodDetailActivity extends BaseActivity {
     private Diary mDiary;
     private int meal;
     private float numberOfServings;
+    private DecimalFormat df = new DecimalFormat("#.##");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +50,14 @@ public class FoodDetailActivity extends BaseActivity {
             saveFoodLog();
         });
     }
-    private void saveFoodLog(){
+    private void saveFoodLog(){ // for editing food log
         mDiary.updateDiaryAfterRemove(mFoodLog);
         numberOfServings = Float.parseFloat(String.valueOf(mActivityFoodDetailBinding.editNumberOfServings.getText()));
         mFoodLog.updateFoodLog(numberOfServings);
         mDiary.updateFoodLog(mFoodLog);
         finish();
     }
-    private void addFoodLog() {
+    private void addFoodLog() { // for add food to diary
         numberOfServings = Float.parseFloat(String.valueOf(mActivityFoodDetailBinding.editNumberOfServings.getText()));
         mFoodLog.updateFoodLog(numberOfServings);
         mDiary.logFood(mFoodLog);
@@ -72,7 +77,7 @@ public class FoodDetailActivity extends BaseActivity {
                 mFood = (Food) bundle.get(Constant.KEY_INTENT_ADD_FOOD_LOG_OBJECT);
                 mDiary = (Diary) bundle.getSerializable("key_diary");
                 meal = bundle.getInt("key_meal");
-                numberOfServings = Float.parseFloat(String.valueOf(mActivityFoodDetailBinding.editNumberOfServings.getText()));
+                numberOfServings = mFood.getNumberOfServings();
                 mFoodLog = new FoodLog(mFood, meal, numberOfServings,mDiary.getId());
                 mActivityFoodDetailBinding.numberOfServings.setVisibility(View.GONE);
                 mActivityFoodDetailBinding.editNumberOfServings.setVisibility(View.VISIBLE);
@@ -100,9 +105,9 @@ public class FoodDetailActivity extends BaseActivity {
         }
         mActivityFoodDetailBinding.foodName.setText(mFood.getName());
         mActivityFoodDetailBinding.servingSize.setText(String.valueOf(mFood.getServingSize()));
-        mActivityFoodDetailBinding.calories.setText(String.valueOf(mFood.getCalories()));
-        mActivityFoodDetailBinding.foodCarb.setText(String.valueOf(mFood.getCarb()*4));
-        mActivityFoodDetailBinding.foodProtein.setText(String.valueOf(mFood.getProtein()*4));
-        mActivityFoodDetailBinding.foodFat.setText(String.valueOf(mFood.getFat()*9));
+        mActivityFoodDetailBinding.calories.setText(getString(R.string.unit_calories_burnt, df.format(mFoodLog.getTotalCalories())));
+        mActivityFoodDetailBinding.foodCarb.setText(getString(R.string.unit_calories_burnt, df.format(mFoodLog.getTotalCarb())));
+        mActivityFoodDetailBinding.foodFat.setText(getString(R.string.unit_calories_burnt, df.format(mFoodLog.getTotalFat())));
+        mActivityFoodDetailBinding.foodProtein.setText(getString(R.string.unit_calories_burnt, df.format(mFoodLog.getTotalProtein())));
     }
 }

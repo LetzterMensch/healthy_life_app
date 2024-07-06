@@ -164,12 +164,13 @@ public final class FoodDAO_Impl implements FoodDAO {
   }
 
   @Override
-  public void insertFood(final Food food) {
+  public long insertFood(final Food food) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
     try {
-      __insertionAdapterOfFood_1.insert(food);
+      final long _result = __insertionAdapterOfFood_1.insertAndReturnId(food);
       __db.setTransactionSuccessful();
+      return _result;
     } finally {
       __db.endTransaction();
     }

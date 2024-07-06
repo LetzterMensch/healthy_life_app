@@ -18,7 +18,7 @@ public interface FoodDAO {
     void insertAll(List<Food> foodList);
 
     @Insert
-    void insertFood(Food food);
+    long insertFood(Food food);
     @Query("Select * from food where timestamp = :timestamp")
     Food getFoodByTimestamp(long timestamp);
     @Query("SELECT * FROM food LIMIT 10")

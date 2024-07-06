@@ -28,7 +28,8 @@ public class SearchForFoodActivity extends BaseActivity {
     private int meal;
     private Diary mDiary;
     private SearchFragmentViewPagerAdapter searchFragmentViewPagerAdapter;
-
+    public static final String UPDATE_SEARCH_DATA = "update_search_data";
+    public static final String UPDATE_MEAL_DATA = "update_meal_data";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +48,12 @@ public class SearchForFoodActivity extends BaseActivity {
     }
 
     private void sendDataToFragment(String searchKey) {
-        Intent intent = new Intent(FoodListSearchFragment.UPDATE_SEARCH_DATA);
+        Intent intent = new Intent(UPDATE_SEARCH_DATA);
         intent.putExtra("key", searchKey);
         sendBroadcast(intent);
     }
     private void sendMealDataToFragment(int meal){
-        Intent intent = new Intent(FoodListSearchFragment.UPDATE_MEAL_DATA);
+        Intent intent = new Intent(UPDATE_MEAL_DATA);
         intent.putExtra("key_meal",meal);
         sendBroadcast(intent);
         System.out.println("sent meal intent");
