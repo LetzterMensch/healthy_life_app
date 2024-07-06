@@ -30,7 +30,8 @@
                 android:gravity="left"
                 android:text="French fries test"
                 android:textSize="18sp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/food_item_calo"

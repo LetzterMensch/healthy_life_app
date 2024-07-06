@@ -65,7 +65,7 @@ public abstract class AbstractActivityChartFragment<D extends ChartsData> extend
         return coordinator != null && coordinator.supportsRemSleep();
     }
 
-    protected static final class ActivityConfig {
+    public static final class ActivityConfig {
         public final int type;
         public final String label;
         public final Integer color;

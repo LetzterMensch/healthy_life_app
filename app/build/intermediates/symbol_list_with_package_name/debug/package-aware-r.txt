@@ -3992,6 +3992,7 @@ id action_mode_bar_stub
 id action_mode_close_button
 id action_text
 id actions
+id activity_chart
 id activity_chooser_view_content
 id activity_swipe_layout
 id add
@@ -4088,7 +4089,6 @@ id chain
 id chain2
 id chains
 id chartCardView
-id chartsFragmentHolder
 id charts_fetch_activity_data
 id checkbox
 id checkbox_agree

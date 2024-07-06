@@ -304,6 +304,10 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\drawable\\ic_notification_disconnected.xml"
     },
     {
+        "merged": "com.example.gr.app-merged_res-65:/layout_item_food.xml.flat",
+        "source": "com.example.gr.app-main-67:/layout/item_food.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-65:\\layout_activity_discovery.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_discovery.xml"
     },
@@ -462,10 +466,6 @@
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-65:\\drawable_bg_white_shape_top_border_red_corner_30.xml.flat",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\drawable\\bg_white_shape_top_border_red_corner_30.xml"
-    },
-    {
-        "merged": "com.example.gr.app-merged_res-65:/layout_fragment_sleep.xml.flat",
-        "source": "com.example.gr.app-main-67:/layout/fragment_sleep.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-merged_res-65:\\drawable_ic_disconnect_30.xml.flat",

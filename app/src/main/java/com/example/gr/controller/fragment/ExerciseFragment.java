@@ -390,9 +390,9 @@ public class ExerciseFragment extends BaseFragment {
         //debug -> get data from 26/6
 //        today.set(Calendar.DATE, -1);
 //        if (today.getTime().getDate() != 26) {
-//            today.set(Calendar.DAY_OF_MONTH,26);
 //            today.set(Calendar.MONTH,5);
 //        }
+//        today.set(Calendar.DAY_OF_MONTH,6);
         long timestamp = today.getTimeInMillis();
         SharedPreferences sharedPreferences = ControllerApplication.getDeviceSpecificSharedPrefs(device.getAddress());
         SharedPreferences.Editor editor = ControllerApplication.getDeviceSpecificSharedPrefs(device.getAddress()).edit();
@@ -400,15 +400,15 @@ public class ExerciseFragment extends BaseFragment {
         System.out.println("Last timestamp : " + lastTimeStamp);
         System.out.println("reset time stamp : " + timestamp);
         // it should be like this
-//        if (lastTimeStamp <= timestamp || today.getTimeInMillis() == 0) {
-//            editor.remove("lastSportsActivityTimeMillis");
-//            editor.putLong("lastSportsActivityTimeMillis", timestamp);
-//            editor.apply();
-//        }
+        if (lastTimeStamp <= timestamp || today.getTimeInMillis() == 0) {
+            editor.remove("lastSportsActivityTimeMillis");
+            editor.putLong("lastSportsActivityTimeMillis", timestamp);
+            editor.apply();
+        }
         //For debug purpose only
-        editor.remove("lastSportsActivityTimeMillis");
-        editor.putLong("lastSportsActivityTimeMillis", timestamp);
-        editor.apply();
+//        editor.remove("lastSportsActivityTimeMillis");
+//        editor.putLong("lastSportsActivityTimeMillis", timestamp);
+//        editor.apply();
     }
 
     private void fetchWorkoutSummaryData() {

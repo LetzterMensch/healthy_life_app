@@ -562,6 +562,7 @@ id Height
 id Width
 id action_bar_back_img
 id action_bar_title
+id activity_chart
 id activity_swipe_layout
 id add_btn
 id add_new_food_ingredients
@@ -605,7 +606,6 @@ id carb_indicator
 id card_burnt_container
 id card_container
 id chartCardView
-id chartsFragmentHolder
 id charts_fetch_activity_data
 id checkbox_agree
 id connect_device

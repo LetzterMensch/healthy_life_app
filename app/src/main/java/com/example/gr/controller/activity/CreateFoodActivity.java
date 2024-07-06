@@ -226,13 +226,16 @@ public class CreateFoodActivity extends BaseActivity {
         final float[] carbCalo = new float[1];
         final float[] proteinCalo = new float[1];
         final float[] fatCalo = new float[1];
-        float[] originalCount = new float[1];
         if (food.getServingSize() == 100f) {
-            // handle the food from database which is mearsured by gram not Kcal for the first time
+            // handle the food from database which is measured by gram not Kcal for the first time
             if (food.getCarb() + food.getProtein() + food.getFat() < (food.getCalories() - 10)) {
-                carbCalo[0] = food.getCarb() * 4;
-                proteinCalo[0] = food.getProtein() * 4;
-                fatCalo[0] = food.getFat() * 9;
+                double calDiff = (food.getFat() * 9 + (food.getCarb() + food.getProtein()) * 4) - food.getCalories();
+                float correctionVal = (float) (calDiff / 3);
+                if (correctionVal > 0) {
+                    fatCalo[0] = Math.round((food.getFat() * 9 - correctionVal));
+                    carbCalo[0] = Math.round((food.getCarb() * 4 - correctionVal));
+                    proteinCalo[0] = Math.round((food.getProtein() * 4 - correctionVal));
+                }
             } else {
                 carbCalo[0] = food.getCarb();
                 proteinCalo[0] = food.getProtein();
@@ -258,23 +261,18 @@ public class CreateFoodActivity extends BaseActivity {
 
 
         EditText tvCount = viewDialog.findViewById(R.id.dialog_subfood_tv_count);
-        originalCount[0] = food.getNumberOfServings();
 
         tvSubFoodName.setText(food.getName());
-        tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt, String.valueOf(newCaloCount[0].get() / originalCount[0])));
-        tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0] / originalCount[0])));
-        tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0] / originalCount[0])));
-        tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0] / originalCount[0])));
+        tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt, df.format(newCaloCount[0].get())));
+        tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0])));
+        tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0])));
+        tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0])));
         tvCount.setText(df.format(food.getNumberOfServings()));
 
         tvCount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // Do nothing
-                originalCount[0] = Float.parseFloat(tvCount.getText().toString().replace(',', '.'));
-                if(originalCount[0] == 0){
-                    originalCount[0] = 1;
-                }
             }
 
             @Override
@@ -284,20 +282,42 @@ public class CreateFoodActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (food.getServingSize() == 100f) {
+                    // handle the food from database which is measured by gram not Kcal for the first time
+                    if (food.getCarb() + food.getProtein() + food.getFat() < (food.getCalories() - 10)) {
+                        double calDiff = (food.getFat() * 9 + (food.getCarb() + food.getProtein()) * 4) - food.getCalories();
+                        float correctionVal = (float) (calDiff / 3);
+                        if (correctionVal > 0) {
+                            fatCalo[0] = Math.round((food.getFat() * 9 - correctionVal));
+                            carbCalo[0] = Math.round((food.getCarb() * 4 - correctionVal));
+                            proteinCalo[0] = Math.round((food.getProtein() * 4 - correctionVal));
+                        }
+                    } else {
+                        carbCalo[0] = food.getCarb();
+                        proteinCalo[0] = food.getProtein();
+                        fatCalo[0] = food.getFat();
+                    }
+                } else {
+                    carbCalo[0] = food.getCarb();
+                    proteinCalo[0] = food.getProtein();
+                    fatCalo[0] = food.getFat();
+                }
                 String text = s.toString().replace(',', '.');
 //                StringBuilder textBuilder = new StringBuilder(text);
 //                if(text.indexOf('.') == text.length() -1){
 //                    textBuilder.append('0');
 //                }
-                float newCount = 0;
+                float newCount = 1;
                 if (!text.isEmpty()) {
-                    newCount = Float.parseFloat(text.toString());
+                    newCount = Float.parseFloat(text);
+                }else{
+                    newCount = 0;
                 }
-                newCaloCount[0].set(Math.round(newCount * newCaloCount[0].get() / originalCount[0]));
-                carbCalo[0] = newCount * carbCalo[0] / originalCount[0];
-                proteinCalo[0] = newCount * proteinCalo[0] / originalCount[0];
-                fatCalo[0] = newCount * fatCalo[0] / originalCount[0];
-                tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt, String.valueOf(newCaloCount[0])));
+                newCaloCount[0].set(Math.round(newCount * food.getCalories()));
+                carbCalo[0] = newCount * carbCalo[0];
+                proteinCalo[0] = newCount * proteinCalo[0];
+                fatCalo[0] = newCount * fatCalo[0];
+                tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt,  df.format(newCaloCount[0])));
                 tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0])));
                 tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0])));
                 tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0])));
@@ -313,18 +333,7 @@ public class CreateFoodActivity extends BaseActivity {
                     return;
                 }
                 float newCount = count - 0.5f;
-                tvCount.setText(String.valueOf(newCount));
-
-//                newCaloCount[0].set(Math.round(newCount * food.getCalories() / originalCount[0]));
-//                carbCalo[0] = newCount * food.getCarb() / originalCount[0];
-//                proteinCalo[0] = newCount * food.getProtein() / originalCount[0];
-//                fatCalo[0] = newCount * food.getFat() / originalCount[0];
-//                tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt, String.valueOf(newCaloCount[0])));
-//                tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0])));
-//                tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0])));
-//                tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0])));
-//                food.setNumberOfServings(newCount);
-
+                tvCount.setText(df.format(newCount));
             }
         });
 
@@ -332,16 +341,7 @@ public class CreateFoodActivity extends BaseActivity {
             String textCount = tvCount.getText().toString();
             float newCount = Float.parseFloat(textCount.replace(',', '.'));
             newCount += 0.5f;
-            tvCount.setText(String.valueOf(newCount));
-//            newCaloCount[0].set(Math.round(newCount * food.getCalories() / originalCount[0]));
-//            carbCalo[0] = newCount * food.getCarb() / originalCount[0];
-//            proteinCalo[0] = newCount * food.getProtein()/ originalCount[0];
-//            fatCalo[0] = newCount * food.getFat() / originalCount[0];
-//            tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt, String.valueOf(newCaloCount[0])));
-//            tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0])));
-//            tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0])));
-//            tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0])));
-//            food.setNumberOfServings(newCount);
+            tvCount.setText(df.format(newCount));
         });
 
         tvCloseBtn.setOnClickListener(v -> bottomSheetDialog.dismiss());

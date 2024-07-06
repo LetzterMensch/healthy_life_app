@@ -28,10 +28,6 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_search_for_food.xml"
     },
     {
-        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_sleep.xml",
-        "source": "com.example.gr.app-main-67:/layout/fragment_sleep.xml"
-    },
-    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\preference_material_switch.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\preference_material_switch.xml"
     },
@@ -126,6 +122,10 @@
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\item_exercise.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\item_exercise.xml"
+    },
+    {
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/item_food.xml",
+        "source": "com.example.gr.app-main-67:/layout/item_food.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_device_settings.xml",
