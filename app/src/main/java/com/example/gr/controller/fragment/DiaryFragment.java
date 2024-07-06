@@ -90,15 +90,14 @@ public class DiaryFragment extends BaseFragment {
 
     private void getPreviousDayDiary() {
         calendar.add(Calendar.DAY_OF_YEAR, -1);
-        if (calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
+        if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
             mfragmentDiaryBinding.date.setText("Hôm qua");
-        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today) {
+        } else if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && calendar.get(Calendar.DAY_OF_MONTH) == today) {
             mfragmentDiaryBinding.date.setText("Hôm nay");
-        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
+        } else if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
             mfragmentDiaryBinding.date.setText("Ngày mai");
         } else {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            mfragmentDiaryBinding.date.setText(dateFormat.format(calendar.getTime()));
+            mfragmentDiaryBinding.date.setText(DateTimeUtils.formatDate(calendar.getTime()));
         }
         mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
         displayFoodLogs(mDate);
@@ -106,15 +105,14 @@ public class DiaryFragment extends BaseFragment {
 
     private void getNextDayDiary() {
         calendar.add(Calendar.DAY_OF_YEAR, 1);
-        if (calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
+        if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
             mfragmentDiaryBinding.date.setText("Hôm qua");
-        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today) {
+        } else if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && calendar.get(Calendar.DAY_OF_MONTH) == today) {
             mfragmentDiaryBinding.date.setText("Hôm nay");
-        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
+        } else if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
             mfragmentDiaryBinding.date.setText("Ngày mai");
         } else {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            mfragmentDiaryBinding.date.setText(dateFormat.format(calendar.getTime()));
+            mfragmentDiaryBinding.date.setText(DateTimeUtils.formatDate(calendar.getTime()));
         }
         mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
         displayFoodLogs(mDate);
@@ -126,15 +124,16 @@ public class DiaryFragment extends BaseFragment {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
         DatePickerDialog datePickerDialog = new DatePickerDialog(this.requireActivity(), (datePicker, i, i1, i2) -> {
-            String selectedDate = i + "-" + (i1 + 1) + "-" + i2; //yyyy-MM-dd
-            if (i2 == (today + 1)) {
+//            String selectedDate = i + "-" + (i1 + 1) + "-" + i2; //yyyy-MM-dd
+            if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && i2 == (today + 1)) {
                 mfragmentDiaryBinding.date.setText("Ngày mai");
-            } else if (i2 == (today - 1)) {
+            } else if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && i2 == (today - 1)) {
                 mfragmentDiaryBinding.date.setText("Hôm qua");
-            } else if (i2 == today) {
+            } else if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && i2 == today) {
                 mfragmentDiaryBinding.date.setText("Hôm nay");
             } else {
-                mfragmentDiaryBinding.date.setText(selectedDate);
+                mfragmentDiaryBinding.date.setText(DateTimeUtils.formatDate(calendar.getTime()));
+
             }
             calendar.set(i, i1, i2);
         }, year, month, day);
@@ -146,8 +145,8 @@ public class DiaryFragment extends BaseFragment {
     private void goToFoodDetail(@NonNull FoodLog foodLog) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.KEY_INTENT_EDIT_FOOD_LOG_OBJECT, foodLog);
-        bundle.putInt("key_meal",foodLog.getMeal());
-        bundle.putSerializable("key_diary",mDiary);
+        bundle.putInt("key_meal", foodLog.getMeal());
+        bundle.putSerializable("key_diary", mDiary);
         GlobalFunction.startActivity(getActivity(), FoodDetailActivity.class, bundle);
     }
 

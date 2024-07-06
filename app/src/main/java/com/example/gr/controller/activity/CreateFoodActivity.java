@@ -271,7 +271,10 @@ public class CreateFoodActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // Do nothing
-                originalCount[0] = Float.parseFloat(tvCount.getText().toString());
+                originalCount[0] = Float.parseFloat(tvCount.getText().toString().replace(',', '.'));
+                if(originalCount[0] == 0){
+                    originalCount[0] = 1;
+                }
             }
 
             @Override
@@ -281,10 +284,14 @@ public class CreateFoodActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String text = s.toString();
+                String text = s.toString().replace(',', '.');
+//                StringBuilder textBuilder = new StringBuilder(text);
+//                if(text.indexOf('.') == text.length() -1){
+//                    textBuilder.append('0');
+//                }
                 float newCount = 0;
                 if (!text.isEmpty()) {
-                    newCount = Float.parseFloat(tvCount.getText().toString());
+                    newCount = Float.parseFloat(text.toString());
                 }
                 newCaloCount[0].set(Math.round(newCount * newCaloCount[0].get() / originalCount[0]));
                 carbCalo[0] = newCount * carbCalo[0] / originalCount[0];
