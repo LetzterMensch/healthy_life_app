@@ -39,6 +39,7 @@ import com.example.gr.controller.activity.charts.ChartsData;
 import com.example.gr.controller.activity.charts.ChartsHost;
 import com.example.gr.controller.activity.charts.DefaultChartsData;
 import com.example.gr.controller.activity.charts.SleepAnalysis;
+import com.example.gr.model.ActivityUser;
 import com.example.gr.utils.constant.ActivityKind;
 import com.example.gr.model.data.sample.ActivitySample;
 import com.example.gr.databinding.FragmentSleepBinding;
@@ -87,6 +88,12 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
 
     public static final String STATE_START_DATE = "stateStartDate";
     public static final String STATE_END_DATE = "stateEndDate";
+    private static final int MAX_SCORE = 100;
+
+    private static final double DEEP_SLEEP_WEIGHT = 0.4;
+    private static final double REM_SLEEP_WEIGHT = 0.3;
+    private static final double LIGHT_SLEEP_WEIGHT = 0.2;
+    private static final double WAKE_COUNT_WEIGHT = 0.1;
     private Calendar calendar;
     private int today;
     private DeviceManager mDeviceManager;
@@ -95,21 +102,22 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     private Date mEndDate;
     private SwipeRefreshLayout swipeLayout;
     private LineChart mActivityChart;
+    private ActivityUser activityUser;
     private GBDevice device;
     private PieChart mSleepAmountChart;
     private TextView mSleepchartInfo;
     private TextView heartRateAverageLabel;
-    private ImageView heartRateIcon;
     private TextView intensityTotalLabel;
-    private ImageView intensityTotalIcon;
-    private int heartRateMin = 0;
-    private int heartRateMax = 0;
-    private float intensityTotal = 0;
+    private long totalDeepSleep = 0;
+    private long totalLightSleep = 0;
+    private long totalREMSleep = 0;
+    private long totalActiveTime;
+    private long totalSleepSeconds = 0;
+    private int wakeUpTimes = 0;
+    private int sleepScore = 0;
+    private List<Date> goToBedTime = new ArrayList<>();
+    private String recordedSleep;
     private FragmentSleepBinding mFragmentSleepBinding;
-    private int mSmartAlarmFrom = -1;
-    private int mSmartAlarmTo = -1;
-    private int mTimestampFrom = -1;
-    private int mSmartAlarmGoneOff = -1;
     Prefs prefs = ControllerApplication.getPrefs();
     private boolean CHARTS_SLEEP_RANGE_24H = prefs.getBoolean("chart_sleep_range_24h", false);
     private boolean SHOW_CHARTS_AVERAGE = prefs.getBoolean("charts_show_average", true);
@@ -119,14 +127,12 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            switch (Objects.requireNonNull(action)) {
-                case GBDevice.ACTION_DEVICE_CHANGED:
-                    GBDevice dev = intent.getParcelableExtra(GBDevice.EXTRA_DEVICE);
-                    if (dev != null && dev.isInitialized()) {
-                        mGBDevice = mDeviceManager.getDevices().get(0);
-                        refreshBusyState(dev);
-                    }
-                    break;
+            if (Objects.requireNonNull(action).equals(GBDevice.ACTION_DEVICE_CHANGED)) {
+                GBDevice dev = intent.getParcelableExtra(GBDevice.EXTRA_DEVICE);
+                if (dev != null && dev.isInitialized()) {
+                    mGBDevice = mDeviceManager.getDevices().get(0);
+                    refreshBusyState(dev);
+                }
             }
         }
     };
@@ -142,6 +148,71 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
             }
         }
         enableSwipeRefresh(true);
+    }
+
+    private void displaySleepSummaries() {
+        mFragmentSleepBinding.deepSleepHr.setText(DateTimeUtils.formatDurationHoursMinutes(totalDeepSleep, TimeUnit.SECONDS));
+        mFragmentSleepBinding.lightSleep.setText(DateTimeUtils.formatDurationHoursMinutes(totalLightSleep, TimeUnit.SECONDS));
+        mFragmentSleepBinding.remSleep.setText(DateTimeUtils.formatDurationHoursMinutes(totalREMSleep, TimeUnit.SECONDS));
+
+        int percent_deep_sleep = Math.round((float) (totalDeepSleep * 100) / totalSleepSeconds);
+        int percent_light_sleep = Math.round((float) (totalLightSleep * 100) / totalSleepSeconds);
+        int percent_rem_sleep = 100 - percent_light_sleep - percent_deep_sleep;
+
+        mFragmentSleepBinding.deepSleepIndicator.setProgress(percent_deep_sleep);
+        mFragmentSleepBinding.remSleepIndicator.setProgress(percent_deep_sleep + percent_rem_sleep);
+
+        mFragmentSleepBinding.deepSleepPercentage.setText("Giấc ngủ sâu " + percent_deep_sleep + "%");
+        mFragmentSleepBinding.lightSleepPercentage.setText("Giấc nông " + percent_light_sleep + "%");
+        mFragmentSleepBinding.remSleepPercentage.setText("Giấc ngủ REM " + percent_rem_sleep + "%");
+
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        mFragmentSleepBinding = FragmentSleepBinding.inflate(inflater, container, false);
+        activityUser = new ActivityUser();
+
+        //replace AbstractChartsActivity
+        if (savedInstanceState != null) {
+            setEndDate(new Date(savedInstanceState.getLong(STATE_END_DATE, System.currentTimeMillis())));
+            setStartDate(new Date(savedInstanceState.getLong(STATE_START_DATE, DateTimeUtils.shiftByDays(getEndDate(), -1).getTime())));
+        } else {
+            setEndDate(new Date());
+            setStartDate(DateTimeUtils.shiftByDays(getEndDate(), -1));
+        }
+
+        final IntentFilter filterLocal = new IntentFilter();
+        filterLocal.addAction(GBDevice.ACTION_DEVICE_CHANGED);
+        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mReceiver, filterLocal);
+
+        mActivityChart = mFragmentSleepBinding.sleepchart;
+
+        this.calendar = Calendar.getInstance();
+        this.today = this.calendar.get(Calendar.DAY_OF_MONTH);
+
+        swipeLayout = mFragmentSleepBinding.activitySwipeLayout;
+        swipeLayout.setOnRefreshListener(this::fetchRecordedData);
+
+        ImageView mPrevButton = mFragmentSleepBinding.sleepFragmentImgBack;
+        mPrevButton.setOnClickListener(v -> getPreviousDay());
+        ImageView mNextButton = mFragmentSleepBinding.sleepFragmentImgNext;
+        mNextButton.setOnClickListener(v -> getNextDay());
+
+        mDeviceManager = ((ControllerApplication) requireActivity().getApplication()).getDeviceManager();
+        if (mDeviceManager.getDevices().size() > 0) {
+            if (mDeviceManager.getDevices().get(0).isInitialized() && mDeviceManager.getDevices().get(0).isConnected()) {
+                mGBDevice = mDeviceManager.getDevices().get(0);
+                enableSwipeRefresh(true);
+                setupActivityChart();
+                refresh();
+            } else {
+                setupActivityChart();
+
+            }
+        }
+        return mFragmentSleepBinding.getRoot();
     }
 
     @Override
@@ -192,13 +263,13 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         final List<Integer> colors = new ArrayList<>();
 
         if (!sleepSessions.isEmpty()) {
-            entries.add(new PieEntry(lightSleepDuration, getActivity().getString(R.string.abstract_chart_fragment_kind_light_sleep)));
-            entries.add(new PieEntry(deepSleepDuration, getActivity().getString(R.string.abstract_chart_fragment_kind_deep_sleep)));
+            entries.add(new PieEntry(lightSleepDuration, requireActivity().getString(R.string.abstract_chart_fragment_kind_light_sleep)));
+            entries.add(new PieEntry(deepSleepDuration, requireActivity().getString(R.string.abstract_chart_fragment_kind_deep_sleep)));
             colors.add(getColorFor(ActivityKind.TYPE_LIGHT_SLEEP));
             colors.add(getColorFor(ActivityKind.TYPE_DEEP_SLEEP));
 
             if (supportsRemSleep(mGBDevice)) {
-                entries.add(new PieEntry(remSleepDuration, getActivity().getString(R.string.abstract_chart_fragment_kind_rem_sleep)));
+                entries.add(new PieEntry(remSleepDuration, requireActivity().getString(R.string.abstract_chart_fragment_kind_rem_sleep)));
                 colors.add(getColorFor(ActivityKind.TYPE_REM_SLEEP));
             }
         }
@@ -217,6 +288,10 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         set.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         data.setDataSet(set);
+        totalDeepSleep = deepSleepDuration;
+        totalLightSleep = lightSleepDuration;
+        totalREMSleep = remSleepDuration;
+        totalSleepSeconds = totalSeconds;
         //setup sleep data statistics
         //setupLegend(pieChart);
         return new MySleepChartsData(totalSleep, data, sleepSessions);
@@ -254,28 +329,13 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         mActivityChart.setData(null); // workaround for https://github.com/PhilJay/MPAndroidChart/issues/2317
         mActivityChart.getXAxis().setValueFormatter(mcd.getChartsData().getXValueFormatter());
         mActivityChart.setData(mcd.getChartsData().getData());
-//        mSleepchartInfo.setText(buildYouSleptText(pieData));
+        recordedSleep = buildYouSleptText(pieData);
 //        mSleepchartInfo.setMovementMethod(new ScrollingMovementMethod());
-        heartRateMin = mcd.getHeartRateAxisMin();
-        heartRateMax = mcd.getHeartRateAxisMax();
-        intensityTotal = mcd.getIntensityTotal();
-
-//        if (!CHARTS_SLEEP_RANGE_24H
-//                && supportsHeartrate(getChartsHost().getDevice())
-//                && SHOW_CHARTS_AVERAGE) {
-//            if (mcd.getHeartRateAxisMax() != 0 || mcd.getHeartRateAxisMin() != 0) {
-//                mActivityChart.getAxisRight().setAxisMaximum(mcd.getHeartRateAxisMax());
-//                mActivityChart.getAxisRight().setAxisMinimum(mcd.getHeartRateAxisMin());
-//            }
-//            LimitLine hrAverage_line = new LimitLine(mcd.getHeartRateAverage());
-//            hrAverage_line.setLineColor(Color.RED);
-//            hrAverage_line.setLineWidth(0.1f);
-//            mActivityChart.getAxisRight().removeAllLimitLines();
-//            mActivityChart.getAxisRight().addLimitLine(hrAverage_line);
-//            DecimalFormat df = new DecimalFormat("###.#");
-////            heartRateAverageLabel.setText(df.format(mcd.getHeartRateAverage()));
-//            intensityTotalLabel.setText(df.format(mcd.getIntensityTotal()));
-//        }
+//        int heartRateMin = mcd.getHeartRateAxisMin();
+//        int heartRateMax = mcd.getHeartRateAxisMax();
+//        float intensityTotal = mcd.getIntensityTotal();
+        displaySleepSummaries();
+        displaySleepTips();
     }
 
     private Triple<Float, Integer, Integer> calculateHrData(List<? extends ActivitySample> samples) {
@@ -345,19 +405,117 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         return Triple.of(sum, min, max);
     }
 
+    private int calculateSleepScore(int deepSleepMinutes, int remSleepMinutes, int lightSleepMinutes, int wakeUpTimes) {
+        int totalSleepMinutes = deepSleepMinutes + remSleepMinutes + lightSleepMinutes;
+
+        // Tính tỷ lệ giấc ngủ
+        double deepSleepRatio = (double) deepSleepMinutes / totalSleepMinutes;
+        double remSleepRatio = (double) remSleepMinutes / totalSleepMinutes;
+        double lightSleepRatio = (double) lightSleepMinutes / totalSleepMinutes;
+        double wakeUpTimesRatio = (double) wakeUpTimes / totalSleepMinutes; // Số lần thức dậy mỗi giờ
+
+        // Tính điểm số cho từng yếu tố
+        double deepSleepScore = deepSleepRatio * DEEP_SLEEP_WEIGHT * MAX_SCORE;
+        double remSleepScore = remSleepRatio * REM_SLEEP_WEIGHT * MAX_SCORE;
+        double lightSleepScore = lightSleepRatio * LIGHT_SLEEP_WEIGHT * MAX_SCORE;
+        double wakeUpTimesScore = wakeUpTimes * WAKE_COUNT_WEIGHT * MAX_SCORE;
+
+        // Tính tổng điểm số giấc ngủ
+        int sleepScore = (int) Math.round (deepSleepScore + remSleepScore + lightSleepScore - wakeUpTimesScore);
+        // Hệ số điều chỉnh cho điểm ngủ
+        // Lấy correctionFactor = 3.58 làm hệ số cho một giấc ngủ đạt 100 điểm như sau :
+        // Tổng thời gian ngủ: 8 tiếng (480 phút)
+        // Deep sleep: 120 phút (25%)
+        // REM sleep: 150 phút (31.25%)
+        // Light sleep: 208 phút (43.33%)
+        // Số lần thức giấc: 1 lần
+        //===> Thay đổi hệ số theo tổng thời gian ngủ  :
+        //  dưới 3 tiếng = 0.2*h
+        //  3-5 tiếng = 0.5 *h
+        //  5-7 tiếng =	0.8 * h
+        //  7-9 tiếng = 1.0 * h
+        // trên 9 tiếng = 0.8 * h
+        double totalSleepHour = (double) totalSleepMinutes /60;
+        double correctionFactor = 3.58;
+        if(totalSleepHour < 3){
+            sleepScore = (int) Math.round(sleepScore * 0.2 * correctionFactor);
+        }else if( totalSleepHour >=3 && totalSleepHour <5){
+            sleepScore = (int) Math.round(sleepScore * 0.5 * correctionFactor);
+
+        }else if(totalSleepHour >=5 && totalSleepHour <7){
+            sleepScore = (int) Math.round(sleepScore * 0.8 * correctionFactor);
+
+        } else if (totalSleepHour >= 7 && totalSleepHour < 9.5) {
+            sleepScore = (int) Math.round(sleepScore * correctionFactor);
+
+        }else if (totalSleepHour >= 9.5){
+            sleepScore = (int) Math.round(sleepScore * 0.8 * correctionFactor);
+
+        }
+        // Đảm bảo điểm số không vượt quá giới hạn tối đa
+        return Math.min(sleepScore, MAX_SCORE);
+    }
+
+    private void displaySleepTips() {
+        mFragmentSleepBinding.sleepScore.setText(calculateSleepScore((int) (totalDeepSleep / 60), (int) (totalREMSleep / 60), (int) (totalLightSleep / 60), wakeUpTimes) + " Điểm");
+        mFragmentSleepBinding.sleepTooMuch.setVisibility(View.GONE);
+        mFragmentSleepBinding.notEnoughSleep.setVisibility(View.GONE);
+        mFragmentSleepBinding.lateSleep.setVisibility(View.GONE);
+        mFragmentSleepBinding.wakeUpManyTimes.setVisibility(View.GONE);
+        mFragmentSleepBinding.notEnoughDeepSleep.setVisibility(View.GONE);
+        //sleep too late
+        Calendar mCalendar = Calendar.getInstance();
+        for (Date dateTime : goToBedTime) {
+            mCalendar.setTime(dateTime);
+            mCalendar.set(Calendar.HOUR_OF_DAY, 22);
+            if (dateTime.after(mCalendar.getTime())) {
+                mFragmentSleepBinding.lateSleepLabel.setText(getString(R.string.late_sleep_label, DateTimeUtils.timeToString(dateTime)));
+                mFragmentSleepBinding.lateSleep.setVisibility(View.VISIBLE);
+                break;
+            }
+        }
+        //wake up too many times
+        if (wakeUpTimes >= 2) {
+            mFragmentSleepBinding.wakeUpManyTimesLabel.setText(getString(R.string.wake_up_many_times_label, String.valueOf(wakeUpTimes)));
+            mFragmentSleepBinding.wakeUpManyTimesFact.setText(recordedSleep);
+            mFragmentSleepBinding.wakeUpManyTimes.setVisibility(View.VISIBLE);
+        }
+        //sleep too much or too little
+        if (totalSleepSeconds < (activityUser.getSleepDurationGoal() - 2) * 3600L) {// not enough sleep
+            mFragmentSleepBinding.notEnoughSleepLabel.setText(getString(R.string.not_enough_sleep_label, DateTimeUtils.formatDurationHoursMinutes(totalSleepSeconds, TimeUnit.SECONDS)));
+            mFragmentSleepBinding.notEnoughSleep.setVisibility(View.VISIBLE);
+        } else if (totalSleepSeconds > 9.5 * 3600L) {//sleep too much
+            mFragmentSleepBinding.sleepTooMuch.setVisibility(View.VISIBLE);
+            return;
+        }
+        //not enough deep sleep
+        if (totalDeepSleep < 3700) {
+            mFragmentSleepBinding.notEnoughDeepSleep.setVisibility(View.VISIBLE);
+        }
+
+    }
+
     private String buildYouSleptText(MySleepChartsData pieData) {
         final StringBuilder result = new StringBuilder();
+        long lastWakeupTime = 0;
+        goToBedTime.clear();
         if (pieData.getSleepSessions().isEmpty()) {
-            result.append(getContext().getString(R.string.you_did_not_sleep));
+            result.append(requireActivity().getString(R.string.you_did_not_sleep));
         } else {
             for (SleepSession sleepSession : pieData.getSleepSessions()) {
                 if (result.length() > 0) {
                     result.append('\n');
+                    if (sleepSession.getSleepStart().getTime() - lastWakeupTime < 60 * 60 * 2) {
+                        wakeUpTimes++;
+                    }
                 }
-                result.append(getContext().getString(
+                goToBedTime.add(sleepSession.getSleepStart());
+                result.append(requireActivity().getString(
                         R.string.you_slept,
                         DateTimeUtils.timeToString(sleepSession.getSleepStart()),
                         DateTimeUtils.timeToString(sleepSession.getSleepEnd())));
+                lastWakeupTime = sleepSession.getSleepEnd().getTime();
+
             }
         }
         return result.toString();
@@ -369,60 +527,10 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mFragmentSleepBinding = FragmentSleepBinding.inflate(inflater, container, false);
-
-        //replace AbstractChartsActivity
-        if (savedInstanceState != null) {
-            setEndDate(new Date(savedInstanceState.getLong(STATE_END_DATE, System.currentTimeMillis())));
-            setStartDate(new Date(savedInstanceState.getLong(STATE_START_DATE, DateTimeUtils.shiftByDays(getEndDate(), -1).getTime())));
-        } else {
-            setEndDate(new Date());
-            setStartDate(DateTimeUtils.shiftByDays(getEndDate(), -1));
-        }
-        final IntentFilter filterLocal = new IntentFilter();
-        filterLocal.addAction(GBDevice.ACTION_DEVICE_CHANGED);
-        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mReceiver, filterLocal);
-        mActivityChart = mFragmentSleepBinding.sleepchart;
-        this.calendar = Calendar.getInstance();
-        this.today = this.calendar.get(Calendar.DAY_OF_MONTH);
-        swipeLayout = mFragmentSleepBinding.activitySwipeLayout;
-        swipeLayout.setOnRefreshListener(this::fetchRecordedData);
-        ImageView mPrevButton = mFragmentSleepBinding.sleepFragmentImgBack;
-        mPrevButton.setOnClickListener(v -> getPreviousDay());
-        ImageView mNextButton = mFragmentSleepBinding.sleepFragmentImgNext;
-        mNextButton.setOnClickListener(v -> getNextDay());
-        mDeviceManager = ((ControllerApplication) getActivity().getApplication()).getDeviceManager();
-        if (mDeviceManager.getDevices().size() > 0) {
-            if (mDeviceManager.getDevices().get(0).isInitialized() && mDeviceManager.getDevices().get(0).isConnected()) {
-                mGBDevice = mDeviceManager.getDevices().get(0);
-                enableSwipeRefresh(true);
-                setupActivityChart();
-                refresh();
-            }else {
-                setupActivityChart();
-
-            }
-        }
-        // setupSleepAmountChart();
-
-        // refresh immediately instead of use refreshIfVisible(), for perceived performance
-//        enableSwipeRefresh(true);
-//        setupActivityChart();
-//        refresh();
-        return mFragmentSleepBinding.getRoot();
-    }
-
-    @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (action.equals(ChartsHost.REFRESH)) {
             // TODO: use LimitLines to visualize smart alarms?
-            mSmartAlarmFrom = intent.getIntExtra("smartalarm_from", -1);
-            mSmartAlarmTo = intent.getIntExtra("smartalarm_to", -1);
-            mTimestampFrom = intent.getIntExtra("recording_base_timestamp", -1);
-            mSmartAlarmGoneOff = intent.getIntExtra("alarm_gone_off", -1);
             refresh();
         } else {
             super.onReceive(context, intent);
@@ -469,8 +577,6 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         yAxisRight.setDrawLabels(true);
         yAxisRight.setDrawTopYLabelEntry(true);
         yAxisRight.setTextColor(CHART_TEXT_COLOR);
-//        yAxisRight.setAxisMaximum(HeartRateUtils.getInstance().getMaxHeartRate());
-//        yAxisRight.setAxisMinimum(HeartRateUtils.getInstance().getMinHeartRate());
     }
 
     @Override
@@ -485,28 +591,21 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         deepSleepEntry.label = akDeepSleep.label;
         deepSleepEntry.formColor = akDeepSleep.color;
         legendEntries.add(deepSleepEntry);
+
         LegendEntry remSleepEntry = new LegendEntry();
         remSleepEntry.label = akRemSleep.label;
         remSleepEntry.formColor = akRemSleep.color;
         legendEntries.add(remSleepEntry);
 
-//        heartRateIcon.setVisibility(View.GONE); //hide heart icon
-//        intensityTotalIcon.setVisibility(View.GONE); //hide intensity icon
+        LegendEntry hrEntry = new LegendEntry();
+        hrEntry.label = HEARTRATE_LABEL;
+        hrEntry.formColor = HEARTRATE_COLOR;
+        legendEntries.add(hrEntry);
 
-//        if (supportsHeartrate(getChartsHost().getDevice())) {
-//            LegendEntry hrEntry = new LegendEntry();
-//            hrEntry.label = HEARTRATE_LABEL;
-//            hrEntry.formColor = HEARTRATE_COLOR;
-//            legendEntries.add(hrEntry);
-//            if (!CHARTS_SLEEP_RANGE_24H && SHOW_CHARTS_AVERAGE) {
-//                LegendEntry hrAverageEntry = new LegendEntry();
-//                hrAverageEntry.label = HEARTRATE_AVERAGE_LABEL;
-//                hrAverageEntry.formColor = Color.RED;
-//                legendEntries.add(hrAverageEntry);
-////                heartRateIcon.setVisibility(View.VISIBLE);
-//                intensityTotalIcon.setVisibility(View.VISIBLE);
-//            }
-//        }
+        LegendEntry activityEntry = new LegendEntry();
+        activityEntry.label = akActivity.label;
+        activityEntry.formColor = akActivity.color;
+        legendEntries.add(activityEntry);
         chart.getLegend().setCustom(legendEntries);
         chart.getLegend().setTextColor(LEGEND_TEXT_COLOR);
     }
@@ -636,35 +735,29 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         handleButtonClicked(DATE_PREV_DAY);
 
         calendar.add(Calendar.DAY_OF_YEAR, -1);
-        if (calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
-            mFragmentSleepBinding.date.setText("Hôm qua");
-        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today) {
-            mFragmentSleepBinding.date.setText("Hôm nay");
-        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
-            mFragmentSleepBinding.date.setText("Ngày mai");
-        } else {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            mFragmentSleepBinding.date.setText(dateFormat.format(calendar.getTime()));
-        }
+        Date to = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        Date from = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR,1);
+        mFragmentSleepBinding.date.setText(DateTimeUtils.formatDateRange(from,to));
+        fetchRecordedData();
     }
 
     private void getNextDay() {
+
         if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) &&
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH)) {
             return;
         }
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
-        if (calendar.get(Calendar.DAY_OF_MONTH) == today - 1) {
-            mFragmentSleepBinding.date.setText("Hôm qua");
-        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today) {
-            mFragmentSleepBinding.date.setText("Hôm nay");
-        } else if (calendar.get(Calendar.DAY_OF_MONTH) == today + 1) {
-            mFragmentSleepBinding.date.setText("Ngày mai");
-        } else {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            mFragmentSleepBinding.date.setText(dateFormat.format(calendar.getTime()));
-        }
         handleButtonClicked(DATE_NEXT_DAY);
+
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Date to = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        Date from = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR,1);
+        mFragmentSleepBinding.date.setText(DateTimeUtils.formatDateRange(from,to));
+        fetchRecordedData();
     }
 
     private void openDatePicker() {
@@ -735,7 +828,7 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     }
 
     @Override
-    public void onViewStateRestored(@NonNull final Bundle savedInstanceState) {
+    public void onViewStateRestored(final Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         if (savedInstanceState != null) {
             setEndDate(new Date(savedInstanceState.getLong(STATE_END_DATE, System.currentTimeMillis())));

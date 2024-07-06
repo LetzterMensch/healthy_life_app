@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -25,9 +26,6 @@ import java.lang.String;
 public final class FragmentSleepBinding implements ViewBinding {
   @NonNull
   private final ConstraintLayout rootView;
-
-  @NonNull
-  public final LinearProgressIndicator REMSleepIndicator;
 
   @NonNull
   public final SwipeRefreshLayout activitySwipeLayout;
@@ -51,13 +49,40 @@ public final class FragmentSleepBinding implements ViewBinding {
   public final TextView deepSleepPercentage;
 
   @NonNull
+  public final LinearLayout lateSleep;
+
+  @NonNull
+  public final TextView lateSleepLabel;
+
+  @NonNull
+  public final TextView lightSleep;
+
+  @NonNull
+  public final LinearProgressIndicator lightSleepIndicator;
+
+  @NonNull
+  public final TextView lightSleepPercentage;
+
+  @NonNull
   public final NestedScrollView nestedScrollView;
+
+  @NonNull
+  public final LinearLayout notEnoughDeepSleep;
+
+  @NonNull
+  public final LinearLayout notEnoughSleep;
+
+  @NonNull
+  public final TextView notEnoughSleepLabel;
 
   @NonNull
   public final TextView remSleep;
 
   @NonNull
-  public final LinearProgressIndicator shallowSleepIndicator;
+  public final LinearProgressIndicator remSleepIndicator;
+
+  @NonNull
+  public final TextView remSleepPercentage;
 
   @NonNull
   public final ImageView sleepFragmentImgBack;
@@ -72,6 +97,9 @@ public final class FragmentSleepBinding implements ViewBinding {
   public final CardView sleepScoreCardView;
 
   @NonNull
+  public final LinearLayout sleepTooMuch;
+
+  @NonNull
   public final LineChart sleepchart;
 
   @NonNull
@@ -80,19 +108,32 @@ public final class FragmentSleepBinding implements ViewBinding {
   @NonNull
   public final TextView totalSleepTime;
 
+  @NonNull
+  public final LinearLayout wakeUpManyTimes;
+
+  @NonNull
+  public final TextView wakeUpManyTimesFact;
+
+  @NonNull
+  public final TextView wakeUpManyTimesLabel;
+
   private FragmentSleepBinding(@NonNull ConstraintLayout rootView,
-      @NonNull LinearProgressIndicator REMSleepIndicator,
       @NonNull SwipeRefreshLayout activitySwipeLayout, @NonNull RelativeLayout calendarToolbar,
       @NonNull CardView chartCardView, @NonNull TextView date, @NonNull TextView deepSleepHr,
       @NonNull LinearProgressIndicator deepSleepIndicator, @NonNull TextView deepSleepPercentage,
-      @NonNull NestedScrollView nestedScrollView, @NonNull TextView remSleep,
-      @NonNull LinearProgressIndicator shallowSleepIndicator,
+      @NonNull LinearLayout lateSleep, @NonNull TextView lateSleepLabel,
+      @NonNull TextView lightSleep, @NonNull LinearProgressIndicator lightSleepIndicator,
+      @NonNull TextView lightSleepPercentage, @NonNull NestedScrollView nestedScrollView,
+      @NonNull LinearLayout notEnoughDeepSleep, @NonNull LinearLayout notEnoughSleep,
+      @NonNull TextView notEnoughSleepLabel, @NonNull TextView remSleep,
+      @NonNull LinearProgressIndicator remSleepIndicator, @NonNull TextView remSleepPercentage,
       @NonNull ImageView sleepFragmentImgBack, @NonNull ImageView sleepFragmentImgNext,
       @NonNull TextView sleepScore, @NonNull CardView sleepScoreCardView,
-      @NonNull LineChart sleepchart, @NonNull CardView summaryCardView,
-      @NonNull TextView totalSleepTime) {
+      @NonNull LinearLayout sleepTooMuch, @NonNull LineChart sleepchart,
+      @NonNull CardView summaryCardView, @NonNull TextView totalSleepTime,
+      @NonNull LinearLayout wakeUpManyTimes, @NonNull TextView wakeUpManyTimesFact,
+      @NonNull TextView wakeUpManyTimesLabel) {
     this.rootView = rootView;
-    this.REMSleepIndicator = REMSleepIndicator;
     this.activitySwipeLayout = activitySwipeLayout;
     this.calendarToolbar = calendarToolbar;
     this.chartCardView = chartCardView;
@@ -100,16 +141,29 @@ public final class FragmentSleepBinding implements ViewBinding {
     this.deepSleepHr = deepSleepHr;
     this.deepSleepIndicator = deepSleepIndicator;
     this.deepSleepPercentage = deepSleepPercentage;
+    this.lateSleep = lateSleep;
+    this.lateSleepLabel = lateSleepLabel;
+    this.lightSleep = lightSleep;
+    this.lightSleepIndicator = lightSleepIndicator;
+    this.lightSleepPercentage = lightSleepPercentage;
     this.nestedScrollView = nestedScrollView;
+    this.notEnoughDeepSleep = notEnoughDeepSleep;
+    this.notEnoughSleep = notEnoughSleep;
+    this.notEnoughSleepLabel = notEnoughSleepLabel;
     this.remSleep = remSleep;
-    this.shallowSleepIndicator = shallowSleepIndicator;
+    this.remSleepIndicator = remSleepIndicator;
+    this.remSleepPercentage = remSleepPercentage;
     this.sleepFragmentImgBack = sleepFragmentImgBack;
     this.sleepFragmentImgNext = sleepFragmentImgNext;
     this.sleepScore = sleepScore;
     this.sleepScoreCardView = sleepScoreCardView;
+    this.sleepTooMuch = sleepTooMuch;
     this.sleepchart = sleepchart;
     this.summaryCardView = summaryCardView;
     this.totalSleepTime = totalSleepTime;
+    this.wakeUpManyTimes = wakeUpManyTimes;
+    this.wakeUpManyTimesFact = wakeUpManyTimesFact;
+    this.wakeUpManyTimesLabel = wakeUpManyTimesLabel;
   }
 
   @Override
@@ -139,12 +193,6 @@ public final class FragmentSleepBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.REMSleepIndicator;
-      LinearProgressIndicator REMSleepIndicator = ViewBindings.findChildViewById(rootView, id);
-      if (REMSleepIndicator == null) {
-        break missingId;
-      }
-
       id = R.id.activity_swipe_layout;
       SwipeRefreshLayout activitySwipeLayout = ViewBindings.findChildViewById(rootView, id);
       if (activitySwipeLayout == null) {
@@ -175,7 +223,7 @@ public final class FragmentSleepBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.deepSleepIndicator;
+      id = R.id.deep_sleep_indicator;
       LinearProgressIndicator deepSleepIndicator = ViewBindings.findChildViewById(rootView, id);
       if (deepSleepIndicator == null) {
         break missingId;
@@ -187,9 +235,57 @@ public final class FragmentSleepBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.late_sleep;
+      LinearLayout lateSleep = ViewBindings.findChildViewById(rootView, id);
+      if (lateSleep == null) {
+        break missingId;
+      }
+
+      id = R.id.late_sleep_label;
+      TextView lateSleepLabel = ViewBindings.findChildViewById(rootView, id);
+      if (lateSleepLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.light_sleep;
+      TextView lightSleep = ViewBindings.findChildViewById(rootView, id);
+      if (lightSleep == null) {
+        break missingId;
+      }
+
+      id = R.id.light_sleep_indicator;
+      LinearProgressIndicator lightSleepIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (lightSleepIndicator == null) {
+        break missingId;
+      }
+
+      id = R.id.light_sleep_percentage;
+      TextView lightSleepPercentage = ViewBindings.findChildViewById(rootView, id);
+      if (lightSleepPercentage == null) {
+        break missingId;
+      }
+
       id = R.id.nestedScrollView;
       NestedScrollView nestedScrollView = ViewBindings.findChildViewById(rootView, id);
       if (nestedScrollView == null) {
+        break missingId;
+      }
+
+      id = R.id.not_enough_deep_sleep;
+      LinearLayout notEnoughDeepSleep = ViewBindings.findChildViewById(rootView, id);
+      if (notEnoughDeepSleep == null) {
+        break missingId;
+      }
+
+      id = R.id.not_enough_sleep;
+      LinearLayout notEnoughSleep = ViewBindings.findChildViewById(rootView, id);
+      if (notEnoughSleep == null) {
+        break missingId;
+      }
+
+      id = R.id.not_enough_sleep_label;
+      TextView notEnoughSleepLabel = ViewBindings.findChildViewById(rootView, id);
+      if (notEnoughSleepLabel == null) {
         break missingId;
       }
 
@@ -199,9 +295,15 @@ public final class FragmentSleepBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.shallowSleepIndicator;
-      LinearProgressIndicator shallowSleepIndicator = ViewBindings.findChildViewById(rootView, id);
-      if (shallowSleepIndicator == null) {
+      id = R.id.rem_sleep_indicator;
+      LinearProgressIndicator remSleepIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (remSleepIndicator == null) {
+        break missingId;
+      }
+
+      id = R.id.rem_sleep_percentage;
+      TextView remSleepPercentage = ViewBindings.findChildViewById(rootView, id);
+      if (remSleepPercentage == null) {
         break missingId;
       }
 
@@ -229,6 +331,12 @@ public final class FragmentSleepBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.sleep_too_much;
+      LinearLayout sleepTooMuch = ViewBindings.findChildViewById(rootView, id);
+      if (sleepTooMuch == null) {
+        break missingId;
+      }
+
       id = R.id.sleepchart;
       LineChart sleepchart = ViewBindings.findChildViewById(rootView, id);
       if (sleepchart == null) {
@@ -247,11 +355,32 @@ public final class FragmentSleepBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentSleepBinding((ConstraintLayout) rootView, REMSleepIndicator,
-          activitySwipeLayout, calendarToolbar, chartCardView, date, deepSleepHr,
-          deepSleepIndicator, deepSleepPercentage, nestedScrollView, remSleep,
-          shallowSleepIndicator, sleepFragmentImgBack, sleepFragmentImgNext, sleepScore,
-          sleepScoreCardView, sleepchart, summaryCardView, totalSleepTime);
+      id = R.id.wake_up_many_times;
+      LinearLayout wakeUpManyTimes = ViewBindings.findChildViewById(rootView, id);
+      if (wakeUpManyTimes == null) {
+        break missingId;
+      }
+
+      id = R.id.wake_up_many_times_fact;
+      TextView wakeUpManyTimesFact = ViewBindings.findChildViewById(rootView, id);
+      if (wakeUpManyTimesFact == null) {
+        break missingId;
+      }
+
+      id = R.id.wake_up_many_times_label;
+      TextView wakeUpManyTimesLabel = ViewBindings.findChildViewById(rootView, id);
+      if (wakeUpManyTimesLabel == null) {
+        break missingId;
+      }
+
+      return new FragmentSleepBinding((ConstraintLayout) rootView, activitySwipeLayout,
+          calendarToolbar, chartCardView, date, deepSleepHr, deepSleepIndicator,
+          deepSleepPercentage, lateSleep, lateSleepLabel, lightSleep, lightSleepIndicator,
+          lightSleepPercentage, nestedScrollView, notEnoughDeepSleep, notEnoughSleep,
+          notEnoughSleepLabel, remSleep, remSleepIndicator, remSleepPercentage,
+          sleepFragmentImgBack, sleepFragmentImgNext, sleepScore, sleepScoreCardView, sleepTooMuch,
+          sleepchart, summaryCardView, totalSleepTime, wakeUpManyTimes, wakeUpManyTimesFact,
+          wakeUpManyTimesLabel);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

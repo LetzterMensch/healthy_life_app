@@ -559,7 +559,6 @@ font akaya_telivigala
 font alata
 font amiko
 id Height
-id REMSleepIndicator
 id Width
 id action_bar_back_img
 id action_bar_title
@@ -618,8 +617,8 @@ id dashboard_fat
 id dashboard_protein
 id dashboard_steps
 id date
-id deepSleepIndicator
 id deep_sleep_hr
+id deep_sleep_indicator
 id deep_sleep_percentage
 id delete_btn
 id delete_button
@@ -705,6 +704,8 @@ id item_preview
 id item_status
 id label_add_ingredients
 id label_nutrition_info
+id late_sleep
+id late_sleep_label
 id layout_btn_sign_up
 id layout_image
 id layout_item
@@ -712,6 +713,9 @@ id layout_search
 id layout_search_bar
 id layout_spinner
 id layout_toolbar
+id light_sleep
+id light_sleep_indicator
+id light_sleep_percentage
 id lineChart
 id linearLayout
 id log_in_edit_email
@@ -736,6 +740,9 @@ id nestedScrollView
 id nestedScrollView2
 id new_food_name
 id new_food_nutrition_info
+id not_enough_deep_sleep
+id not_enough_sleep
+id not_enough_sleep_label
 id number_of_servings
 id profile_goal
 id profile_log_out
@@ -775,10 +782,11 @@ id recorderAutoStartOverlay
 id recorderWaitingOverlay
 id recorderWaitingSatellites
 id rem_sleep
+id rem_sleep_indicator
+id rem_sleep_percentage
 id search_tabLayout
 id serving_size
 id settings_container
-id shallowSleepIndicator
 id sign_up_edit_confirm_password
 id sign_up_edit_email
 id sign_up_edit_password
@@ -786,6 +794,7 @@ id sleepScoreCardView
 id sleep_fragment_img_back
 id sleep_fragment_img_next
 id sleep_score
+id sleep_too_much
 id sleepchart
 id snack_card
 id spinner_item_icon
@@ -815,6 +824,9 @@ id tv_recipe_ingredients
 id tv_title
 id viewPager2
 id viewpager_2
+id wake_up_many_times
+id wake_up_many_times_fact
+id wake_up_many_times_label
 id wearable_name
 id wearable_status
 id webview
@@ -1948,6 +1960,9 @@ string laneLength
 string language_and_region_prefs
 string laps
 string laps_unit
+string late_sleep_fact
+string late_sleep_label
+string late_sleep_tips
 string latvian
 string left
 string left_earbud
@@ -2188,6 +2203,12 @@ string normal
 string normal_workout
 string norwegian_bokmal
 string not_connected
+string not_enough_deep_sleep_fact
+string not_enough_deep_sleep_label
+string not_enough_deep_sleep_tips
+string not_enough_sleep_fact
+string not_enough_sleep_label
+string not_enough_sleep_tips
 string not_set
 string note
 string nothing_prefs_audiomode_title
@@ -3251,6 +3272,9 @@ string simplified_chinese
 string single_band
 string single_tap
 string sleep_activity_date_range
+string sleep_too_much_fact
+string sleep_too_much_label
+string sleep_too_much_tips
 string sleepchart_your_sleep
 string smart
 string snack
@@ -3467,6 +3491,7 @@ string title_home
 string title_notifications
 string title_profile
 string title_sleep
+string title_sleep_today
 string title_today
 string toast_app_must_be_selected
 string toast_app_must_not_be_selected
@@ -3526,6 +3551,9 @@ string voice_service_package_title
 string waiting_for_bluetooth
 string waiting_for_reconnect
 string waiting_message
+string wake_up_many_times_fact
+string wake_up_many_times_label
+string wake_up_many_times_tips
 string wake_up_time
 string warning
 string warning_missing_notification_permission

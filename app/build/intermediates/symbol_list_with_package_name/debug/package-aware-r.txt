@@ -3927,7 +3927,6 @@ id FUNCTION
 id Height
 id META
 id NO_DEBUG
-id REMSleepIndicator
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -4132,8 +4131,8 @@ id date_picker_actions
 id decelerate
 id decelerateAndComplete
 id decor_content_parent
-id deepSleepIndicator
 id deep_sleep_hr
+id deep_sleep_indicator
 id deep_sleep_percentage
 id default_activity_button
 id delete_btn
@@ -4317,6 +4316,8 @@ id jumpToStart
 id label_add_ingredients
 id label_nutrition_info
 id labeled
+id late_sleep
+id late_sleep_label
 id layout
 id layout_btn_sign_up
 id layout_image
@@ -4329,6 +4330,9 @@ id left
 id leftToRight
 id legacy
 id light
+id light_sleep
+id light_sleep_indicator
+id light_sleep_percentage
 id line1
 id line3
 id lineChart
@@ -4454,6 +4458,9 @@ id noState
 id none
 id normal
 id north
+id not_enough_deep_sleep
+id not_enough_sleep
+id not_enough_sleep_label
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -4538,6 +4545,8 @@ id recorderWaitingSatellites
 id rectangles
 id recycler_view
 id rem_sleep
+id rem_sleep_indicator
+id rem_sleep_percentage
 id report_drawn
 id reverseSawtooth
 id right
@@ -4575,7 +4584,6 @@ id selected
 id selection_type
 id serving_size
 id settings_container
-id shallowSleepIndicator
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -4592,6 +4600,7 @@ id sleepScoreCardView
 id sleep_fragment_img_back
 id sleep_fragment_img_next
 id sleep_score
+id sleep_too_much
 id sleepchart
 id slide
 id sliding_pane_detail_container
@@ -4719,6 +4728,9 @@ id view_tree_view_model_store_owner
 id viewpager_2
 id visible
 id visible_removing_fragment_view_tag
+id wake_up_many_times
+id wake_up_many_times_fact
+id wake_up_many_times_label
 id wearable_name
 id wearable_status
 id webview
@@ -6188,6 +6200,9 @@ string laneLength
 string language_and_region_prefs
 string laps
 string laps_unit
+string late_sleep_fact
+string late_sleep_label
+string late_sleep_tips
 string latvian
 string left
 string left_earbud
@@ -6530,6 +6545,12 @@ string normal
 string normal_workout
 string norwegian_bokmal
 string not_connected
+string not_enough_deep_sleep_fact
+string not_enough_deep_sleep_label
+string not_enough_deep_sleep_tips
+string not_enough_sleep_fact
+string not_enough_sleep_label
+string not_enough_sleep_tips
 string not_set
 string note
 string nothing_prefs_audiomode_title
@@ -7605,6 +7626,9 @@ string simplified_chinese
 string single_band
 string single_tap
 string sleep_activity_date_range
+string sleep_too_much_fact
+string sleep_too_much_label
+string sleep_too_much_tips
 string sleepchart_your_sleep
 string smart
 string snack
@@ -7823,6 +7847,7 @@ string title_home
 string title_notifications
 string title_profile
 string title_sleep
+string title_sleep_today
 string title_today
 string toast_app_must_be_selected
 string toast_app_must_not_be_selected
@@ -7884,6 +7909,9 @@ string voice_service_package_title
 string waiting_for_bluetooth
 string waiting_for_reconnect
 string waiting_message
+string wake_up_many_times_fact
+string wake_up_many_times_label
+string wake_up_many_times_tips
 string wake_up_time
 string warning
 string warning_missing_notification_permission

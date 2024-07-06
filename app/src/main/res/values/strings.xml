@@ -8,6 +8,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_today">Hôm nay</string>
+    <string name="title_sleep_today">Hôm qua - Hôm nay</string>
     // action
     <string name="add">Thêm</string>
     <string name="action_ok">Đồng ý</string>
@@ -83,6 +84,22 @@
     <string name="lunch">Bữa trưa</string>
     <string name="dinner">Bữa tối</string>
     <string name="snack">Bữa phụ</string>
+    // sleep
+    <string name="sleep_too_much_label">Bạn ngủ quá nhiều</string>
+    <string name="sleep_too_much_fact">Ngủ hơn 9 tiếng mỗi ngày đối với người trưởng thành, có thể gây ra nhiều tác hại cho sức khỏe.</string>
+    <string name="sleep_too_much_tips">Ngủ quá nhiều có thể gây :\n• Tăng nguy cơ mắc các bệnh mãn tính\n• Đau đầu, mệt mỏi và uể oải.\n• Các vấn đề về tiêu hóa như táo bón\n• Giảm khả năng tập trung, ghi nhớ và giải quyết vấn đề.</string>
+    <string name="late_sleep_label">Bạn ngủ muộn, vào %s</string>
+    <string name="late_sleep_fact">Bạn hãy cố gắng đi ngủ trước 22:00. Ngủ muộn không tốt cho hệ thống miễn dịch và tăng tốc độ lão hóa.</string>
+    <string name="late_sleep_tips">• Bạn hãy cố gắng vận động nhiều hơn trong ngày.\n• Ngắm nhìn bình minh và hoàng hôn 30 phút mỗi ngày giúp đặt lại nhịp sinh học cho cơ thể.\n• Không nên uống đồ uống có nhiều caffein như nước chè hoặc cà phê trước khi ngủ.</string>
+    <string name="not_enough_sleep_label">Bạn ngủ chưa đủ. Bạn đã chỉ ngủ %s </string>
+    <string name="not_enough_sleep_fact">Bạn chưa đạt được mục tiêu giấc ngủ mối ngày. Thiếu ngủ sẽ ảnh hưởng tới cơ thể và thần kinh.</string>
+    <string name="not_enough_sleep_tips">• Giữ lịch trình ngủ cố định, ngay cả vào cuối tuần, giúp đồng hồ sinh học của bạn ổn định hơn. Ngủ quá nhiều vào cuối tuần có thể làm gián đoạn lịch trình ngủ của bạn.</string>
+    <string name="not_enough_deep_sleep_label">Thời gian ngủ sâu ngắn</string>
+    <string name="not_enough_deep_sleep_fact">Đừng để cơ thể quá căng thẳng, hãy cố gắng giữ tâm lý thoải mái, sắp xếp thời gian hợp lý giữa công việc và nghỉ ngơi, tập thể dục nhiều hơn nhé !</string>
+    <string name="not_enough_deep_sleep_tips">• Tránh ăn quá no hoặc quá đói trước khi đi ngủ. Một bữa ăn nhẹ có thể giúp bạn ngủ ngon hơn.\n• Thực hiện các hoạt động như đọc sách, tắm nước ấm, hoặc nghe nhạc nhẹ nhàng trước khi ngủ.\n• Tránh ánh sáng xanh từ màn hình điện thoại, máy tính bảng và máy tính ít nhất 1 giờ trước khi đi ngủ.</string>
+    <string name="wake_up_many_times_label">Bạn đã thức giấc %s lần</string>
+    <string name="wake_up_many_times_fact">Bạn ngủ từ …</string>
+    <string name="wake_up_many_times_tips">• Hãy hạn chế uống nhiều nước trước khi đi ngủ.\n•  Hãy giữ cho nhiệt độ phòng ở mức 25–26 độ C.\n• Hãy đảm bảo rằng phòng bạn đủ tối và yên tĩnh.</string>
     // dialog
     <string name="waiting_message">Vui lòng đợi…</string>
     <string name="hint_search_name">Tên món ăn …</string>
@@ -1027,8 +1044,8 @@
     <string name="abstract_chart_fragment_kind_deep_sleep">Deep sleep</string>
     <string name="abstract_chart_fragment_kind_rem_sleep">REM sleep</string>
     <string name="abstract_chart_fragment_kind_not_worn">Not worn</string>
-    <string name="you_slept">You slept from %1$s to %2$s</string>
-    <string name="you_did_not_sleep">You did not sleep</string>
+    <string name="you_slept">Bạn ngủ từ %1$s tới %2$s</string>
+    <string name="you_did_not_sleep">Bạn chưa ngủ !</string>
     <string name="charts_min_max_heartrate_popup">Lowest heart rate: %1$d \nHighest heart rate: %2$d \nMovement intensity: %3$s</string>
     <string name="device_not_connected">Not connected.</string>
     <string name="user_feedback_all_alarms_disabled">All alarms disabled</string>
