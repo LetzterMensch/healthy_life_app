@@ -69,6 +69,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import de.greenrobot.dao.query.QueryBuilder;
 
@@ -178,7 +179,7 @@ public class ExerciseFragment extends BaseFragment {
             for (int i = 0; i < listSize; i++) {
                 Workout workout = normalWorkoutList.get(i);
                 RecordedWorkout recordedWorkout = recordedWorkoutList.get(i);
-                if (workout.getTimestamp() > recordedWorkout.getTimeStamp()) {
+                if (workout.getTimestamp() > recordedWorkout.getTimestamp()) {
                     workoutList.add(workout);
                     normalWorkoutList.remove(workout);
                 } else {
@@ -204,7 +205,7 @@ public class ExerciseFragment extends BaseFragment {
         populateHistoryList();
         //Initialize a list that can contains both to load both Workout and RecordedWorkout
 
-        mHistoryAdapter = new HistoryAdapter(workoutList, this::goToWorkoutItemDetailActivity, this::goToWorkoutItemDetailActivity, this::deleteWorkout);
+        mHistoryAdapter = new HistoryAdapter(workoutList, this::goToWorkoutItemDetailActivity, this::goToWorkoutItemDetailActivity, this::deleteWorkoutItem);
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireActivity());
         mFragmentExerciseBinding.rcvExHistory.setLayoutManager(layoutManager);
         mFragmentExerciseBinding.rcvExHistory.setAdapter(mHistoryAdapter);
@@ -215,8 +216,8 @@ public class ExerciseFragment extends BaseFragment {
             recyclerView.getLayoutParams().height = 300;
         }
     }
-    private void deleteWorkout(Workout workout) {
-        mDiary.updateDiaryAfterRemove(workout);
+    private void deleteWorkoutItem(WorkoutItem workoutItem) {
+        mDiary.updateDiaryAfterRemove(workoutItem);
         displayHistoryList();
         displayWorkoutInfo();
     }
@@ -282,14 +283,7 @@ public class ExerciseFragment extends BaseFragment {
         if (mDiary != null) {
             mFragmentExerciseBinding.exCalBurnt.setText(mDiary.getBurntCalories() + " Kcal");
             System.out.println("burnt calo : "+mDiary.getBurntCalories());
-            int minute = (mDiary.getTotalWorkoutDuration() - (mDiary.getTotalWorkoutDuration() / 60) * 60);
-            String min = null;
-            if (minute < 10) {
-                min = "0" + minute;
-            } else {
-                min = String.valueOf(minute);
-            }
-            mFragmentExerciseBinding.exCalBurntHr.setText(mDiary.getTotalWorkoutDuration() / 60 + ":" + min + " h");
+            mFragmentExerciseBinding.exCalBurntHr.setText(String.format("%s", DateTimeUtils.formatDurationHoursMinutes((long) mDiary.getTotalWorkoutDuration(), TimeUnit.MILLISECONDS)));
             mFragmentExerciseBinding.stepsBarIndicator.setProgress(mDiary.getTotalSteps() * 100 / activityUser.getStepsGoal());
             mFragmentExerciseBinding.exSteps.setText(String.valueOf(mDiary.getTotalSteps()));
             mFragmentExerciseBinding.titleGoalSteps.setText("Mục tiêu : " + activityUser.getStepsGoal() + " bước");
@@ -329,7 +323,7 @@ public class ExerciseFragment extends BaseFragment {
                 recordedWorkout.setBaseActivitySummaryId(sportitem.getId());
                 recordedWorkout.setActivityKind(sportitem.getActivityKind());
                 recordedWorkout.setCreatedAt(DateTimeUtils.formatDate(new Date((long) sportitem.getStartTime().getTime())));
-                recordedWorkout.setTimeStamp(sportitem.getStartTime().getTime());
+                recordedWorkout.setTimestamp(sportitem.getStartTime().getTime());
                 recordedWorkout.setEndTime(sportitem.getEndTime().getTime());
                 recordedWorkout.setDuration(sportitem.getEndTime().getTime() - sportitem.getStartTime().getTime());
                 System.out.println(recordedWorkout.getName());
@@ -374,7 +368,8 @@ public class ExerciseFragment extends BaseFragment {
                                 }
                             }
                         }
-                        recordedWorkout.saveRecordedWorkout(recordedWorkout);
+//                        recordedWorkout.saveRecordedWorkout(recordedWorkout);
+                        mDiary.logWorkoutItem(recordedWorkout);
                         displayHistoryList();
 //                        System.out.println("Save record sucessfully");
                     } catch (JSONException e) {
@@ -385,6 +380,7 @@ public class ExerciseFragment extends BaseFragment {
         } catch (Exception e) {
             GB.toast("Error loading activity summaries.", Toast.LENGTH_SHORT, GB.ERROR, e);
         }
+
     }
 
     //Reset last fetching timestamp to 00:00:00 to start a new day.
@@ -404,15 +400,15 @@ public class ExerciseFragment extends BaseFragment {
         System.out.println("Last timestamp : " + lastTimeStamp);
         System.out.println("reset time stamp : " + timestamp);
         // it should be like this
-        if (lastTimeStamp <= timestamp || today.getTimeInMillis() == 0) {
-            editor.remove("lastSportsActivityTimeMillis");
-            editor.putLong("lastSportsActivityTimeMillis", timestamp);
-            editor.apply();
-        }
+//        if (lastTimeStamp <= timestamp || today.getTimeInMillis() == 0) {
+//            editor.remove("lastSportsActivityTimeMillis");
+//            editor.putLong("lastSportsActivityTimeMillis", timestamp);
+//            editor.apply();
+//        }
         //For debug purpose only
-//        editor.remove("lastSportsActivityTimeMillis");
-//        editor.putLong("lastSportsActivityTimeMillis", timestamp);
-//        editor.apply();
+        editor.remove("lastSportsActivityTimeMillis");
+        editor.putLong("lastSportsActivityTimeMillis", timestamp);
+        editor.apply();
     }
 
     private void fetchWorkoutSummaryData() {

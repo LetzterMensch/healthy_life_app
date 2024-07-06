@@ -13,19 +13,18 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gr.R;
-import com.example.gr.view.adapter.ExerciseAdapter;
-import com.example.gr.utils.constant.GlobalFunction;
-import com.example.gr.model.database.LocalDatabase;
 import com.example.gr.databinding.ActivitySearchForExerciseBinding;
 import com.example.gr.model.ActivityUser;
 import com.example.gr.model.Diary;
 import com.example.gr.model.Exercise;
 import com.example.gr.model.Workout;
+import com.example.gr.model.database.LocalDatabase;
 import com.example.gr.utils.DateTimeUtils;
+import com.example.gr.utils.constant.GlobalFunction;
+import com.example.gr.view.adapter.ExerciseAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -68,8 +67,8 @@ public class SearchForExerciseActivity extends BaseActivity {
     }
 
     private void quickAddBtn(Workout workout) {
-        workout.setDiaryID(mDiary.getId());
-        mDiary.logWorkout(workout);
+//        workout.setDiaryID(mDiary.getId());
+        mDiary.logWorkoutItem(workout);
         Toast.makeText(this, "Đã thêm vào lịch sử tập luyện", Toast.LENGTH_SHORT).show();
     }
 
@@ -139,8 +138,8 @@ public class SearchForExerciseActivity extends BaseActivity {
         tvCloseBtn.setOnClickListener(v -> bottomSheetDialog.dismiss());
 
         tvAddToDiaryBtn.setOnClickListener(v -> {
-            tempWorkout.setDiaryID(mDiary.getId());
-            mDiary.logWorkout(tempWorkout);
+//            tempWorkout.setDiaryID(mDiary.getId());
+            mDiary.logWorkoutItem(tempWorkout);
             Toast.makeText(this, "Đã thêm vào lịch sử tập luyện", Toast.LENGTH_SHORT).show();
             bottomSheetDialog.dismiss();
         });

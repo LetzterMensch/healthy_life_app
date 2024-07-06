@@ -24,7 +24,7 @@ public class RecordedWorkout implements Serializable, WorkoutItem {
     private int maxHeartRate = -1;
     private int caloriesBurnt;
     private double distance;
-    private long timeStamp;
+    private long timestamp;
     private int diaryID;
 
     public RecordedWorkout(){}
@@ -110,6 +110,19 @@ public class RecordedWorkout implements Serializable, WorkoutItem {
         return duration;
     }
 
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public long getDurationInMillis() {
+        return duration;
+    }
+
     public void setDuration(long duration) {
         this.duration = duration;
     }
@@ -152,14 +165,6 @@ public class RecordedWorkout implements Serializable, WorkoutItem {
 
     public void setDistance(double distance) {
         this.distance = distance;
-    }
-
-    public long getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
     }
 
     @Override

@@ -90,9 +90,12 @@ public class Workout implements Serializable,WorkoutItem {
         this.exercise = exercise;
         this.exerciseId = exercise.getId();
     }
-
-    public int getDuration() {
+    public int getDuration(){
         return duration;
+    }
+    @Override
+    public long getDurationInMillis() {
+        return (long) duration * 60 * 1000;
     }
 
     public void setDuration(int duration) {

@@ -43,7 +43,7 @@ public class Diary implements Serializable {
     @Ignore
     private List<FoodLog> snackLogs;
     @Ignore
-    private List<Workout> workoutList;
+    private List<WorkoutItem> workoutList;
 
     public Diary() {
         this.date = DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime());
@@ -72,13 +72,25 @@ public class Diary implements Serializable {
     public void updateDiary() {
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
-    public void updateDiaryAfterRemove(Workout workout){
-        if(this.burntCalories - workout.getCaloriesBurnt() >= 0){
-            this.burntCalories -= workout.getCaloriesBurnt();
-            this.workoutList.remove(workout);
-        }else {
-            this.burntCalories = 0;
-            this.workoutList.clear();
+    public void updateDiaryAfterRemove(WorkoutItem workoutItem){
+        if(workoutItem.getType() == 1){
+            Workout workout = (Workout) workoutItem;
+            if(this.burntCalories - workout.getCaloriesBurnt() >= 0){
+                this.burntCalories -= workout.getCaloriesBurnt();
+                this.workoutList.remove(workout);
+            }else {
+                this.burntCalories = 0;
+                this.workoutList.clear();
+            }
+        }else{
+            RecordedWorkout recordedWorkout = (RecordedWorkout) workoutItem;
+            if(this.burntCalories - recordedWorkout.getCaloriesBurnt() >= 0){
+                this.burntCalories -= recordedWorkout.getCaloriesBurnt();
+                this.workoutList.remove(recordedWorkout);
+            }else {
+                this.burntCalories = 0;
+                this.workoutList.clear();
+            }
         }
         recalculateRemainingCalories(this.intakeCalories,this.burntCalories);
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
@@ -97,27 +109,42 @@ public class Diary implements Serializable {
     }
 
     private void getWorkoutList() {
-        this.workoutList = LocalDatabase.getInstance(ControllerApplication.getContext()).workoutDAO().findWorkoutByDiaryId(this.id);
         if (this.workoutList == null) {
             this.workoutList = new ArrayList<>();
         }
+        this.workoutList.clear();
+        this.workoutList.addAll(LocalDatabase.getInstance(ControllerApplication.getContext()).workoutDAO().findWorkoutByDiaryId(this.id));
+        this.workoutList.addAll(LocalDatabase.getInstance(ControllerApplication.getContext()).recordedWorkoutDAO().findWorkoutByDiaryId(this.id));
+
     }
 
-    public void logWorkout(Workout workout) {
+    public void logWorkoutItem(WorkoutItem workoutItem) {
         getWorkoutList();
-        this.workoutList.add(workout);
-        this.burntCalories += workout.getCaloriesBurnt();
-        LocalDatabase.getInstance(ControllerApplication.getContext()).workoutDAO().insertWorkout(workout);
+        if(workoutItem.getType() == 1){
+            Workout workout = (Workout) workoutItem;
+            this.burntCalories += workout.getCaloriesBurnt();
+            workout.setDiaryID(this.id);
+            LocalDatabase.getInstance(ControllerApplication.getContext()).workoutDAO().insertWorkout(workout);
+        }else{
+            RecordedWorkout recordedWorkout = (RecordedWorkout) workoutItem;
+            this.burntCalories += recordedWorkout.getCaloriesBurnt();
+            recordedWorkout.setDiaryID(this.id);
+            LocalDatabase.getInstance(ControllerApplication.getContext()).recordedWorkoutDAO().insertRecordedWorkout(recordedWorkout);
+        }
+        this.workoutList.add(workoutItem);
         updateDiaryAfterLogging();
     }
 
-    public int getTotalWorkoutDuration() {
+
+    public long getTotalWorkoutDuration() {// return milliseconds
         getWorkoutList();
         int sum = 0;
-        for (Workout workout : this.workoutList
+        for (WorkoutItem workoutItem : this.workoutList
         ) {
-            sum += workout.getDuration();
+            sum += workoutItem.getDurationInMillis();
+            System.out.println("item : " + workoutItem.getDurationInMillis());
         }
+        System.out.println("total duration, duration : "+ sum );
         return sum;
     }
 

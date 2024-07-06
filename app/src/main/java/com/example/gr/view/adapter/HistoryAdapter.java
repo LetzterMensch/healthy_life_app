@@ -11,7 +11,7 @@ import com.example.gr.ControllerApplication;
 import com.example.gr.utils.constant.ActivityKind;
 import com.example.gr.model.database.LocalDatabase;
 import com.example.gr.databinding.ItemExerciseHistoryBinding;
-import com.example.gr.controller.listener.IOnClickDeleteWorkoutListener;
+import com.example.gr.controller.listener.IOnClickDeleteWorkoutItemListener;
 import com.example.gr.controller.listener.IOnClickRecordedWorkoutItemListener;
 import com.example.gr.controller.listener.IOnClickWorkoutItemListener;
 import com.example.gr.model.Exercise;
@@ -26,15 +26,15 @@ import java.util.concurrent.TimeUnit;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
     public final IOnClickRecordedWorkoutItemListener iOnClickRecordedWorkoutItemListener;
     public final IOnClickWorkoutItemListener iOnClickWorkoutItemListener;
-    public final IOnClickDeleteWorkoutListener iOnClickDeleteWorkoutListener;
+    public final IOnClickDeleteWorkoutItemListener iOnClickDeleteWorkoutItemListener;
     private final List<WorkoutItem> mWorkoutHistoryList;
 
     public HistoryAdapter(List<WorkoutItem> workoutHistoryList, IOnClickWorkoutItemListener iOnClickWorkoutItemListener,
-                          IOnClickRecordedWorkoutItemListener iOnClickRecordedWorkoutItemListener, IOnClickDeleteWorkoutListener iOnClickDeleteWorkoutListener) {
+                          IOnClickRecordedWorkoutItemListener iOnClickRecordedWorkoutItemListener, IOnClickDeleteWorkoutItemListener iOnClickDeleteWorkoutItemListener) {
         this.iOnClickWorkoutItemListener = iOnClickWorkoutItemListener;
         this.iOnClickRecordedWorkoutItemListener = iOnClickRecordedWorkoutItemListener;
         this.mWorkoutHistoryList = workoutHistoryList;
-        this.iOnClickDeleteWorkoutListener = iOnClickDeleteWorkoutListener;
+        this.iOnClickDeleteWorkoutItemListener = iOnClickDeleteWorkoutItemListener;
     }
 
     @NonNull
@@ -51,14 +51,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             if (item.getType() == 1) {
                 Workout workout = (Workout) mWorkoutHistoryList.get(position);
                 Exercise exercise = LocalDatabase.getInstance(ControllerApplication.getContext()).exerciseDAO().getExerciseById(workout.getExerciseId());
-                long durationInMilli = workout.getDuration() * 60 * 100;
+                long durationInMillis = workout.getDurationInMillis();
                 holder.mItemExerciseHistoryBinding.historyDate.setText(workout.getCreatedAt());
-                holder.mItemExerciseHistoryBinding.historyDuration.setText(String.format("%s", DateTimeUtils.formatDurationHoursMinutes((long) durationInMilli, TimeUnit.MILLISECONDS)));
+                holder.mItemExerciseHistoryBinding.historyDuration.setText(String.format("%s", DateTimeUtils.formatDurationHoursMinutes((long) durationInMillis, TimeUnit.MILLISECONDS)));
                 holder.mItemExerciseHistoryBinding.historyTitle.setText(exercise.getName());
                 holder.mItemExerciseHistoryBinding.deleteHistoryBtn.setVisibility(View.VISIBLE);
                 holder.mItemExerciseHistoryBinding.deleteHistoryBtn.setOnClickListener(v->{
-                    deleteWorkout(workout);
-                    iOnClickDeleteWorkoutListener.onClickDeleteWorkout(workout);
+                    deleteHistoryItem(workout);
+                    iOnClickDeleteWorkoutItemListener.onClickDeleteWorkout(workout);
                 });
                 holder.mItemExerciseHistoryBinding.itemExHistoryLayout.setOnClickListener(v -> iOnClickWorkoutItemListener.onClickItemWorkout(workout));
 
@@ -68,18 +68,26 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
                     return;
                 }
                 holder.mItemExerciseHistoryBinding.historyDate.setText(recordedWorkout.getCreatedAt());
-                holder.mItemExerciseHistoryBinding.historyDuration.setText(String.format("%s", DateTimeUtils.formatDurationHoursMinutes((long) recordedWorkout.getDuration(), TimeUnit.MILLISECONDS)));
+                holder.mItemExerciseHistoryBinding.historyDuration.setText(String.format("%s", DateTimeUtils.formatDurationHoursMinutes((long) recordedWorkout.getDurationInMillis(), TimeUnit.MILLISECONDS)));
                 holder.mItemExerciseHistoryBinding.historyTitle.setText(recordedWorkout.getName());
+                holder.mItemExerciseHistoryBinding.deleteHistoryBtn.setVisibility(View.VISIBLE);
+                holder.mItemExerciseHistoryBinding.deleteHistoryBtn.setOnClickListener(v->{
+                    deleteHistoryItem(recordedWorkout);
+                    iOnClickDeleteWorkoutItemListener.onClickDeleteWorkout(recordedWorkout);
+                });
                 holder.mItemExerciseHistoryBinding.itemExHistoryLayout.setOnClickListener(v -> iOnClickRecordedWorkoutItemListener.onClickItemHistory(recordedWorkout));
                 holder.mItemExerciseHistoryBinding.iconHistory.setImageResource(ActivityKind.getIconId(recordedWorkout.getActivityKind()));
             }
         }
     }
-    public void deleteWorkout(Workout workout){
-        LocalDatabase.getInstance(ControllerApplication.getContext()).workoutDAO().deleteWorkout(workout);
-        mWorkoutHistoryList.remove(workout);
+    public void deleteHistoryItem(WorkoutItem workoutItem){
+        if(workoutItem.getType() == 1){
+            LocalDatabase.getInstance(ControllerApplication.getContext()).workoutDAO().deleteWorkout((Workout) workoutItem);
+        }else{
+            LocalDatabase.getInstance(ControllerApplication.getContext()).recordedWorkoutDAO().deleteRecordedWorkout((RecordedWorkout) workoutItem);
+        }
+        mWorkoutHistoryList.remove(workoutItem);
         notifyDataSetChanged();
-
     }
     @Override
     public int getItemCount() {

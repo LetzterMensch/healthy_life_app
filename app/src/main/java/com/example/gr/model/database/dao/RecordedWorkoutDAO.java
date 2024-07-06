@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.gr.model.RecordedWorkout;
+import com.example.gr.model.Workout;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ public interface RecordedWorkoutDAO {
     List<RecordedWorkout> findRecordedWorkoutWithTimeStamp(long timestamp);
     @Query("SELECT * FROM recordedworkout WHERE createdAt LIKE :dateTime")
     List<RecordedWorkout> findRecordedWorkoutByDate(String dateTime);
+    @Query("SELECT * FROM recordedworkout WHERE diaryID = :diaryID")
+    List<RecordedWorkout> findWorkoutByDiaryId(int diaryID);
     @Query("SELECT * FROM recordedworkout WHERE id=:id")
     RecordedWorkout getRecordedWorkoutById(int id);
     @Query("SELECT * FROM recordedworkout WHERE timeStamp=:timestamp")

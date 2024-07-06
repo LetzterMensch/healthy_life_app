@@ -25,6 +25,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class DashboardFragment extends BaseFragment {
     private FragmentDashboardBinding mfragmentDashboardBinding;
@@ -50,7 +51,6 @@ public class DashboardFragment extends BaseFragment {
             mDiary = new Diary(date);
             LocalDatabase.getInstance(this.requireActivity()).diaryDAO().insertDiary(mDiary);
         }
-        System.out.println(mDiary.getDate());
     }
 
     private void displayDashboardInfo() {
@@ -74,14 +74,7 @@ public class DashboardFragment extends BaseFragment {
             mfragmentDashboardBinding.dashboardFat.setText(mDiary.getIntakeFat() + "/" + mDiary.getFatGoal());
 
             mfragmentDashboardBinding.dashboardCalBurnt.setText(mDiary.getBurntCalories() + "cal");
-            int minute = (mDiary.getTotalWorkoutDuration() - (mDiary.getTotalWorkoutDuration() / 60) * 60);
-            String min = null;
-            if (minute < 10) {
-                min = "0" + minute;
-            }else {
-                min = String.valueOf(minute);
-            }
-            mfragmentDashboardBinding.calBurntDuration.setText(mDiary.getTotalWorkoutDuration() / 60 + ":" + min+" h");
+            mfragmentDashboardBinding.calBurntDuration.setText(String.format("%s", DateTimeUtils.formatDurationHoursMinutes((long) mDiary.getTotalWorkoutDuration(), TimeUnit.MILLISECONDS)));
             mfragmentDashboardBinding.stepsBarIndicator.setProgress(mDiary.getTotalSteps()*100/activityUser.getStepsGoal());
             mfragmentDashboardBinding.dashboardSteps.setText(String.valueOf(mDiary.getTotalSteps()));
             mfragmentDashboardBinding.titleGoalSteps.setText("Mục tiêu : " + activityUser.getStepsGoal() + " bước");
