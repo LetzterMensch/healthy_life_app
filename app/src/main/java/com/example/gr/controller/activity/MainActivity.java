@@ -147,6 +147,7 @@ public class MainActivity extends BaseActivity {
         mActivityMainBinding.viewpager2.setUserInputEnabled(false);
         mainViewPagerAdapter = new MainViewPagerAdapter(this);
         mActivityMainBinding.viewpager2.setAdapter(mainViewPagerAdapter);
+        mActivityMainBinding.viewpager2.setOffscreenPageLimit(1);
         mActivityMainBinding.viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {

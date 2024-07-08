@@ -3,6 +3,7 @@ package com.example.gr.controller.fragment;
 import static com.example.gr.utils.GB.toast;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -89,8 +90,11 @@ public class ExerciseFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private int currentItemCount;
     private long lastReceiveTime = 0;
+    private IntentFilter filterLocal;
     private static final long DEBOUNCE_INTERVAL = 1000; // 500ms
     private Calendar today;
+    private static final int REQUEST_CODE = 1;
+
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -122,7 +126,7 @@ public class ExerciseFragment extends BaseFragment {
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 1);
-        IntentFilter filterLocal = new IntentFilter();
+        filterLocal = new IntentFilter();
         filterLocal.addAction(GBDevice.ACTION_DEVICE_CHANGED);
         LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mReceiver, filterLocal);
         initUI();
@@ -132,8 +136,8 @@ public class ExerciseFragment extends BaseFragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(mReceiver);
 
     }
@@ -144,11 +148,13 @@ public class ExerciseFragment extends BaseFragment {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(mReceiver,filterLocal);
     }
     @Override
     public void onStop() {
-        EventBus.getDefault().unregister(this);
         super.onStop();
+        EventBus.getDefault().unregister(this);
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(mReceiver);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -172,49 +178,38 @@ public class ExerciseFragment extends BaseFragment {
                 findWorkoutByDate(DateTimeUtils.formatDate(new Date(now)));
         List<RecordedWorkout> recordedWorkoutList = LocalDatabase.getInstance(requireActivity()).recordedWorkoutDAO().
                 findRecordedWorkoutByDate(DateTimeUtils.formatDate(new Date(now)));
-        int listSize = Math.min(normalWorkoutList.size(), recordedWorkoutList.size());
+//        int listSize = Math.min(normalWorkoutList.size(), recordedWorkoutList.size());
         System.out.println("date time : " + DateTimeUtils.simpleDateFormat(today.getTime()));
         System.out.println("nomal vs recorded : " + recordedWorkoutList.size() + "/" + normalWorkoutList.size());
-        while(listSize > 0){
-            for (int i = 0; i < listSize; i++) {
-                Workout workout = normalWorkoutList.get(i);
-                RecordedWorkout recordedWorkout = recordedWorkoutList.get(i);
-                if (workout.getTimestamp() > recordedWorkout.getTimestamp()) {
-                    workoutList.add(workout);
-                    normalWorkoutList.remove(workout);
-                } else {
-                    workoutList.add(recordedWorkout);
-                    recordedWorkoutList.remove(recordedWorkout);
-                }
-            }
-            listSize = Math.min(normalWorkoutList.size(), recordedWorkoutList.size());
-        }
+//        while(listSize > 0){
+//            for (int i = 0; i < listSize; i++) {
+//                Workout workout = normalWorkoutList.get(i);
+//                RecordedWorkout recordedWorkout = recordedWorkoutList.get(i);
+//                if (workout.getTimestamp() > recordedWorkout.getTimestamp()) {
+//                    workoutList.add(workout);
+//                    normalWorkoutList.remove(workout);
+//                } else {
+//                    workoutList.add(recordedWorkout);
+//                    recordedWorkoutList.remove(recordedWorkout);
+//                }
+//            }
+//            listSize = Math.min(normalWorkoutList.size(), recordedWorkoutList.size());
+//        }
+//
+//        if (normalWorkoutList.size() > 0) {
+//        } else {
+//        }
+        workoutList.addAll(normalWorkoutList);
+        workoutList.addAll(recordedWorkoutList);
 
-        if (normalWorkoutList.size() > 0) {
-            workoutList.addAll(normalWorkoutList);
-        } else {
-            workoutList.addAll(recordedWorkoutList);
-        }
         System.out.println("check list size : " + workoutList.size());
     }
 
     private void displayHistoryList() {
-        if (workoutList == null) {
-            workoutList = new ArrayList<>();
-        }
         populateHistoryList();
         //Initialize a list that can contains both to load both Workout and RecordedWorkout
+        mHistoryAdapter.setWorkoutHistoryList(this.workoutList);
 
-        mHistoryAdapter = new HistoryAdapter(workoutList, this::goToWorkoutItemDetailActivity, this::goToWorkoutItemDetailActivity, this::deleteWorkoutItem);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireActivity());
-        mFragmentExerciseBinding.rcvExHistory.setLayoutManager(layoutManager);
-        mFragmentExerciseBinding.rcvExHistory.setAdapter(mHistoryAdapter);
-        currentItemCount = mHistoryAdapter.getItemCount();
-        if (currentItemCount < 5) {
-            recyclerView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        }else{
-            recyclerView.getLayoutParams().height = 300;
-        }
     }
     private void deleteWorkoutItem(WorkoutItem workoutItem) {
         mDiary.updateDiaryAfterRemove(workoutItem);
@@ -239,13 +234,19 @@ public class ExerciseFragment extends BaseFragment {
         recyclerView = mFragmentExerciseBinding.rcvExHistory;
         tvWearableName = mFragmentExerciseBinding.wearableName;
         tvWearableStatus = mFragmentExerciseBinding.wearableStatus;
-        deviceManager = ((ControllerApplication) getActivity().getApplication()).getDeviceManager();
+        deviceManager = ((ControllerApplication) requireActivity().getApplication()).getDeviceManager();
         if (deviceManager.getDevices().size() > 0) {
             device = deviceManager.getDevices().get(0);
         }
+        workoutList = new ArrayList<>();
+        populateHistoryList();
+        mHistoryAdapter = new HistoryAdapter(workoutList, this::goToWorkoutItemDetailActivity, this::goToWorkoutItemDetailActivity, this::deleteWorkoutItem);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireActivity());
+        mFragmentExerciseBinding.rcvExHistory.setLayoutManager(layoutManager);
+        mFragmentExerciseBinding.rcvExHistory.setAdapter(mHistoryAdapter);
+
         showAddWearableInfo();
         displayWorkoutInfo();
-        displayHistoryList();
     }
 
     private void launchDiscoveryActivity() {
@@ -254,16 +255,19 @@ public class ExerciseFragment extends BaseFragment {
 
     private void goToSearchForExerciseActivity() {
         Intent intent = new Intent(requireActivity(), SearchForExerciseActivity.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, REQUEST_CODE);
 //        Bundle bundle = new Bundle();
 //        GlobalFunction.startActivity(getActivity(), SearchForExerciseActivity.class, bundle);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+    public void onActivityResult(int requestCode, int resultCode,@Nullable Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
-        if (requestCode == 1) {
-            updateUIAfterShowSnackBar();
+        if (requestCode == REQUEST_CODE) {
+            if(resultCode == Activity.RESULT_OK && resultData != null){
+                displayWorkoutInfo();
+                displayHistoryList();
+            }
         }
     }
 

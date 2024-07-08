@@ -142,9 +142,7 @@ public class Diary implements Serializable {
         for (WorkoutItem workoutItem : this.workoutList
         ) {
             sum += workoutItem.getDurationInMillis();
-            System.out.println("item : " + workoutItem.getDurationInMillis());
         }
-        System.out.println("total duration, duration : "+ sum );
         return sum;
     }
 

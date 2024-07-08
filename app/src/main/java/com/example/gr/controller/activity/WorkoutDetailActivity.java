@@ -11,20 +11,19 @@ import com.example.gr.controller.activity.charts.DefaultChartsData;
 import com.example.gr.controller.activity.charts.SampleXLabelFormatter;
 import com.example.gr.controller.activity.charts.TimestampTranslation;
 import com.example.gr.controller.device.DeviceCoordinator;
+import com.example.gr.controller.device.GBDevice;
 import com.example.gr.controller.device.GBException;
 import com.example.gr.controller.fragment.AbstractActivityChartFragment;
+import com.example.gr.databinding.ActivityWorkoutDetailBinding;
+import com.example.gr.model.RecordedWorkout;
 import com.example.gr.model.data.sample.ActivitySample;
 import com.example.gr.model.data.sample.SampleProvider;
 import com.example.gr.model.database.DBHandler;
 import com.example.gr.model.database.entities.AbstractActivitySample;
+import com.example.gr.utils.DateTimeUtils;
 import com.example.gr.utils.HeartRateUtils;
-import com.example.gr.utils.SleepUtils;
 import com.example.gr.utils.constant.ActivityKind;
 import com.example.gr.utils.constant.Constant;
-import com.example.gr.databinding.ActivityWorkoutDetailBinding;
-import com.example.gr.controller.device.GBDevice;
-import com.example.gr.model.RecordedWorkout;
-import com.example.gr.utils.DateTimeUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -56,7 +55,7 @@ public class WorkoutDetailActivity extends BaseActivity  {
         initUI();
         try {
             initActivityChart();
-        } catch (GBException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 //        initListener();
@@ -87,7 +86,7 @@ public class WorkoutDetailActivity extends BaseActivity  {
 
         }
     }
-    private void initActivityChart() throws GBException {
+    private void initActivityChart() throws Exception {
         setUpDataForActivityChart();
         XAxis x = mChart.getXAxis();
         x.setDrawLabels(true);
@@ -115,7 +114,7 @@ public class WorkoutDetailActivity extends BaseActivity  {
         yAxisRight.setDrawTopYLabelEntry(true);
         yAxisRight.setTextColor(R.color.textColorSecondary);
     }
-    private void setUpDataForActivityChart() throws GBException {
+    private void setUpDataForActivityChart() throws Exception {
         DBHandler db = ControllerApplication.acquireDB();
         List<? extends ActivitySample> samples = getAllSamples(db, mDevice, (int) (mRecordedWorkout.getTimestamp()/1000), (int) (mRecordedWorkout.getEndTime()/1000));
         DefaultChartsData dcd = null;
@@ -129,6 +128,7 @@ public class WorkoutDetailActivity extends BaseActivity  {
             mChart.getXAxis().setValueFormatter(dcd.getXValueFormatter());
             mChart.setData((LineData) dcd.getData());
         }
+        db.close();
     }
     protected SampleProvider<? extends AbstractActivitySample> getProvider(DBHandler db, GBDevice device) {
         DeviceCoordinator coordinator = device.getDeviceCoordinator();

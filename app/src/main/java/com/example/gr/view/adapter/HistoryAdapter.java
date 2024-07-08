@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gr.ControllerApplication;
+import com.example.gr.R;
 import com.example.gr.utils.constant.ActivityKind;
 import com.example.gr.model.database.LocalDatabase;
 import com.example.gr.databinding.ItemExerciseHistoryBinding;
@@ -27,7 +28,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     public final IOnClickRecordedWorkoutItemListener iOnClickRecordedWorkoutItemListener;
     public final IOnClickWorkoutItemListener iOnClickWorkoutItemListener;
     public final IOnClickDeleteWorkoutItemListener iOnClickDeleteWorkoutItemListener;
-    private final List<WorkoutItem> mWorkoutHistoryList;
+    private List<WorkoutItem> mWorkoutHistoryList;
 
     public HistoryAdapter(List<WorkoutItem> workoutHistoryList, IOnClickWorkoutItemListener iOnClickWorkoutItemListener,
                           IOnClickRecordedWorkoutItemListener iOnClickRecordedWorkoutItemListener, IOnClickDeleteWorkoutItemListener iOnClickDeleteWorkoutItemListener) {
@@ -61,7 +62,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
                     iOnClickDeleteWorkoutItemListener.onClickDeleteWorkout(workout);
                 });
                 holder.mItemExerciseHistoryBinding.itemExHistoryLayout.setOnClickListener(v -> iOnClickWorkoutItemListener.onClickItemWorkout(workout));
-
+                holder.mItemExerciseHistoryBinding.iconHistory.setImageResource(R.drawable.ic_indoor_workout_green_50);
             } else {
                 RecordedWorkout recordedWorkout = (RecordedWorkout) mWorkoutHistoryList.get(position);
                 if (recordedWorkout == null) {
@@ -79,6 +80,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
                 holder.mItemExerciseHistoryBinding.iconHistory.setImageResource(ActivityKind.getIconId(recordedWorkout.getActivityKind()));
             }
         }
+    }
+    public void setWorkoutHistoryList(List<WorkoutItem> workoutItems){
+        if(this.mWorkoutHistoryList != null && !this.mWorkoutHistoryList.isEmpty()){
+            this.mWorkoutHistoryList.clear();
+            this.mWorkoutHistoryList.addAll(workoutItems);
+        }else{
+            this.mWorkoutHistoryList = workoutItems;
+        }
+        notifyDataSetChanged();
+
     }
     public void deleteHistoryItem(WorkoutItem workoutItem){
         if(workoutItem.getType() == 1){

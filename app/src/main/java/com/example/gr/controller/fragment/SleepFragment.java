@@ -208,8 +208,8 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
                 setupActivityChart();
                 refresh();
             } else {
+                fetchRecordedData();
                 setupActivityChart();
-
             }
         }
         return mFragmentSleepBinding.getRoot();
@@ -465,16 +465,19 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         mFragmentSleepBinding.notEnoughDeepSleep.setVisibility(View.GONE);
         //sleep too late
         Calendar mCalendar = Calendar.getInstance();
+        int timeWentToBed;
         for (Date dateTime : goToBedTime) {
             mCalendar.setTime(dateTime);
-            mCalendar.set(Calendar.HOUR_OF_DAY, 22);
-            if (dateTime.after(mCalendar.getTime())) {
+            timeWentToBed = mCalendar.get(Calendar.HOUR_OF_DAY);
+            if (timeWentToBed >= 22 || timeWentToBed <= 5) {
                 mFragmentSleepBinding.lateSleepLabel.setText(getString(R.string.late_sleep_label, DateTimeUtils.timeToString(dateTime)));
                 mFragmentSleepBinding.lateSleep.setVisibility(View.VISIBLE);
                 break;
             }
+
         }
         //wake up too many times
+        System.out.println("wake up times : "+wakeUpTimes);
         if (wakeUpTimes >= 2) {
             mFragmentSleepBinding.wakeUpManyTimesLabel.setText(getString(R.string.wake_up_many_times_label, String.valueOf(wakeUpTimes)));
             mFragmentSleepBinding.wakeUpManyTimesFact.setText(recordedSleep);
@@ -740,7 +743,7 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         Date from = calendar.getTime();
         calendar.add(Calendar.DAY_OF_YEAR,1);
         mFragmentSleepBinding.date.setText(DateTimeUtils.formatDateRange(from,to));
-        fetchRecordedData();
+//        fetchRecordedData();
     }
 
     private void getNextDay() {
@@ -757,7 +760,7 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         Date from = calendar.getTime();
         calendar.add(Calendar.DAY_OF_YEAR,1);
         mFragmentSleepBinding.date.setText(DateTimeUtils.formatDateRange(from,to));
-        fetchRecordedData();
+//        fetchRecordedData();
     }
 
     private void openDatePicker() {
@@ -844,7 +847,7 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
 
     @Override
     protected void updateUIAfterShowSnackBar() {
-
+        System.out.println("Done updating !");
     }
 
     @Override
@@ -855,8 +858,8 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(mReceiver);
 
     }

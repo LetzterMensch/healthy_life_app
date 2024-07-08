@@ -1,5 +1,7 @@
 package com.example.gr.controller.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -198,6 +200,21 @@ public class SearchForExerciseActivity extends BaseActivity {
         GlobalFunction.hideSoftKeyboard(this);
     }
     private void initToolbar() {
-        mActivitySearchForExerciseBinding.imgBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
+        mActivitySearchForExerciseBinding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("result_key", "display_fragment");
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish(); // Đảm bảo rằng Activity sẽ đóng lại và trả kết quả về Fragment
+            }
+        });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("result_key", "display_fragment");
+        setResult(Activity.RESULT_OK, resultIntent);
+        super.onBackPressed();
     }
 }
