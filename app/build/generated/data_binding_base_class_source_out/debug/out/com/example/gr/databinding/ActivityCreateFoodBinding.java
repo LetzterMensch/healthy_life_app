@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -31,6 +32,9 @@ public final class ActivityCreateFoodBinding implements ViewBinding {
   public final LinearLayout addNewFoodIngredients;
 
   @NonNull
+  public final Button btnQuickSaveNewFood;
+
+  @NonNull
   public final Button btnSaveNewFood;
 
   @NonNull
@@ -40,10 +44,31 @@ public final class ActivityCreateFoodBinding implements ViewBinding {
   public final LinearProgressIndicator carbIndicator;
 
   @NonNull
+  public final RelativeLayout createFoodFromDb;
+
+  @NonNull
   public final RelativeLayout createFoodToolbar;
 
   @NonNull
+  public final LinearLayout createOption;
+
+  @NonNull
   public final EditText editNewFoodName;
+
+  @NonNull
+  public final EditText editQuickAddCalories;
+
+  @NonNull
+  public final EditText editQuickAddCarb;
+
+  @NonNull
+  public final EditText editQuickAddFat;
+
+  @NonNull
+  public final EditText editQuickAddProtein;
+
+  @NonNull
+  public final EditText editQuickAddServingSize;
 
   @NonNull
   public final EditText edtSearchName;
@@ -85,7 +110,28 @@ public final class ActivityCreateFoodBinding implements ViewBinding {
   public final LinearLayout newFoodNutritionInfo;
 
   @NonNull
+  public final ToggleButton optionToggleBtn;
+
+  @NonNull
   public final LinearProgressIndicator proteinIndicator;
+
+  @NonNull
+  public final CardView quickAddCaloriesCard;
+
+  @NonNull
+  public final CardView quickAddCarbCard;
+
+  @NonNull
+  public final CardView quickAddFatCard;
+
+  @NonNull
+  public final RelativeLayout quickAddLayout;
+
+  @NonNull
+  public final CardView quickAddProteinCard;
+
+  @NonNull
+  public final CardView quickAddServingSizeCard;
 
   @NonNull
   public final RecyclerView rcvFoodList;
@@ -100,25 +146,40 @@ public final class ActivityCreateFoodBinding implements ViewBinding {
   public final TextView tvNewFoodName;
 
   private ActivityCreateFoodBinding(@NonNull NestedScrollView rootView,
-      @NonNull LinearLayout addNewFoodIngredients, @NonNull Button btnSaveNewFood,
-      @NonNull TextView calories, @NonNull LinearProgressIndicator carbIndicator,
-      @NonNull RelativeLayout createFoodToolbar, @NonNull EditText editNewFoodName,
+      @NonNull LinearLayout addNewFoodIngredients, @NonNull Button btnQuickSaveNewFood,
+      @NonNull Button btnSaveNewFood, @NonNull TextView calories,
+      @NonNull LinearProgressIndicator carbIndicator, @NonNull RelativeLayout createFoodFromDb,
+      @NonNull RelativeLayout createFoodToolbar, @NonNull LinearLayout createOption,
+      @NonNull EditText editNewFoodName, @NonNull EditText editQuickAddCalories,
+      @NonNull EditText editQuickAddCarb, @NonNull EditText editQuickAddFat,
+      @NonNull EditText editQuickAddProtein, @NonNull EditText editQuickAddServingSize,
       @NonNull EditText edtSearchName, @NonNull LinearProgressIndicator fatIndicator,
       @NonNull TextView foodCarb, @NonNull TextView foodFat, @NonNull TextView foodProtein,
       @NonNull ImageView imgClose, @NonNull ImageView imgSearch,
       @NonNull TextView labelAddIngredients, @NonNull TextView labelNutritionInfo,
       @NonNull RelativeLayout layoutSearchBar, @NonNull RelativeLayout layoutSpinner,
       @NonNull CardView newFoodName, @NonNull LinearLayout newFoodNutritionInfo,
-      @NonNull LinearProgressIndicator proteinIndicator, @NonNull RecyclerView rcvFoodList,
-      @NonNull RecyclerView rcvIngredients, @NonNull TextView tvNewFoodIngredients,
-      @NonNull TextView tvNewFoodName) {
+      @NonNull ToggleButton optionToggleBtn, @NonNull LinearProgressIndicator proteinIndicator,
+      @NonNull CardView quickAddCaloriesCard, @NonNull CardView quickAddCarbCard,
+      @NonNull CardView quickAddFatCard, @NonNull RelativeLayout quickAddLayout,
+      @NonNull CardView quickAddProteinCard, @NonNull CardView quickAddServingSizeCard,
+      @NonNull RecyclerView rcvFoodList, @NonNull RecyclerView rcvIngredients,
+      @NonNull TextView tvNewFoodIngredients, @NonNull TextView tvNewFoodName) {
     this.rootView = rootView;
     this.addNewFoodIngredients = addNewFoodIngredients;
+    this.btnQuickSaveNewFood = btnQuickSaveNewFood;
     this.btnSaveNewFood = btnSaveNewFood;
     this.calories = calories;
     this.carbIndicator = carbIndicator;
+    this.createFoodFromDb = createFoodFromDb;
     this.createFoodToolbar = createFoodToolbar;
+    this.createOption = createOption;
     this.editNewFoodName = editNewFoodName;
+    this.editQuickAddCalories = editQuickAddCalories;
+    this.editQuickAddCarb = editQuickAddCarb;
+    this.editQuickAddFat = editQuickAddFat;
+    this.editQuickAddProtein = editQuickAddProtein;
+    this.editQuickAddServingSize = editQuickAddServingSize;
     this.edtSearchName = edtSearchName;
     this.fatIndicator = fatIndicator;
     this.foodCarb = foodCarb;
@@ -132,7 +193,14 @@ public final class ActivityCreateFoodBinding implements ViewBinding {
     this.layoutSpinner = layoutSpinner;
     this.newFoodName = newFoodName;
     this.newFoodNutritionInfo = newFoodNutritionInfo;
+    this.optionToggleBtn = optionToggleBtn;
     this.proteinIndicator = proteinIndicator;
+    this.quickAddCaloriesCard = quickAddCaloriesCard;
+    this.quickAddCarbCard = quickAddCarbCard;
+    this.quickAddFatCard = quickAddFatCard;
+    this.quickAddLayout = quickAddLayout;
+    this.quickAddProteinCard = quickAddProteinCard;
+    this.quickAddServingSizeCard = quickAddServingSizeCard;
     this.rcvFoodList = rcvFoodList;
     this.rcvIngredients = rcvIngredients;
     this.tvNewFoodIngredients = tvNewFoodIngredients;
@@ -172,6 +240,12 @@ public final class ActivityCreateFoodBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btn_quick_save_new_food;
+      Button btnQuickSaveNewFood = ViewBindings.findChildViewById(rootView, id);
+      if (btnQuickSaveNewFood == null) {
+        break missingId;
+      }
+
       id = R.id.btn_save_new_food;
       Button btnSaveNewFood = ViewBindings.findChildViewById(rootView, id);
       if (btnSaveNewFood == null) {
@@ -190,15 +264,57 @@ public final class ActivityCreateFoodBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.create_food_from_db;
+      RelativeLayout createFoodFromDb = ViewBindings.findChildViewById(rootView, id);
+      if (createFoodFromDb == null) {
+        break missingId;
+      }
+
       id = R.id.create_food_toolbar;
       RelativeLayout createFoodToolbar = ViewBindings.findChildViewById(rootView, id);
       if (createFoodToolbar == null) {
         break missingId;
       }
 
+      id = R.id.create_option;
+      LinearLayout createOption = ViewBindings.findChildViewById(rootView, id);
+      if (createOption == null) {
+        break missingId;
+      }
+
       id = R.id.edit_new_food_name;
       EditText editNewFoodName = ViewBindings.findChildViewById(rootView, id);
       if (editNewFoodName == null) {
+        break missingId;
+      }
+
+      id = R.id.edit_quick_add_calories;
+      EditText editQuickAddCalories = ViewBindings.findChildViewById(rootView, id);
+      if (editQuickAddCalories == null) {
+        break missingId;
+      }
+
+      id = R.id.edit_quick_add_carb;
+      EditText editQuickAddCarb = ViewBindings.findChildViewById(rootView, id);
+      if (editQuickAddCarb == null) {
+        break missingId;
+      }
+
+      id = R.id.edit_quick_add_fat;
+      EditText editQuickAddFat = ViewBindings.findChildViewById(rootView, id);
+      if (editQuickAddFat == null) {
+        break missingId;
+      }
+
+      id = R.id.edit_quick_add_protein;
+      EditText editQuickAddProtein = ViewBindings.findChildViewById(rootView, id);
+      if (editQuickAddProtein == null) {
+        break missingId;
+      }
+
+      id = R.id.edit_quick_add_serving_size;
+      EditText editQuickAddServingSize = ViewBindings.findChildViewById(rootView, id);
+      if (editQuickAddServingSize == null) {
         break missingId;
       }
 
@@ -280,9 +396,51 @@ public final class ActivityCreateFoodBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.option_toggle_btn;
+      ToggleButton optionToggleBtn = ViewBindings.findChildViewById(rootView, id);
+      if (optionToggleBtn == null) {
+        break missingId;
+      }
+
       id = R.id.protein_indicator;
       LinearProgressIndicator proteinIndicator = ViewBindings.findChildViewById(rootView, id);
       if (proteinIndicator == null) {
+        break missingId;
+      }
+
+      id = R.id.quick_add_calories_card;
+      CardView quickAddCaloriesCard = ViewBindings.findChildViewById(rootView, id);
+      if (quickAddCaloriesCard == null) {
+        break missingId;
+      }
+
+      id = R.id.quick_add_carb_card;
+      CardView quickAddCarbCard = ViewBindings.findChildViewById(rootView, id);
+      if (quickAddCarbCard == null) {
+        break missingId;
+      }
+
+      id = R.id.quick_add_fat_card;
+      CardView quickAddFatCard = ViewBindings.findChildViewById(rootView, id);
+      if (quickAddFatCard == null) {
+        break missingId;
+      }
+
+      id = R.id.quick_add_layout;
+      RelativeLayout quickAddLayout = ViewBindings.findChildViewById(rootView, id);
+      if (quickAddLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.quick_add_protein_card;
+      CardView quickAddProteinCard = ViewBindings.findChildViewById(rootView, id);
+      if (quickAddProteinCard == null) {
+        break missingId;
+      }
+
+      id = R.id.quick_add_serving_size_card;
+      CardView quickAddServingSizeCard = ViewBindings.findChildViewById(rootView, id);
+      if (quickAddServingSizeCard == null) {
         break missingId;
       }
 
@@ -311,11 +469,14 @@ public final class ActivityCreateFoodBinding implements ViewBinding {
       }
 
       return new ActivityCreateFoodBinding((NestedScrollView) rootView, addNewFoodIngredients,
-          btnSaveNewFood, calories, carbIndicator, createFoodToolbar, editNewFoodName,
-          edtSearchName, fatIndicator, foodCarb, foodFat, foodProtein, imgClose, imgSearch,
-          labelAddIngredients, labelNutritionInfo, layoutSearchBar, layoutSpinner, newFoodName,
-          newFoodNutritionInfo, proteinIndicator, rcvFoodList, rcvIngredients, tvNewFoodIngredients,
-          tvNewFoodName);
+          btnQuickSaveNewFood, btnSaveNewFood, calories, carbIndicator, createFoodFromDb,
+          createFoodToolbar, createOption, editNewFoodName, editQuickAddCalories, editQuickAddCarb,
+          editQuickAddFat, editQuickAddProtein, editQuickAddServingSize, edtSearchName,
+          fatIndicator, foodCarb, foodFat, foodProtein, imgClose, imgSearch, labelAddIngredients,
+          labelNutritionInfo, layoutSearchBar, layoutSpinner, newFoodName, newFoodNutritionInfo,
+          optionToggleBtn, proteinIndicator, quickAddCaloriesCard, quickAddCarbCard,
+          quickAddFatCard, quickAddLayout, quickAddProteinCard, quickAddServingSizeCard,
+          rcvFoodList, rcvIngredients, tvNewFoodIngredients, tvNewFoodName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

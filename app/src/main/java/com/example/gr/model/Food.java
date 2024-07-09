@@ -54,6 +54,18 @@ public class Food implements Serializable {
         this.isCustomized = true;
     }
     @Ignore
+    public Food(String name,float servingSize,int calories ,float protein, float fat, float carb){
+        this.name = name;
+        this.calories = calories;
+        this.protein = protein;
+        this.fat = fat;
+        this.carb = carb;
+        this.numberOfServings = 1.0f;
+        this.servingSize = servingSize;
+        this.timestamp = Calendar.getInstance().getTimeInMillis();
+        this.isCustomized = true;
+    }
+    @Ignore
     public Food(){
         this.numberOfServings = 1.0f;
         this.servingSize = 100f;

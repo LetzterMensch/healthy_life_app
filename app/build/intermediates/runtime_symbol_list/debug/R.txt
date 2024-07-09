@@ -4048,6 +4048,7 @@ int id btn_import 0x7f0a007e
 int id btn_import_recipe 0x7f0a007f
 int id btn_log_in 0x7f0a0080
 int id btn_lunch_add 0x7f0a0081
+int id btn_quick_save_new_food 0x7f0a0343
 int id btn_save_new_food 0x7f0a0082
 int id btn_save_recipe 0x7f0a0083
 int id btn_sign_up 0x7f0a0084
@@ -4114,7 +4115,9 @@ int id coordinator 0x7f0a00c0
 int id cos 0x7f0a00c1
 int id counterclockwise 0x7f0a00c2
 int id cradle 0x7f0a00c3
+int id create_food_from_db 0x7f0a0344
 int id create_food_toolbar 0x7f0a00c4
+int id create_option 0x7f0a0345
 int id currentState 0x7f0a00c5
 int id custom 0x7f0a00c6
 int id customPanel 0x7f0a00c7
@@ -4202,6 +4205,11 @@ int id edge 0x7f0a0118
 int id edit_new_food_name 0x7f0a0119
 int id edit_number_of_servings 0x7f0a011a
 int id edit_query 0x7f0a011b
+int id edit_quick_add_calories 0x7f0a0346
+int id edit_quick_add_carb 0x7f0a0347
+int id edit_quick_add_fat 0x7f0a0348
+int id edit_quick_add_protein 0x7f0a0349
+int id edit_quick_add_serving_size 0x7f0a034a
 int id edit_search_name 0x7f0a011c
 int id edit_text_id 0x7f0a011d
 int id edt_search_name 0x7f0a011e
@@ -4481,6 +4489,7 @@ int id open_search_view_search_prefix 0x7f0a022f
 int id open_search_view_status_bar_spacer 0x7f0a0230
 int id open_search_view_toolbar 0x7f0a0231
 int id open_search_view_toolbar_container 0x7f0a0232
+int id option_toggle_btn 0x7f0a034b
 int id outline 0x7f0a0233
 int id outward 0x7f0a0234
 int id overshoot 0x7f0a0235
@@ -4506,6 +4515,12 @@ int id progressBar 0x7f0a0248
 int id progress_circular 0x7f0a0249
 int id progress_horizontal 0x7f0a024a
 int id protein_indicator 0x7f0a024b
+int id quick_add_calories_card 0x7f0a034c
+int id quick_add_carb_card 0x7f0a034d
+int id quick_add_fat_card 0x7f0a034e
+int id quick_add_layout 0x7f0a034f
+int id quick_add_protein_card 0x7f0a0350
+int id quick_add_serving_size_card 0x7f0a0351
 int id radio 0x7f0a024c
 int id ratio 0x7f0a024d
 int id rcv_breakfast_food 0x7f0a024e
@@ -6081,9 +6096,15 @@ int string hebrew 0x7f130407
 int string hello_blank_fragment 0x7f130408
 int string hide_bottom_view_on_scroll_behavior 0x7f130409
 int string high_carb 0x7f13040a
+int string hint_calories 0x7f130bf0
+int string hint_carb 0x7f130bf1
+int string hint_fat 0x7f130bf2
 int string hint_new_food_name 0x7f13040b
+int string hint_number_of_servings 0x7f130bf3
+int string hint_protein 0x7f130bf4
 int string hint_search_ex_name 0x7f13040c
 int string hint_search_name 0x7f13040d
+int string hint_serving_size 0x7f130bf5
 int string homepage_url 0x7f13040e
 int string horizontal 0x7f13040f
 int string hrZoneAerobic 0x7f130410
@@ -7547,6 +7568,7 @@ int string qhybrid_watchface_configuration_old_firmware 0x7f1309c1
 int string quick_alarm 0x7f1309c2
 int string quick_alarm_description 0x7f1309c3
 int string quick_attention 0x7f1309c4
+int string quick_save_food 0x7f130bf6
 int string recipe_suggest 0x7f1309c5
 int string recorded_workout 0x7f1309c6
 int string red 0x7f1309c7

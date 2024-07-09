@@ -57,13 +57,6 @@ public class DiaryFragment extends BaseFragment {
     }
 
     private void initUi() {
-//        List<Food> foodList = new ArrayList<>();
-//        foodList.add(new Food("French fires", 1, 118));
-//        foodList.add(new Food("Hamburger", 1, 118));
-//        foodList.add(new Food("Brisket", 1, 118));
-//        foodList.add(new Food("Buffalo chicken", 1, 118));
-//        LocalDatabase.getInstance(this.getActivity()).foodDAO().insertAll(foodList);
-//        DataImporter.importFoodFromJson(ControllerApplication.getContext(),LocalDatabase.getInstance(this.getActivity()));
         mfragmentDiaryBinding.date.setText("Hôm nay");
         mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
         displayFoodLogs(mDate);

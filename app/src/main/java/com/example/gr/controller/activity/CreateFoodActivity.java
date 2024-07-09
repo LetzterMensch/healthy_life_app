@@ -38,10 +38,13 @@ public class CreateFoodActivity extends BaseActivity {
     private int mMeal;
     private SubFoodAdapter mSubFoodAdapter;
     private SubFoodAdapter mIngredientAdapter; // Don't be confused
-    private DecimalFormat df = new DecimalFormat("#.##");
+    private final DecimalFormat df = new DecimalFormat("#.##");
     int currentItemCount;
     int subFoodItemCount;
     String searchkey;
+    final float[] carbCalo = new float[1];
+    final float[] proteinCalo = new float[1];
+    final float[] fatCalo = new float[1];
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,10 +67,12 @@ public class CreateFoodActivity extends BaseActivity {
         StringBuilder subfoodIds = new StringBuilder();
         if (validateNewFood()) {
             for (Food subFood : subFoodList) {
-                carb += subFood.getCarb();
-                protein += subFood.getProtein();
-                fat += subFood.getFat();
-                calories += subFood.getCalories();
+                getOriginalFoodData(subFood, carbCalo, proteinCalo, fatCalo);
+
+                carb += carbCalo[0] * subFood.getNumberOfServings();
+                protein += proteinCalo[0] * subFood.getNumberOfServings();
+                fat += fatCalo[0] * subFood.getNumberOfServings();
+                calories += subFood.getCalories() * subFood.getNumberOfServings();
                 subfoodIds.append(subFood.getId());
                 subfoodIds.append(",");
             }
@@ -96,6 +101,46 @@ public class CreateFoodActivity extends BaseActivity {
         return true;
     }
 
+    private boolean validateNewFoodV2() {
+        if (mActivityCreateFoodBinding.editNewFoodName.getText().toString().equals("") ||
+                mActivityCreateFoodBinding.editNewFoodName.getText().toString().isEmpty()) {
+            showAlertDialog("Vui lòng nhập tên món ăn");
+            return false;
+        }
+        if (mActivityCreateFoodBinding.editQuickAddCalories.getText().toString().trim().isEmpty() ||
+                mActivityCreateFoodBinding.editQuickAddCarb.getText().toString().trim().isEmpty() ||
+                mActivityCreateFoodBinding.editQuickAddFat.getText().toString().trim().isEmpty() ||
+                mActivityCreateFoodBinding.editQuickAddProtein.getText().toString().trim().isEmpty() ||
+                mActivityCreateFoodBinding.editQuickAddServingSize.getText().toString().trim().isEmpty()) {
+            showAlertDialog("Vui lòng nhập đủ thông tin");
+            return false;
+        }
+        return true;
+    }
+
+    private void addNewFood() {
+        if (validateNewFoodV2()) {
+            String name = mActivityCreateFoodBinding.editNewFoodName.getText().toString().trim();
+            float servingSize = Float.parseFloat(String.valueOf(mActivityCreateFoodBinding.editQuickAddServingSize.getText()));
+            float carb = Float.parseFloat(String.valueOf(mActivityCreateFoodBinding.editQuickAddCarb.getText()));
+            float protein = Float.parseFloat(String.valueOf(mActivityCreateFoodBinding.editQuickAddProtein.getText()));
+            float fat = Float.parseFloat(String.valueOf(mActivityCreateFoodBinding.editQuickAddFat.getText()));
+            int calories = Math.round(Float.parseFloat(String.valueOf(mActivityCreateFoodBinding.editQuickAddCalories.getText())));
+            int calculatedCalories = Math.round((carb + protein) * 4 + fat * 9);
+            if (calculatedCalories < calories - 15 || calculatedCalories > calories + 15) {
+                showAlertDialog("Thông tin dinh dưỡng chưa đúng");
+                return;
+            }
+            newFood = new Food(name, servingSize, calories, protein, fat, carb);
+            LocalDatabase.getInstance(this).foodDAO().insertFood(newFood);
+            //Fix bug không tìm thấy id của food trong foodlog
+            newFood = LocalDatabase.getInstance(this).foodDAO().getFoodByTimestamp(newFood.getTimestamp());
+            mDiary.logFood(new FoodLog(newFood, mMeal, newFood.getNumberOfServings(), mDiary.getId()));
+            Toast.makeText(this, "Đã tạo thực phẩm và lưu vào nhật ký", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+
     private void initUI() {
         getFoodListFromLocalDatabase(""); //Display search food list
         displaySubFoodList();
@@ -104,6 +149,28 @@ public class CreateFoodActivity extends BaseActivity {
         mActivityCreateFoodBinding.foodProtein.setText("0");
         mActivityCreateFoodBinding.foodFat.setText("0");
         mActivityCreateFoodBinding.calories.setText("0");
+        mActivityCreateFoodBinding.optionToggleBtn.setChecked(false);
+        mActivityCreateFoodBinding.optionToggleBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_gray_shape_corner_6));
+        mActivityCreateFoodBinding.quickAddLayout.setVisibility(View.GONE);
+        mActivityCreateFoodBinding.btnQuickSaveNewFood.setVisibility(View.GONE);
+        mActivityCreateFoodBinding.createFoodFromDb.setVisibility(View.VISIBLE);
+        mActivityCreateFoodBinding.btnSaveNewFood.setVisibility(View.VISIBLE);
+    }
+
+    private void switchOption() {
+        if (mActivityCreateFoodBinding.optionToggleBtn.isChecked()) {
+            mActivityCreateFoodBinding.optionToggleBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_red_shape_corner_6));
+            mActivityCreateFoodBinding.quickAddLayout.setVisibility(View.VISIBLE);
+            mActivityCreateFoodBinding.btnQuickSaveNewFood.setVisibility(View.VISIBLE);
+            mActivityCreateFoodBinding.createFoodFromDb.setVisibility(View.GONE);
+            mActivityCreateFoodBinding.btnSaveNewFood.setVisibility(View.GONE);
+        } else {
+            mActivityCreateFoodBinding.optionToggleBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_gray_shape_corner_6));
+            mActivityCreateFoodBinding.quickAddLayout.setVisibility(View.GONE);
+            mActivityCreateFoodBinding.btnQuickSaveNewFood.setVisibility(View.GONE);
+            mActivityCreateFoodBinding.createFoodFromDb.setVisibility(View.VISIBLE);
+            mActivityCreateFoodBinding.btnSaveNewFood.setVisibility(View.VISIBLE);
+        }
     }
 
     private void getDataIntent() {
@@ -121,15 +188,18 @@ public class CreateFoodActivity extends BaseActivity {
 
     private void displayNutriInfo() {
         float carb = 0;
-        float protein = 0;
         float fat = 0;
+        float protein = 0;
         int calories = 0;
         System.out.println("ingredients size : " + subFoodList.size());
         for (Food subFood : subFoodList) {
-            carb += subFood.getCarb();
-            protein += subFood.getProtein();
-            fat += subFood.getFat();
-            calories += subFood.getCalories();
+
+            getOriginalFoodData(subFood, carbCalo, proteinCalo, fatCalo);
+
+            carb += carbCalo[0] * subFood.getNumberOfServings();
+            protein += proteinCalo[0] * subFood.getNumberOfServings();
+            fat += fatCalo[0] * subFood.getNumberOfServings();
+            calories += subFood.getCalories() * subFood.getNumberOfServings();
         }
         mActivityCreateFoodBinding.calories.setText(getString(R.string.unit_calories_burnt, String.valueOf(calories)));
         mActivityCreateFoodBinding.foodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carb)));
@@ -197,24 +267,11 @@ public class CreateFoodActivity extends BaseActivity {
                 return;
             }
         }
-        float carbCalo = 0;
-        float proteinCalo = 0;
-        float fatCalo = 0;
-        if (food.getServingSize() == 100f) {
-            // handle the food from database which is mearsured by gram not Kcal for the first time
-            if (food.getCarb() + food.getProtein() + food.getFat() < (food.getCalories() - 10)) {
-                carbCalo = food.getCarb() * 4;
-                proteinCalo = food.getProtein() * 4;
-                fatCalo = food.getFat() * 9;
-            } else {
-                carbCalo = food.getCarb();
-                proteinCalo = food.getProtein();
-                fatCalo = food.getFat();
-            }
-        }
-        food.setCarb(carbCalo);
-        food.setProtein(proteinCalo);
-        food.setFat(fatCalo);
+        // number of servings = 1
+        getOriginalFoodData(food, carbCalo, proteinCalo, fatCalo);
+        food.setCarb(carbCalo[0]);
+        food.setProtein(proteinCalo[0]);
+        food.setFat(fatCalo[0]);
         subFoodList.add(food);
         displaySubFoodList();
         displayFoodList();
@@ -223,29 +280,9 @@ public class CreateFoodActivity extends BaseActivity {
     private void onClickViewDetail(Food food) {
 //        Toast.makeText(this, "Received", Toast.LENGTH_SHORT).show();
         final AtomicInteger[] newCaloCount = {new AtomicInteger((int) ((int) food.getCalories() * food.getNumberOfServings()))};
-        final float[] carbCalo = new float[1];
-        final float[] proteinCalo = new float[1];
-        final float[] fatCalo = new float[1];
-        if (food.getServingSize() == 100f) {
-            // handle the food from database which is measured by gram not Kcal for the first time
-            if (food.getCarb() + food.getProtein() + food.getFat() < (food.getCalories() - 10)) {
-                double calDiff = (food.getFat() * 9 + (food.getCarb() + food.getProtein()) * 4) - food.getCalories();
-                float correctionVal = (float) (calDiff / 3);
-                if (correctionVal > 0) {
-                    fatCalo[0] = Math.round((food.getFat() * 9 - correctionVal));
-                    carbCalo[0] = Math.round((food.getCarb() * 4 - correctionVal));
-                    proteinCalo[0] = Math.round((food.getProtein() * 4 - correctionVal));
-                }
-            } else {
-                carbCalo[0] = food.getCarb();
-                proteinCalo[0] = food.getProtein();
-                fatCalo[0] = food.getFat();
-            }
-        } else {
-            carbCalo[0] = food.getCarb();
-            proteinCalo[0] = food.getProtein();
-            fatCalo[0] = food.getFat();
-        }
+
+        getOriginalFoodData(food, carbCalo, proteinCalo, fatCalo);
+
         View viewDialog = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_add_subfood, null);
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(viewDialog);
@@ -264,9 +301,9 @@ public class CreateFoodActivity extends BaseActivity {
 
         tvSubFoodName.setText(food.getName());
         tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt, df.format(newCaloCount[0].get())));
-        tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0])));
-        tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0])));
-        tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0])));
+        tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0]*food.getNumberOfServings())));
+        tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0]*food.getNumberOfServings())));
+        tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0]*food.getNumberOfServings())));
         tvCount.setText(df.format(food.getNumberOfServings()));
 
         tvCount.addTextChangedListener(new TextWatcher() {
@@ -282,42 +319,21 @@ public class CreateFoodActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (food.getServingSize() == 100f) {
-                    // handle the food from database which is measured by gram not Kcal for the first time
-                    if (food.getCarb() + food.getProtein() + food.getFat() < (food.getCalories() - 10)) {
-                        double calDiff = (food.getFat() * 9 + (food.getCarb() + food.getProtein()) * 4) - food.getCalories();
-                        float correctionVal = (float) (calDiff / 3);
-                        if (correctionVal > 0) {
-                            fatCalo[0] = Math.round((food.getFat() * 9 - correctionVal));
-                            carbCalo[0] = Math.round((food.getCarb() * 4 - correctionVal));
-                            proteinCalo[0] = Math.round((food.getProtein() * 4 - correctionVal));
-                        }
-                    } else {
-                        carbCalo[0] = food.getCarb();
-                        proteinCalo[0] = food.getProtein();
-                        fatCalo[0] = food.getFat();
-                    }
-                } else {
-                    carbCalo[0] = food.getCarb();
-                    proteinCalo[0] = food.getProtein();
-                    fatCalo[0] = food.getFat();
-                }
+
+                // Get original food data on fat, carb and protein
+                getOriginalFoodData(food, carbCalo, proteinCalo, fatCalo);
                 String text = s.toString().replace(',', '.');
-//                StringBuilder textBuilder = new StringBuilder(text);
-//                if(text.indexOf('.') == text.length() -1){
-//                    textBuilder.append('0');
-//                }
                 float newCount = 1;
                 if (!text.isEmpty()) {
                     newCount = Float.parseFloat(text);
-                }else{
+                } else {
                     newCount = 0;
                 }
                 newCaloCount[0].set(Math.round(newCount * food.getCalories()));
                 carbCalo[0] = newCount * carbCalo[0];
                 proteinCalo[0] = newCount * proteinCalo[0];
                 fatCalo[0] = newCount * fatCalo[0];
-                tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt,  df.format(newCaloCount[0])));
+                tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt, df.format(newCaloCount[0])));
                 tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0])));
                 tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0])));
                 tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0])));
@@ -347,25 +363,11 @@ public class CreateFoodActivity extends BaseActivity {
         tvCloseBtn.setOnClickListener(v -> bottomSheetDialog.dismiss());
 
         tvAddToDiaryBtn.setOnClickListener(v -> {
-
-            for (int i = 0; i < subFoodList.size(); i++) {
-                if (subFoodList.get(i).getId() == food.getId()) {
-                    food.setCalories(newCaloCount[0].get());
-                    food.setCarb(carbCalo[0]);
-                    food.setProtein(proteinCalo[0]);
-                    food.setFat(fatCalo[0]);
-                    subFoodList.set(i, food);
-                    displaySubFoodList();
-                    displayFoodList();
-                    bottomSheetDialog.dismiss();
-                    return;
-                }
+            if (subFoodList.contains(food)) {
+                subFoodList.set(subFoodList.indexOf(food), food);
+            } else {
+                subFoodList.add(food);
             }
-            food.setCalories(newCaloCount[0].get());
-            food.setCarb(carbCalo[0]);
-            food.setProtein(proteinCalo[0]);
-            food.setFat(fatCalo[0]);
-            subFoodList.add(food);
             displaySubFoodList();
             displayFoodList();
             bottomSheetDialog.dismiss();
@@ -407,6 +409,30 @@ public class CreateFoodActivity extends BaseActivity {
 
         mActivityCreateFoodBinding.imgClose.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
         mActivityCreateFoodBinding.btnSaveNewFood.setOnClickListener(v -> createNewFood());
+        mActivityCreateFoodBinding.optionToggleBtn.setOnClickListener(v -> switchOption());
+        mActivityCreateFoodBinding.btnQuickSaveNewFood.setOnClickListener(v -> addNewFood());
+    }
+
+    private void getOriginalFoodData(Food food, float[] carbCalo, float[] proteinCalo, float[] fatCalo) {
+        if (food.getServingSize() != 1) {
+            // handle the food from database which is measured by gram not Kcal for the first time
+            if (food.getCarb() + food.getProtein() + food.getFat() < (food.getCalories() - 10)) {
+                double calDiff = Math.round((food.getFat() * 9 + (food.getCarb() + food.getProtein()) * 4)) - food.getCalories();
+                float correctionVal = (float) (calDiff / 3);
+                fatCalo[0] = Math.round((food.getFat() * 9 - correctionVal));
+                carbCalo[0] = Math.round((food.getCarb() * 4 - correctionVal));
+                proteinCalo[0] = Math.round((food.getProtein() * 4 - correctionVal));
+
+            } else {
+                carbCalo[0] = food.getCarb();
+                proteinCalo[0] = food.getProtein();
+                fatCalo[0] = food.getFat();
+            }
+        } else {
+            carbCalo[0] = food.getCarb();
+            proteinCalo[0] = food.getProtein();
+            fatCalo[0] = food.getFat();
+        }
     }
 
     private void searchSubFood() {

@@ -4734,9 +4734,15 @@
     <string name="hebrew">Hebrew</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="high_carb">Giàu tinh bột : 30/20/50</string>
+    <string name="hint_calories">Lượng năng lượng (KCal)</string>
+    <string name="hint_carb">Lượng tinh bột (g)</string>
+    <string name="hint_fat">Lượng chất béo (g)</string>
     <string name="hint_new_food_name">Tên món ăn mới …</string>
+    <string name="hint_number_of_servings">Số lượng khẩu phần</string>
+    <string name="hint_protein">Lượng chất đạm (g)</string>
     <string name="hint_search_ex_name">Tên bài tập …</string>
     <string name="hint_search_name">Tên món ăn …</string>
+    <string name="hint_serving_size">Kích cỡ khẩu phần (g)</string>
     <string name="homepage_url" translatable="false">Homepage: <a href="https://gadgetbridge.org/">https://gadgetbridge.org/</a></string>
     <string name="horizontal">Horizontal</string>
     <string name="hrZoneAerobic">Aerobic</string>
@@ -6090,6 +6096,7 @@
     <string name="quick_alarm">Quick alarm</string>
     <string name="quick_alarm_description">Alarm from widget</string>
     <string name="quick_attention">Quick Attention</string>
+    <string name="quick_save_food">Tạo thực phẩm mới</string>
     <string name="recipe_suggest">Gợi ý công thức nấu ăn</string>
     <string name="recorded_workout">Bài tập từ thiết bị</string>
     <string name="red">Red</string>

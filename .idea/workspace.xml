@@ -262,75 +262,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8927abcb-bfd4-4095-b0ba-3fed2b1c0825" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk/debug/app-debug.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/data_binding_base_class_log_artifact/debug/out/com.example.gr-binding_classes.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/data_binding_base_class_log_artifact/debug/out/com.example.gr-binding_classes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/10/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/10/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/dataBindingGenBaseClassesDebug/base_builder_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/dataBindingGenBaseClassesDebug/base_builder_log.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/MainActivity$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/MainActivity$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/MainActivity$RefreshTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/MainActivity$RefreshTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/MainActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/MainActivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/SearchForExerciseActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/SearchForExerciseActivity$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/SearchForExerciseActivity$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/SearchForExerciseActivity$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/SearchForExerciseActivity$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/SearchForExerciseActivity$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/SearchForExerciseActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/SearchForExerciseActivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/WorkoutDetailActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/activity/WorkoutDetailActivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/ExerciseFragment$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/ExerciseFragment$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/ExerciseFragment.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/ExerciseFragment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/SleepFragment$MyChartsData.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/SleepFragment$MyChartsData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/SleepFragment$MySleepChartsData.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/SleepFragment$MySleepChartsData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/SleepFragment.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/controller/fragment/SleepFragment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/model/Diary.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/model/Diary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/view/adapter/HistoryAdapter$HistoryViewHolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/view/adapter/HistoryAdapter$HistoryViewHolder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/view/adapter/HistoryAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/example/gr/view/adapter/HistoryAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/out/single/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/out/single/debug.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/out/single/layout.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/out/single/layout.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/CreateFoodActivity.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/CreateFoodActivity.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/MainActivity$3.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/MainActivity$3.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/MainActivity$RefreshTask.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/MainActivity$RefreshTask.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/MainActivity.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/MainActivity.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/SearchForExerciseActivity$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/SearchForExerciseActivity$1.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/SearchForExerciseActivity$2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/SearchForExerciseActivity$2.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/SearchForExerciseActivity$3.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/SearchForExerciseActivity$3.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/SearchForExerciseActivity.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/SearchForExerciseActivity.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/WorkoutDetailActivity.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/activity/WorkoutDetailActivity.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/ExerciseFragment$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/ExerciseFragment$1.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/ExerciseFragment.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/ExerciseFragment.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/SleepFragment$MyChartsData.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/SleepFragment$MyChartsData.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/SleepFragment$MySleepChartsData.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/SleepFragment$MySleepChartsData.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/SleepFragment.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/controller/fragment/SleepFragment.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/model/Diary.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/model/Diary.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/view/adapter/HistoryAdapter$HistoryViewHolder.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/view/adapter/HistoryAdapter$HistoryViewHolder.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/view/adapter/HistoryAdapter.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/gr/view/adapter/HistoryAdapter.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/stable_resource_ids_file/debug/stableIds.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/stable_resource_ids_file/debug/stableIds.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/compileTransaction/stash-dir/CreateFoodActivity$1.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/compileTransaction/stash-dir/CreateFoodActivity$2.class.uniqueId4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/compileTransaction/stash-dir/CreateFoodActivity$3.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/compileTransaction/stash-dir/CreateFoodActivity.class.uniqueId3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/compileTransaction/stash-dir/FoodListSearchFragment$1.class.uniqueId5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/compileTransaction/stash-dir/FoodListSearchFragment.class.uniqueId2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/activity/SearchForExerciseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/activity/SearchForExerciseActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/activity/WorkoutDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/activity/WorkoutDetailActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/fragment/ExerciseFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/fragment/ExerciseFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/fragment/SleepFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/fragment/SleepFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/model/Diary.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/model/Diary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/view/adapter/HistoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/view/adapter/HistoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/activity/CreateFoodActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/activity/CreateFoodActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/device/scan/GBScanEventProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/device/scan/GBScanEventProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/fragment/DiaryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/controller/fragment/DiaryFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/model/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/model/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/view/adapter/FoodLogAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/view/adapter/FoodLogAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/view/adapter/FoodSearchTabAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/view/adapter/FoodSearchTabAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gr/view/adapter/SubFoodAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gr/view/adapter/SubFoodAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_create_food.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_create_food.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -340,7 +283,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[1afd6704]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -508,46 +451,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "PROJECT_TRUSTED_KEY": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0/f4de7876e10ff121102f131b26d4a98b1613a012/recyclerview-1.3.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED": "RecyclerView",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/androidx.swiperefreshlayout/swiperefreshlayout/1.0.0/ab92d86c004eb1d48e45f311b02ca53d6c86b607/swiperefreshlayout-1.0.0-sources.jar!/androidx/swiperefreshlayout/widget/SwipeRefreshLayout.java_SELECTED": "SwipeRefreshLayout",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/androidx.viewpager2/viewpager2/1.0.0/3c3569044e6969f1ee5c3aa03b08e6717a2d782f/viewpager2-1.0.0-sources.jar!/androidx/viewpager2/widget/ViewPager2.java_SELECTED": "ViewPager2",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.diogobernardino/williamchart/3.10.1/acb80eb98074c4641926c8d729936f41bc8c452c/williamchart-3.10.1-sources.jar!/com/db/williamchart/view/LineChartView.kt_SELECTED": "LineChartView",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.1.0/45d3ce505f744a595313d5eb84efd3ca3c8d2d04/MPAndroidChart-v3.1.0-sources.jar!/com/github/mikephil/charting/charts/BarChart.java_SELECTED": "BarChart",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.1.0/45d3ce505f744a595313d5eb84efd3ca3c8d2d04/MPAndroidChart-v3.1.0-sources.jar!/com/github/mikephil/charting/charts/Chart.java_SELECTED": "Chart",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.12.0/5583a9ff7f51bd568ac8b94496ec3d1ec787a015/material-1.12.0-sources.jar!/com/google/android/material/button/MaterialButton.java_SELECTED": "MaterialButton",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.12.0/5583a9ff7f51bd568ac8b94496ec3d1ec787a015/material-1.12.0-sources.jar!/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton.java_SELECTED": "ExtendedFloatingActionButton",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.12.0/5583a9ff7f51bd568ac8b94496ec3d1ec787a015/material-1.12.0-sources.jar!/com/google/android/material/materialswitch/MaterialSwitch.java_SELECTED": "MaterialSwitch",
-    "android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.12.0/5583a9ff7f51bd568ac8b94496ec3d1ec787a015/material-1.12.0-sources.jar!/com/google/android/material/progressindicator/BaseProgressIndicator.java_SELECTED": "BaseProgressIndicator",
-    "android-custom-viewE:/20232/GR/app/src/main/java/com/example/gr/widget/AspectRatioNoRadiusImageView.java_SELECTED": "AspectRatioNoRadiusImageView",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "main",
-    "last_directory_selection": "E:/20232/GR/app/src/main/res/drawable",
-    "last_opened_file_path": "E:/20232/DATN/semi_final/New folder (2)/healthy_life_app-main",
-    "project.structure.last.edited": "Suggestions",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0/f4de7876e10ff121102f131b26d4a98b1613a012/recyclerview-1.3.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED&quot;: &quot;RecyclerView&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/androidx.swiperefreshlayout/swiperefreshlayout/1.0.0/ab92d86c004eb1d48e45f311b02ca53d6c86b607/swiperefreshlayout-1.0.0-sources.jar!/androidx/swiperefreshlayout/widget/SwipeRefreshLayout.java_SELECTED&quot;: &quot;SwipeRefreshLayout&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/androidx.viewpager2/viewpager2/1.0.0/3c3569044e6969f1ee5c3aa03b08e6717a2d782f/viewpager2-1.0.0-sources.jar!/androidx/viewpager2/widget/ViewPager2.java_SELECTED&quot;: &quot;ViewPager2&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.diogobernardino/williamchart/3.10.1/acb80eb98074c4641926c8d729936f41bc8c452c/williamchart-3.10.1-sources.jar!/com/db/williamchart/view/LineChartView.kt_SELECTED&quot;: &quot;LineChartView&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.1.0/45d3ce505f744a595313d5eb84efd3ca3c8d2d04/MPAndroidChart-v3.1.0-sources.jar!/com/github/mikephil/charting/charts/BarChart.java_SELECTED&quot;: &quot;BarChart&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.1.0/45d3ce505f744a595313d5eb84efd3ca3c8d2d04/MPAndroidChart-v3.1.0-sources.jar!/com/github/mikephil/charting/charts/Chart.java_SELECTED&quot;: &quot;Chart&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.12.0/5583a9ff7f51bd568ac8b94496ec3d1ec787a015/material-1.12.0-sources.jar!/com/google/android/material/button/MaterialButton.java_SELECTED&quot;: &quot;MaterialButton&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.12.0/5583a9ff7f51bd568ac8b94496ec3d1ec787a015/material-1.12.0-sources.jar!/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton.java_SELECTED&quot;: &quot;ExtendedFloatingActionButton&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.12.0/5583a9ff7f51bd568ac8b94496ec3d1ec787a015/material-1.12.0-sources.jar!/com/google/android/material/materialswitch/MaterialSwitch.java_SELECTED&quot;: &quot;MaterialSwitch&quot;,
+    &quot;android-custom-viewC:/Users/4800/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.12.0/5583a9ff7f51bd568ac8b94496ec3d1ec787a015/material-1.12.0-sources.jar!/com/google/android/material/progressindicator/BaseProgressIndicator.java_SELECTED&quot;: &quot;BaseProgressIndicator&quot;,
+    &quot;android-custom-viewE:/20232/GR/app/src/main/java/com/example/gr/widget/AspectRatioNoRadiusImageView.java_SELECTED&quot;: &quot;AspectRatioNoRadiusImageView&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_directory_selection&quot;: &quot;E:/20232/GR/app/src/main/res/drawable&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/20232/DATN/semi_final/New folder (2)/healthy_life_app-main&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Suggestions&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   },
-  "keyToStringList": {
-    "com.android.tools.idea.sqlite.queryhistory": [
-      "delete from diary;",
-      "delete from recipe;",
-      "delete from recordedworkout where id = 22;",
-      "delete from recordedworkout where id = 21;",
-      "delete from recordedworkout where id = 20;"
+  &quot;keyToStringList&quot;: {
+    &quot;com.android.tools.idea.sqlite.queryhistory&quot;: [
+      &quot;delete from diary;&quot;,
+      &quot;delete from recipe;&quot;,
+      &quot;delete from recordedworkout where id = 22;&quot;,
+      &quot;delete from recordedworkout where id = 21;&quot;,
+      &quot;delete from recordedworkout where id = 20;&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="PsdUISettings">
     <option name="MODULE_TAB" value="Properties" />
     <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />

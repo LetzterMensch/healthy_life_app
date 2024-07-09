@@ -17,11 +17,12 @@ import com.example.gr.model.FoodLog;
 
 import java.util.List;
 
-public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.FoodLogViewHolder>{
+public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.FoodLogViewHolder> {
     public final IOnClickFoodLogItemListener iOnClickFoodLogItemListener;
     private List<FoodLog> mFoodLogsList;
     public final IOnClickDeleteFoodLogListener iOnClickDeleteFoodLogListener;
     private int sum;
+
     public FoodLogAdapter(List<FoodLog> mFoodLogsList, IOnClickFoodLogItemListener iOnClickFoodLogItemListener, IOnClickDeleteFoodLogListener iOnClickDeleteFoodLogListener) {
         this.mFoodLogsList = mFoodLogsList;
         this.iOnClickFoodLogItemListener = iOnClickFoodLogItemListener;
@@ -43,20 +44,24 @@ public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.FoodLogV
             return;
         }
         Food food = LocalDatabase.getInstance(ControllerApplication.getContext()).foodDAO().getFoodById(foodLog.getFoodId());
-        if (food == null){
+        if (food == null) {
             return;
         }
         holder.mItemFoodBinding.foodItemName.setText(food.getName());
-        holder.mItemFoodBinding.foodItemServingSize.setText(String.valueOf(food.getServingSize()) + "g");
-        holder.mItemFoodBinding.foodItemServings.setText(String.valueOf(foodLog.getNumberOfServings()));
+        if (food.getServingSize() != 1) {
+            holder.mItemFoodBinding.foodItemServingSize.setText(food.getServingSize() + " g");
+        } else {
+            holder.mItemFoodBinding.foodItemServingSize.setVisibility(View.GONE);
+        }
+        holder.mItemFoodBinding.foodItemServings.setText(food.getNumberOfServings() + " khẩu phần");
         holder.mItemFoodBinding.foodItemCalo.setText(String.valueOf(foodLog.getTotalCalories()));
         holder.mItemFoodBinding.addBtn.setVisibility(View.GONE);
         holder.mItemFoodBinding.deleteBtn.setVisibility(View.VISIBLE);
-        holder.mItemFoodBinding.deleteBtn.setOnClickListener(v->{
-            deleteFoodLog(foodLog,position);
+        holder.mItemFoodBinding.deleteBtn.setOnClickListener(v -> {
+            deleteFoodLog(foodLog, position);
             iOnClickDeleteFoodLogListener.onClickDeleteItemFoodLog(foodLog);
         });
-        holder.mItemFoodBinding.layoutItem.setOnClickListener(v->iOnClickFoodLogItemListener.onClickItemFoodLog(foodLog));
+        holder.mItemFoodBinding.layoutItem.setOnClickListener(v -> iOnClickFoodLogItemListener.onClickItemFoodLog(foodLog));
     }
 
     @Override
@@ -68,22 +73,24 @@ public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.FoodLogV
         return sum;
     }
 
-    private void deleteFoodLog(FoodLog foodLog, int position){
+    private void deleteFoodLog(FoodLog foodLog, int position) {
         LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().deleteFoodLog(foodLog);
         mFoodLogsList.remove(position);
         sum = calculateMealTotalCalories(mFoodLogsList);
         notifyDataSetChanged();
     }
+
     private int calculateMealTotalCalories(List<FoodLog> foodLogs) {
         int sum = 0;
         if (foodLogs != null) {
             for (FoodLog foodLog : foodLogs) {
-                if(foodLog != null) System.out.println(foodLog.getTotalCalories());
+                if (foodLog != null) System.out.println(foodLog.getTotalCalories());
                 sum += foodLog.getTotalCalories();
             }
         }
         return sum;
     }
+
     public static class FoodLogViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemFoodBinding mItemFoodBinding;
@@ -93,6 +100,7 @@ public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.FoodLogV
             this.mItemFoodBinding = itemFoodBinding;
         }
     }
+
     // Method to update the data list
     public void setFoodLogsList(List<FoodLog> newList) {
         this.mFoodLogsList = newList;

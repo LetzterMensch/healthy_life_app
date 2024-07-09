@@ -13,6 +13,7 @@ import com.example.gr.controller.listener.IOnClickQuickAddSubFoodListener;
 import com.example.gr.databinding.ItemFoodBinding;
 import com.example.gr.model.Food;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class SubFoodAdapter extends RecyclerView.Adapter<SubFoodAdapter.SubFoodViewHolder> {
@@ -21,6 +22,7 @@ public class SubFoodAdapter extends RecyclerView.Adapter<SubFoodAdapter.SubFoodV
     private final IOnClickQuickAddSubFoodListener iOnClickQuickAddSubFoodListener;
     private final IOnClickDeleteFoodListener iOnClickDeleteFoodListener;
     private final boolean isSearching;
+    private final DecimalFormat df = new DecimalFormat("#.##");
     public SubFoodAdapter(List<Food> subFoodList, IOnClickFoodItemListener iOnClickFoodItemListener, IOnClickQuickAddSubFoodListener iOnClickQuickAddSubFoodListener, IOnClickDeleteFoodListener iOnClickDeleteFoodListener, boolean isSearching){
         this.mSubFoodList = subFoodList;
         this.iOnClickFoodItemListener = iOnClickFoodItemListener;
@@ -43,13 +45,13 @@ public class SubFoodAdapter extends RecyclerView.Adapter<SubFoodAdapter.SubFoodV
             return;
         }
         holder.mItemFoodBinding.foodItemName.setText(food.getName());
-        holder.mItemFoodBinding.foodItemCalo.setText(String.valueOf(food.getCalories()));
-        if(food.getServingSize() > 1f){
-            holder.mItemFoodBinding.foodItemServingSize.setText(String.valueOf(food.getServingSize())+" g");
-        }else{
-            holder.mItemFoodBinding.foodItemServingSize.setText(food.getServingSize()  + " ");
+        holder.mItemFoodBinding.foodItemCalo.setText(df.format(food.getCalories()*food.getNumberOfServings()));
+        if (food.getServingSize() != 1) {
+            holder.mItemFoodBinding.foodItemServingSize.setText(food.getServingSize() + " g");
+        } else {
+            holder.mItemFoodBinding.foodItemServingSize.setVisibility(View.GONE);
         }
-        holder.mItemFoodBinding.foodItemServings.setText(String.valueOf(food.getNumberOfServings()));
+        holder.mItemFoodBinding.foodItemServings.setText(food.getNumberOfServings() + " khẩu phần");
         holder.mItemFoodBinding.layoutItem.setOnClickListener(v->iOnClickFoodItemListener.onClickItemFood(food));
         holder.mItemFoodBinding.addBtn.setOnClickListener(v-> iOnClickQuickAddSubFoodListener.onClickQuickAdd(food));
         holder.mItemFoodBinding.deleteBtn.setOnClickListener(v->iOnClickDeleteFoodListener.onClickDeleteFoodItem(food));

@@ -1,6 +1,7 @@
 package com.example.gr.view.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -42,9 +43,13 @@ public class FoodSearchTabAdapter extends RecyclerView.Adapter<FoodSearchTabAdap
         Food food = mListFoods.get(position);
         FoodLog foodLog = new FoodLog(food,meal,food.getNumberOfServings(),mDiary.getId());
         holder.mItemFoodBinding.foodItemName.setText(food.getName());
-        holder.mItemFoodBinding.foodItemServings.setText(String.valueOf(food.getNumberOfServings())+" serving");
+        holder.mItemFoodBinding.foodItemServings.setText(food.getNumberOfServings() + " khẩu phần");
         holder.mItemFoodBinding.foodItemCalo.setText(String.valueOf(food.getCalories()));
-        holder.mItemFoodBinding.foodItemServingSize.setText(String.valueOf(food.getServingSize()) + " g");
+        if (food.getServingSize() != 1) {
+            holder.mItemFoodBinding.foodItemServingSize.setText(food.getServingSize() + " g");
+        }else{
+            holder.mItemFoodBinding.foodItemServingSize.setVisibility(View.GONE);
+        }
         holder.mItemFoodBinding.itemInfo.setOnClickListener(v->iOnClickFoodItemListener.onClickItemFood(food));
         holder.mItemFoodBinding.addBtn.setOnClickListener(v-> iOnClickQuickAddFoodItemListener.onClickQuickAdd(foodLog));
     }

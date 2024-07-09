@@ -87,7 +87,7 @@ public final class GBScanEventProcessor implements Runnable {
         }
 
         running = true;
-        thread = new Thread("Gadgetbridge Device Found Processor Thread") {
+        thread = new Thread("Device Found Processor Thread") {
             @Override
             public void run() {
                 GBScanEventProcessor.this.run();

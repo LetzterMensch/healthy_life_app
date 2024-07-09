@@ -4049,6 +4049,7 @@ id btn_import
 id btn_import_recipe
 id btn_log_in
 id btn_lunch_add
+id btn_quick_save_new_food
 id btn_save_new_food
 id btn_save_recipe
 id btn_sign_up
@@ -4115,7 +4116,9 @@ id coordinator
 id cos
 id counterclockwise
 id cradle
+id create_food_from_db
 id create_food_toolbar
+id create_option
 id currentState
 id custom
 id customPanel
@@ -4203,6 +4206,11 @@ id edge
 id edit_new_food_name
 id edit_number_of_servings
 id edit_query
+id edit_quick_add_calories
+id edit_quick_add_carb
+id edit_quick_add_fat
+id edit_quick_add_protein
+id edit_quick_add_serving_size
 id edit_search_name
 id edit_text_id
 id edt_search_name
@@ -4482,6 +4490,7 @@ id open_search_view_search_prefix
 id open_search_view_status_bar_spacer
 id open_search_view_toolbar
 id open_search_view_toolbar_container
+id option_toggle_btn
 id outline
 id outward
 id overshoot
@@ -4507,6 +4516,12 @@ id progressBar
 id progress_circular
 id progress_horizontal
 id protein_indicator
+id quick_add_calories_card
+id quick_add_carb_card
+id quick_add_fat_card
+id quick_add_layout
+id quick_add_protein_card
+id quick_add_serving_size_card
 id radio
 id ratio
 id rcv_breakfast_food
@@ -6082,9 +6097,15 @@ string hebrew
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string high_carb
+string hint_calories
+string hint_carb
+string hint_fat
 string hint_new_food_name
+string hint_number_of_servings
+string hint_protein
 string hint_search_ex_name
 string hint_search_name
+string hint_serving_size
 string homepage_url
 string horizontal
 string hrZoneAerobic
@@ -7548,6 +7569,7 @@ string qhybrid_watchface_configuration_old_firmware
 string quick_alarm
 string quick_alarm_description
 string quick_attention
+string quick_save_food
 string recipe_suggest
 string recorded_workout
 string red
