@@ -9,21 +9,27 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.gr.controller.activity.LogWeightActivity;
 import com.example.gr.controller.activity.MainActivity;
+import com.example.gr.controller.activity.SearchForFoodActivity;
+import com.example.gr.model.WeightLog;
 import com.example.gr.model.database.LocalDatabase;
 import com.example.gr.databinding.FragmentDashboardBinding;
 import com.example.gr.model.ActivityUser;
 import com.example.gr.model.Diary;
 import com.example.gr.utils.DateTimeUtils;
+import com.example.gr.utils.constant.GlobalFunction;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -39,6 +45,8 @@ public class DashboardFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mfragmentDashboardBinding = FragmentDashboardBinding.inflate(inflater, container, false);
         activityUser = new ActivityUser();
+        mfragmentDashboardBinding.logWeightBtn.setOnClickListener(v->goToLogWeightActivity());
+        lineChart = mfragmentDashboardBinding.lineChart;
 //        initListener();
         initUi();
         return mfragmentDashboardBinding.getRoot();
@@ -83,14 +91,11 @@ public class DashboardFragment extends BaseFragment {
     }
 
     private void displayChartInfo() {
-        lineChart = mfragmentDashboardBinding.lineChart;
+        List<WeightLog> weightLogList = LocalDatabase.getInstance(requireActivity()).weightLogDAO().getAllWeightLog();
         List<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(0f, 81f));
-        entries.add(new Entry(1f, 80.5f));
-        entries.add(new Entry(2f, 80.7f));
-        entries.add(new Entry(3f, 80f));
-        entries.add(new Entry(4f, 79.5f));
-        entries.add(new Entry(5f, 79.7f));
+        for (WeightLog weightLog : weightLogList) {
+            entries.add(new Entry(weightLog.getTimeStamp(), weightLog.getWeight()));
+        }
         LineDataSet dataSet = new LineDataSet(entries, "Cân nặng"); // Thẻ cho dữ liệu
 
         // Tùy chỉnh giao diện cho LineDataSet
@@ -98,9 +103,6 @@ public class DashboardFragment extends BaseFragment {
         dataSet.setLineWidth(2f);
         dataSet.setCircleRadius(3f);
         dataSet.setCircleColor(Color.RED);
-
-        LineData lineData = new LineData(dataSet);
-
         // Thay đổi màu của các giá trị
         dataSet.setValueTextSize(10f);
         dataSet.setValueTextColor(Color.BLACK); // Màu của giá trị
@@ -111,6 +113,9 @@ public class DashboardFragment extends BaseFragment {
         // Thêm hiệu ứng gradient cho đường biểu đồ
         dataSet.setDrawFilled(true);
         dataSet.setFillColor(Color.rgb(239, 154, 154));
+
+        LineData lineData = new LineData(dataSet);
+
 
         lineChart.setData(lineData);
         lineChart.invalidate(); // Làm mới biểu đồ để hiển thị dữ liệu
@@ -123,17 +128,43 @@ public class DashboardFragment extends BaseFragment {
         lineChart.getXAxis().setDrawGridLines(false);
         lineChart.getAxisLeft().setDrawGridLines(false);
         lineChart.getAxisRight().setDrawGridLines(false);
-        lineChart.setFocusable(false);
-        lineChart.setPinchZoom(false);
-        lineChart.setDoubleTapToZoomEnabled(false);
-        lineChart.setScaleEnabled(false);
+        // enable touch gestures
+        lineChart.setTouchEnabled(true);
+        lineChart.setScaleEnabled(true);
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.setAxisMinimum(0f); // Thiết lập giá trị tối thiểu cho trục Y
         leftAxis.setAxisMaximum(150f);
         XAxis xAxis = lineChart.getXAxis();
-        xAxis.setGranularity(1f); // Thiết lập khoảng cách tối thiểu giữa các giá trị trên trục X
+
+        if(weightLogList.size() == 1){
+            xAxis.setAxisMinimum(0);
+            xAxis.setAxisMaximum(weightLogList.get(0).getTimeStamp());
+        }else if (weightLogList.size() > 1){
+            xAxis.setAxisMinimum(weightLogList.get(0).getTimeStamp());
+            xAxis.setAxisMaximum(weightLogList.get(weightLogList.size()-1).getTimeStamp());
+        }
+
+        xAxis.setGranularity(86400000f); // Thiết lập khoảng cách tối thiểu giữa các giá trị trên trục X
+
+        xAxis.setGranularityEnabled(true);         // Đảm bảo rằng các nhãn không bị chồng chéo
+
+        xAxis.setDrawLimitLinesBehindData(true);
+
+
+        xAxis.setLabelCount(entries.size(), true);
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return DateTimeUtils.simpleDateFormatWithoutYear(
+                        new Date((long) value));
+            }
+        });
     }
 
+    private void goToLogWeightActivity(){
+        Bundle bundle = new Bundle();
+        GlobalFunction.startActivity(getActivity(), LogWeightActivity.class, bundle);
+    }
     private void initUi() {
         displayDashboardInfo();
         displayChartInfo();

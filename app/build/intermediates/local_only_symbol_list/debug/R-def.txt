@@ -567,6 +567,7 @@ id activity_swipe_layout
 id add_btn
 id add_new_food_ingredients
 id add_wearable_btn
+id add_weight_layout
 id autoStartCountdownAbort
 id autoStartCountdownMsg
 id autoStartCountdownVal
@@ -701,17 +702,22 @@ id img_next
 id img_save
 id img_search
 id indoorBtn
+id item_date
 id item_details
 id item_ex_history_layout
 id item_exercise_layout
 id item_image
 id item_info
+id item_info_layout
 id item_name
 id item_number
 id item_preview
 id item_status
+id item_weight
 id label_add_ingredients
 id label_nutrition_info
+id label_weight
+id label_weight_history
 id late_sleep
 id late_sleep_label
 id layout_btn_sign_up
@@ -729,6 +735,9 @@ id linearLayout
 id log_in_edit_email
 id log_in_edit_password
 id log_weight_btn
+id log_weight_date
+id log_weight_layout
+id log_weight_title
 id lunch_card
 id mapFrameView
 id mapGpsFocus
@@ -773,6 +782,7 @@ id rcv_ingredients
 id rcv_lunch_food
 id rcv_recipe_search_tab
 id rcv_snack_food
+id rcv_weight_log
 id recipe_detail_toolbar
 id recipe_img
 id recipe_name
@@ -830,13 +840,16 @@ id total_sleep_time
 id tv_about_us_content
 id tv_add_to_diary
 id tv_calories
+id tv_date
 id tv_email
 id tv_food_description
 id tv_food_name
+id tv_label_date
 id tv_new_food_ingredients
 id tv_new_food_name
 id tv_recipe_ingredients
 id tv_title
+id tv_weight
 id viewPager2
 id viewpager_2
 id wake_up_many_times
@@ -846,6 +859,8 @@ id wearable_name
 id wearable_status
 id webview
 id weight_line_chart
+id weight_line_chart_card
+id weight_log_list_layout
 id workout_avg_hr
 id workout_cal_burnt
 id workout_detail_toolbar
@@ -861,6 +876,7 @@ layout activity_discovery
 layout activity_food_detail
 layout activity_import_recipe
 layout activity_log_in
+layout activity_log_weight
 layout activity_main
 layout activity_mi_band_pairing
 layout activity_recipe_detail
@@ -883,6 +899,7 @@ layout item_exercise
 layout item_exercise_history
 layout item_food
 layout item_search_recipe_tab
+layout item_weight_log
 layout item_with_details
 layout layout_actionbar
 layout layout_bottom_sheet_add_exercise
@@ -1861,6 +1878,7 @@ string hello_blank_fragment
 string high_carb
 string hint_calories
 string hint_carb
+string hint_date
 string hint_fat
 string hint_new_food_name
 string hint_number_of_servings
@@ -1868,6 +1886,7 @@ string hint_protein
 string hint_search_ex_name
 string hint_search_name
 string hint_serving_size
+string hint_weight
 string homepage_url
 string horizontal
 string hrZoneAerobic
@@ -1963,6 +1982,7 @@ string label_avg_hr
 string label_burnt
 string label_cal_burnt
 string label_create_food
+string label_date
 string label_distance
 string label_duraion
 string label_goal
@@ -1974,7 +1994,9 @@ string label_quantity_1
 string label_recipe_ingredients
 string label_remaining
 string label_sub
+string label_weight
 string label_weight_log
+string label_weight_log_chart
 string lack_of_sleep
 string lack_of_step
 string laneLength
@@ -2003,6 +2025,7 @@ string live_activity_steps_per_minute_history
 string live_activity_total_steps
 string liveactivity_live_activity
 string log_in
+string log_new_weight
 string log_out
 string long_press
 string lorem_ipsum

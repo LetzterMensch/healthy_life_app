@@ -4,6 +4,10 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_search_for_exercise.xml"
     },
     {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\item_weight_log.xml",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\item_weight_log.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_discovery.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_discovery.xml"
     },
@@ -64,6 +68,10 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_food.xml"
     },
     {
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/item_weight_log.xml",
+        "source": "com.example.gr.app-main-67:/layout/item_weight_log.xml"
+    },
+    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\disclaimer_dialog.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\disclaimer_dialog.xml"
     },
@@ -96,16 +104,16 @@
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\meal_spinner_item.xml"
     },
     {
-        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_create_food.xml",
-        "source": "com.example.gr.app-main-67:/layout/activity_create_food.xml"
-    },
-    {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\item_with_details.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\item_with_details.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_recipe_detail.xml",
         "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_recipe_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_log_weight.xml",
+        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_log_weight.xml"
     },
     {
         "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\layout_calendar_toolbar.xml",

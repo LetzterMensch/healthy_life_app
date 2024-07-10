@@ -4736,6 +4736,7 @@
     <string name="high_carb">Giàu tinh bột : 30/20/50</string>
     <string name="hint_calories">Lượng năng lượng (KCal)</string>
     <string name="hint_carb">Lượng tinh bột (g)</string>
+    <string name="hint_date">10 thg 6, 2024</string>
     <string name="hint_fat">Lượng chất béo (g)</string>
     <string name="hint_new_food_name">Tên món ăn mới …</string>
     <string name="hint_number_of_servings">Số lượng khẩu phần</string>
@@ -4743,6 +4744,7 @@
     <string name="hint_search_ex_name">Tên bài tập …</string>
     <string name="hint_search_name">Tên món ăn …</string>
     <string name="hint_serving_size">Kích cỡ khẩu phần (g)</string>
+    <string name="hint_weight">70 kg</string>
     <string name="homepage_url" translatable="false">Homepage: <a href="https://gadgetbridge.org/">https://gadgetbridge.org/</a></string>
     <string name="horizontal">Horizontal</string>
     <string name="hrZoneAerobic">Aerobic</string>
@@ -4838,6 +4840,7 @@
     <string name="label_burnt">tiêu hao</string>
     <string name="label_cal_burnt">Calories đã tiêu hao</string>
     <string name="label_create_food">Tạo mới món ăn</string>
+    <string name="label_date">Ngày</string>
     <string name="label_distance">Khoảng cách đã đi</string>
     <string name="label_duraion">Thời gian tập luyện</string>
     <string name="label_goal">mục tiêu</string>
@@ -4849,7 +4852,9 @@
     <string name="label_recipe_ingredients">Nguyên liệu</string>
     <string name="label_remaining">cần nạp</string>
     <string name="label_sub">-</string>
+    <string name="label_weight">Cân nặng (kg)</string>
     <string name="label_weight_log">Lịch sử cân nặng</string>
+    <string name="label_weight_log_chart">Biểu đồ cân nặng</string>
     <string name="lack_of_sleep">Lack of sleep: %1$s</string>
     <string name="lack_of_step">Lack of steps: %1$d</string>
     <string name="laneLength">Lane Length</string>
@@ -4878,6 +4883,7 @@
     <string name="live_activity_total_steps">Total steps</string>
     <string name="liveactivity_live_activity">Live activity</string>
     <string name="log_in">Đăng Nhập</string>
+    <string name="log_new_weight">Ghi lại cân nặng</string>
     <string name="log_out">Đăng xuất</string>
     <string name="long_press">Long Press</string>
     <string name="lorem_ipsum" translatable="false">Lorem Ipsum</string>

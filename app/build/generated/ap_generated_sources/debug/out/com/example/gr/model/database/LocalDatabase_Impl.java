@@ -23,6 +23,8 @@ import com.example.gr.model.database.dao.RecipeDAO;
 import com.example.gr.model.database.dao.RecipeDAO_Impl;
 import com.example.gr.model.database.dao.RecordedWorkoutDAO;
 import com.example.gr.model.database.dao.RecordedWorkoutDAO_Impl;
+import com.example.gr.model.database.dao.WeightLogDAO;
+import com.example.gr.model.database.dao.WeightLogDAO_Impl;
 import com.example.gr.model.database.dao.WorkoutDAO;
 import com.example.gr.model.database.dao.WorkoutDAO_Impl;
 import java.lang.Class;
@@ -52,6 +54,8 @@ public final class LocalDatabase_Impl extends LocalDatabase {
 
   private volatile RecordedWorkoutDAO _recordedWorkoutDAO;
 
+  private volatile WeightLogDAO _weightLogDAO;
+
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
@@ -65,8 +69,9 @@ public final class LocalDatabase_Impl extends LocalDatabase {
         db.execSQL("CREATE TABLE IF NOT EXISTS `recipe` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `foodID` INTEGER NOT NULL, `name` TEXT, `image` TEXT, `description` TEXT, `carbs` REAL NOT NULL, `protein` REAL NOT NULL, `fat` REAL NOT NULL, `calories` INTEGER NOT NULL, `ingredients` TEXT, `url` TEXT, `timestamp` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `exercise` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `met` REAL NOT NULL, `category` TEXT, `defaultDuration` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `recordedworkout` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `baseActivitySummaryId` INTEGER NOT NULL, `createdAt` TEXT, `activityKind` INTEGER NOT NULL, `endTime` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `avgHeartRate` INTEGER NOT NULL, `minHeartRate` INTEGER NOT NULL, `maxHeartRate` INTEGER NOT NULL, `caloriesBurnt` INTEGER NOT NULL, `distance` REAL NOT NULL, `timestamp` INTEGER NOT NULL, `diaryID` INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `weightlog` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` TEXT, `weight` REAL NOT NULL, `timeStamp` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e6405ad1be3d69ee4e4ffb756e6280b5')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ac39fd6dd9fb0c3787b824e11851ebd5')");
       }
 
       @Override
@@ -78,6 +83,7 @@ public final class LocalDatabase_Impl extends LocalDatabase {
         db.execSQL("DROP TABLE IF EXISTS `recipe`");
         db.execSQL("DROP TABLE IF EXISTS `exercise`");
         db.execSQL("DROP TABLE IF EXISTS `recordedworkout`");
+        db.execSQL("DROP TABLE IF EXISTS `weightlog`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -263,9 +269,23 @@ public final class LocalDatabase_Impl extends LocalDatabase {
                   + " Expected:\n" + _infoRecordedworkout + "\n"
                   + " Found:\n" + _existingRecordedworkout);
         }
+        final HashMap<String, TableInfo.Column> _columnsWeightlog = new HashMap<String, TableInfo.Column>(4);
+        _columnsWeightlog.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsWeightlog.put("userId", new TableInfo.Column("userId", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsWeightlog.put("weight", new TableInfo.Column("weight", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsWeightlog.put("timeStamp", new TableInfo.Column("timeStamp", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysWeightlog = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesWeightlog = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoWeightlog = new TableInfo("weightlog", _columnsWeightlog, _foreignKeysWeightlog, _indicesWeightlog);
+        final TableInfo _existingWeightlog = TableInfo.read(db, "weightlog");
+        if (!_infoWeightlog.equals(_existingWeightlog)) {
+          return new RoomOpenHelper.ValidationResult(false, "weightlog(com.example.gr.model.WeightLog).\n"
+                  + " Expected:\n" + _infoWeightlog + "\n"
+                  + " Found:\n" + _existingWeightlog);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "e6405ad1be3d69ee4e4ffb756e6280b5", "223c2a3f4a6e663defde4be623b9afe5");
+    }, "ac39fd6dd9fb0c3787b824e11851ebd5", "60c1726f020ba6ece24dfd0779a3b602");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -276,7 +296,7 @@ public final class LocalDatabase_Impl extends LocalDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "food","diary","workout","foodlog","recipe","exercise","recordedworkout");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "food","diary","workout","foodlog","recipe","exercise","recordedworkout","weightlog");
   }
 
   @Override
@@ -292,6 +312,7 @@ public final class LocalDatabase_Impl extends LocalDatabase {
       _db.execSQL("DELETE FROM `recipe`");
       _db.execSQL("DELETE FROM `exercise`");
       _db.execSQL("DELETE FROM `recordedworkout`");
+      _db.execSQL("DELETE FROM `weightlog`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -313,6 +334,7 @@ public final class LocalDatabase_Impl extends LocalDatabase {
     _typeConvertersMap.put(WorkoutDAO.class, WorkoutDAO_Impl.getRequiredConverters());
     _typeConvertersMap.put(RecipeDAO.class, RecipeDAO_Impl.getRequiredConverters());
     _typeConvertersMap.put(RecordedWorkoutDAO.class, RecordedWorkoutDAO_Impl.getRequiredConverters());
+    _typeConvertersMap.put(WeightLogDAO.class, WeightLogDAO_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -425,6 +447,20 @@ public final class LocalDatabase_Impl extends LocalDatabase {
           _recordedWorkoutDAO = new RecordedWorkoutDAO_Impl(this);
         }
         return _recordedWorkoutDAO;
+      }
+    }
+  }
+
+  @Override
+  public WeightLogDAO weightLogDAO() {
+    if (_weightLogDAO != null) {
+      return _weightLogDAO;
+    } else {
+      synchronized(this) {
+        if(_weightLogDAO == null) {
+          _weightLogDAO = new WeightLogDAO_Impl(this);
+        }
+        return _weightLogDAO;
       }
     }
   }

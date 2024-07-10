@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="@dimen/define_dimen_45"
+            android:layout_height="@dimen/define_dimen_45"
+            android:layout_marginEnd="@dimen/define_dimen_6"
+            android:padding="@dimen/define_dimen_10"
+            android:src="@drawable/ic_back_white_36"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/label_weight_log"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/weight_line_chart_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="16dp"
+        android:paddingTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="@dimen/define_dimen_20"
+        app:layout_constraintTop_toBottomOf="@id/layout_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_weight_log"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/alata"
+                android:layout_marginLeft="10dp"
+                android:layout_marginVertical="10dp"
+                />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/weight_line_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_weight_layout"
+        app:layout_constraintTop_toBottomOf="@id/weight_line_chart_card"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/log_weight_title">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/log_new_weight"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
+            <ImageView
+                android:id="@+id/img_save"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="3dp"
+                android:padding="@dimen/define_dimen_10"
+                android:background="@drawable/bg_red_shape_corner_30"
+                android:src="@drawable/ic_check_36"
+                android:visibility="visible"
+                android:contentDescription="@string/log_new_weight" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/log_weight_layout"
+            android:layout_below="@id/log_weight_title">
+
+            <TextView
+                android:id="@+id/label_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/label_weight"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/tv_weight"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginStart="141dp"
+                android:layout_toEndOf="@id/label_weight"
+                android:background="@color/white"
+                android:hint="@string/hint_weight"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:gravity="right|center"
+                android:padding="@dimen/define_dimen_10"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/text_size_normal"
+                tools:ignore="Autofill" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/log_weight_date"
+            android:layout_below="@id/log_weight_layout">
+
+            <TextView
+                android:id="@+id/tv_label_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/label_date"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginStart="141dp"
+                android:layout_toEndOf="@id/tv_label_date"
+                android:background="@color/white"
+                android:hint="@string/hint_date"
+                android:gravity="right|center"
+                android:padding="@dimen/define_dimen_10"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/text_size_normal"
+                tools:ignore="Autofill" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weight_log_list_layout"
+        app:layout_constraintTop_toBottomOf="@id/add_weight_layout"
+        android:layout_margin="10dp"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/label_weight_history"
+            android:textColor="@color/black"
+            android:gravity="left"
+            android:text="@string/label_weight_log"
+            android:textStyle="bold"
+            android:paddingVertical="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20sp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_weight_log"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/define_dimen_10"
+            android:layout_marginBottom="@dimen/define_dimen_10"
+            android:layout_below="@id/label_weight_history"
+            android:clickable="false"
+            android:focusable="false"
+            android:nestedScrollingEnabled="false" />
+    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

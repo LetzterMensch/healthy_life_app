@@ -118,6 +118,7 @@ public class DiaryFragment extends BaseFragment {
         int day = c.get(Calendar.DAY_OF_MONTH);
         DatePickerDialog datePickerDialog = new DatePickerDialog(this.requireActivity(), (datePicker, i, i1, i2) -> {
 //            String selectedDate = i + "-" + (i1 + 1) + "-" + i2; //yyyy-MM-dd
+            calendar.set(i, i1, i2);
             if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && i2 == (today + 1)) {
                 mfragmentDiaryBinding.date.setText("Ngày mai");
             } else if (Calendar.getInstance().get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && i2 == (today - 1)) {
@@ -126,9 +127,7 @@ public class DiaryFragment extends BaseFragment {
                 mfragmentDiaryBinding.date.setText("Hôm nay");
             } else {
                 mfragmentDiaryBinding.date.setText(DateTimeUtils.formatDate(calendar.getTime()));
-
             }
-            calendar.set(i, i1, i2);
         }, year, month, day);
         datePickerDialog.show();
         mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());

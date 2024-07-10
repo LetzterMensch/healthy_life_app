@@ -51,14 +51,24 @@ public class FoodDetailActivity extends BaseActivity {
         });
     }
     private void saveFoodLog(){ // for editing food log
+        String editText = mActivityFoodDetailBinding.editNumberOfServings.getText().toString();
+        if (editText.isEmpty()){
+            numberOfServings = 0;
+        }else{
+            numberOfServings = Float.parseFloat(editText);
+        }
         mDiary.updateDiaryAfterRemove(mFoodLog);
-        numberOfServings = Float.parseFloat(String.valueOf(mActivityFoodDetailBinding.editNumberOfServings.getText()));
         mFoodLog.updateFoodLog(numberOfServings);
         mDiary.updateFoodLog(mFoodLog);
         finish();
     }
     private void addFoodLog() { // for add food to diary
-        numberOfServings = Float.parseFloat(String.valueOf(mActivityFoodDetailBinding.editNumberOfServings.getText()));
+        String editText = mActivityFoodDetailBinding.editNumberOfServings.getText().toString();
+        if (editText.isEmpty()){
+            numberOfServings = 0;
+        }else{
+            numberOfServings = Float.parseFloat(editText);
+        }
         mFoodLog.updateFoodLog(numberOfServings);
         mDiary.logFood(mFoodLog);
         finish();

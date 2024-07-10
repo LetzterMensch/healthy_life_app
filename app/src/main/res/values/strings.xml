@@ -23,6 +23,7 @@
     <string name="action_view_more">Xem thêm</string>
     <string name="action_sync">Cập nhật</string>
     <string name="action_create_food">Tạo món ăn mới</string>
+    <string name="log_new_weight">Ghi lại cân nặng</string>
     // calories
     <string name="label_intake">đã nạp</string>
     <string name="label_burnt">tiêu hao</string>
@@ -30,6 +31,7 @@
     <string name="label_goal">mục tiêu</string>
     <string name="title_calories">Tổng calories</string>
     <string name="formula_cal">cần nạp = mục tiêu - đã nạp + tiêu hao</string>
+    <string name="label_weight">Cân nặng (kg)</string>
     // workout
     <string name="label_duraion">Thời gian tập luyện</string>
     <string name="label_avg_hr">Nhịp tim trung bình</string>
@@ -38,6 +40,7 @@
     <string name="label_cal_burnt">Calories đã tiêu hao</string>
     <string name="label_distance">Khoảng cách đã đi</string>
     <string name="label_weight_log">Lịch sử cân nặng</string>
+    <string name="label_weight_log_chart">Biểu đồ cân nặng</string>
     // profile
     <string name="profile_device_settings">Cài đặt thiết bị</string>
     <string name="profile_device_connect">Kết nối thiết bị</string>
@@ -112,12 +115,14 @@
     <string name="hint_carb">Lượng tinh bột (g)</string>
     <string name="hint_protein">Lượng chất đạm (g)</string>
     <string name="hint_fat">Lượng chất béo (g)</string>
-
+    <string name="hint_weight">70 kg</string>
+    <string name="hint_date">10 thg 6, 2024</string>
     // msg
     <string name="no_device_found">Không có thiết bị</string>
     <string name="description_label">Mô tả</string>
     <string name="label_nutrition">Thông tin dinh dưỡng</string>
     <string name="label_recipe_ingredients">Nguyên liệu</string>
+    <string name="label_date">Ngày</string>
     <string name="food_suggest">Gợi ý món ăn</string>
     <string name="recipe_suggest">Gợi ý công thức nấu ăn</string>
     <string name="error_not_connect_to_internet">Vui lòng kiểm tra kết nối mạng của bạn</string>

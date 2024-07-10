@@ -180,6 +180,9 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
         <activity
             android:name="com.example.gr.controller.activity.SignUpActivity"
             android:exported="false" />
+        <activity
+            android:name="com.example.gr.controller.activity.LogWeightActivity"
+            android:exported="false" />
 
         <service
             android:name="com.example.gr.controller.service.btle.BLEScanService"

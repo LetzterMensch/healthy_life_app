@@ -69,6 +69,14 @@ public class DateTimeUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date.getTime());
     }
+    public static String simpleDateFormatWithWeekDays(Date date){
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd, MMM, yyyy", Locale.getDefault());
+        return formatter.format(date.getTime());
+    }
+    public static String simpleDateFormatWithoutYear(Date date){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM", Locale.getDefault());
+        return formatter.format(date.getTime());
+    }
     public static String simpleDateTimeFormat(Date date){
         SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateTimeFormat.format(date.getTime());

@@ -160,6 +160,9 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
         <activity
         android:name=".controller.activity.SignUpActivity"
         android:exported="false" />
+        <activity
+            android:name=".controller.activity.LogWeightActivity"
+            android:exported="false" />
         <service
             android:name=".controller.service.btle.BLEScanService"
             android:enabled="true"

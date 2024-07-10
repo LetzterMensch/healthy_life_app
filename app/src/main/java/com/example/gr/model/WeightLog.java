@@ -4,23 +4,30 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.gr.ControllerApplication;
+import com.example.gr.model.database.LocalDatabase;
+
 import java.io.Serializable;
 @Entity(tableName = "weightlog")
 public class WeightLog implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private int userId;
+    private String userId;
     private float weight;
     private long timeStamp;
     public WeightLog(){}
     @Ignore
-    public WeightLog(int id, int userId, float weight, long timeStamp) {
-        this.id = id;
+    public WeightLog(String userId, float weight, long timeStamp) {
         this.userId = userId;
         this.weight = weight;
         this.timeStamp = timeStamp;
     }
-
+    public void updateWeightLog(){
+        LocalDatabase.getInstance(ControllerApplication.getContext()).weightLogDAO().updateWeightLog(this);
+    }
+    public long saveWeightLog(){
+        return LocalDatabase.getInstance(ControllerApplication.getContext()).weightLogDAO().insertWeightLog(this);
+    }
     public int getId() {
         return id;
     }
@@ -29,11 +36,11 @@ public class WeightLog implements Serializable {
         this.id = id;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
