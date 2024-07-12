@@ -49,6 +49,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
     //protobuf
     implementation("com.google.protobuf:protobuf-javalite:3.21.7")
 

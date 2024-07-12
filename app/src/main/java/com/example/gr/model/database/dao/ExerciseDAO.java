@@ -17,7 +17,7 @@ public interface ExerciseDAO {
     @Insert
     void insertExercise(Exercise exercise);
 
-    @Query("SELECT * FROM exercise LIMIT 10")
+    @Query("SELECT * FROM exercise")
     List<Exercise> getAllExercise();
     @Query("SELECT * FROM exercise WHERE name LIKE :searchSeq")
     List<Exercise> findExerciseByName(String searchSeq);

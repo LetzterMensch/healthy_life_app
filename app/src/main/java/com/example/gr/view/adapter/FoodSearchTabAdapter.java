@@ -19,7 +19,7 @@ import java.util.List;
 public class FoodSearchTabAdapter extends RecyclerView.Adapter<FoodSearchTabAdapter.FoodViewHolder> {
     public final IOnClickFoodItemListener iOnClickFoodItemListener;
     private final IOnClickQuickAddFoodItemListener iOnClickQuickAddFoodItemListener;
-    private final List<Food> mListFoods;
+    private List<Food> mListFoods;
     private int meal;
     private final Diary mDiary;
 
@@ -57,6 +57,15 @@ public class FoodSearchTabAdapter extends RecyclerView.Adapter<FoodSearchTabAdap
     @Override
     public int getItemCount() {
         return mListFoods.size();
+    }
+    public void addFoodList(List<Food> newFoodList) {
+        int startPosition = mListFoods.size();
+        mListFoods.addAll(newFoodList);
+        notifyItemRangeInserted(startPosition, newFoodList.size());
+    }
+    public void setmListFoods(List<Food> newFoodList){
+        this.mListFoods = newFoodList;
+        notifyDataSetChanged();
     }
     public void setMeal(int meal){
         this.meal = meal;

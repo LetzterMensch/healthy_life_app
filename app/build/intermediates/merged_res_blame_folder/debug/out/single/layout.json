@@ -1,162 +1,158 @@
 [
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_search_for_exercise.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_search_for_exercise.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_discovery.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_discovery.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\item_weight_log.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\item_weight_log.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_exercise.xml",
+        "source": "com.example.gr.app-main-67:/layout/fragment_exercise.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_discovery.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_discovery.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_workout_detail.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_workout_detail.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_create_food.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_create_food.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/item_exercise_history.xml",
+        "source": "com.example.gr.app-main-67:/layout/item_exercise_history.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_dashboard.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_dashboard.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_dashboard.xml",
+        "source": "com.example.gr.app-main-67:/layout/fragment_dashboard.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\item_search_recipe_tab.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\item_search_recipe_tab.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_recipe_detail.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_recipe_detail.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_sleep.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_sleep.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/meal_spinner_dropdown_item.xml",
+        "source": "com.example.gr.app-main-67:/layout/meal_spinner_dropdown_item.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_search_for_food.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_search_for_food.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_diary.xml",
+        "source": "com.example.gr.app-main-67:/layout/fragment_diary.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\preference_material_switch.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\preference_material_switch.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_sleep.xml",
+        "source": "com.example.gr.app-main-67:/layout/fragment_sleep.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_log_in.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_log_in.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_profile.xml",
+        "source": "com.example.gr.app-main-67:/layout/fragment_profile.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_exercise.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_exercise.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/item_with_details.xml",
+        "source": "com.example.gr.app-main-67:/layout/item_with_details.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\preference_checkbox.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\preference_checkbox.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/preference_material_switch.xml",
+        "source": "com.example.gr.app-main-67:/layout/preference_material_switch.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_import_recipe.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_import_recipe.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_food_search.xml",
+        "source": "com.example.gr.app-main-67:/layout/fragment_food_search.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_main.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_import_recipe.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_import_recipe.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_food_detail.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_food_detail.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_main.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_diary.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_diary.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/meal_spinner_item.xml",
+        "source": "com.example.gr.app-main-67:/layout/meal_spinner_item.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_food.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_food.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_log_weight.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_log_weight.xml"
+    },
+    {
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/item_search_recipe_tab.xml",
+        "source": "com.example.gr.app-main-67:/layout/item_search_recipe_tab.xml"
+    },
+    {
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_food.xml",
+        "source": "com.example.gr.app-main-67:/layout/fragment_food.xml"
+    },
+    {
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_mi_band_pairing.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_mi_band_pairing.xml"
     },
     {
         "merged": "com.example.gr.app-mergeDebugResources-64:/layout/item_weight_log.xml",
         "source": "com.example.gr.app-main-67:/layout/item_weight_log.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\disclaimer_dialog.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\disclaimer_dialog.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_log_in.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_log_in.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_mi_band_pairing.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_mi_band_pairing.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_search_for_food.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_search_for_food.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\item_food.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\item_food.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_food_detail.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_food_detail.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\layout_toolbar.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\layout_toolbar.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_sign_up.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_sign_up.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_food_search.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_food_search.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/layout_calendar_toolbar.xml",
+        "source": "com.example.gr.app-main-67:/layout/layout_calendar_toolbar.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\meal_spinner_dropdown_item.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\meal_spinner_dropdown_item.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/layout_actionbar.xml",
+        "source": "com.example.gr.app-main-67:/layout/layout_actionbar.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_profile.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_profile.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_create_food.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_create_food.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\meal_spinner_item.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\meal_spinner_item.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/fragment_recipe_search.xml",
+        "source": "com.example.gr.app-main-67:/layout/fragment_recipe_search.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\item_with_details.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\item_with_details.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_record_workout.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_record_workout.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_recipe_detail.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_recipe_detail.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/disclaimer_dialog.xml",
+        "source": "com.example.gr.app-main-67:/layout/disclaimer_dialog.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_log_weight.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_log_weight.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_splash.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_splash.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\layout_calendar_toolbar.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\layout_calendar_toolbar.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/item_food.xml",
+        "source": "com.example.gr.app-main-67:/layout/item_food.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\fragment_recipe_search.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\fragment_recipe_search.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/item_exercise.xml",
+        "source": "com.example.gr.app-main-67:/layout/item_exercise.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_workout_detail.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_workout_detail.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/preference_checkbox.xml",
+        "source": "com.example.gr.app-main-67:/layout/preference_checkbox.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_sign_up.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_sign_up.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_device_settings.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_device_settings.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\item_exercise.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\item_exercise.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_search_for_exercise.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_search_for_exercise.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_device_settings.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_device_settings.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/layout_toolbar.xml",
+        "source": "com.example.gr.app-main-67:/layout/layout_toolbar.xml"
     },
     {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_splash.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_splash.xml"
-    },
-    {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\layout_actionbar.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\layout_actionbar.xml"
-    },
-    {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\item_exercise_history.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\item_exercise_history.xml"
-    },
-    {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\spinner_with_image_layout.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\spinner_with_image_layout.xml"
-    },
-    {
-        "merged": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-mergeDebugResources-64:\\layout\\activity_record_workout.xml",
-        "source": "C:\\Users\\4800\\.gradle\\daemon\\8.2\\com.example.gr.app-main-67:\\layout\\activity_record_workout.xml"
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/spinner_with_image_layout.xml",
+        "source": "com.example.gr.app-main-67:/layout/spinner_with_image_layout.xml"
     }
 ]

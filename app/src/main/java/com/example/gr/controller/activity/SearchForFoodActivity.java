@@ -89,10 +89,11 @@ public class SearchForFoodActivity extends BaseActivity {
     }
 
     private void searchFood() {
-        Toast.makeText(this, "searching", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "searching", Toast.LENGTH_SHORT).show();
         String strKey = mActivitySearchForFoodBinding.edtSearchName.getText().toString().trim();
         GlobalFunction.hideSoftKeyboard(this);
         sendDataToFragment(strKey);
+
     }
 
     private void getDataIntent() {

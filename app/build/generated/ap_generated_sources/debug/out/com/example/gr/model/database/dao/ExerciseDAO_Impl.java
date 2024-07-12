@@ -197,7 +197,7 @@ public final class ExerciseDAO_Impl implements ExerciseDAO {
 
   @Override
   public List<Exercise> getAllExercise() {
-    final String _sql = "SELECT * FROM exercise LIMIT 10";
+    final String _sql = "SELECT * FROM exercise";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     __db.assertNotSuspendingTransaction();
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);

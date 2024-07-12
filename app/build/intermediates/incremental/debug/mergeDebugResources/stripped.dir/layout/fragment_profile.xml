@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/define_dimen_10"
+            android:gravity="left|center"
+            android:orientation="horizontal"
+            android:padding="@dimen/define_dimen_14">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/define_dimen_100"
+                android:layout_height="@dimen/define_dimen_100"
+                android:src="@mipmap/img_profile_default_round" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/define_dimen_10"
+                android:paddingLeft="10dp"
+                android:paddingBottom="20dp"
+                android:text="abc@gmail.com"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_large" />
+
+            <TextView
+                android:id="@+id/tv_about_us_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/define_dimen_10"
+                android:gravity="center"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/text_size_small" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/connect_device"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:padding="20dp"
+            android:text="@string/profile_device_connect"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:drawablePadding="8dp"
+            android:background="@drawable/ripple_effect"
+            app:drawableStartCompat="@drawable/ic_add_30_red" />
+        <TextView
+            android:id="@+id/delete_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:padding="20dp"
+            android:text="@string/Delete"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:drawablePadding="8dp"
+            android:background="@drawable/ripple_effect"
+            app:drawableStartCompat="@drawable/ic_disconnect_30" />
+        <TextView
+            android:id="@+id/disconnect_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:padding="20dp"
+            android:text="@string/profile_device_disconnect"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:drawablePadding="8dp"
+            android:background="@drawable/ripple_effect"
+            app:drawableStartCompat="@drawable/ic_disconnect_30" />
+
+        <TextView
+            android:id="@+id/device_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:padding="20dp"
+            android:text="@string/profile_device_settings"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:drawablePadding="8dp"
+            android:background="@drawable/ripple_effect"
+            app:drawableStartCompat="@drawable/ic_settings" />
+        <TextView
+            android:id="@+id/device_sync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:padding="20dp"
+            android:text="@string/profile_device_sync"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:drawablePadding="8dp"
+            android:background="@drawable/ripple_effect"
+            app:drawableStartCompat="@drawable/ic_sync_30" />
+        <TextView
+            android:id="@+id/profile_goal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:padding="20dp"
+            android:text="@string/profile_device_goal"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:drawablePadding="8dp"
+            android:background="@drawable/ripple_effect"
+            app:drawableStartCompat="@drawable/ic_goal_30" />
+        <TextView
+            android:id="@+id/profile_log_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:padding="20dp"
+            android:text="@string/log_out"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:drawablePadding="8dp"
+            android:background="@drawable/ripple_effect"
+            app:drawableStartCompat="@drawable/ic_log_out_30" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

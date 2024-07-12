@@ -58,8 +58,8 @@ public class LogWeightActivity extends BaseActivity {
         mActivityLogWeightBinding.rcvWeightLog.setAdapter(mWeightLogAdapter);
         lineChart = mActivityLogWeightBinding.weightLineChart;
         calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR, 10);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 1);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND,0);
         displaySelectedDateWeightLog();
@@ -183,8 +183,8 @@ public class LogWeightActivity extends BaseActivity {
         int day = c.get(Calendar.DAY_OF_MONTH);
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, (datePicker, i, i1, i2) -> {
             calendar.set(i, i1, i2);
-            calendar.set(Calendar.HOUR, 10);
-            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 1);
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND,0);
             mActivityLogWeightBinding.tvDate.setText(DateTimeUtils.formatDate(calendar.getTime()));

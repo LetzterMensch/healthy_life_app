@@ -15,10 +15,12 @@ import android.util.TypedValue;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.example.gr.model.Exercise;
+import com.example.gr.model.Food;
 import com.example.gr.model.database.DBHandler;
 import com.example.gr.model.database.DBHelper;
 import com.example.gr.model.database.DBOpenHelper;
-import com.example.gr.model.database.DataImporter;
+import com.example.gr.utils.DataImporter;
 import com.example.gr.model.database.LocalDatabase;
 import com.example.gr.model.database.entities.DaoMaster;
 import com.example.gr.model.database.entities.DaoSession;
@@ -36,6 +38,9 @@ import com.example.gr.utils.GB;
 import com.example.gr.utils.GBPrefs;
 import com.example.gr.utils.LimitedQueue;
 import com.example.gr.utils.Prefs;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import org.json.JSONObject;
@@ -71,6 +76,8 @@ public class ControllerApplication extends Application {
 
     public static final String ACTION_QUIT = "com.example.gr.ControllerApplication.action.quit";
     private BluetoothStateChangeReceiver bluetoothStateChangeReceiver;
+    private FirebaseDatabase mFirebaseDatabase;
+
 
     @Override
     public void onCreate() {
@@ -87,8 +94,13 @@ public class ControllerApplication extends Application {
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs = new Prefs(sharedPrefs);
         gbPrefs = new GBPrefs(prefs);
+        //Set up firebase database
+        FirebaseApp.initializeApp(this);
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
 
+        //Set up local database
         setupDatabase();
+
 
         // Uncomment the line below to force a device key migration, after you updated
         // the devicetype.json file
@@ -102,8 +114,6 @@ public class ControllerApplication extends Application {
 
         deviceService = createDeviceService();
 
-        //This will export the database
-//        PeriodicExporter.enablePeriodicExport(context);
 
         if (isRunningMarshmallowOrLater()) {
 //            notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -111,25 +121,16 @@ public class ControllerApplication extends Application {
                 bluetoothStateChangeReceiver = new BluetoothStateChangeReceiver();
                 registerReceiver(bluetoothStateChangeReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
             }
-//            try {
-//                //the following will ensure the notification manager is kept alive
-//                startService(new Intent(this, NotificationCollectorMonitorService.class));
-//            } catch (IllegalStateException e) {
-//                String message = e.toString();
-//                if (message == null) {
-//                    message = getString(R.string._unknown_);
-//                }
-//                GB.notify(NOTIFICATION_ID_ERROR,
-//                        new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_HIGH_PRIORITY_ID)
-//                                .setSmallIcon(R.drawable.gadgetbridge_img)
-//                                .setContentTitle(getString(R.string.error_background_service))
-//                                .setContentText(getString(R.string.error_background_service_reason_truncated))
-//                                .setStyle(new NotificationCompat.BigTextStyle()
-//                                        .bigText(getString(R.string.error_background_service_reason) + "\"" + message + "\""))
-//                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-//                                .build(), context);
-//            }
         }
+    }
+    public static ControllerApplication get(Context context) {
+        return (ControllerApplication) context.getApplicationContext();
+    }
+    public DatabaseReference getFoodDatabaseReference() {
+        return mFirebaseDatabase.getReference("/shared/food");
+    }
+    public DatabaseReference getExerciseDatabaseReference() {
+        return mFirebaseDatabase.getReference("/shared/exercise");
     }
 
     public static boolean isRunningTwelveOrLater() {
@@ -172,7 +173,7 @@ public class ControllerApplication extends Application {
     }
 
     public static void quit() {
-        GB.log("Quitting Gadgetbridge...", GB.INFO, null);
+        GB.log("Quitting Suc Khoe BK...", GB.INFO, null);
         Intent quitIntent = new Intent(ControllerApplication.ACTION_QUIT);
         LocalBroadcastManager.getInstance(context).sendBroadcast(quitIntent);
         ControllerApplication.deviceService().quit();
@@ -235,6 +236,20 @@ public class ControllerApplication extends Application {
 //        LocalDatabase.getInstance(context).clearAllTables();
         DataImporter.importFoodFromJson(getApplicationContext(), LocalDatabase.getInstance(this.getApplicationContext()));
         DataImporter.importExerciseFromJson(getApplicationContext(), LocalDatabase.getInstance(this.getApplicationContext()));
+//
+//        List<Food> foodList = LocalDatabase.getInstance(this).foodDAO().getAllFood();
+//        DatabaseReference foodReference = getFoodDatabaseReference();
+//        for (Food food: foodList
+//             ) {
+//            foodReference.push().setValue(food);
+//        }
+//
+//        List<Exercise> exerciseList = LocalDatabase.getInstance(this).exerciseDAO().getAllExercise();
+//        DatabaseReference exerciseReference = getExerciseDatabaseReference();
+//        for (Exercise ex: exerciseList
+//             ) {
+//            exerciseReference.push().setValue(ex);
+//        }
         DaoMaster.OpenHelper helper;
         helper = new DBOpenHelper(this, DATABASE_NAME, null);
 

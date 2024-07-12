@@ -289,7 +289,7 @@ public final class FoodDAO_Impl implements FoodDAO {
 
   @Override
   public List<Food> getAllFood() {
-    final String _sql = "SELECT * FROM food LIMIT 10";
+    final String _sql = "SELECT * FROM food";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     __db.assertNotSuspendingTransaction();
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);

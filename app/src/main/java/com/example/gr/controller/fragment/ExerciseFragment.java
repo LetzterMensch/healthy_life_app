@@ -126,6 +126,7 @@ public class ExerciseFragment extends BaseFragment {
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 1);
+        today.set(Calendar.MILLISECOND,0);
         filterLocal = new IntentFilter();
         filterLocal.addAction(GBDevice.ACTION_DEVICE_CHANGED);
         LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mReceiver, filterLocal);

@@ -22,7 +22,6 @@ public class Food implements Serializable {
     private float protein;
     private float fat;
     private boolean isCustomized;
-    @Nullable
     private String subFoodIds;
     private long timestamp;
     @Ignore
