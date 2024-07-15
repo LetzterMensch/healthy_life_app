@@ -3,18 +3,21 @@ package com.example.gr.model.database.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.gr.model.Food;
 import com.example.gr.model.Workout;
 
 import java.util.List;
 
 @Dao
 public interface WorkoutDAO {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertWorkout(Workout workout);
-
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Workout> workoutList);
     @Query("SELECT * FROM workout LIMIT 10")
     List<Workout> getAllWorkout();
     @Query("SELECT * FROM workout WHERE diaryID = :diaryID")

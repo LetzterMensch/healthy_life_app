@@ -3,6 +3,7 @@ package com.example.gr.model.database.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -14,8 +15,8 @@ import java.util.List;
 @Dao
 
 public interface RecipeDAO {
-    @Insert
-    void insertRecipe(Recipe recipe);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insertRecipe(Recipe recipe);
 
     @Query("SELECT * FROM recipe LIMIT 10")
     List<Recipe> getAllRecipe();

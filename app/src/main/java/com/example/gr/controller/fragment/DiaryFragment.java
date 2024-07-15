@@ -1,18 +1,27 @@
 package com.example.gr.controller.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.controller.activity.FoodDetailActivity;
 import com.example.gr.controller.activity.MainActivity;
 import com.example.gr.controller.activity.SearchForFoodActivity;
+import com.example.gr.controller.activity.StatsActivity;
+import com.example.gr.model.RecordedWorkout;
+import com.example.gr.model.WeightLog;
+import com.example.gr.model.Workout;
 import com.example.gr.view.adapter.FoodLogAdapter;
 import com.example.gr.utils.constant.Constant;
 import com.example.gr.utils.constant.GlobalFunction;
@@ -21,9 +30,17 @@ import com.example.gr.databinding.FragmentDiaryBinding;
 import com.example.gr.model.Diary;
 import com.example.gr.model.FoodLog;
 import com.example.gr.utils.DateTimeUtils;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class DiaryFragment extends BaseFragment {
@@ -37,6 +54,8 @@ public class DiaryFragment extends BaseFragment {
     private List<FoodLog> dinnerLogsList;
     private List<FoodLog> snackLogsList;
     private Diary mDiary;
+    private FirebaseUser user;
+    public static final String UPDATE_DATE = "update_date";
 
     @Nullable
     @Override
@@ -44,6 +63,7 @@ public class DiaryFragment extends BaseFragment {
         mfragmentDiaryBinding = FragmentDiaryBinding.inflate(inflater, container, false);
         calendar = Calendar.getInstance();
         today = calendar.get(Calendar.DAY_OF_MONTH);
+        user = FirebaseAuth.getInstance().getCurrentUser();
         initUi();
         initListener();
         return mfragmentDiaryBinding.getRoot();
@@ -54,6 +74,20 @@ public class DiaryFragment extends BaseFragment {
         mfragmentDiaryBinding.date.setOnClickListener(v -> getDiaryOnDatePicker());
         mfragmentDiaryBinding.imgNext.setOnClickListener(v -> getNextDayDiary());
         mfragmentDiaryBinding.imgBack.setOnClickListener(v -> getPreviousDayDiary());
+        mfragmentDiaryBinding.finishDiary.setOnClickListener(v -> {
+            createProgressDialog();
+            showProgressDialog(true);
+            uploadUserDataToFirebase();
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    showProgressDialog(false);
+                    goToStatsActivity(mDiary);
+                }
+            }, 1500);
+
+        });
     }
 
     private void initUi() {
@@ -134,6 +168,12 @@ public class DiaryFragment extends BaseFragment {
         displayFoodLogs(mDate);
     }
 
+    private void goToStatsActivity(@NonNull Diary diary) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("key_diary", diary);
+        GlobalFunction.startActivity(getActivity(), StatsActivity.class, bundle);
+    }
+
     private void goToFoodDetail(@NonNull FoodLog foodLog) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.KEY_INTENT_EDIT_FOOD_LOG_OBJECT, foodLog);
@@ -143,10 +183,30 @@ public class DiaryFragment extends BaseFragment {
     }
 
     private void getDiary(String date) {
-        mDiary = LocalDatabase.getInstance(this.requireActivity()).diaryDAO().getDiaryByDate(date);
+        mDiary = LocalDatabase.getInstance(requireActivity()).diaryDAO().getDiaryByDate(date);
+        if (mDiary == null){
+            ControllerApplication.getApp().getUserDatabaseReference().child(user.getUid()).child("diary").child(date).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        mDiary = snapshot.getValue(Diary.class);
+                        Diary tempDiary = LocalDatabase.getInstance(requireActivity()).diaryDAO().getDiaryByDate(date);
+                        if (tempDiary != null) {
+                            mDiary.setId(tempDiary.getId());
+                            LocalDatabase.getInstance(requireActivity()).diaryDAO().insertDiary(mDiary);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
         if (mDiary == null) {
             mDiary = new Diary(date);
-            LocalDatabase.getInstance(this.requireActivity()).diaryDAO().insertDiary(mDiary);
+            LocalDatabase.getInstance(requireActivity()).diaryDAO().insertDiary(mDiary);
         }
         breakfastLogsList = mDiary.getBreakfastLogs();
         lunchLogsList = mDiary.getLunchLogs();
@@ -237,7 +297,57 @@ public class DiaryFragment extends BaseFragment {
 
     private void deleteFoodLog(FoodLog foodLog) {
         mDiary.updateDiaryAfterRemove(foodLog);
+        ControllerApplication.getApp()
+                .getUserDatabaseReference()
+                .child(user.getUid())
+                .child("foodlog")
+                .child(String.valueOf(foodLog.getId()))
+                .setValue(null);
         displayFoodLogs(mDate);
+    }
+
+    // Upload user's
+    // diary
+    // foodlog
+    // workout
+    // recordedWorkout
+    // weightlog ??
+    private void uploadUserDataToFirebase() {
+        DatabaseReference userReference = ControllerApplication.getApp().getUserDatabaseReference().child(user.getUid());
+        // Upload diary
+        userReference.child("diary").child(mDiary.getDate()).setValue(mDiary);
+        // Upload foodlog
+        List<FoodLog> todayFoodLogList = new ArrayList<>();
+        todayFoodLogList.addAll(breakfastLogsList);
+        todayFoodLogList.addAll(lunchLogsList);
+        todayFoodLogList.addAll(dinnerLogsList);
+        todayFoodLogList.addAll(snackLogsList);
+        for (FoodLog foodlog : todayFoodLogList
+        ) {
+            userReference.child("foodlog").child(String.valueOf(foodlog.getId())).setValue(foodlog);
+        }
+        // Upload workout
+        List<Workout> normalWorkoutList = LocalDatabase.getInstance(requireActivity()).workoutDAO().
+                findWorkoutByDate(DateTimeUtils.formatDate(new Date(calendar.getTimeInMillis())));
+        for (Workout workout : normalWorkoutList) {
+            userReference.child("workout").child(String.valueOf(workout.getId())).setValue(workout);
+        }
+        // Upload recorded workout
+        List<RecordedWorkout> recordedWorkoutList = LocalDatabase.getInstance(requireActivity()).recordedWorkoutDAO().
+                findRecordedWorkoutByDate(DateTimeUtils.formatDate(new Date(calendar.getTimeInMillis())));
+        for (RecordedWorkout recordedWorkout : recordedWorkoutList) {
+            userReference.child("recordedworkout").child(String.valueOf(recordedWorkout.getId())).setValue(recordedWorkout);
+        }
+        // Upload weightLogs
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 1);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        WeightLog weightLog = LocalDatabase.getInstance(requireActivity()).weightLogDAO().findWeightLogByTimeStamp(c.getTimeInMillis());
+        if (weightLog != null) {
+            userReference.child("weightlog").child(String.valueOf(weightLog.getId())).setValue(weightLog);
+        }
     }
 
     //TODO
@@ -245,14 +355,18 @@ public class DiaryFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
+        Intent intent = new Intent(UPDATE_DATE);
+        intent.putExtra("key_calendar_time", calendar.getTimeInMillis());
+        LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mfragmentDiaryBinding.date.setText("Hôm nay");
-        calendar = Calendar.getInstance();
-        mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
+//        mfragmentDiaryBinding.date.setText("Hôm nay");
+//        calendar = Calendar.getInstance();
+//        mDate = DateTimeUtils.simpleDateFormat(calendar.getTime());
         displayFoodLogs(mDate);
     }
 //    @Override

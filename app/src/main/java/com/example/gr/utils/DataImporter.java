@@ -7,6 +7,7 @@ import java.io.InputStream;
 
 import android.util.Log;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.model.Exercise;
 import com.example.gr.model.Food;
 import com.example.gr.model.database.LocalDatabase;
@@ -28,6 +29,11 @@ public class DataImporter {
             ArrayList<Food> foodList = new Gson().fromJson(reader, foodListType);
 //            System.out.println(foodList.get(0).getNumberOfServings());
             // Insert data into Room database
+            for (Food food: foodList
+                 ) {
+                String key = ControllerApplication.getApp().getFoodDatabaseReference().push().getKey();
+                food.setUuid(key);
+            }
             if (db.foodDAO().getAllFood().isEmpty()){
                 db.foodDAO().insertAll(foodList);
             }

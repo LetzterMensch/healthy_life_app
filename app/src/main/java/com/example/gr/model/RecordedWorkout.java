@@ -123,6 +123,11 @@ public class RecordedWorkout implements Serializable, WorkoutItem {
         return duration;
     }
 
+    @Override
+    public int getWorkoutItemId() {
+        return this.id;
+    }
+
     public void setDuration(long duration) {
         this.duration = duration;
     }

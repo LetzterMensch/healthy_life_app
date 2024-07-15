@@ -92,8 +92,6 @@ public class MainActivity extends BaseActivity {
                 case ControllerApplication.ACTION_NEW_DATA:
                     createRefreshTask("get activity data", getApplication()).execute();
                     postDebouncedEvent(deviceActivityHashMap);
-//                    mGBDeviceAdapter.rebuildFolders();
-//                    refreshPairedDevices();
                     break;
                 case DeviceService.ACTION_REALTIME_SAMPLES:
                     handleRealtimeSample(intent.getSerializableExtra(DeviceService.EXTRA_REALTIME_SAMPLE));
@@ -193,15 +191,6 @@ public class MainActivity extends BaseActivity {
         });
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, intentFilter);
 
-//        BottomNavigationView navView = findViewById(R.id.nav_view);
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//        NavigationUI.setupWithNavController(binding.navView, navController);
 
     }
     @Override
@@ -235,9 +224,7 @@ public class MainActivity extends BaseActivity {
     private void updateData(){
 
     }
-    public ActivitySample getCurrentHRSample() {
-        return currentHRSample;
-    }
+
     private void handleRealtimeSample(Serializable extra) {
         if (extra instanceof ActivitySample) {
             ActivitySample sample = (ActivitySample) extra;

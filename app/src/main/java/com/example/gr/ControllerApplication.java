@@ -132,7 +132,12 @@ public class ControllerApplication extends Application {
     public DatabaseReference getExerciseDatabaseReference() {
         return mFirebaseDatabase.getReference("/shared/exercise");
     }
-
+    public DatabaseReference getRecipeDatabaseReference(){
+        return mFirebaseDatabase.getReference("/shared/recipe");
+    }
+    public DatabaseReference getUserDatabaseReference(){
+        return mFirebaseDatabase.getReference("/users");
+    }
     public static boolean isRunningTwelveOrLater() {
         return Build.VERSION.SDK_INT >= 31;  // Build.VERSION_CODES.S, but our target SDK is lower
     }
@@ -234,21 +239,22 @@ public class ControllerApplication extends Application {
         // Import dữ liệu
         //        deleteActivityDatabase(context);
 //        LocalDatabase.getInstance(context).clearAllTables();
-        DataImporter.importFoodFromJson(getApplicationContext(), LocalDatabase.getInstance(this.getApplicationContext()));
-        DataImporter.importExerciseFromJson(getApplicationContext(), LocalDatabase.getInstance(this.getApplicationContext()));
-//
+//        DataImporter.importFoodFromJson(getApplicationContext(), LocalDatabase.getInstance(this.getApplicationContext()));
+//        DataImporter.importExerciseFromJson(getApplicationContext(), LocalDatabase.getInstance(this.getApplicationContext()));
 //        List<Food> foodList = LocalDatabase.getInstance(this).foodDAO().getAllFood();
 //        DatabaseReference foodReference = getFoodDatabaseReference();
 //        for (Food food: foodList
 //             ) {
-//            foodReference.push().setValue(food);
-//        }
 //
+//            LocalDatabase.getInstance(this).foodDAO().insertFood(food);
+//            foodReference.child(food.getUuid()).setValue(food);
+//        }
+
 //        List<Exercise> exerciseList = LocalDatabase.getInstance(this).exerciseDAO().getAllExercise();
 //        DatabaseReference exerciseReference = getExerciseDatabaseReference();
 //        for (Exercise ex: exerciseList
 //             ) {
-//            exerciseReference.push().setValue(ex);
+//            exerciseReference.child(String.valueOf(ex.getId())).setValue(ex);
 //        }
         DaoMaster.OpenHelper helper;
         helper = new DBOpenHelper(this, DATABASE_NAME, null);

@@ -113,6 +113,8 @@ public class WorkoutDetailActivity extends BaseActivity  {
         yAxisRight.setDrawLabels(true);
         yAxisRight.setDrawTopYLabelEntry(true);
         yAxisRight.setTextColor(R.color.textColorSecondary);
+
+        mChart.getDescription().setEnabled(false);
     }
     private void setUpDataForActivityChart() throws Exception {
         DBHandler db = ControllerApplication.acquireDB();

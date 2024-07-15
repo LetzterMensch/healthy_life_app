@@ -2,19 +2,22 @@ package com.example.gr.model.database.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.gr.model.Diary;
+import com.example.gr.model.Food;
 
 import java.util.Date;
 import java.util.List;
 
 @Dao
 public interface DiaryDAO {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertDiary(Diary diary);
-
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Diary> diaryList);
     @Query("SELECT * FROM diary LIMIT 5")
     List<Diary> getAllDiary();
 

@@ -17,6 +17,7 @@ public class FoodLog implements Serializable {
     private int meal;
     private float numberOfServings;
     private int foodId;
+    private String foodUUID;
     private int diaryId;
     @Ignore
     public Food food; // FoodLog inside foodLogList does not have food -> null. Because of @Ignore
@@ -25,6 +26,7 @@ public class FoodLog implements Serializable {
     public FoodLog(Food food, int meal, float numberOfServings, int diaryId){
         this.food = food;
         this.foodId = food.getId();
+        this.foodUUID = food.getUuid();
         this.diaryId = diaryId;
         this.meal = meal;
         this.numberOfServings = numberOfServings;
@@ -47,12 +49,27 @@ public class FoodLog implements Serializable {
             this.totalProtein = food.getProtein()*numberOfServings;
         }
     }
-    public void updateFoodLog(float numberOfServings){
+    public void updateFoodLog(float numberOfServings, boolean isMeasuredByGram){
         this.numberOfServings = numberOfServings;
         this.totalCalories =  Math.round(food.getCalories()*numberOfServings);
-        this.totalFat = food.getFat()*numberOfServings*9;
-        this.totalCarb = food.getCarb()*numberOfServings*4;
-        this.totalProtein = food.getProtein()*numberOfServings*4;
+        if(isMeasuredByGram){
+            this.totalFat = food.getFat()*numberOfServings*9;
+            this.totalCarb = food.getCarb()*numberOfServings*4;
+            this.totalProtein = food.getProtein()*numberOfServings*4;
+        }else{
+            this.totalFat = food.getFat()*numberOfServings;
+            this.totalCarb = food.getCarb()*numberOfServings;
+            this.totalProtein = food.getProtein()*numberOfServings;
+        }
+
+    }
+
+    public String getFoodUUID() {
+        return foodUUID;
+    }
+
+    public void setFoodUUID(String foodUUID) {
+        this.foodUUID = foodUUID;
     }
 
     public int getDiaryId() {

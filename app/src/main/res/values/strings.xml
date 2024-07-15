@@ -88,6 +88,9 @@
     <string name="lunch">Bữa trưa</string>
     <string name="dinner">Bữa tối</string>
     <string name="snack">Bữa phụ</string>
+    <string name="label_not_eating_enough">Bạn ăn quá ít</string>
+    <string name="not_eating_enough_advice">Dựa trên nhật ký hôm nay, có vẻ bạn ăn quá ít.\n• Viện Y tế quốc gia khuyến cáo mức năng lượng tối thiểu đối với nam là 1200 Kcal, với nữ là 1000 Kcal.\n• Kể cả trong quá trình giảm cân, việc nhịn đói có thể dẫn tới suy dinh dưỡng và các vấn đề nghiêm trọng khác.</string>
+    <string name="estimated_weight_in_5_weeks">Nếu mỗi ngày đều như hôm nay, trong 5 tuần bạn sẽ nặng %s kg.</string>
     // sleep
     <string name="sleep_too_much_label">Bạn ngủ quá nhiều</string>
     <string name="sleep_too_much_fact">Ngủ hơn 9 tiếng mỗi ngày đối với người trưởng thành, có thể gây ra nhiều tác hại cho sức khỏe.</string>
@@ -161,10 +164,10 @@
     <string name="controlcenter_change_led_color">Change LED Color</string>
     <string name="controlcenter_change_fm_frequency">Change FM Frequency</string>
     <string name="controlcenter_connect">Connect…</string>
-    <string name="controlcenter_disconnect">Disconnect</string>
-    <string name="controlcenter_delete_device">Delete Device</string>
-    <string name="controlcenter_delete_device_name">Delete %1$s</string>
-    <string name="controlcenter_delete_device_dialogmessage">This will delete the device and all associated data!</string>
+    <string name="controlcenter_disconnect">Ngắt kết nối</string>
+    <string name="controlcenter_delete_device">Xóa thiết bị</string>
+    <string name="controlcenter_delete_device_name">Xóa thiết bị %1$s</string>
+    <string name="controlcenter_delete_device_dialogmessage">Việc này sẽ xóa thiết bị và các dữ liệu liên quan!</string>
     <string name="controlcenter_set_alias">Set Alias</string>
     <string name="controlcenter_navigation_drawer_open">Open navigation drawer</string>
     <string name="controlcenter_navigation_drawer_close">Close navigation drawer</string>
@@ -689,9 +692,9 @@
     <!-- developer/debug preferences-->
     <string name="pref_disable_new_ble_scanning">Disable new BLE scanning</string>
     <string name="pref_summary_disable_new_ble_scanning">Check this option if your device cannot be found during discovery</string>
-    <string name="not_connected">Not connected</string>
-    <string name="connecting">Connecting</string>
-    <string name="connected">Connected</string>
+    <string name="not_connected">Chưa kết nối</string>
+    <string name="connecting">Đang kết nối …</string>
+    <string name="connected">Đã kết nối.</string>
     <string name="unknown_state">Unknown state</string>
     <string name="_unknown_">(unknown)</string>
     <string name="unknown">Unknown</string>

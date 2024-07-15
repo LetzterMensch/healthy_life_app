@@ -17,7 +17,7 @@ public interface FoodDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Food> foodList);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertFood(Food food);
     @Query("Select * from food where timestamp = :timestamp")
     Food getFoodByTimestamp(long timestamp);

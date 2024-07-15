@@ -88,6 +88,10 @@
         "source": "com.example.gr.app-main-67:/layout/activity_log_in.xml"
     },
     {
+        "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_stats.xml",
+        "source": "com.example.gr.app-main-67:/layout/activity_stats.xml"
+    },
+    {
         "merged": "com.example.gr.app-mergeDebugResources-64:/layout/activity_search_for_food.xml",
         "source": "com.example.gr.app-main-67:/layout/activity_search_for_food.xml"
     },

@@ -25,8 +25,6 @@ public final class FoodDAO_Impl implements FoodDAO {
 
   private final EntityInsertionAdapter<Food> __insertionAdapterOfFood;
 
-  private final EntityInsertionAdapter<Food> __insertionAdapterOfFood_1;
-
   private final EntityDeletionOrUpdateAdapter<Food> __deletionAdapterOfFood;
 
   private final EntityDeletionOrUpdateAdapter<Food> __updateAdapterOfFood;
@@ -39,62 +37,36 @@ public final class FoodDAO_Impl implements FoodDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `food` (`id`,`name`,`numberOfServings`,`servingSize`,`calories`,`carb`,`protein`,`fat`,`isCustomized`,`subFoodIds`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `food` (`id`,`uuid`,`name`,`numberOfServings`,`servingSize`,`calories`,`carb`,`protein`,`fat`,`isCustomized`,`subFoodIds`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement, final Food entity) {
         statement.bindLong(1, entity.getId());
-        if (entity.getName() == null) {
+        if (entity.getUuid() == null) {
           statement.bindNull(2);
         } else {
-          statement.bindString(2, entity.getName());
+          statement.bindString(2, entity.getUuid());
         }
-        statement.bindDouble(3, entity.getNumberOfServings());
-        statement.bindDouble(4, entity.getServingSize());
-        statement.bindLong(5, entity.getCalories());
-        statement.bindDouble(6, entity.getCarb());
-        statement.bindDouble(7, entity.getProtein());
-        statement.bindDouble(8, entity.getFat());
-        final int _tmp = entity.isCustomized() ? 1 : 0;
-        statement.bindLong(9, _tmp);
-        if (entity.getSubFoodIds() == null) {
-          statement.bindNull(10);
-        } else {
-          statement.bindString(10, entity.getSubFoodIds());
-        }
-        statement.bindLong(11, entity.getTimestamp());
-      }
-    };
-    this.__insertionAdapterOfFood_1 = new EntityInsertionAdapter<Food>(__db) {
-      @Override
-      @NonNull
-      protected String createQuery() {
-        return "INSERT OR ABORT INTO `food` (`id`,`name`,`numberOfServings`,`servingSize`,`calories`,`carb`,`protein`,`fat`,`isCustomized`,`subFoodIds`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?)";
-      }
-
-      @Override
-      protected void bind(@NonNull final SupportSQLiteStatement statement, final Food entity) {
-        statement.bindLong(1, entity.getId());
         if (entity.getName() == null) {
-          statement.bindNull(2);
+          statement.bindNull(3);
         } else {
-          statement.bindString(2, entity.getName());
+          statement.bindString(3, entity.getName());
         }
-        statement.bindDouble(3, entity.getNumberOfServings());
-        statement.bindDouble(4, entity.getServingSize());
-        statement.bindLong(5, entity.getCalories());
-        statement.bindDouble(6, entity.getCarb());
-        statement.bindDouble(7, entity.getProtein());
-        statement.bindDouble(8, entity.getFat());
+        statement.bindDouble(4, entity.getNumberOfServings());
+        statement.bindDouble(5, entity.getServingSize());
+        statement.bindLong(6, entity.getCalories());
+        statement.bindDouble(7, entity.getCarb());
+        statement.bindDouble(8, entity.getProtein());
+        statement.bindDouble(9, entity.getFat());
         final int _tmp = entity.isCustomized() ? 1 : 0;
-        statement.bindLong(9, _tmp);
+        statement.bindLong(10, _tmp);
         if (entity.getSubFoodIds() == null) {
-          statement.bindNull(10);
+          statement.bindNull(11);
         } else {
-          statement.bindString(10, entity.getSubFoodIds());
+          statement.bindString(11, entity.getSubFoodIds());
         }
-        statement.bindLong(11, entity.getTimestamp());
+        statement.bindLong(12, entity.getTimestamp());
       }
     };
     this.__deletionAdapterOfFood = new EntityDeletionOrUpdateAdapter<Food>(__db) {
@@ -113,32 +85,37 @@ public final class FoodDAO_Impl implements FoodDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `food` SET `id` = ?,`name` = ?,`numberOfServings` = ?,`servingSize` = ?,`calories` = ?,`carb` = ?,`protein` = ?,`fat` = ?,`isCustomized` = ?,`subFoodIds` = ?,`timestamp` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `food` SET `id` = ?,`uuid` = ?,`name` = ?,`numberOfServings` = ?,`servingSize` = ?,`calories` = ?,`carb` = ?,`protein` = ?,`fat` = ?,`isCustomized` = ?,`subFoodIds` = ?,`timestamp` = ? WHERE `id` = ?";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement, final Food entity) {
         statement.bindLong(1, entity.getId());
-        if (entity.getName() == null) {
+        if (entity.getUuid() == null) {
           statement.bindNull(2);
         } else {
-          statement.bindString(2, entity.getName());
+          statement.bindString(2, entity.getUuid());
         }
-        statement.bindDouble(3, entity.getNumberOfServings());
-        statement.bindDouble(4, entity.getServingSize());
-        statement.bindLong(5, entity.getCalories());
-        statement.bindDouble(6, entity.getCarb());
-        statement.bindDouble(7, entity.getProtein());
-        statement.bindDouble(8, entity.getFat());
-        final int _tmp = entity.isCustomized() ? 1 : 0;
-        statement.bindLong(9, _tmp);
-        if (entity.getSubFoodIds() == null) {
-          statement.bindNull(10);
+        if (entity.getName() == null) {
+          statement.bindNull(3);
         } else {
-          statement.bindString(10, entity.getSubFoodIds());
+          statement.bindString(3, entity.getName());
         }
-        statement.bindLong(11, entity.getTimestamp());
-        statement.bindLong(12, entity.getId());
+        statement.bindDouble(4, entity.getNumberOfServings());
+        statement.bindDouble(5, entity.getServingSize());
+        statement.bindLong(6, entity.getCalories());
+        statement.bindDouble(7, entity.getCarb());
+        statement.bindDouble(8, entity.getProtein());
+        statement.bindDouble(9, entity.getFat());
+        final int _tmp = entity.isCustomized() ? 1 : 0;
+        statement.bindLong(10, _tmp);
+        if (entity.getSubFoodIds() == null) {
+          statement.bindNull(11);
+        } else {
+          statement.bindString(11, entity.getSubFoodIds());
+        }
+        statement.bindLong(12, entity.getTimestamp());
+        statement.bindLong(13, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteAllFood = new SharedSQLiteStatement(__db) {
@@ -168,7 +145,7 @@ public final class FoodDAO_Impl implements FoodDAO {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
     try {
-      final long _result = __insertionAdapterOfFood_1.insertAndReturnId(food);
+      final long _result = __insertionAdapterOfFood.insertAndReturnId(food);
       __db.setTransactionSuccessful();
       return _result;
     } finally {
@@ -227,6 +204,7 @@ public final class FoodDAO_Impl implements FoodDAO {
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final int _cursorIndexOfUuid = CursorUtil.getColumnIndexOrThrow(_cursor, "uuid");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfNumberOfServings = CursorUtil.getColumnIndexOrThrow(_cursor, "numberOfServings");
       final int _cursorIndexOfServingSize = CursorUtil.getColumnIndexOrThrow(_cursor, "servingSize");
@@ -263,6 +241,13 @@ public final class FoodDAO_Impl implements FoodDAO {
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _result.setId(_tmpId);
+        final String _tmpUuid;
+        if (_cursor.isNull(_cursorIndexOfUuid)) {
+          _tmpUuid = null;
+        } else {
+          _tmpUuid = _cursor.getString(_cursorIndexOfUuid);
+        }
+        _result.setUuid(_tmpUuid);
         final float _tmpNumberOfServings;
         _tmpNumberOfServings = _cursor.getFloat(_cursorIndexOfNumberOfServings);
         _result.setNumberOfServings(_tmpNumberOfServings);
@@ -295,6 +280,7 @@ public final class FoodDAO_Impl implements FoodDAO {
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final int _cursorIndexOfUuid = CursorUtil.getColumnIndexOrThrow(_cursor, "uuid");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfNumberOfServings = CursorUtil.getColumnIndexOrThrow(_cursor, "numberOfServings");
       final int _cursorIndexOfServingSize = CursorUtil.getColumnIndexOrThrow(_cursor, "servingSize");
@@ -332,6 +318,13 @@ public final class FoodDAO_Impl implements FoodDAO {
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);
+        final String _tmpUuid;
+        if (_cursor.isNull(_cursorIndexOfUuid)) {
+          _tmpUuid = null;
+        } else {
+          _tmpUuid = _cursor.getString(_cursorIndexOfUuid);
+        }
+        _item.setUuid(_tmpUuid);
         final float _tmpNumberOfServings;
         _tmpNumberOfServings = _cursor.getFloat(_cursorIndexOfNumberOfServings);
         _item.setNumberOfServings(_tmpNumberOfServings);
@@ -369,6 +362,7 @@ public final class FoodDAO_Impl implements FoodDAO {
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final int _cursorIndexOfUuid = CursorUtil.getColumnIndexOrThrow(_cursor, "uuid");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfNumberOfServings = CursorUtil.getColumnIndexOrThrow(_cursor, "numberOfServings");
       final int _cursorIndexOfServingSize = CursorUtil.getColumnIndexOrThrow(_cursor, "servingSize");
@@ -406,6 +400,13 @@ public final class FoodDAO_Impl implements FoodDAO {
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);
+        final String _tmpUuid;
+        if (_cursor.isNull(_cursorIndexOfUuid)) {
+          _tmpUuid = null;
+        } else {
+          _tmpUuid = _cursor.getString(_cursorIndexOfUuid);
+        }
+        _item.setUuid(_tmpUuid);
         final float _tmpNumberOfServings;
         _tmpNumberOfServings = _cursor.getFloat(_cursorIndexOfNumberOfServings);
         _item.setNumberOfServings(_tmpNumberOfServings);
@@ -439,6 +440,7 @@ public final class FoodDAO_Impl implements FoodDAO {
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final int _cursorIndexOfUuid = CursorUtil.getColumnIndexOrThrow(_cursor, "uuid");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfNumberOfServings = CursorUtil.getColumnIndexOrThrow(_cursor, "numberOfServings");
       final int _cursorIndexOfServingSize = CursorUtil.getColumnIndexOrThrow(_cursor, "servingSize");
@@ -475,6 +477,13 @@ public final class FoodDAO_Impl implements FoodDAO {
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _result.setId(_tmpId);
+        final String _tmpUuid;
+        if (_cursor.isNull(_cursorIndexOfUuid)) {
+          _tmpUuid = null;
+        } else {
+          _tmpUuid = _cursor.getString(_cursorIndexOfUuid);
+        }
+        _result.setUuid(_tmpUuid);
         final float _tmpNumberOfServings;
         _tmpNumberOfServings = _cursor.getFloat(_cursorIndexOfNumberOfServings);
         _result.setNumberOfServings(_tmpNumberOfServings);

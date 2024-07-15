@@ -59,7 +59,7 @@ public class ProfileFragment extends BaseFragment {
         mFragmentProfileBinding.connectDevice.setOnClickListener(v -> {
 
         });
-        mFragmentProfileBinding.deleteButton.setOnClickListener(v -> {
+        mFragmentProfileBinding.deleteDeviceBtn.setOnClickListener(v -> {
             showRemoveDeviceDialog(device);
         });
         mFragmentProfileBinding.deviceSettings.setOnClickListener(v -> {
@@ -78,12 +78,16 @@ public class ProfileFragment extends BaseFragment {
     private void initUi() {
         mFragmentProfileBinding.tvEmail.setText(firebaseUser.getEmail());
         if (deviceManager.getDevices().size() < 1) {
+            mFragmentProfileBinding.deleteDeviceBtn.setVisibility(View.GONE);
             mFragmentProfileBinding.disconnectButton.setVisibility(View.GONE);
             mFragmentProfileBinding.connectDevice.setVisibility(View.VISIBLE);
         } else {
-            mFragmentProfileBinding.disconnectButton.setVisibility(View.VISIBLE);
+            mFragmentProfileBinding.deleteDeviceBtn.setVisibility(View.VISIBLE);
             mFragmentProfileBinding.connectDevice.setVisibility(View.GONE);
             device = deviceManager.getDevices().get(0);
+            if(device.isConnected()){
+                mFragmentProfileBinding.disconnectButton.setVisibility(View.VISIBLE);
+            }
             mFragmentProfileBinding.disconnectButton.setOnClickListener(v -> {
                 if (device.getState() != GBDevice.State.NOT_CONNECTED) {
                     showTransientSnackbar(R.string.controlcenter_snackbar_disconnecting);

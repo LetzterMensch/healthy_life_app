@@ -572,6 +572,7 @@ id autoStartCountdownAbort
 id autoStartCountdownMsg
 id autoStartCountdownVal
 id breakfast_card
+id btn_back_to_diary
 id btn_breakfast_add
 id btn_container
 id btn_create_food
@@ -602,7 +603,9 @@ id calendar_toolbar
 id calories
 id calories_burnt
 id calories_circle
+id calories_goal
 id calories_input
+id calories_intake
 id calories_remain
 id carb_indicator
 id card_burnt_container
@@ -625,7 +628,7 @@ id deep_sleep_hr
 id deep_sleep_indicator
 id deep_sleep_percentage
 id delete_btn
-id delete_button
+id delete_device_btn
 id delete_history_btn
 id device_settings
 id device_sync
@@ -668,6 +671,7 @@ id edit_quick_add_protein
 id edit_quick_add_serving_size
 id edit_search_name
 id edt_search_name
+id estimated_weight_layout
 id ex_cal_burnt
 id ex_cal_burnt_hr
 id ex_stats_layout
@@ -714,8 +718,13 @@ id item_number
 id item_preview
 id item_status
 id item_weight
+id label
 id label_add_ingredients
+id label_burnt
+id label_intake
+id label_not_eating_enough
 id label_nutrition_info
+id label_remaining
 id label_weight
 id label_weight_history
 id late_sleep
@@ -757,11 +766,14 @@ id nestedScrollView
 id nestedScrollView2
 id new_food_name
 id new_food_nutrition_info
+id not_eating_enough_advice
+id not_eating_enough_layout
 id not_enough_deep_sleep
 id not_enough_sleep
 id not_enough_sleep_label
 id number_of_servings
 id option_toggle_btn
+id pie_chart
 id profile_goal
 id profile_log_out
 id progressBar
@@ -842,6 +854,7 @@ id tv_add_to_diary
 id tv_calories
 id tv_date
 id tv_email
+id tv_estimated_weight
 id tv_food_description
 id tv_food_name
 id tv_label_date
@@ -850,6 +863,7 @@ id tv_new_food_name
 id tv_recipe_ingredients
 id tv_title
 id tv_weight
+id value
 id viewPager2
 id viewpager_2
 id wake_up_many_times
@@ -885,6 +899,7 @@ layout activity_search_for_exercise
 layout activity_search_for_food
 layout activity_sign_up
 layout activity_splash
+layout activity_stats
 layout activity_workout_detail
 layout disclaimer_dialog
 layout fragment_dashboard
@@ -1731,6 +1746,7 @@ string error_scan_failed
 string error_setting_alias
 string error_setting_parent_folder
 string error_version_check_extreme_caution
+string estimated_weight_in_5_weeks
 string estonian
 string ex_burnt_cal
 string ex_burnt_hr
@@ -1989,6 +2005,7 @@ string label_goal
 string label_intake
 string label_max_hr
 string label_min_hr
+string label_not_eating_enough
 string label_nutrition
 string label_quantity_1
 string label_recipe_ingredients
@@ -2247,6 +2264,7 @@ string normal
 string normal_workout
 string norwegian_bokmal
 string not_connected
+string not_eating_enough_advice
 string not_enough_deep_sleep_fact
 string not_enough_deep_sleep_label
 string not_enough_deep_sleep_tips

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class RecipeSearchTabAdapter extends RecyclerView.Adapter<RecipeSearchTabAdapter.RecipeViewHolder> {
     public final IOnClickRecipeItemListener iOnClickRecipeItemListener;
-    private final List<Recipe> mRecipeList;
+    private List<Recipe> mRecipeList;
 
 
     public RecipeSearchTabAdapter(List<Recipe> recipeList, IOnClickRecipeItemListener iOnClickRecipeItemListener) {
@@ -48,6 +48,11 @@ public class RecipeSearchTabAdapter extends RecyclerView.Adapter<RecipeSearchTab
     public int getItemCount() {
         return mRecipeList.size();
     }
+    public void setmRecipeList(List<Recipe> newRecipeList){
+        this.mRecipeList = newRecipeList;
+        notifyDataSetChanged();
+    }
+
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemSearchRecipeTabBinding mItemRecipeBinding;

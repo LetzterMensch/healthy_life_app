@@ -6374,8 +6374,8 @@
     <string name="companiondevice_pairing">CompanionDevice Pairing</string>
     <string name="companiondevice_pairing_details">Enables the new CompanionDevice API support (only has an effect on Android 8 or above) which will increase reliability if the service needs to be restarted in the background, requires re-pairing using Gadgetbridge to have an effect</string>
     <string name="complete_diary">Hoàn thành nhật ký</string>
-    <string name="connected">Connected</string>
-    <string name="connecting">Connecting</string>
+    <string name="connected">Đã kết nối.</string>
+    <string name="connecting">Đang kết nối …</string>
     <string name="connection_over_ble">Connection over BLE</string>
     <string name="connection_over_bt_classic">Connection over Bluetooth classic</string>
     <string name="contact_delete_confirm_description">Are you sure you want to delete \'%1$s\'?</string>
@@ -6394,10 +6394,10 @@
     <string name="controlcenter_change_led_color">Change LED Color</string>
     <string name="controlcenter_connect">Connect…</string>
     <string name="controlcenter_connected_fraction">Connected: %d/%d</string>
-    <string name="controlcenter_delete_device">Delete Device</string>
-    <string name="controlcenter_delete_device_dialogmessage">This will delete the device and all associated data!</string>
-    <string name="controlcenter_delete_device_name">Delete %1$s</string>
-    <string name="controlcenter_disconnect">Disconnect</string>
+    <string name="controlcenter_delete_device">Xóa thiết bị</string>
+    <string name="controlcenter_delete_device_dialogmessage">Việc này sẽ xóa thiết bị và các dữ liệu liên quan!</string>
+    <string name="controlcenter_delete_device_name">Xóa thiết bị %1$s</string>
+    <string name="controlcenter_disconnect">Ngắt kết nối</string>
     <string name="controlcenter_fetch_activity_data">Synchronize</string>
     <string name="controlcenter_find_device">Find lost device</string>
     <string name="controlcenter_folder_name">Folder name:</string>
@@ -6733,6 +6733,7 @@
     <string name="error_setting_alias">Error setting alias: </string>
     <string name="error_setting_parent_folder">Error setting parent folder: %s</string>
     <string name="error_version_check_extreme_caution">CAUTION: Error when checking version information! You should not continue! Saw version name \"%s\"</string>
+    <string name="estimated_weight_in_5_weeks">Nếu mỗi ngày đều như hôm nay, trong 5 tuần bạn sẽ nặng %s kg.</string>
     <string name="estonian">Estonian</string>
     <string name="ex_burnt_cal">0 cal</string>
     <string name="ex_burnt_hr">0:00 h</string>
@@ -7013,6 +7014,7 @@
     <string name="label_intake">đã nạp</string>
     <string name="label_max_hr">Nhịp tim cao nhất</string>
     <string name="label_min_hr">Nhịp tim thấp nhất</string>
+    <string name="label_not_eating_enough">Bạn ăn quá ít</string>
     <string name="label_nutrition">Thông tin dinh dưỡng</string>
     <string name="label_quantity_1">1</string>
     <string name="label_recipe_ingredients">Nguyên liệu</string>
@@ -7378,7 +7380,8 @@
     <string name="normal">Normal</string>
     <string name="normal_workout">Bài tập thông thường</string>
     <string name="norwegian_bokmal">Norwegian Bokmål</string>
-    <string name="not_connected">Not connected</string>
+    <string name="not_connected">Chưa kết nối</string>
+    <string name="not_eating_enough_advice">Dựa trên nhật ký hôm nay, có vẻ bạn ăn quá ít.\n• Viện Y tế quốc gia khuyến cáo mức năng lượng tối thiểu đối với nam là 1200 Kcal, với nữ là 1000 Kcal.\n• Kể cả trong quá trình giảm cân, việc nhịn đói có thể dẫn tới suy dinh dưỡng và các vấn đề nghiêm trọng khác.</string>
     <string name="not_enough_deep_sleep_fact">Đừng để cơ thể quá căng thẳng, hãy cố gắng giữ tâm lý thoải mái, sắp xếp thời gian hợp lý giữa công việc và nghỉ ngơi, tập thể dục nhiều hơn nhé !</string>
     <string name="not_enough_deep_sleep_label">Thời gian ngủ sâu ngắn</string>
     <string name="not_enough_deep_sleep_tips">• Tránh ăn quá no hoặc quá đói trước khi đi ngủ. Một bữa ăn nhẹ có thể giúp bạn ngủ ngon hơn.\n• Thực hiện các hoạt động như đọc sách, tắm nước ấm, hoặc nghe nhạc nhẹ nhàng trước khi ngủ.\n• Tránh ánh sáng xanh từ màn hình điện thoại, máy tính bảng và máy tính ít nhất 1 giờ trước khi đi ngủ.</string>

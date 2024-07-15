@@ -140,6 +140,9 @@ https://support.google.com/googleplay/android-developer/answer/10158779?hl=en#zi
             android:name=".controller.activity.CreateFoodActivity"
             android:exported="false" />
         <activity
+            android:name=".controller.activity.StatsActivity"
+            android:exported="false" />
+        <activity
             android:name=".controller.device.huami.miband.MiBandPairingActivity"
             android:exported="false"
             android:label="@string/title_activity_mi_band_pairing"

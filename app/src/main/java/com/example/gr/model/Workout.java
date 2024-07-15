@@ -98,6 +98,11 @@ public class Workout implements Serializable,WorkoutItem {
         return (long) duration * 60 * 1000;
     }
 
+    @Override
+    public int getWorkoutItemId() {
+        return id;
+    }
+
     public void setDuration(int duration) {
         this.duration = duration;
     }
@@ -105,12 +110,6 @@ public class Workout implements Serializable,WorkoutItem {
 
     public String getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.createdAt = createdAt.toString();
-        }
     }
 
     @Override

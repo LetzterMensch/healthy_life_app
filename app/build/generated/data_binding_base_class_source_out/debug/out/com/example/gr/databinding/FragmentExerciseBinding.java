@@ -62,10 +62,10 @@ public final class FragmentExerciseBinding implements ViewBinding {
   public final Button syncBtn;
 
   @NonNull
-  public final TextView textView;
+  public final TextView titleGoalSteps;
 
   @NonNull
-  public final TextView titleGoalSteps;
+  public final TextView tvDate;
 
   @NonNull
   public final TextView wearableName;
@@ -80,7 +80,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
       @NonNull LinearLayout exStatsLayout, @NonNull TextView exSteps,
       @NonNull AppCompatButton indoorBtn, @NonNull RecyclerView rcvExHistory,
       @NonNull LinearProgressIndicator stepsBarIndicator, @NonNull Button syncBtn,
-      @NonNull TextView textView, @NonNull TextView titleGoalSteps, @NonNull TextView wearableName,
+      @NonNull TextView titleGoalSteps, @NonNull TextView tvDate, @NonNull TextView wearableName,
       @NonNull TextView wearableStatus) {
     this.rootView = rootView;
     this.addWearableBtn = addWearableBtn;
@@ -95,8 +95,8 @@ public final class FragmentExerciseBinding implements ViewBinding {
     this.rcvExHistory = rcvExHistory;
     this.stepsBarIndicator = stepsBarIndicator;
     this.syncBtn = syncBtn;
-    this.textView = textView;
     this.titleGoalSteps = titleGoalSteps;
+    this.tvDate = tvDate;
     this.wearableName = wearableName;
     this.wearableStatus = wearableStatus;
   }
@@ -200,15 +200,15 @@ public final class FragmentExerciseBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textView;
-      TextView textView = ViewBindings.findChildViewById(rootView, id);
-      if (textView == null) {
-        break missingId;
-      }
-
       id = R.id.title_goal_steps;
       TextView titleGoalSteps = ViewBindings.findChildViewById(rootView, id);
       if (titleGoalSteps == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_date;
+      TextView tvDate = ViewBindings.findChildViewById(rootView, id);
+      if (tvDate == null) {
         break missingId;
       }
 
@@ -226,7 +226,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
 
       return new FragmentExerciseBinding((ConstraintLayout) rootView, addWearableBtn, btnContainer,
           btnExerciseSync, btnViewMore, exCalBurnt, exCalBurntHr, exStatsLayout, exSteps, indoorBtn,
-          rcvExHistory, stepsBarIndicator, syncBtn, textView, titleGoalSteps, wearableName,
+          rcvExHistory, stepsBarIndicator, syncBtn, titleGoalSteps, tvDate, wearableName,
           wearableStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);

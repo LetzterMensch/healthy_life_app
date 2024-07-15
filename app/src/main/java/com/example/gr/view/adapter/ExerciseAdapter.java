@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>{
 
-    private final List<Exercise> mExerciseList;
+    private List<Exercise> mExerciseList;
     public final IOnClickExerciseItemListener iOnClickExerciseItemListener;
     public final IOnClickQuickAddWorkoutItemListener iOnClickQuickAddWorkoutItemListener;
     private final ActivityUser activityUser;
@@ -49,7 +49,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         holder.mItemExerciseBinding.itemExerciseLayout.setOnClickListener(v->iOnClickExerciseItemListener.onClickItemExercise(exercise));
         holder.mItemExerciseBinding.addBtn.setOnClickListener(v->iOnClickQuickAddWorkoutItemListener.onClickQuickAdd(workout));
     }
-
+    public void setmExerciseList(List<Exercise> newExerciseList){
+        this.mExerciseList = newExerciseList;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return mExerciseList.size();

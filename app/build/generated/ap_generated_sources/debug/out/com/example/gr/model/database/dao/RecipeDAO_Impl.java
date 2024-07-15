@@ -37,43 +37,48 @@ public final class RecipeDAO_Impl implements RecipeDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `recipe` (`id`,`foodID`,`name`,`image`,`description`,`carbs`,`protein`,`fat`,`calories`,`ingredients`,`url`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `recipe` (`id`,`foodID`,`foodUUID`,`name`,`image`,`description`,`carbs`,`protein`,`fat`,`calories`,`ingredients`,`url`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement, final Recipe entity) {
         statement.bindLong(1, entity.getId());
         statement.bindLong(2, entity.getFoodID());
-        if (entity.getName() == null) {
+        if (entity.getFoodUUID() == null) {
           statement.bindNull(3);
         } else {
-          statement.bindString(3, entity.getName());
+          statement.bindString(3, entity.getFoodUUID());
         }
-        if (entity.getImage() == null) {
+        if (entity.getName() == null) {
           statement.bindNull(4);
         } else {
-          statement.bindString(4, entity.getImage());
+          statement.bindString(4, entity.getName());
         }
-        if (entity.getDescription() == null) {
+        if (entity.getImage() == null) {
           statement.bindNull(5);
         } else {
-          statement.bindString(5, entity.getDescription());
+          statement.bindString(5, entity.getImage());
         }
-        statement.bindDouble(6, entity.getCarbs());
-        statement.bindDouble(7, entity.getProtein());
-        statement.bindDouble(8, entity.getFat());
-        statement.bindLong(9, entity.getCalories());
-        if (entity.getIngredients() == null) {
-          statement.bindNull(10);
+        if (entity.getDescription() == null) {
+          statement.bindNull(6);
         } else {
-          statement.bindString(10, entity.getIngredients());
+          statement.bindString(6, entity.getDescription());
         }
-        if (entity.getUrl() == null) {
+        statement.bindDouble(7, entity.getCarbs());
+        statement.bindDouble(8, entity.getProtein());
+        statement.bindDouble(9, entity.getFat());
+        statement.bindLong(10, entity.getCalories());
+        if (entity.getIngredients() == null) {
           statement.bindNull(11);
         } else {
-          statement.bindString(11, entity.getUrl());
+          statement.bindString(11, entity.getIngredients());
         }
-        statement.bindLong(12, entity.getTimestamp());
+        if (entity.getUrl() == null) {
+          statement.bindNull(12);
+        } else {
+          statement.bindString(12, entity.getUrl());
+        }
+        statement.bindLong(13, entity.getTimestamp());
       }
     };
     this.__deletionAdapterOfRecipe = new EntityDeletionOrUpdateAdapter<Recipe>(__db) {
@@ -92,44 +97,49 @@ public final class RecipeDAO_Impl implements RecipeDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `recipe` SET `id` = ?,`foodID` = ?,`name` = ?,`image` = ?,`description` = ?,`carbs` = ?,`protein` = ?,`fat` = ?,`calories` = ?,`ingredients` = ?,`url` = ?,`timestamp` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `recipe` SET `id` = ?,`foodID` = ?,`foodUUID` = ?,`name` = ?,`image` = ?,`description` = ?,`carbs` = ?,`protein` = ?,`fat` = ?,`calories` = ?,`ingredients` = ?,`url` = ?,`timestamp` = ? WHERE `id` = ?";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement, final Recipe entity) {
         statement.bindLong(1, entity.getId());
         statement.bindLong(2, entity.getFoodID());
-        if (entity.getName() == null) {
+        if (entity.getFoodUUID() == null) {
           statement.bindNull(3);
         } else {
-          statement.bindString(3, entity.getName());
+          statement.bindString(3, entity.getFoodUUID());
         }
-        if (entity.getImage() == null) {
+        if (entity.getName() == null) {
           statement.bindNull(4);
         } else {
-          statement.bindString(4, entity.getImage());
+          statement.bindString(4, entity.getName());
         }
-        if (entity.getDescription() == null) {
+        if (entity.getImage() == null) {
           statement.bindNull(5);
         } else {
-          statement.bindString(5, entity.getDescription());
+          statement.bindString(5, entity.getImage());
         }
-        statement.bindDouble(6, entity.getCarbs());
-        statement.bindDouble(7, entity.getProtein());
-        statement.bindDouble(8, entity.getFat());
-        statement.bindLong(9, entity.getCalories());
-        if (entity.getIngredients() == null) {
-          statement.bindNull(10);
+        if (entity.getDescription() == null) {
+          statement.bindNull(6);
         } else {
-          statement.bindString(10, entity.getIngredients());
+          statement.bindString(6, entity.getDescription());
         }
-        if (entity.getUrl() == null) {
+        statement.bindDouble(7, entity.getCarbs());
+        statement.bindDouble(8, entity.getProtein());
+        statement.bindDouble(9, entity.getFat());
+        statement.bindLong(10, entity.getCalories());
+        if (entity.getIngredients() == null) {
           statement.bindNull(11);
         } else {
-          statement.bindString(11, entity.getUrl());
+          statement.bindString(11, entity.getIngredients());
         }
-        statement.bindLong(12, entity.getTimestamp());
-        statement.bindLong(13, entity.getId());
+        if (entity.getUrl() == null) {
+          statement.bindNull(12);
+        } else {
+          statement.bindString(12, entity.getUrl());
+        }
+        statement.bindLong(13, entity.getTimestamp());
+        statement.bindLong(14, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteAllRecipe = new SharedSQLiteStatement(__db) {
@@ -143,12 +153,13 @@ public final class RecipeDAO_Impl implements RecipeDAO {
   }
 
   @Override
-  public void insertRecipe(final Recipe recipe) {
+  public long insertRecipe(final Recipe recipe) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
     try {
-      __insertionAdapterOfRecipe.insert(recipe);
+      final long _result = __insertionAdapterOfRecipe.insertAndReturnId(recipe);
       __db.setTransactionSuccessful();
+      return _result;
     } finally {
       __db.endTransaction();
     }
@@ -206,6 +217,7 @@ public final class RecipeDAO_Impl implements RecipeDAO {
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final int _cursorIndexOfFoodID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodID");
+      final int _cursorIndexOfFoodUUID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodUUID");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfImage = CursorUtil.getColumnIndexOrThrow(_cursor, "image");
       final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
@@ -226,6 +238,13 @@ public final class RecipeDAO_Impl implements RecipeDAO {
         final int _tmpFoodID;
         _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
         _item.setFoodID(_tmpFoodID);
+        final String _tmpFoodUUID;
+        if (_cursor.isNull(_cursorIndexOfFoodUUID)) {
+          _tmpFoodUUID = null;
+        } else {
+          _tmpFoodUUID = _cursor.getString(_cursorIndexOfFoodUUID);
+        }
+        _item.setFoodUUID(_tmpFoodUUID);
         final String _tmpName;
         if (_cursor.isNull(_cursorIndexOfName)) {
           _tmpName = null;
@@ -296,6 +315,7 @@ public final class RecipeDAO_Impl implements RecipeDAO {
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final int _cursorIndexOfFoodID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodID");
+      final int _cursorIndexOfFoodUUID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodUUID");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfImage = CursorUtil.getColumnIndexOrThrow(_cursor, "image");
       final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
@@ -315,6 +335,13 @@ public final class RecipeDAO_Impl implements RecipeDAO {
         final int _tmpFoodID;
         _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
         _result.setFoodID(_tmpFoodID);
+        final String _tmpFoodUUID;
+        if (_cursor.isNull(_cursorIndexOfFoodUUID)) {
+          _tmpFoodUUID = null;
+        } else {
+          _tmpFoodUUID = _cursor.getString(_cursorIndexOfFoodUUID);
+        }
+        _result.setFoodUUID(_tmpFoodUUID);
         final String _tmpName;
         if (_cursor.isNull(_cursorIndexOfName)) {
           _tmpName = null;
@@ -390,6 +417,7 @@ public final class RecipeDAO_Impl implements RecipeDAO {
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final int _cursorIndexOfFoodID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodID");
+      final int _cursorIndexOfFoodUUID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodUUID");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfImage = CursorUtil.getColumnIndexOrThrow(_cursor, "image");
       final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
@@ -410,6 +438,13 @@ public final class RecipeDAO_Impl implements RecipeDAO {
         final int _tmpFoodID;
         _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
         _item.setFoodID(_tmpFoodID);
+        final String _tmpFoodUUID;
+        if (_cursor.isNull(_cursorIndexOfFoodUUID)) {
+          _tmpFoodUUID = null;
+        } else {
+          _tmpFoodUUID = _cursor.getString(_cursorIndexOfFoodUUID);
+        }
+        _item.setFoodUUID(_tmpFoodUUID);
         final String _tmpName;
         if (_cursor.isNull(_cursorIndexOfName)) {
           _tmpName = null;
@@ -480,6 +515,7 @@ public final class RecipeDAO_Impl implements RecipeDAO {
     try {
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final int _cursorIndexOfFoodID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodID");
+      final int _cursorIndexOfFoodUUID = CursorUtil.getColumnIndexOrThrow(_cursor, "foodUUID");
       final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
       final int _cursorIndexOfImage = CursorUtil.getColumnIndexOrThrow(_cursor, "image");
       final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
@@ -499,6 +535,13 @@ public final class RecipeDAO_Impl implements RecipeDAO {
         final int _tmpFoodID;
         _tmpFoodID = _cursor.getInt(_cursorIndexOfFoodID);
         _result.setFoodID(_tmpFoodID);
+        final String _tmpFoodUUID;
+        if (_cursor.isNull(_cursorIndexOfFoodUUID)) {
+          _tmpFoodUUID = null;
+        } else {
+          _tmpFoodUUID = _cursor.getString(_cursorIndexOfFoodUUID);
+        }
+        _result.setFoodUUID(_tmpFoodUUID);
         final String _tmpName;
         if (_cursor.isNull(_cursorIndexOfName)) {
           _tmpName = null;

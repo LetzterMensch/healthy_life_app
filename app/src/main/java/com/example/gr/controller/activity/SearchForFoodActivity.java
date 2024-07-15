@@ -37,8 +37,8 @@ public class SearchForFoodActivity extends BaseActivity {
         setContentView(mActivitySearchForFoodBinding.getRoot());
         getDataIntent();
         initToolbar();
-        searchFood();
         initUi();
+        searchFood();
         initListener();
     }
 

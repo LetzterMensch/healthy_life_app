@@ -1,6 +1,8 @@
 package com.example.gr.controller.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,9 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.R;
 import com.example.gr.databinding.ActivityCreateFoodBinding;
 import com.example.gr.model.Diary;
@@ -23,6 +27,10 @@ import com.example.gr.utils.constant.Constant;
 import com.example.gr.utils.constant.GlobalFunction;
 import com.example.gr.view.adapter.SubFoodAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -40,8 +48,7 @@ public class CreateFoodActivity extends BaseActivity {
     private SubFoodAdapter mIngredientAdapter; // Don't be confused
     private final DecimalFormat df = new DecimalFormat("#.##");
     int currentItemCount;
-    int subFoodItemCount;
-    String searchkey;
+    String searchkey = "";
     final float[] carbCalo = new float[1];
     final float[] proteinCalo = new float[1];
     final float[] fatCalo = new float[1];
@@ -51,8 +58,8 @@ public class CreateFoodActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mActivityCreateFoodBinding = ActivityCreateFoodBinding.inflate(getLayoutInflater());
         setContentView(mActivityCreateFoodBinding.getRoot());
+        foodList = new ArrayList<>();
         currentItemCount = 0;
-        subFoodItemCount = 0;
         subFoodList = new ArrayList<>();
         getDataIntent();
         initListener();
@@ -79,9 +86,14 @@ public class CreateFoodActivity extends BaseActivity {
             subfoodIds.deleteCharAt(subfoodIds.length() - 1);
             String name = mActivityCreateFoodBinding.editNewFoodName.getText().toString().trim();
             newFood = new Food(name, calories, protein, fat, carb, subfoodIds.toString());
-            LocalDatabase.getInstance(this).foodDAO().insertFood(newFood);
+            String key = ControllerApplication.getApp().getFoodDatabaseReference().push().getKey();
+            newFood.setUuid(key);
+            long foodId = LocalDatabase.getInstance(this).foodDAO().insertFood(newFood);
             //Fix bug không tìm thấy id của food trong foodlog
-            newFood = LocalDatabase.getInstance(this).foodDAO().getFoodByTimestamp(newFood.getTimestamp());
+            newFood = LocalDatabase.getInstance(this).foodDAO().getFoodById((int) foodId);
+            // import new food to firebase
+            ControllerApplication.getApp().getFoodDatabaseReference().child(key).setValue(newFood);
+//            LocalDatabase.getInstance(this).foodDAO().deleteFood(newFood);
             mDiary.logFood(new FoodLog(newFood, mMeal, newFood.getNumberOfServings(), mDiary.getId()));
             Toast.makeText(this, "Đã tạo món ăn và lưu vào nhật ký", Toast.LENGTH_SHORT).show();
             finish();
@@ -132,9 +144,13 @@ public class CreateFoodActivity extends BaseActivity {
                 return;
             }
             newFood = new Food(name, servingSize, calories, protein, fat, carb);
-            LocalDatabase.getInstance(this).foodDAO().insertFood(newFood);
+            String key = ControllerApplication.getApp().getFoodDatabaseReference().push().getKey();
+            newFood.setUuid(key);
+            long foodId = LocalDatabase.getInstance(this).foodDAO().insertFood(newFood);
             //Fix bug không tìm thấy id của food trong foodlog
-            newFood = LocalDatabase.getInstance(this).foodDAO().getFoodByTimestamp(newFood.getTimestamp());
+            newFood = LocalDatabase.getInstance(this).foodDAO().getFoodById((int) foodId);
+            // import new food to firebase
+            ControllerApplication.getApp().getFoodDatabaseReference().child(key).setValue(newFood);
             mDiary.logFood(new FoodLog(newFood, mMeal, newFood.getNumberOfServings(), mDiary.getId()));
             Toast.makeText(this, "Đã tạo thực phẩm và lưu vào nhật ký", Toast.LENGTH_SHORT).show();
             finish();
@@ -142,7 +158,9 @@ public class CreateFoodActivity extends BaseActivity {
     }
 
     private void initUI() {
-        getFoodListFromLocalDatabase(""); //Display search food list
+//        getFoodListFromLocalDatabase(""); //Display search food list
+//        getListFoodFromFirebase(); //Display search food list
+        searchSubFood();
         displaySubFoodList();
         mActivityCreateFoodBinding.btnSaveNewFood.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_red_shape_corner_30));
         mActivityCreateFoodBinding.foodCarb.setText("0");
@@ -214,7 +232,6 @@ public class CreateFoodActivity extends BaseActivity {
             mActivityCreateFoodBinding.rcvIngredients.setAdapter(mIngredientAdapter);
             mActivityCreateFoodBinding.rcvIngredients.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
         } else {
-            subFoodItemCount = mIngredientAdapter.getItemCount();
             mIngredientAdapter.updateSubFoodList(subFoodList);
         }
         displayNutriInfo();
@@ -225,6 +242,61 @@ public class CreateFoodActivity extends BaseActivity {
             foodList = LocalDatabase.getInstance(this).foodDAO().getAllFood();
         } else {
             foodList = LocalDatabase.getInstance(this).foodDAO().findFoodByName("%" + searchkey + "%");
+        }
+        displayFoodList();
+    }
+
+    private void getListFoodFromFirebase() {
+
+        if (searchkey.isEmpty()) {
+            Query query = ControllerApplication.getApp().getFoodDatabaseReference()
+                    .orderByChild("name")
+                    .startAt(searchkey.trim())
+                    .endAt(searchkey.trim() + "\uf8ff")
+                    .limitToFirst(10);
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    foodList = new ArrayList<>();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        foodList.add(snapshot.getValue(Food.class));
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(CreateFoodActivity.this, "Lỗi đã xảy ra, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            ControllerApplication.getApp().getFoodDatabaseReference().addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    System.out.println("inside data change");
+                    foodList = new ArrayList<>();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Food food = dataSnapshot.getValue(Food.class);
+                        if (food == null) {
+                            return;
+                        }
+
+                        if (food.getName().toLowerCase().trim().contains(searchkey)) {
+                            foodList.add(food);
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(CreateFoodActivity.this, "Lỗi đã xảy ra, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        for (Food food : foodList
+        ) {
+            System.out.println(food.getName());
         }
         displayFoodList();
     }
@@ -269,9 +341,9 @@ public class CreateFoodActivity extends BaseActivity {
         }
         // number of servings = 1
         getOriginalFoodData(food, carbCalo, proteinCalo, fatCalo);
-        food.setCarb(carbCalo[0]);
-        food.setProtein(proteinCalo[0]);
-        food.setFat(fatCalo[0]);
+//        food.setCarb(carbCalo[0]);
+//        food.setProtein(proteinCalo[0]);
+//        food.setFat(fatCalo[0]);
         subFoodList.add(food);
         displaySubFoodList();
         displayFoodList();
@@ -301,9 +373,9 @@ public class CreateFoodActivity extends BaseActivity {
 
         tvSubFoodName.setText(food.getName());
         tvSubFoodCalories.setText(getString(R.string.unit_calories_burnt, df.format(newCaloCount[0].get())));
-        tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0]*food.getNumberOfServings())));
-        tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0]*food.getNumberOfServings())));
-        tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0]*food.getNumberOfServings())));
+        tvSubFoodCarb.setText(getString(R.string.unit_calories_burnt, df.format(carbCalo[0] * food.getNumberOfServings())));
+        tvSubFoodProtein.setText(getString(R.string.unit_calories_burnt, df.format(proteinCalo[0] * food.getNumberOfServings())));
+        tvSubFoodFat.setText(getString(R.string.unit_calories_burnt, df.format(fatCalo[0] * food.getNumberOfServings())));
         tvCount.setText(df.format(food.getNumberOfServings()));
 
         tvCount.addTextChangedListener(new TextWatcher() {
@@ -376,26 +448,6 @@ public class CreateFoodActivity extends BaseActivity {
     }
 
     private void initListener() {
-        mActivityCreateFoodBinding.edtSearchName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Do nothing
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Do nothing
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String strKey = s.toString().trim();
-                if (strKey.equals("") || strKey.length() == 0) {
-                    if (foodList != null) foodList.clear();
-                    getFoodListFromLocalDatabase("");
-                }
-            }
-        });
 
         mActivityCreateFoodBinding.imgSearch.setOnClickListener(view -> searchSubFood());
 
@@ -416,18 +468,20 @@ public class CreateFoodActivity extends BaseActivity {
     private void getOriginalFoodData(Food food, float[] carbCalo, float[] proteinCalo, float[] fatCalo) {
         if (food.getServingSize() != 1) {
             // handle the food from database which is measured by gram not Kcal for the first time
-            if (food.getCarb() + food.getProtein() + food.getFat() < (food.getCalories() - 10)) {
-                double calDiff = Math.round((food.getFat() * 9 + (food.getCarb() + food.getProtein()) * 4)) - food.getCalories();
-                float correctionVal = (float) (calDiff / 3);
+            double calDiff = Math.round((food.getFat() * 9 + (food.getCarb() + food.getProtein()) * 4)) - food.getCalories();
+            System.out.println(calDiff);
+            float correctionVal = (float) (Math.abs(calDiff) / 3);
+            System.out.println(correctionVal);
+            if(calDiff > 0){
                 fatCalo[0] = Math.round((food.getFat() * 9 - correctionVal));
                 carbCalo[0] = Math.round((food.getCarb() * 4 - correctionVal));
                 proteinCalo[0] = Math.round((food.getProtein() * 4 - correctionVal));
-
-            } else {
-                carbCalo[0] = food.getCarb();
-                proteinCalo[0] = food.getProtein();
-                fatCalo[0] = food.getFat();
+            }else{
+                fatCalo[0] = Math.round((food.getFat() * 9 + correctionVal));
+                carbCalo[0] = Math.round((food.getCarb() * 4 + correctionVal));
+                proteinCalo[0] = Math.round((food.getProtein() * 4 + correctionVal));
             }
+
         } else {
             carbCalo[0] = food.getCarb();
             proteinCalo[0] = food.getProtein();
@@ -436,10 +490,21 @@ public class CreateFoodActivity extends BaseActivity {
     }
 
     private void searchSubFood() {
+        createProgressDialog();
+        showProgressDialog(true);
         searchkey = mActivityCreateFoodBinding.edtSearchName.getText().toString().trim();
-        if (foodList != null) foodList.clear();
-//        getListExerciseFromFirebase(searchkey);
-        getFoodListFromLocalDatabase(searchkey);
+
+//        if (foodList != null) foodList.clear();
+//        getFoodListFromLocalDatabase(searchkey);
         GlobalFunction.hideSoftKeyboard(this);
+
+        getListFoodFromFirebase();
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showProgressDialog(false);
+            }
+        },1000);
     }
 }

@@ -80,6 +80,7 @@ public class FoodListSearchFragment extends BaseFragment{
                 if(searchkey == null){
                     searchkey = "";
                 }
+                mFoodSearchTabAdapter.setMeal(mMeal);
                 displayFoodItems();
             }
         }
@@ -215,6 +216,7 @@ public class FoodListSearchFragment extends BaseFragment{
                 showProgressDialog(false);
             }
         },1000);
+//        getListFoodFromLocalDatabase(searchkey);
 //        mFoodSearchTabAdapter = new FoodSearchTabAdapter(mfoodList, mMeal, mDiary,this::goToFoodDetail,this::quickAddBtn);
 //        mFragmentFoodSearchBinding.rcvFoodSearchTab.setLayoutManager(new LinearLayoutManager(getActivity()));
 //        mFragmentFoodSearchBinding.rcvFoodSearchTab.setAdapter(mFoodSearchTabAdapter);
@@ -227,6 +229,9 @@ public class FoodListSearchFragment extends BaseFragment{
         GlobalFunction.startActivity(getActivity(), FoodDetailActivity.class, bundle);
     }
     private void quickAddBtn(FoodLog foodLog){
+        if(LocalDatabase.getInstance(ControllerApplication.getContext()).foodDAO().getFoodById(foodLog.getFoodId()) == null){
+            LocalDatabase.getInstance(ControllerApplication.getContext()).foodDAO().insertFood(foodLog.getFood());
+        }
         mDiary.logFood(foodLog);
         Toast.makeText(getActivity(), "Đã thêm vào nhật ký", Toast.LENGTH_SHORT).show();
     }

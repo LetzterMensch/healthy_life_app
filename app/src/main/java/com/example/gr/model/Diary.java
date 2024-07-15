@@ -62,6 +62,7 @@ public class Diary implements Serializable {
         this.carbGoal = activityUser.getActivityUserCarbGoal();
         this.proteinGoal = activityUser.getActivityUserProteinGoal();
         this.fatGoal = activityUser.getActivityUserFatGoal();
+        this.remainingCalories = this.caloriesGoal;
     }
 
     public void updateDiaryAfterLogging() {
@@ -95,6 +96,7 @@ public class Diary implements Serializable {
         recalculateRemainingCalories(this.intakeCalories,this.burntCalories);
         LocalDatabase.getInstance(ControllerApplication.getContext()).diaryDAO().updateDiary(this);
     }
+    //remove the old food log nutrition and update the diary
     public void updateDiaryAfterRemove(FoodLog foodLog) {
         this.intakeCalories -= foodLog.getTotalCalories();
         this.intakeCarb -= foodLog.getTotalCarb();
@@ -179,14 +181,34 @@ public class Diary implements Serializable {
     }
 
     protected void recalculateRemainingCalories(int intakeCalories, int burntCalories) {
-        if((this.caloriesGoal - intakeCalories + burntCalories) < 0){
-            this.remainingCalories = 0;
-            return;
+//        if((this.caloriesGoal - intakeCalories + burntCalories) < 0){
+//            this.remainingCalories = 0;
+//            return;
+//        }
+        int totalCaloriesToTake = caloriesGoal + burntCalories;
+        ActivityUser activityUser = new ActivityUser();
+        switch (activityUser.getActivityUserDiet()){
+            case 0 :
+                carbGoal = (int) Math.round(totalCaloriesToTake * 0.2);
+                proteinGoal = (int) Math.round(totalCaloriesToTake*0.4);
+                fatGoal = (int) Math.round(totalCaloriesToTake*0.4);
+                break;
+            case 1:
+                carbGoal = (int) Math.round(totalCaloriesToTake * 0.35);
+                proteinGoal = (int) Math.round(totalCaloriesToTake*0.3);
+                fatGoal = (int) Math.round(totalCaloriesToTake*0.35);
+                break;
+            case 2:
+                carbGoal = (int) Math.round(totalCaloriesToTake * 0.5);
+                proteinGoal = (int) Math.round(totalCaloriesToTake*0.3);
+                fatGoal = (int) Math.round(totalCaloriesToTake*0.2);
+                break;
         }
         this.remainingCalories = this.caloriesGoal - intakeCalories + burntCalories;
     }
 
     public List<FoodLog> getBreakfastLogs() {
+        //Find foodlogs that have the current diary's id
         this.breakfastLogs = LocalDatabase.getInstance(ControllerApplication.getContext()).foodLogDAO().getBreakfastFoodLogs(this.id);
         return this.breakfastLogs;
     }

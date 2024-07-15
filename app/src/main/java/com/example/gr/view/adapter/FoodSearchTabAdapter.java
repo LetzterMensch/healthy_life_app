@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.databinding.ItemFoodBinding;
 import com.example.gr.controller.listener.IOnClickFoodItemListener;
 import com.example.gr.controller.listener.IOnClickQuickAddFoodItemListener;
 import com.example.gr.model.Diary;
 import com.example.gr.model.Food;
 import com.example.gr.model.FoodLog;
+import com.example.gr.model.database.LocalDatabase;
 
 import java.util.List;
 
@@ -58,11 +60,7 @@ public class FoodSearchTabAdapter extends RecyclerView.Adapter<FoodSearchTabAdap
     public int getItemCount() {
         return mListFoods.size();
     }
-    public void addFoodList(List<Food> newFoodList) {
-        int startPosition = mListFoods.size();
-        mListFoods.addAll(newFoodList);
-        notifyItemRangeInserted(startPosition, newFoodList.size());
-    }
+
     public void setmListFoods(List<Food> newFoodList){
         this.mListFoods = newFoodList;
         notifyDataSetChanged();

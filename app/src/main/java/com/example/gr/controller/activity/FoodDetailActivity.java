@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.R;
 import com.example.gr.utils.constant.Constant;
 import com.example.gr.model.database.LocalDatabase;
@@ -58,18 +59,22 @@ public class FoodDetailActivity extends BaseActivity {
             numberOfServings = Float.parseFloat(editText);
         }
         mDiary.updateDiaryAfterRemove(mFoodLog);
-        mFoodLog.updateFoodLog(numberOfServings);
+        mFoodLog.updateFoodLog(numberOfServings, mFood.getServingSize() != 1);
         mDiary.updateFoodLog(mFoodLog);
         finish();
     }
+    //pre-adding : the food has not been saved to local db yet
     private void addFoodLog() { // for add food to diary
+        if(LocalDatabase.getInstance(ControllerApplication.getContext()).foodDAO().getFoodById(mFoodLog.getFoodId()) == null){
+            LocalDatabase.getInstance(ControllerApplication.getContext()).foodDAO().insertFood(mFoodLog.getFood());
+        }
         String editText = mActivityFoodDetailBinding.editNumberOfServings.getText().toString();
         if (editText.isEmpty()){
             numberOfServings = 0;
         }else{
             numberOfServings = Float.parseFloat(editText);
         }
-        mFoodLog.updateFoodLog(numberOfServings);
+        mFoodLog.updateFoodLog(numberOfServings, mFood.getServingSize() != 1);
         mDiary.logFood(mFoodLog);
         finish();
     }

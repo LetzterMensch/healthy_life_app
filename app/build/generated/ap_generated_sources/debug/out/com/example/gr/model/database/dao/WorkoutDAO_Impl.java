@@ -37,7 +37,7 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `workout` (`id`,`diaryID`,`exerciseId`,`duration`,`caloriesBurnt`,`createdAt`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `workout` (`id`,`diaryID`,`exerciseId`,`duration`,`caloriesBurnt`,`createdAt`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?,?,?)";
       }
 
       @Override
@@ -106,6 +106,18 @@ public final class WorkoutDAO_Impl implements WorkoutDAO {
     __db.beginTransaction();
     try {
       __insertionAdapterOfWorkout.insert(workout);
+      __db.setTransactionSuccessful();
+    } finally {
+      __db.endTransaction();
+    }
+  }
+
+  @Override
+  public void insertAll(final List<Workout> workoutList) {
+    __db.assertNotSuspendingTransaction();
+    __db.beginTransaction();
+    try {
+      __insertionAdapterOfWorkout.insert(workoutList);
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();

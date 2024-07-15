@@ -1,9 +1,11 @@
 package com.example.gr.controller.activity;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.model.Diary;
 import com.example.gr.model.Food;
 import com.example.gr.model.FoodLog;
@@ -40,9 +42,8 @@ public class RecipeDetailActivity extends BaseActivity {
         mActivityRecipeDetailBinding.imgAdd.setOnClickListener(v->logRecipe());
     }
     private void logRecipe(){
-        Food mFood = LocalDatabase.getInstance(this).foodDAO().getFoodById(mRecipe.getFoodID());
-        mRecipe.setFood(mFood);
-        mFoodLog = new FoodLog(mRecipe.getFood(), mMeal,mRecipe.getFood().getNumberOfServings(),mDiary.getId());
+        mFood = LocalDatabase.getInstance(this).foodDAO().getFoodById(mRecipe.getFoodID());
+        mFoodLog = new FoodLog(mFood, mMeal,mFood.getNumberOfServings(),mDiary.getId());
         mDiary.logFood(mFoodLog);
         Toast.makeText(this, "Đã lưu vào nhật ký", Toast.LENGTH_SHORT).show();
         finish();
@@ -67,9 +68,18 @@ public class RecipeDetailActivity extends BaseActivity {
     }
 
     private void saveRecipe() {
-        long foodID = LocalDatabase.getInstance(this).foodDAO().insertFood(mRecipe.getFood());
+        //Save new food to local database and firebase
+        String foodUUID = ControllerApplication.getApp().getFoodDatabaseReference().push().getKey();
+        mRecipe.getFood().setUuid(foodUUID);
+        long foodID = LocalDatabase.getInstance(this).foodDAO().insertFood(mRecipe.getFood()); // food from KEY_INTENT_CREATE_RECIPE_OBJECT's recipe
+        mFood = LocalDatabase.getInstance(this).foodDAO().getFoodById((int) foodID);
+        ControllerApplication.getApp().getFoodDatabaseReference().child(foodUUID).setValue(mFood);
+        //Save new recipe to local database and firebase
+        mRecipe.setFood(mFood);
         mRecipe.setFoodID((int) foodID);
-        mRecipe.saveRecipe();
+        mRecipe.setFoodUUID(foodUUID);
+        String key = ControllerApplication.getApp().getRecipeDatabaseReference().push().getKey();
+        ControllerApplication.getApp().getRecipeDatabaseReference().child(key).setValue(mRecipe);
         finish();
     }
 

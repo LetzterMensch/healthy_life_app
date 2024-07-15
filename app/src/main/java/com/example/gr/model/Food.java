@@ -14,6 +14,7 @@ public class Food implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+    private String uuid;
     private String name;
     private float numberOfServings;
     private float servingSize;
@@ -68,6 +69,14 @@ public class Food implements Serializable {
     public Food(){
         this.numberOfServings = 1.0f;
         this.servingSize = 100f;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public long getTimestamp() {

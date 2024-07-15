@@ -23,7 +23,7 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView connectDevice;
 
   @NonNull
-  public final TextView deleteButton;
+  public final TextView deleteDeviceBtn;
 
   @NonNull
   public final TextView deviceSettings;
@@ -47,14 +47,14 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView tvEmail;
 
   private FragmentProfileBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView connectDevice, @NonNull TextView deleteButton,
+      @NonNull TextView connectDevice, @NonNull TextView deleteDeviceBtn,
       @NonNull TextView deviceSettings, @NonNull TextView deviceSync,
       @NonNull TextView disconnectButton, @NonNull TextView profileGoal,
       @NonNull TextView profileLogOut, @NonNull TextView tvAboutUsContent,
       @NonNull TextView tvEmail) {
     this.rootView = rootView;
     this.connectDevice = connectDevice;
-    this.deleteButton = deleteButton;
+    this.deleteDeviceBtn = deleteDeviceBtn;
     this.deviceSettings = deviceSettings;
     this.deviceSync = deviceSync;
     this.disconnectButton = disconnectButton;
@@ -97,9 +97,9 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.delete_button;
-      TextView deleteButton = ViewBindings.findChildViewById(rootView, id);
-      if (deleteButton == null) {
+      id = R.id.delete_device_btn;
+      TextView deleteDeviceBtn = ViewBindings.findChildViewById(rootView, id);
+      if (deleteDeviceBtn == null) {
         break missingId;
       }
 
@@ -145,7 +145,7 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProfileBinding((ConstraintLayout) rootView, connectDevice, deleteButton,
+      return new FragmentProfileBinding((ConstraintLayout) rootView, connectDevice, deleteDeviceBtn,
           deviceSettings, deviceSync, disconnectButton, profileGoal, profileLogOut,
           tvAboutUsContent, tvEmail);
     }

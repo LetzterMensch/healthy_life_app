@@ -37,7 +37,7 @@ public final class DiaryDAO_Impl implements DiaryDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `diary` (`id`,`caloriesGoal`,`burntCalories`,`userId`,`remainingCalories`,`date`,`intakeProtein`,`intakeCarb`,`intakeFat`,`intakeCalories`,`totalSteps`,`carbGoal`,`proteinGoal`,`fatGoal`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `diary` (`id`,`caloriesGoal`,`burntCalories`,`userId`,`remainingCalories`,`date`,`intakeProtein`,`intakeCarb`,`intakeFat`,`intakeCalories`,`totalSteps`,`carbGoal`,`proteinGoal`,`fatGoal`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -120,6 +120,18 @@ public final class DiaryDAO_Impl implements DiaryDAO {
     __db.beginTransaction();
     try {
       __insertionAdapterOfDiary.insert(diary);
+      __db.setTransactionSuccessful();
+    } finally {
+      __db.endTransaction();
+    }
+  }
+
+  @Override
+  public void insertAll(final List<Diary> diaryList) {
+    __db.assertNotSuspendingTransaction();
+    __db.beginTransaction();
+    try {
+      __insertionAdapterOfDiary.insert(diaryList);
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();

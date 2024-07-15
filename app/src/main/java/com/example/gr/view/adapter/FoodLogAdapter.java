@@ -53,7 +53,7 @@ public class FoodLogAdapter extends RecyclerView.Adapter<FoodLogAdapter.FoodLogV
         } else {
             holder.mItemFoodBinding.foodItemServingSize.setVisibility(View.GONE);
         }
-        holder.mItemFoodBinding.foodItemServings.setText(food.getNumberOfServings() + " khẩu phần");
+        holder.mItemFoodBinding.foodItemServings.setText(foodLog.getNumberOfServings() + " khẩu phần");
         holder.mItemFoodBinding.foodItemCalo.setText(String.valueOf(foodLog.getTotalCalories()));
         holder.mItemFoodBinding.addBtn.setVisibility(View.GONE);
         holder.mItemFoodBinding.deleteBtn.setVisibility(View.VISIBLE);

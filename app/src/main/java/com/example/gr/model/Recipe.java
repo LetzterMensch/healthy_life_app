@@ -18,6 +18,7 @@ public class Recipe implements Serializable {
     @Ignore
     private Food food;
     private int foodID;
+    private String foodUUID;
     private String name;
     private String image;
     private String description;
@@ -45,12 +46,21 @@ public class Recipe implements Serializable {
         this.ingredients = ingredients;
         this.url = url;
     }
-    public void saveRecipe(){
-        LocalDatabase.getInstance(ControllerApplication.getContext()).recipeDAO().insertRecipe(this);
+    public long saveRecipe(){
+        return LocalDatabase.getInstance(ControllerApplication.getContext()).recipeDAO().insertRecipe(this);
     }
     public int updateRecipe(){
         return LocalDatabase.getInstance(ControllerApplication.getContext()).recipeDAO().updateRecipe(this);
     }
+
+    public String getFoodUUID() {
+        return foodUUID;
+    }
+
+    public void setFoodUUID(String foodUUID) {
+        this.foodUUID = foodUUID;
+    }
+
     public long getTimestamp() {
         return timestamp;
     }

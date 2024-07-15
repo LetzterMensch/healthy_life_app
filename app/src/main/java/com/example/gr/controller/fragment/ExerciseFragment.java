@@ -11,6 +11,8 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +25,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gr.ControllerApplication;
 import com.example.gr.R;
@@ -31,10 +32,15 @@ import com.example.gr.controller.activity.DiscoveryActivityV2;
 import com.example.gr.controller.activity.MainActivity;
 import com.example.gr.controller.activity.SearchForExerciseActivity;
 import com.example.gr.controller.activity.WorkoutDetailActivity;
-import com.example.gr.view.adapter.HistoryAdapter;
-import com.example.gr.utils.constant.ActivityKind;
-import com.example.gr.utils.constant.Constant;
-import com.example.gr.utils.constant.GlobalFunction;
+import com.example.gr.controller.device.DeviceManager;
+import com.example.gr.controller.device.GBDevice;
+import com.example.gr.controller.device.model.RecordedDataTypes;
+import com.example.gr.databinding.FragmentExerciseBinding;
+import com.example.gr.model.ActivityUser;
+import com.example.gr.model.Diary;
+import com.example.gr.model.RecordedWorkout;
+import com.example.gr.model.Workout;
+import com.example.gr.model.WorkoutItem;
 import com.example.gr.model.data.ActivitySummaryJsonSummary;
 import com.example.gr.model.data.parser.ActivitySummaryParser;
 import com.example.gr.model.database.DBHandler;
@@ -43,18 +49,14 @@ import com.example.gr.model.database.LocalDatabase;
 import com.example.gr.model.database.entities.BaseActivitySummary;
 import com.example.gr.model.database.entities.BaseActivitySummaryDao;
 import com.example.gr.model.database.entities.Device;
-import com.example.gr.databinding.FragmentExerciseBinding;
-import com.example.gr.controller.device.DeviceCoordinator;
-import com.example.gr.controller.device.DeviceManager;
-import com.example.gr.controller.device.GBDevice;
-import com.example.gr.controller.device.model.RecordedDataTypes;
-import com.example.gr.model.ActivityUser;
-import com.example.gr.model.Diary;
-import com.example.gr.model.RecordedWorkout;
-import com.example.gr.model.Workout;
-import com.example.gr.model.WorkoutItem;
 import com.example.gr.utils.DateTimeUtils;
 import com.example.gr.utils.GB;
+import com.example.gr.utils.constant.ActivityKind;
+import com.example.gr.utils.constant.Constant;
+import com.example.gr.utils.constant.GlobalFunction;
+import com.example.gr.view.adapter.HistoryAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -81,19 +83,20 @@ public class ExerciseFragment extends BaseFragment {
     private Button addWearableBtn;
     private TextView tvWearableName;
     private TextView tvWearableStatus;
-    private DeviceCoordinator deviceCoordinator;
     private DeviceManager deviceManager;
     private GBDevice device;
     private Button syncBtn;
     private Diary mDiary;
     private ActivityUser activityUser;
-    private RecyclerView recyclerView;
-    private int currentItemCount;
     private long lastReceiveTime = 0;
     private IntentFilter filterLocal;
     private static final long DEBOUNCE_INTERVAL = 1000; // 500ms
+    private Calendar currentDate;
     private Calendar today;
     private static final int REQUEST_CODE = 1;
+    private FirebaseUser user;
+
+    Handler handler = new Handler(Looper.getMainLooper());
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -112,6 +115,20 @@ public class ExerciseFragment extends BaseFragment {
                         }
                     }
                     break;
+                case DiaryFragment.UPDATE_DATE:
+                    long timeInMillis = intent.getLongExtra("key_calendar_time", -1);
+                    if(timeInMillis != -1) {
+                        currentDate = Calendar.getInstance();
+                        currentDate.setTimeInMillis(timeInMillis);
+                        currentDate.set(Calendar.HOUR_OF_DAY, 0);
+                        currentDate.set(Calendar.MINUTE, 0);
+                        currentDate.set(Calendar.SECOND, 1);
+                        currentDate.set(Calendar.MILLISECOND,0);
+                        System.out.println("received calendar : "+ currentDate.getTime());
+                        displayWorkoutInfo();
+                        displayHistoryList();
+                    }
+                    break;
             }
         }
     };
@@ -120,16 +137,25 @@ public class ExerciseFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mFragmentExerciseBinding = FragmentExerciseBinding.inflate(inflater, container, false);
-        getDiary(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
         activityUser = new ActivityUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        filterLocal = new IntentFilter();
+        filterLocal.addAction(GBDevice.ACTION_DEVICE_CHANGED);
+        filterLocal.addAction(DiaryFragment.UPDATE_DATE);
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(mReceiver, filterLocal);
+        if(currentDate == null){
+            currentDate = Calendar.getInstance();
+        }
         today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 1);
         today.set(Calendar.MILLISECOND,0);
-        filterLocal = new IntentFilter();
-        filterLocal.addAction(GBDevice.ACTION_DEVICE_CHANGED);
-        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mReceiver, filterLocal);
+        getDiary(DateTimeUtils.simpleDateFormat(currentDate.getTime()));
+        currentDate.set(Calendar.HOUR_OF_DAY, 0);
+        currentDate.set(Calendar.MINUTE, 0);
+        currentDate.set(Calendar.SECOND, 1);
+        currentDate.set(Calendar.MILLISECOND,0);
         initUI();
         initListener();
 
@@ -150,14 +176,19 @@ public class ExerciseFragment extends BaseFragment {
             EventBus.getDefault().register(this);
         }
         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(mReceiver,filterLocal);
+        activityUser = new ActivityUser();
     }
     @Override
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
-        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(mReceiver);
+//        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(mReceiver);
     }
-
+    @Override
+    public void onResume(){
+        super.onResume();
+//        updateUIAfterShowSnackBar();
+    }
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getStepsData(HashMap<String, long[]> deviceActivityHashMap) {
         long[] dailyTotals = new long[]{0, 0};
@@ -165,41 +196,24 @@ public class ExerciseFragment extends BaseFragment {
             dailyTotals = deviceActivityHashMap.get(device.getAddress());
         }
         int steps = (int) dailyTotals[0];
-        int sleep = (int) dailyTotals[1];
         System.out.println("steps : " + steps);
-        mDiary.setTotalSteps(steps);
-        mDiary.updateDiary();
+        if(currentDate.getTime().equals(today.getTime())){
+            mDiary.setTotalSteps(steps);
+            mDiary.updateDiary();
+        }
     }
 
     private void populateHistoryList() {
         workoutList = new ArrayList<>();
-        long now = (long) today.getTimeInMillis();
+        long now = (long) currentDate.getTimeInMillis();
 //        long now = (long) Calendar.getInstance().getTimeInMillis();
         List<Workout> normalWorkoutList = LocalDatabase.getInstance(requireActivity()).workoutDAO().
                 findWorkoutByDate(DateTimeUtils.formatDate(new Date(now)));
         List<RecordedWorkout> recordedWorkoutList = LocalDatabase.getInstance(requireActivity()).recordedWorkoutDAO().
                 findRecordedWorkoutByDate(DateTimeUtils.formatDate(new Date(now)));
 //        int listSize = Math.min(normalWorkoutList.size(), recordedWorkoutList.size());
-        System.out.println("date time : " + DateTimeUtils.simpleDateFormat(today.getTime()));
+        System.out.println("date time : " + DateTimeUtils.simpleDateFormat(currentDate.getTime()));
         System.out.println("nomal vs recorded : " + recordedWorkoutList.size() + "/" + normalWorkoutList.size());
-//        while(listSize > 0){
-//            for (int i = 0; i < listSize; i++) {
-//                Workout workout = normalWorkoutList.get(i);
-//                RecordedWorkout recordedWorkout = recordedWorkoutList.get(i);
-//                if (workout.getTimestamp() > recordedWorkout.getTimestamp()) {
-//                    workoutList.add(workout);
-//                    normalWorkoutList.remove(workout);
-//                } else {
-//                    workoutList.add(recordedWorkout);
-//                    recordedWorkoutList.remove(recordedWorkout);
-//                }
-//            }
-//            listSize = Math.min(normalWorkoutList.size(), recordedWorkoutList.size());
-//        }
-//
-//        if (normalWorkoutList.size() > 0) {
-//        } else {
-//        }
         workoutList.addAll(normalWorkoutList);
         workoutList.addAll(recordedWorkoutList);
 
@@ -214,25 +228,57 @@ public class ExerciseFragment extends BaseFragment {
     }
     private void deleteWorkoutItem(WorkoutItem workoutItem) {
         mDiary.updateDiaryAfterRemove(workoutItem);
+        if(workoutItem.getType() == 1){
+            ControllerApplication.getApp()
+                    .getUserDatabaseReference()
+                    .child(user.getUid())
+                    .child("workout")
+                    .child(String.valueOf(workoutItem.getWorkoutItemId()))
+                    .setValue(null);
+        }else{
+            ControllerApplication.getApp()
+                    .getUserDatabaseReference()
+                    .child(user.getUid())
+                    .child("recordedworkout")
+                    .child(String.valueOf(workoutItem.getWorkoutItemId()))
+                    .setValue(null);
+        }
         displayHistoryList();
         displayWorkoutInfo();
     }
     private void initListener() {
         mFragmentExerciseBinding.btnExerciseSync.setOnClickListener(v -> {
+            createProgressDialog();
+            showProgressDialog(true);
             fetchWorkoutSummaryData();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    showProgressDialog(false);
+                }
+            },1300);
         });
         mFragmentExerciseBinding.indoorBtn.setOnClickListener(v -> {
             goToSearchForExerciseActivity();
         });
         addWearableBtn.setOnClickListener(v -> launchDiscoveryActivity());
-        syncBtn.setOnClickListener(v -> fetchData());
+        syncBtn.setOnClickListener(v -> {
+            createProgressDialog();
+            showProgressDialog(true);
+            fetchData();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    showProgressDialog(false);
+                }
+            },3000);
+        });
     }
 
     private void initUI() {
 
         addWearableBtn = mFragmentExerciseBinding.addWearableBtn;
         syncBtn = mFragmentExerciseBinding.syncBtn;
-        recyclerView = mFragmentExerciseBinding.rcvExHistory;
         tvWearableName = mFragmentExerciseBinding.wearableName;
         tvWearableStatus = mFragmentExerciseBinding.wearableStatus;
         deviceManager = ((ControllerApplication) requireActivity().getApplication()).getDeviceManager();
@@ -256,6 +302,7 @@ public class ExerciseFragment extends BaseFragment {
 
     private void goToSearchForExerciseActivity() {
         Intent intent = new Intent(requireActivity(), SearchForExerciseActivity.class);
+        intent.putExtra("key_calendar_time", currentDate.getTimeInMillis());
         startActivityForResult(intent, REQUEST_CODE);
 //        Bundle bundle = new Bundle();
 //        GlobalFunction.startActivity(getActivity(), SearchForExerciseActivity.class, bundle);
@@ -284,7 +331,8 @@ public class ExerciseFragment extends BaseFragment {
     }
 
     private void displayWorkoutInfo() {
-        getDiary(DateTimeUtils.simpleDateFormat(Calendar.getInstance().getTime()));
+        mFragmentExerciseBinding.tvDate.setText(DateTimeUtils.formatDate(currentDate.getTime()));
+        getDiary(DateTimeUtils.simpleDateFormat(currentDate.getTime()));
         if (mDiary != null) {
             mFragmentExerciseBinding.exCalBurnt.setText(mDiary.getBurntCalories() + " Kcal");
             System.out.println("burnt calo : "+mDiary.getBurntCalories());
@@ -341,7 +389,7 @@ public class ExerciseFragment extends BaseFragment {
                     try {
                         System.out.println(recordedWorkout.getName());
                         Iterator<String> keys = data.keys();
-                        System.out.println("keys : ");
+                        System.out.println("keys : " + keys);
                         while (keys.hasNext()) {
                             String key = keys.next();
                             JSONArray innerList = (JSONArray) data.get(key);
@@ -373,10 +421,10 @@ public class ExerciseFragment extends BaseFragment {
                                 }
                             }
                         }
-//                        recordedWorkout.saveRecordedWorkout(recordedWorkout);
-                        mDiary.logWorkoutItem(recordedWorkout);
-                        displayHistoryList();
-//                        System.out.println("Save record sucessfully");
+                        if(recordedWorkout.getTimestamp() >= currentDate.getTimeInMillis() && recordedWorkout.getTimestamp() < currentDate.getTimeInMillis() + 24*60*60*1000 - 2000){
+                            mDiary.logWorkoutItem(recordedWorkout);
+                            displayHistoryList();
+                        }
                     } catch (JSONException e) {
                         GB.toast("JSON error.", Toast.LENGTH_SHORT, GB.ERROR, e);
                     }
@@ -393,19 +441,19 @@ public class ExerciseFragment extends BaseFragment {
     // Else set timestamp = lastTimeStamp + 1000 (this is done in FetchSportsSummaryOperation's processBufferedData () )
     private void resetLastFetchTimeStamp() {
         //debug -> get data from 26/6
-//        today.set(Calendar.DATE, -1);
-//        if (today.getTime().getDate() != 26) {
-//            today.set(Calendar.MONTH,5);
+//        currentDate.set(Calendar.DATE, -1);
+//        if (currentDate.getTime().getDate() != 26) {
+//            currentDate.set(Calendar.MONTH,5);
 //        }
-//        today.set(Calendar.DAY_OF_MONTH,6);
-        long timestamp = today.getTimeInMillis();
+//        currentDate.set(Calendar.DAY_OF_MONTH,6);
+        long timestamp = currentDate.getTimeInMillis();
         SharedPreferences sharedPreferences = ControllerApplication.getDeviceSpecificSharedPrefs(device.getAddress());
         SharedPreferences.Editor editor = ControllerApplication.getDeviceSpecificSharedPrefs(device.getAddress()).edit();
         long lastTimeStamp = sharedPreferences.getLong("lastSportsActivityTimeMillis", 0);
         System.out.println("Last timestamp : " + lastTimeStamp);
         System.out.println("reset time stamp : " + timestamp);
         // it should be like this
-        if (lastTimeStamp <= timestamp || today.getTimeInMillis() == 0) {
+        if (lastTimeStamp <= timestamp || currentDate.getTimeInMillis() == 0) {
             editor.remove("lastSportsActivityTimeMillis");
             editor.putLong("lastSportsActivityTimeMillis", timestamp);
             editor.apply();

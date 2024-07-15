@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.gr.ControllerApplication;
 import com.example.gr.controller.activity.LogWeightActivity;
 import com.example.gr.controller.activity.MainActivity;
 import com.example.gr.controller.activity.SearchForFoodActivity;
@@ -26,6 +27,11 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,6 +43,7 @@ public class DashboardFragment extends BaseFragment {
     private FragmentDashboardBinding mfragmentDashboardBinding;
     private LineChart lineChart;
     private Diary mDiary;
+    private FirebaseUser user;
     private ActivityUser activityUser;
 
     //    private ContactAdapter mContactAdapter;
@@ -45,6 +52,7 @@ public class DashboardFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mfragmentDashboardBinding = FragmentDashboardBinding.inflate(inflater, container, false);
         activityUser = new ActivityUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         mfragmentDashboardBinding.logWeightBtn.setOnClickListener(v->goToLogWeightActivity());
         lineChart = mfragmentDashboardBinding.lineChart;
 //        initListener();
@@ -54,11 +62,34 @@ public class DashboardFragment extends BaseFragment {
 
 
     private void getDiary(String date) {
-        mDiary = LocalDatabase.getInstance(this.requireActivity()).diaryDAO().getDiaryByDate(date);
+
+
+        mDiary = LocalDatabase.getInstance(requireActivity()).diaryDAO().getDiaryByDate(date);
+        if (mDiary == null){
+            ControllerApplication.getApp().getUserDatabaseReference().child(user.getUid()).child("diary").child(date).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        mDiary = snapshot.getValue(Diary.class);
+                        Diary tempDiary = LocalDatabase.getInstance(requireActivity()).diaryDAO().getDiaryByDate(date);
+                        if (tempDiary != null) {
+                            mDiary.setId(tempDiary.getId());
+                            LocalDatabase.getInstance(requireActivity()).diaryDAO().insertDiary(mDiary);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
         if (mDiary == null) {
             mDiary = new Diary(date);
-            LocalDatabase.getInstance(this.requireActivity()).diaryDAO().insertDiary(mDiary);
+            LocalDatabase.getInstance(requireActivity()).diaryDAO().insertDiary(mDiary);
         }
+
     }
 
     private void displayDashboardInfo() {
@@ -72,7 +103,7 @@ public class DashboardFragment extends BaseFragment {
                 mfragmentDashboardBinding.caloriesRemain.setText(String.valueOf(mDiary.getRemainingCalories()));
             }
 
-            mfragmentDashboardBinding.caloriesCircle.setProgress((int) (mDiary.getIntakeCalories() * 100 / mDiary.getCaloriesGoal()));
+            mfragmentDashboardBinding.caloriesCircle.setProgress((int) (mDiary.getIntakeCalories() * 100 / (mDiary.getCaloriesGoal() + mDiary.getBurntCalories())));
             mfragmentDashboardBinding.carbIndicator.setProgress((int) (mDiary.getIntakeCarb() * 100 / mDiary.getCarbGoal()));
             mfragmentDashboardBinding.proteinIndicator.setProgress((int) (mDiary.getIntakeProtein() * 100 / mDiary.getProteinGoal()));
             mfragmentDashboardBinding.fatIndicator.setProgress((int) (mDiary.getIntakeFat() * 100 / mDiary.getFatGoal()));
@@ -198,6 +229,7 @@ public class DashboardFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        activityUser = new ActivityUser();
         displayChartInfo();
         displayDashboardInfo();
     }

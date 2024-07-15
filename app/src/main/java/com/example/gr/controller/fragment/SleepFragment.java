@@ -103,15 +103,9 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     private SwipeRefreshLayout swipeLayout;
     private LineChart mActivityChart;
     private ActivityUser activityUser;
-    private GBDevice device;
-    private PieChart mSleepAmountChart;
-    private TextView mSleepchartInfo;
-    private TextView heartRateAverageLabel;
-    private TextView intensityTotalLabel;
     private long totalDeepSleep = 0;
     private long totalLightSleep = 0;
     private long totalREMSleep = 0;
-    private long totalActiveTime;
     private long totalSleepSeconds = 0;
     private int wakeUpTimes = 0;
     private int sleepScore = 0;
@@ -292,8 +286,6 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         totalLightSleep = lightSleepDuration;
         totalREMSleep = remSleepDuration;
         totalSleepSeconds = totalSeconds;
-        //setup sleep data statistics
-        //setupLegend(pieChart);
         return new MySleepChartsData(totalSleep, data, sleepSessions);
     }
 
@@ -325,15 +317,10 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     protected void updateChartsnUIThread(MyChartsData mcd) {
         MySleepChartsData pieData = mcd.getPieData();
         mFragmentSleepBinding.totalSleepTime.setText(pieData.getTotalSleep());
-//        mSleepAmountChart.setData(pieData.getPieData());
         mActivityChart.setData(null); // workaround for https://github.com/PhilJay/MPAndroidChart/issues/2317
         mActivityChart.getXAxis().setValueFormatter(mcd.getChartsData().getXValueFormatter());
         mActivityChart.setData(mcd.getChartsData().getData());
         recordedSleep = buildYouSleptText(pieData);
-//        mSleepchartInfo.setMovementMethod(new ScrollingMovementMethod());
-//        int heartRateMin = mcd.getHeartRateAxisMin();
-//        int heartRateMax = mcd.getHeartRateAxisMax();
-//        float intensityTotal = mcd.getIntensityTotal();
         displaySleepSummaries();
         displaySleepTips();
     }
@@ -540,15 +527,6 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
         }
     }
 
-//    private void setupSleepAmountChart() {
-//        mSleepAmountChart.setBackgroundColor(BACKGROUND_COLOR);
-//        mSleepAmountChart.getDescription().setTextColor(DESCRIPTION_COLOR);
-//        mSleepAmountChart.setEntryLabelColor(DESCRIPTION_COLOR);
-//        mSleepAmountChart.getDescription().setText("");
-////        mSleepAmountChart.getDescription().setNoDataTextDescription("");
-//        mSleepAmountChart.setNoDataText("");
-//        mSleepAmountChart.getLegend().setEnabled(false);
-//    }
 
     private void setupActivityChart() {
         mActivityChart.setBackgroundColor(BACKGROUND_COLOR);
@@ -623,7 +601,6 @@ public class SleepFragment extends AbstractActivityChartFragment<SleepFragment.M
     @Override
     protected void renderCharts() {
         mActivityChart.animateX(ANIM_TIME, Easing.EaseInOutQuart);
-//        mSleepAmountChart.invalidate();
     }
 
     private static class MySleepChartsData extends ChartsData {
